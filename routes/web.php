@@ -64,3 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('password/{id}', [PasswordController::class, 'edit'])->name('edit.password');
     Route::post('password/{id}', [PasswordController::class, 'update'])->name('update.password');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
