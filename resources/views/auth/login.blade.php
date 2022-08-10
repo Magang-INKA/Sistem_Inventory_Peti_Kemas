@@ -3,12 +3,12 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Sistem Inventory Sekolah</title>
+	<title>Sistem Inventory Peti Kemas</title>
 
 	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="{{asset('template/vendors/images/apple-touch-icon.png')}}">
+	{{-- <link rel="apple-touch-icon" sizes="180x180" href="{{asset('template/vendors/images/apple-touch-icon.png')}}">
 	<link rel="icon" type="image/png" sizes="32x32" href="{{asset('template/vendors/images/favicon-32x32.png')}}">
-	<link rel="icon" type="image/png" sizes="16x16" href="{{asset('template/vendors/images/favicon-16x16.png')}}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{asset('template/vendors/images/favicon-16x16.png')}}"> --}}
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -34,7 +34,7 @@
 	<div class="login-header box-shadow">
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="brand-logo">
-				<img src="{{asset('template/vendors/images/logo-login.PNG')}}" alt="">
+				<img src="{{asset('template/vendors/images/logo-md.png')}}" alt="" style="width:200px;height:60px">
 			</div>
             <div class="login-menu">
 				<ul>
@@ -47,18 +47,18 @@
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-md-6 col-lg-7">
-					<img src="{{asset('template/vendors/images/login-page-img.png')}}" alt="">
+					<img src="{{asset('template/vendors/images/inka1.png')}}" alt="">
 				</div>
 				<div class="col-md-6 col-lg-5">
 					<div class="login-box bg-white box-shadow border-radius-10">
 						<div class="login-title">
-							<h2 class="text-center text-primary">Login To Sistem</h2>
+							<h2 class="text-center text-primary">Sign In</h2>
 						</div>
 						<form method="POST" action="{{ route('login') }}">
                             @csrf
 							<div class="input-group custom">
                                 {{-- <label for="email"></label> --}}
-								<input for="username" id="username" type="username" class="form-control form-control-lg @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username" autofocus>
+								<input for="username" id="username" type="username" class="form-control form-control-lg @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Email" autofocus>
 								@error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -101,7 +101,7 @@
 									</div>
                                     <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR</div>
 									<div class="input-group mb-0">
-										<a class="btn btn-outline-primary btn-lg btn-block" href="{{ route('register') }}">Register To Create Account</a>
+										<a class="btn btn-outline-primary btn-lg btn-block" href="{{ route('register') }}">Register to Create Account</a>
 									</div>
 								</div>
 							</div>
