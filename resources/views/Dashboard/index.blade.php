@@ -1,7 +1,7 @@
 @extends('layouts.MasterView')
 @section('menu_home', 'active')
 @section('content')
-	<div class="main-container">
+	{{-- <div class="main-container"> --}}
 		<div class="xs-pd-20-10 pd-ltr-20">
 			<div class="page-header">
 				<div class="row">
@@ -75,27 +75,27 @@
 						<div class="browser-visits">
 							<ul>
 								<li class="d-flex flex-wrap align-items-center">
-									<div class="icon"><img src="vendors/images/chrome.png" alt=""></div>
+									<div class="icon"><img src="{{asset('template/vendors/images/chrome.png')}}" alt=""></div>
 									<div class="browser-name">Google Chrome</div>
 									<div class="visit"><span class="badge badge-pill badge-primary">50%</span></div>
 								</li>
 								<li class="d-flex flex-wrap align-items-center">
-									<div class="icon"><img src="vendors/images/firefox.png" alt=""></div>
+									<div class="icon"><img src="{{asset('template/vendors/images/firefox.png')}}" alt=""></div>
 									<div class="browser-name">Mozilla Firefox</div>
 									<div class="visit"><span class="badge badge-pill badge-secondary">40%</span></div>
 								</li>
 								<li class="d-flex flex-wrap align-items-center">
-									<div class="icon"><img src="vendors/images/safari.png" alt=""></div>
+									<div class="icon"><img src="{{asset('template/vendors/images/safari.png')}}" alt=""></div>
 									<div class="browser-name">Safari</div>
 									<div class="visit"><span class="badge badge-pill badge-success">40%</span></div>
 								</li>
 								<li class="d-flex flex-wrap align-items-center">
-									<div class="icon"><img src="vendors/images/edge.png" alt=""></div>
+									<div class="icon"><img src="{{asset('template/vendors/images/edge.png')}}" alt=""></div>
 									<div class="browser-name">Microsoft Edge</div>
 									<div class="visit"><span class="badge badge-pill badge-warning">20%</span></div>
 								</li>
 								<li class="d-flex flex-wrap align-items-center">
-									<div class="icon"><img src="vendors/images/opera.png" alt=""></div>
+									<div class="icon"><img src="{{asset('template/vendors/images/opera.png')}}" alt=""></div>
 									<div class="browser-name">Opera Mini</div>
 									<div class="visit"><span class="badge badge-pill badge-info">20%</span></div>
 								</li>
@@ -125,16 +125,16 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	{{-- </div> --}}
 	<!-- js -->
-	<script src="vendors/scripts/core.js"></script>
-	<script src="vendors/scripts/script.min.js"></script>
-	<script src="vendors/scripts/process.js"></script>
-	<script src="vendors/scripts/layout-settings.js"></script>
-	<script src="src/plugins/jQuery-Knob-master/jquery.knob.min.js"></script>
-	<script src="src/plugins/highcharts-6.0.7/code/highcharts.js"></script>
-	<script src="src/plugins/highcharts-6.0.7/code/highcharts-more.js"></script>
-	<script src="src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-	<script src="src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-	<script src="vendors/scripts/dashboard2.js"></script>
+	{{-- <script src="{{asset('template/vendors/scripts/core.js')}}"></script>
+	<script src="{{asset('template/vendors/scripts/script.min.js')}}"></script>
+	<script src="{{asset('template/vendors/scripts/process.js')}}"></script>
+	<script src="{{asset('template/vendors/scripts/layout-settings.js')}}"></script>
+	<script src="{{asset('template/src/plugins/jQuery-Knob-master/jquery.knob.min.js')}}"></script>
+	<script src="{{asset('template/src/plugins/highcharts-6.0.7/code/highcharts.js')}}"></script>
+	<script src="{{asset('template/src/plugins/highcharts-6.0.7/code/highcharts-more.js')}}"></script>
+	<script src="{{asset('template/src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js')}}"></script>
+	<script src="{{asset('template/src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
+	<script src="{{asset('template/vendors/scripts/dashboard2.js')}}"></script> --}}
 @endsection
