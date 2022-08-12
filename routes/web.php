@@ -30,7 +30,7 @@ Route::get('/forgot-password', function () {
     return view('auth.forget');
 });
 
-Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/', [DashboardController::class,'index']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -68,6 +68,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('dashboard', DashboardController::class);
+// Route::resource('dashboard', DashboardController::class);

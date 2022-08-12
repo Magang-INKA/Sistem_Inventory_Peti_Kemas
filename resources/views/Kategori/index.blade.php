@@ -6,11 +6,11 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>Data Kategori Barang</h4>
+                    <h4>Container Data</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('kategori.index') }}">Kategori</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('kategori.index') }}">Container</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Index</li>
                     </ol>
                 </nav>
@@ -18,7 +18,7 @@
             <div class="col-md-6 col-sm-12 text-right">
                 <a href="#" type="button" class="btn btn-primary" data-toggle="dropdown" data-color="#ffffff">
                     <i class="icon-copy fa fa-download" aria-hidden="true"></i>
-                    Download Laporan
+                    Report Download
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{url('/laporan/kategori')}}">PDF</a>
@@ -54,13 +54,15 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>Kode</th>
-                        <th>Kategori</th>
+                        <th>Container ID</th>
+                        <th>ID Kapal</th>
+                        <th>Container Name</th>
+                        <th>Destination</th>
                         <th class="table-plus datatable-nosort">Keterangan</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                {{-- <tbody>
                     @foreach ($kategori as $kt => $data)
                     <tr>
                         <td class="table-plus">{{ $kt + $kategori->firstitem() }}</td>
@@ -86,7 +88,7 @@
                         </td>
                     </tr>
                     @endforeach
-                </tbody>
+                </tbody> --}}
             </table>
             <div class="col-md-40 col-sm-12 text-left">
                 {{$kategori->links()}}

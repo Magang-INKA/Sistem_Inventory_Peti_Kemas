@@ -14,19 +14,19 @@
             <ul id="accordion-menu">
                 <li>
                     <a href="{{ url('/') }}" class="dropdown-toggle no-arrow @yield('menu_home')">
-                        <span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
+                        <span class="micon dw dw-house-1"></span><span class="mtext">Dashboard</span>
                     </a>
                 </li>
                 @can('manage-MasterData')
                 <li>
-                    <a href="{{ route('kategori.index') }}" class="dropdown-toggle no-arrow @yield('menu_kategori')">
-                        <span class="micon dw dw-diagram"></span><span class="mtext">Kategori Barang</span>
+                    <a href="{{ route('barang.index') }}" class="dropdown-toggle no-arrow @yield('menu_barang')">
+                        <span class="micon dw dw-diagram"></span><span class="mtext">Product</span>
                     </a>
                 </li>
                 @endcan
                 <li>
-                    <a href="{{ route('barang.index') }}" class="dropdown-toggle no-arrow @yield('menu_barang')">
-                        <span class="micon dw dw-box"></span><span class="mtext">Barang</span>
+                    <a href="{{ route('kategori.index') }}" class="dropdown-toggle no-arrow @yield('menu_kategori')">
+                        <span class="micon dw dw-box"></span><span class="mtext">Container</span>
                     </a>
                 </li>
                 @can('manage-MasterData')
