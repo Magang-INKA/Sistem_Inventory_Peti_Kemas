@@ -32,7 +32,7 @@
 			</div>
 			<div class="row clearfix progress-box">
 				<div class="col-lg-3 col-md-6 col-sm-12 mb-30">
-					<div class="card-box pd-30 height-100-p">
+					<div class="card-white pd-30 height-100-p">
 						<div class="progress-box text-center">
 							 <input type="text" class="knob dial1" value="80" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
 							<h5 class="text-blue padding-top-10 h5">My Earnings</h5>
@@ -41,7 +41,7 @@
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 col-sm-12 mb-30">
-					<div class="card-box pd-30 height-100-p">
+					<div class="card-white pd-30 height-100-p">
 						<div class="progress-box text-center">
 							 <input type="text" class="knob dial2" value="70" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#00e091" data-angleOffset="180" readonly>
 							<h5 class="text-light-green padding-top-10 h5">Business Captured</h5>
@@ -50,7 +50,7 @@
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 col-sm-12 mb-30">
-					<div class="card-box pd-30 height-100-p">
+					<div class="card-white pd-30 height-100-p">
 						<div class="progress-box text-center">
 							 <input type="text" class="knob dial3" value="90" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#f56767" data-angleOffset="180" readonly>
 							<h5 class="text-light-orange padding-top-10 h5">Projects Speed</h5>
@@ -59,7 +59,7 @@
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 col-sm-12 mb-30">
-					<div class="card-box pd-30 height-100-p">
+					<div class="card-white pd-30 height-100-p">
 						<div class="progress-box text-center">
 							 <input type="text" class="knob dial4" value="65" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#a683eb" data-angleOffset="180" readonly>
 							<h5 class="text-light-purple padding-top-10 h5">Panding Orders</h5>
@@ -70,7 +70,7 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-4 col-md-6 col-sm-12 mb-30">
-					<div class="card-box pd-30 pt-10 height-100-p">
+					<div class="card-white pd-30 pt-10 height-100-p">
 						<h2 class="mb-30 h4">Browser Visit</h2>
 						<div class="browser-visits">
 							<ul>
@@ -104,7 +104,7 @@
 					</div>
 				</div>
 				<div class="col-lg-8 col-md-6 col-sm-12 mb-30">
-					<div class="card-box pd-30 pt-10 height-100-p">
+					<div class="card-white pd-30 pt-10 height-100-p">
 						<h2 class="mb-30 h4">World Map</h2>
 						<div id="browservisit" style="width:100%!important; height:380px"></div>
 					</div>
@@ -112,13 +112,13 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-7 col-md-12 col-sm-12 mb-30">
-					<div class="card-box pd-30 height-100-p">
+					<div class="card-white pd-30 height-100-p">
 						<h4 class="mb-30 h4">Compliance Trend</h4>
 						<div id="compliance-trend" class="compliance-trend"></div>
 					</div>
 				</div>
 				<div class="col-lg-5 col-md-12 col-sm-12 mb-30">
-					<div class="card-box pd-30 height-100-p">
+					<div class="card-white pd-30 height-100-p">
 						<h4 class="mb-30 h4">Records</h4>
 						<div id="chart" class="chart"></div>
 					</div>

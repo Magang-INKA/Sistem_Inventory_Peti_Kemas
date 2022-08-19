@@ -1,8 +1,8 @@
 <div class="left-side-bar">
     <div class="brand-logo" style="padding-top: 50px; padding-bottom: 45px">
         <a href="index.html">
-            <img src="{{asset('template/vendors/images/logo.png')}}" alt="" class="dark-logo">
-            <img src="{{asset('template/vendors/images/logo-white.png')}}" alt="" class="light-logo">
+            <img src="{{asset('vendors/images/logo.png')}}" alt="" class="dark-logo">
+            <img src="{{asset('vendors/images/logo-white.png')}}" alt="" class="light-logo">
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>
@@ -15,6 +15,11 @@
                 <li>
                     <a href="{{ url('/') }}" class="dropdown-toggle no-arrow @yield('menu_home')">
                         <span class="micon dw dw-house-1"></span><span class="mtext">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/booking') }}" class="dropdown-toggle no-arrow @yield('menu_booking')">
+                        <span class="micon dw dw-house-1"></span><span class="mtext">Booking</span>
                     </a>
                 </li>
                 @can('manage-MasterData')

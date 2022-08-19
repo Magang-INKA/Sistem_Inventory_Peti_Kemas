@@ -1,5 +1,5 @@
 @extends('layouts.MasterView')
-@section('menu_home', 'active')
+@section('menu_booking', 'active')
 @section('content')
 	{{-- <div class="main-container"> --}}
 		<div class="pd-ltr-20 xs-pd-20-10">
@@ -32,7 +32,7 @@
 					</div>
 				</div>
 
-				<div class="pd-20 card-box mb-30">
+				<div class="pd-20 card-white mb-30">
 					<div class="clearfix">
 						<h4 class="text-blue h4">Step wizard</h4>
 						<p class="mb-30">jQuery Step wizard</p>
