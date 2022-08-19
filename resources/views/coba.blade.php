@@ -4,7 +4,7 @@
 <div class="card-box pd-20 height-100-p mb-30">
     <div class="row align-items-center">
         <div class="col-md-4">
-            <img src="{{asset('template/vendors/images/banner-img.png')}}" alt="">
+            <img src="{{asset('vendors/images/banner-img.png')}}" alt="">
         </div>
         <div class="col-md-8">
             <h4 class="font-20 weight-500 mb-10 text-capitalize text-white">
@@ -20,7 +20,7 @@
         <div class="card-box height-100-p widget-style1">
             <div class="d-flex flex-wrap align-items-center" style="padding-left: 15px;">
                 <div class="progress-data">
-                    <img src="{{asset('template/vendors/images/kategori.png')}}" alt="">
+                    <img src="{{asset('vendors/images/kategori.png')}}" alt="">
                 </div>
                 <div class="widget-data">
                     <div class="h4 mb-0 text-white text-center">{{$kategori->count()}}</div>
@@ -33,7 +33,7 @@
         <div class="card-box height-100-p widget-style1">
             <div class="d-flex flex-wrap align-items-center" style="padding-left: 15px;">
                 <div class="progress-data">
-                    <img src="{{asset('template/vendors/images/barang.png')}}" alt="">
+                    <img src="{{asset('vendors/images/barang.png')}}" alt="">
                 </div>
                 <div class="widget-data">
                     <div class="h4 mb-0 text-white text-center">{{$barang->count()}}</div>
@@ -47,7 +47,7 @@
         <div class="card-box height-100-p widget-style1">
             <div class="d-flex flex-wrap align-items-center" style="padding-left: 15px;">
                 <div class="progress-data">
-                    <img src="{{asset('template/vendors/images/supplier.png')}}" alt="">
+                    <img src="{{asset('vendors/images/supplier.png')}}" alt="">
                 </div>
                 <div class="widget-data">
                     <div class="h4 mb-0 text-white text-center">{{$supplier->count()}}</div>
@@ -60,7 +60,7 @@
         <div class="card-box height-100-p widget-style1">
             <div class="d-flex flex-wrap align-items-center" style="padding-left: 15px;">
                 <div class="progress-data">
-                    <img src="{{asset('template/vendors/images/users.png')}}" alt="">
+                    <img src="{{asset('vendors/images/users.png')}}" alt="">
                 </div>
                 <div class="widget-data">
                     <div class="h4 mb-0 text-white text-center">{{$user->count()}}</div>
@@ -75,7 +75,7 @@
         <div class="card-box height-100-p widget-style1">
             <div class="d-flex flex-wrap align-items-center" style="padding-left: 15px;">
                 <div class="progress-data">
-                    <img src="{{asset('template/vendors/images/keluar.png')}}" alt="">
+                    <img src="{{asset('vendors/images/keluar.png')}}" alt="">
                 </div>
                 <div class="widget-data">
                     <div class="h4 mb-0 text-white text-center">{{$BarangKeluar->count()}}</div>
@@ -88,7 +88,7 @@
         <div class="card-box height-100-p widget-style1">
             <div class="d-flex flex-wrap align-items-center" style="padding-left: 15px;">
                 <div class="progress-data">
-                    <img src="{{asset('template/vendors/images/masuk.png')}}" alt="">
+                    <img src="{{asset('vendors/images/masuk.png')}}" alt="">
                 </div>
                 <div class="widget-data">
                     <div class="h4 mb-0 text-white text-center">{{$BarangMasuk->count()}}</div>

@@ -6,9 +6,9 @@
 	<title>Sistem Inventory Sekolah</title>
 
 	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="{{asset('template/vendors/images/apple-touch-icon.png')}}">
-	<link rel="icon" type="image/png" sizes="32x32" href="{{asset('template/vendors/images/favicon-32x32.png')}}">
-	<link rel="icon" type="image/png" sizes="16x16" href="{{asset('template/vendors/images/favicon-16x16.png')}}">
+	<link rel="apple-touch-icon" sizes="180x180" href="{{asset('vendors/images/apple-touch-icon.png')}}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{asset('vendors/images/favicon-32x32.png')}}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{asset('vendors/images/favicon-16x16.png')}}">
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,9 +16,9 @@
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="{{asset('template/vendors/styles/core.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('template/vendors/styles/icon-font.min.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('template/vendors/styles/style.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('vendors/styles/core.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('vendors/styles/icon-font.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('vendors/styles/style.css')}}">
 
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -36,7 +36,7 @@
 	<div class="login-header box-shadow">
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="brand-logo">
-				<img src="{{asset('template/vendors/images/logo-login.PNG')}}" alt="">
+				<img src="{{asset('vendors/images/logo-login.PNG')}}" alt="">
 			</div>
 			<div class="login-menu">
 				<ul>
@@ -49,7 +49,7 @@
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-md-6">
-					<img src="{{asset('template/vendors/images/forgot-password.png')}}" alt="">
+					<img src="{{asset('vendors/images/forgot-password.png')}}" alt="">
 				</div>
 				<div class="col-md-6">
 					<div class="login-box bg-white box-shadow border-radius-10">
