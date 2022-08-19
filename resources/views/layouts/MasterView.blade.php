@@ -3,7 +3,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Sistem Inventory Sekolah</title>
+	<title>Sistem Inventory Peti Kemas</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="{{asset('template/vendors/images/apple-touch-icon.png')}}">

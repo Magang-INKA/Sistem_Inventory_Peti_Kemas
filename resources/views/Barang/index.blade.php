@@ -6,11 +6,11 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>Data Barang</h4>
+                    <h4>Product Data</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('barang.index') }}">Barang</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('barang.index') }}">Product</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Index</li>
                     </ol>
                 </nav>
@@ -18,7 +18,7 @@
             <div class="col-md-6 col-sm-12 text-right">
                 <a href="#" type="button" class="btn btn-primary" data-toggle="dropdown" data-color="#ffffff">
                     <i class="icon-copy fa fa-download" aria-hidden="true"></i>
-                    Download Laporan
+                    Report Download
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{url('/laporan/barang')}}">PDF</a>
@@ -61,16 +61,16 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>Kode Barang</th>
-                        <th>Kategori</th>
-                        <th>Nama Barang</th>
-                        <th>Jumlah</th>
+                        <th>Product ID</th>
+                        <th>Container ID</th>
+                        <th>Quantity</th>
+                        <th>Requirement</th>
                         @can('manage-MasterData')
                         <th class="datatable-nosort">Action</th>
                         @endcan
                     </tr>
                 </thead>
-                <tbody>
+                {{-- <tbody>
                     @foreach ($barang as $br => $data)
                     <tr>
                         <td class="table-plus">{{ $br + $barang->firstitem() }}</td>
@@ -99,7 +99,7 @@
                         @endcan
                     </tr>
                     @endforeach
-                </tbody>
+                </tbody> --}}
             </table>
             <div class="col-md-40 col-sm-12 text-left">
                 {{$barang->links()}}
