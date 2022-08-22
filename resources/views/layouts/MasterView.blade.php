@@ -22,6 +22,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('src/plugins/datatables/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('src/plugins/jvectormap/jquery-jvectormap-2.0.3.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('src/plugins/jquery-steps/jquery.steps.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('src/plugins/switchery/switchery.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('vendors/styles/style.css')}}">
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -79,6 +80,9 @@
 	<script src="{{asset('vendors/scripts/dashboard2.js')}}"></script>
     <script src="{{asset('src/plugins/jquery-steps/jquery.steps.js')}}"></script>
 	<script src="{{asset('vendors/scripts/steps-setting.js')}}"></script>
+    <!-- switchery js -->
+	<script src="{{asset('src/plugins/switchery/switchery.min.js')}}"></script>
+    <script src="{{asset('vendors/scripts/advanced-components.js')}}"></script>
     <!-- Datatable Setting js -->
 	{{--  <script src="{{asset('vendors/scripts/datatable-setting.js')}}"></script></body>  --}}
 </body>

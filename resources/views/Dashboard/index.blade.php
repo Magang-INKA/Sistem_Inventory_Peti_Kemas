@@ -17,7 +17,7 @@
 						</nav>
 					</div>
 					<div class="col-md-6 col-sm-12 text-right">
-						<div class="dropdown">
+						{{-- <div class="dropdown">
 							<a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 								January 2018
 							</a>
@@ -26,39 +26,118 @@
 								<a class="dropdown-item" href="#">Policies</a>
 								<a class="dropdown-item" href="#">View Assets</a>
 							</div>
-						</div>
+						</div> --}}
+                        <select class="custom-select2 form-control" name="state" style="width: 50%; height: 38px;">
+                            <optgroup label="Alaskan/Hawaiian Time Zone">
+                                <option value="AK">Alaska</option>
+                                <option value="HI">Hawaii</option>
+                            </optgroup>
+                            <optgroup label="Pacific Time Zone">
+                                <option value="CA">California</option>
+                                <option value="NV">Nevada</option>
+                                <option value="OR">Oregon</option>
+                                <option value="WA">Washington</option>
+                            </optgroup>
+                            <optgroup label="Mountain Time Zone">
+                                <option value="AZ">Arizona</option>
+                                <option value="CO">Colorado</option>
+                                <option value="ID">Idaho</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="UT">Utah</option>
+                                <option value="WY">Wyoming</option>
+                            </optgroup>
+                        </select>
 					</div>
 				</div>
 			</div>
 			<div class="row clearfix progress-box">
-				<div class="col-lg-3 col-md-6 col-sm-12 mb-30">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-30">
 					<div class="card-white pd-30 height-100-p">
 						<div class="progress-box text-center">
-							 <input type="text" class="knob dial1" value="80" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
-							<h5 class="text-blue padding-top-10 h5">My Earnings</h5>
-							<span class="d-block">80% Average <i class="fa fa-line-chart text-blue"></i></span>
+                            <h5 class="text-light-green padding-top-10 h5">Capacity</h5>
+							<span class="d-block">75% Allocated</i></span>
+							<input type="text" class="knob dial2" value="75" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#00e091" data-angleOffset="180" readonly>
 						</div>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>Allocated</td>
+                                    <td>1200 ton</td>
+                                </tr>
+                                <tr>
+                                    <td>Free</td>
+                                    <td>800 ton</td>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <td>2000 ton</td>
+                                </tr>
+                            </tbody>
+                        </table>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 col-sm-12 mb-30">
 					<div class="card-white pd-30 height-100-p">
 						<div class="progress-box text-center">
-							 <input type="text" class="knob dial2" value="70" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#00e091" data-angleOffset="180" readonly>
-							<h5 class="text-light-green padding-top-10 h5">Business Captured</h5>
-							<span class="d-block">75% Average <i class="fa text-light-green fa-line-chart"></i></span>
+                            <h5 class="text-blue padding-top-10 h5">Temperature</h5>
+							<span class="d-block">80° Celcius</span>
+							<input type="text" class="knob dial1" value="80" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 col-sm-12 mb-30">
+				<div class="col-lg-5 col-md-6 col-sm-12 mb-30">
 					<div class="card-white pd-30 height-100-p">
 						<div class="progress-box text-center">
-							 <input type="text" class="knob dial3" value="90" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#f56767" data-angleOffset="180" readonly>
-							<h5 class="text-light-orange padding-top-10 h5">Projects Speed</h5>
-							<span class="d-block">90% Average <i class="fa text-light-orange fa-line-chart"></i></span>
+                            <h5 class="text-light-orange padding-top-10 h5">AC Control</h5>
+                            <div class="row clearfix">
+                                <div class="col-md-6 col-sm-12 mb-30">
+                                    <div class="card text-white bg-info card-box">
+                                        <div class="card-header">Evaporator</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title text-white">Primary card title</h5>
+                                            {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 mb-30">
+                                    <div class="card text-white bg-info card-box">
+                                        <div class="card-header">Header</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title text-white">Primary card title</h5>
+                                            {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 mb-30">
+                                    <div class="card text-white bg-info card-box">
+                                        <div class="card-header">Header</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title text-white">Primary card title</h5>
+                                            {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 mb-30">
+                                    <div class="card text-white bg-info card-box">
+                                        <div class="card-header">Header</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title text-white">Primary card title</h5>
+                                            {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="checkbox" checked class="switch-btn" data-size="small" data-color="#28a745">
+							{{-- <span class="d-block">90% Average</span> --}}
+							 {{-- <input type="text" class="knob dial3" value="90" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#f56767" data-angleOffset="180" readonly> --}}
+
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 col-sm-12 mb-30">
+				{{-- <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
 					<div class="card-white pd-30 height-100-p">
 						<div class="progress-box text-center">
 							 <input type="text" class="knob dial4" value="65" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#a683eb" data-angleOffset="180" readonly>
@@ -66,7 +145,7 @@
 							<span class="d-block">65% Average <i class="fa text-light-purple fa-line-chart"></i></span>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 			</div>
 			<div class="row">
 				<div class="col-lg-4 col-md-6 col-sm-12 mb-30">
