@@ -6,9 +6,9 @@
 	<title>Sistem Inventory Peti Kemas</title>
 
 	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="{{asset('vendors/images/inkaa.png')}}">
-	<link rel="icon" type="image/png" sizes="32x32" href="{{asset('vendors/images/inkaa.png')}}">
-	<link rel="icon" type="image/png" sizes="16x16" href="{{asset('vendors/images/inkaa.png')}}">
+	<link rel="apple-touch-icon" sizes="200x200" href="{{asset('vendors/images/inka.png')}}">
+	<link rel="icon" type="image/png" sizes="35x35" href="{{asset('vendors/images/inka.png')}}">
+	<link rel="icon" type="image/png" sizes="20x20" href="{{asset('vendors/images/inka.png')}}">
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
