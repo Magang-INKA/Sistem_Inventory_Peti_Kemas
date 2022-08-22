@@ -54,8 +54,11 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>Nama</th>
+                        <th>ID User</th>
+                        <th>ID Container</th>
+                        <th>Name</th>
                         <th>Email</th>
+                        <th>Number Phone</th>
                         <th>Role</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
@@ -64,8 +67,11 @@
                     @foreach ($user as $us => $data)
                     <tr>
                         <td class="table-plus">{{ $us + $user->firstitem() }}</td>
+                        <td>{{ $data->user }}</td>
+                        <td>{{ $data->idcontainer}}</td>
                         <td>{{ $data->name }}</td>
-                        <td>{{ $data->email}}</td>
+                        <td>{{ $data->email }}</td>
+                        <td>{{ $data->number}}</td>
                         <td>{{ $data->role }}</td>
                         <td>
                             <div class="dropdown">

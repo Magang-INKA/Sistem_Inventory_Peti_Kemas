@@ -1,16 +1,16 @@
 @extends('layouts.MasterView')
-@section('menu_supplier', 'active')
+@section('menu_transaksi', 'active')
 @section('content')
 <div >
     <div class="page-header">
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>Data Supplier</h4>
+                    <h4>Transaction Data</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('supplier.index') }}">Supplier</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('supplier.index') }}">Transaction</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Index</li>
                     </ol>
                 </nav>
@@ -18,7 +18,7 @@
             <div class="col-md-6 col-sm-12 text-right">
                 <a href="#" type="button" class="btn btn-primary" data-toggle="dropdown" data-color="#ffffff">
                     <i class="icon-copy fa fa-download" aria-hidden="true"></i>
-                    Download Laporan
+                    Report Download
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{url('/laporan/supplier')}}">PDF</a>
@@ -54,10 +54,13 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>Kode Supplier</th>
-                        <th>Nama</th>
-                        <th>Telepon</th>
-                        <th>Kota</th>
+                        <th>Transaction ID</th>
+                        <th>User ID</th>
+                        <TH>Product ID</TH>
+                        <th>Container ID</th>
+                        <th>ID Kapal</th>
+                        <th>ID Pelabuhan</th>
+                        <th>Date</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
                 </thead>
@@ -65,10 +68,13 @@
                     @foreach ($supplier as $sup => $data)
                     <tr>
                         <td class="table-plus">{{ $sup + $supplier->firstitem() }}</td>
-                        <td>{{ $data->kode }}</td>
-                        <td>{{ $data->nama }}</td>
-                        <td>{{ $data->telp }}</td>
-                        <td>{{ $data->kota }}</td>
+                        <td>{{ $data->idtransaksi }}</td>
+                        <td>{{ $data->iduser }}</td>
+                        <td>{{ $data->idbarang }}</td>
+                        <td>{{ $data->idcontainer }}</td>
+                        <td>{{ $data->idkapal }}</td>
+                        <td>{{ $data->idpelabuhan }}</td>
+                        <td>{{ $data->date }}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

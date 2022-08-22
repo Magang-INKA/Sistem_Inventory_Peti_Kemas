@@ -58,7 +58,6 @@
                         <th>ID Kapal</th>
                         <th>Container Name</th>
                         <th>Destination</th>
-                        <th class="table-plus datatable-nosort">Keterangan</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
                 </thead>
