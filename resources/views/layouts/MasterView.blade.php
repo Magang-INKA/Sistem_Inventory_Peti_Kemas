@@ -66,15 +66,20 @@
 	<script src="{{asset('vendors/scripts/script.min.js')}}"></script>
 	<script src="{{asset('vendors/scripts/process.js')}}"></script>
 	<script src="{{asset('vendors/scripts/layout-settings.js')}}"></script>
+    {{-- High Charts --}}
+    <script src="{{asset('src/plugins/highcharts-6.0.7/code/highcharts.js')}}"></script>
+	<script src="{{asset('https://code.highcharts.com/highcharts-3d.js')}}"></script>
+	<script src="{{asset('src/plugins/highcharts-6.0.7/code/highcharts-more.js')}}"></script>
+	<script src="{{asset('vendors/scripts/highchart-setting.js')}}"></script>
+
 	<script src="{{asset('src/plugins/datatables/js/jquery.dataTables.min.js')}}"></script>
 	<script src="{{asset('src/plugins/datatables/js/dataTables.bootstrap4.min.js')}}"></script>
 	<script src="{{asset('src/plugins/datatables/js/dataTables.responsive.min.js')}}"></script>
 	<script src="{{asset('src/plugins/datatables/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('vendors/scripts/datatable-setting.js')}}"></script>
 	<script src="{{asset('vendors/scripts/dashboard.js')}}"></script>
     <script src="{{asset('src/plugins/apexcharts/apexcharts.min.js')}}"></script>
     <script src="{{asset('src/plugins/jQuery-Knob-master/jquery.knob.min.js')}}"></script>
-	<script src="{{asset('src/plugins/highcharts-6.0.7/code/highcharts.js')}}"></script>
-	<script src="{{asset('src/plugins/highcharts-6.0.7/code/highcharts-more.js')}}"></script>
 	<script src="{{asset('src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js')}}"></script>
 	<script src="{{asset('src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
 	<script src="{{asset('vendors/scripts/dashboard2.js')}}"></script>
@@ -83,7 +88,9 @@
     <!-- switchery js -->
 	<script src="{{asset('src/plugins/switchery/switchery.min.js')}}"></script>
     <script src="{{asset('vendors/scripts/advanced-components.js')}}"></script>
+
     <!-- Datatable Setting js -->
-	{{--  <script src="{{asset('vendors/scripts/datatable-setting.js')}}"></script></body>  --}}
+	{{--  <script src="{{asset('vendors/scripts/datatable-setting.js')}}"></script>  --}}
+
 </body>
 </html>

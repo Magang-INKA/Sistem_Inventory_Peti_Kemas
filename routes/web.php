@@ -31,6 +31,10 @@ Route::get('/forgot-password', function () {
     return view('auth.forget');
 });
 
+Route::get('/tracking', function () {
+    return view('Dashboard/tracking');
+});
+
 Route::get('/', [DashboardController::class,'index']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

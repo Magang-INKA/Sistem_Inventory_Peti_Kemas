@@ -28,39 +28,29 @@
 							</div>
 						</div> --}}
                         <select class="custom-select2 form-control" name="state" style="width: 50%; height: 38px;">
-                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                <option value="AK">Alaska</option>
-                                <option value="HI">Hawaii</option>
-                            </optgroup>
-                            <optgroup label="Pacific Time Zone">
-                                <option value="CA">California</option>
-                                <option value="NV">Nevada</option>
-                                <option value="OR">Oregon</option>
-                                <option value="WA">Washington</option>
-                            </optgroup>
-                            <optgroup label="Mountain Time Zone">
-                                <option value="AZ">Arizona</option>
-                                <option value="CO">Colorado</option>
-                                <option value="ID">Idaho</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="UT">Utah</option>
-                                <option value="WY">Wyoming</option>
-                            </optgroup>
+                            <option value="">Pilih Container</option>
+                            <option value="AK">Alaska</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="CA">California</option>
+                            <option value="NV">Nevada</option>
+                            <option value="OR">Oregon</option>
+                            <option value="WA">Washington</option>
                         </select>
 					</div>
 				</div>
 			</div>
 			<div class="row clearfix progress-box">
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-30">
-					<div class="card-white pd-30 height-100-p">
+                <div class="col-lg-4 col-md-12 col-sm-12 mb-30">
+					<div class="card-white posisi-card pd-20 height-100-p">
 						<div class="progress-box text-center">
-                            <h5 class="text-light-green padding-top-10 h5">Capacity</h5>
-							<span class="d-block">75% Allocated</i></span>
-							<input type="text" class="knob dial2" value="75" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#00e091" data-angleOffset="180" readonly>
+                            <h5 class="text-light-green padding-top-10 h5">Capacity</h5><br>
+							{{-- <span class="d-block">75% Allocated</i></span> --}}
+                            <div class="progress">
+								<div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
+							</div>
+							{{-- <input type="text" class="knob dial2" value="75" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#00e091" data-angleOffset="180" readonly> --}}
 						</div>
+                        <br>
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>
@@ -77,60 +67,77 @@
                                 </tr>
                             </tbody>
                         </table>
-					</div>
+                    </div>
 				</div>
-				<div class="col-lg-3 col-md-6 col-sm-12 mb-30">
-					<div class="card-white pd-30 height-100-p">
+				<div class="col-lg-3 col-md-12 col-sm-12 mb-30">
+					<div class="card-white pd-20 height-50-p">
 						<div class="progress-box text-center">
                             <h5 class="text-blue padding-top-10 h5">Temperature</h5>
-							<span class="d-block">80° Celcius</span>
 							<input type="text" class="knob dial1" value="80" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
+                            <span class="d-block">80° Celcius</span>
+						</div>
+					</div><br>
+                    <div class="card-white pd-20 height-50-p">
+						<div class="progress-box text-center">
+                            <h5 class="text-blue padding-top-10 h5">Door Status</h5>
+							{{-- <input type="text" class="knob dial1" value="80" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly> --}}
+                            {{-- <span class="d-block">80° Celcius</span> --}}
+                            {{-- <a href="#" class="btn btn-danger btn-lg disabled" role="button" aria-disabled="true"><i class="icon-copy dw dw-door"></i> Open</a> --}}
+                            <a href="#" class="btn btn-success btn-lg disabled" role="button" aria-disabled="true"><i class="icon-copy dw dw-door"></i> Close</a>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-5 col-md-6 col-sm-12 mb-30">
-					<div class="card-white pd-30 height-100-p">
+				<div class="col-lg-5 col-md-12 col-sm-12 mb-30">
+					<div class="card-white pd-20 height-100-p">
 						<div class="progress-box text-center">
-                            <h5 class="text-light-orange padding-top-10 h5">AC Control</h5>
+                            <h5 class="text-light-orange padding-top-10 h5">AC Control</h5><br>
                             <div class="row clearfix">
                                 <div class="col-md-6 col-sm-12 mb-30">
                                     <div class="card text-white bg-info card-box">
-                                        <div class="card-header">Evaporator</div>
-                                        <div class="card-body">
-                                            <h5 class="card-title text-white">Primary card title</h5>
-                                            {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
+                                        <div class="card-header">Evaporator<br>
+                                            <input type="checkbox" checked class="switch-btn" data-size="small" data-color="#0059b2">
                                         </div>
+
+                                        {{-- <div class="card-body">
+                                            <h5 class="card-title text-white">Primary card title</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div> --}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 mb-30">
+                                    <div class="card text-white bg-secondary card-box">
+                                        <div class="card-header">Compressor<br>
+                                            <input type="checkbox" checked class="switch-btn" data-size="small" data-color="#41ccba">
+                                        </div>
+                                        {{-- <div class="card-body">
+                                            <h5 class="card-title text-white">Primary card title</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div> --}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 mb-30">
+                                    <div class="card text-white bg-secondary card-box">
+                                        <div class="card-header">Condenser<br>
+                                            <input type="checkbox" checked class="switch-btn" data-size="small" data-color="#41ccba">
+                                        </div>
+                                        {{-- <div class="card-body">
+                                            <h5 class="card-title text-white">Primary card title</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-30">
                                     <div class="card text-white bg-info card-box">
-                                        <div class="card-header">Header</div>
-                                        <div class="card-body">
-                                            <h5 class="card-title text-white">Primary card title</h5>
-                                            {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
+                                        <div class="card-header">Heater<br>
+                                            <input type="checkbox" checked class="switch-btn" data-size="small" data-color="#0059b2">
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12 mb-30">
-                                    <div class="card text-white bg-info card-box">
-                                        <div class="card-header">Header</div>
-                                        <div class="card-body">
+                                        {{-- <div class="card-body">
                                             <h5 class="card-title text-white">Primary card title</h5>
-                                            {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12 mb-30">
-                                    <div class="card text-white bg-info card-box">
-                                        <div class="card-header">Header</div>
-                                        <div class="card-body">
-                                            <h5 class="card-title text-white">Primary card title</h5>
-                                            {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
-                                        </div>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
-                            <input type="checkbox" checked class="switch-btn" data-size="small" data-color="#28a745">
 							{{-- <span class="d-block">90% Average</span> --}}
 							 {{-- <input type="text" class="knob dial3" value="90" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#f56767" data-angleOffset="180" readonly> --}}
 
@@ -147,59 +154,76 @@
 					</div>
 				</div> --}}
 			</div>
-			<div class="row">
-				<div class="col-lg-4 col-md-6 col-sm-12 mb-30">
-					<div class="card-white pd-30 pt-10 height-100-p">
-						<h2 class="mb-30 h4">Browser Visit</h2>
-						<div class="browser-visits">
-							<ul>
-								<li class="d-flex flex-wrap align-items-center">
-									<div class="icon"><img src="{{asset('vendors/images/chrome.png')}}" alt=""></div>
-									<div class="browser-name">Google Chrome</div>
-									<div class="visit"><span class="badge badge-pill badge-primary">50%</span></div>
-								</li>
-								<li class="d-flex flex-wrap align-items-center">
-									<div class="icon"><img src="{{asset('vendors/images/firefox.png')}}" alt=""></div>
-									<div class="browser-name">Mozilla Firefox</div>
-									<div class="visit"><span class="badge badge-pill badge-secondary">40%</span></div>
-								</li>
-								<li class="d-flex flex-wrap align-items-center">
-									<div class="icon"><img src="{{asset('vendors/images/safari.png')}}" alt=""></div>
-									<div class="browser-name">Safari</div>
-									<div class="visit"><span class="badge badge-pill badge-success">40%</span></div>
-								</li>
-								<li class="d-flex flex-wrap align-items-center">
-									<div class="icon"><img src="{{asset('vendors/images/edge.png')}}" alt=""></div>
-									<div class="browser-name">Microsoft Edge</div>
-									<div class="visit"><span class="badge badge-pill badge-warning">20%</span></div>
-								</li>
-								<li class="d-flex flex-wrap align-items-center">
-									<div class="icon"><img src="{{asset('vendors/images/opera.png')}}" alt=""></div>
-									<div class="browser-name">Opera Mini</div>
-									<div class="visit"><span class="badge badge-pill badge-info">20%</span></div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-8 col-md-6 col-sm-12 mb-30">
-					<div class="card-white pd-30 pt-10 height-100-p">
-						<h2 class="mb-30 h4">World Map</h2>
-						<div id="browservisit" style="width:100%!important; height:380px"></div>
+            <div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 mb-30">
+					<div class="card-white pd-30 height-100-p">
+						<h4 class="mb-30 h4">Speed Monitoring</h4>
+                        <div id="chart-speed"></div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-7 col-md-12 col-sm-12 mb-30">
+				<div class="col-lg-12 col-md-12 col-sm-12 mb-30">
 					<div class="card-white pd-30 height-100-p">
-						<h4 class="mb-30 h4">Compliance Trend</h4>
-						<div id="compliance-trend" class="compliance-trend"></div>
-					</div>
-				</div>
-				<div class="col-lg-5 col-md-12 col-sm-12 mb-30">
-					<div class="card-white pd-30 height-100-p">
-						<h4 class="mb-30 h4">Records</h4>
-						<div id="chart" class="chart"></div>
+						<h2 class="mb-30 h4">Tracking Location</h2>
+						<div id="browservisit" style="width:100%!important; height:380px"></div>
+                        <br>
+                        <div class="pb-20">
+                            <table class="table hover multiple-select-row data-table-export nowrap">
+                                <thead>
+                                    <tr class="table-primary">
+                                        <th class="table-plus datatable-nosort">Name</th>
+                                        <th>Age</th>
+                                        <th>Office</th>
+                                        <th>Address</th>
+                                        <th>Start Date</th>
+                                        <th>Salart</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="table-plus">Gloria F. Mead</td>
+                                        <td>25</td>
+                                        <td>Sagittarius</td>
+                                        <td>2829 Trainer Avenue Peoria, IL 61602 </td>
+                                        <td>29-03-2018</td>
+                                        <td>$162,700</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-plus">Andrea J. Cagle</td>
+                                        <td>30</td>
+                                        <td>Gemini</td>
+                                        <td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
+                                        <td>29-03-2018</td>
+                                        <td>$162,700</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-plus">Andrea J. Cagle</td>
+                                        <td>20</td>
+                                        <td>Gemini</td>
+                                        <td>2829 Trainer Avenue Peoria, IL 61602 </td>
+                                        <td>29-03-2018</td>
+                                        <td>$162,700</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-plus">Andrea J. Cagle</td>
+                                        <td>30</td>
+                                        <td>Sagittarius</td>
+                                        <td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
+                                        <td>29-03-2018</td>
+                                        <td>$162,700</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-plus">Andrea J. Cagle</td>
+                                        <td>25</td>
+                                        <td>Gemini</td>
+                                        <td>2829 Trainer Avenue Peoria, IL 61602 </td>
+                                        <td>29-03-2018</td>
+                                        <td>$162,700</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 					</div>
 				</div>
 			</div>
