@@ -14,7 +14,7 @@ class TambahKolomUsersTable extends Migration
     public function up()
     {
         Schema::table('user', function (Blueprint $table) {
-            $table->string('gambar')->after('password');
+            $table->string('gambar')->after('password')->nullable();
         });
 
         Schema::rename('user', 'users');

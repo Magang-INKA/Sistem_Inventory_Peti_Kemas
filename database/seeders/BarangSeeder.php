@@ -19,21 +19,21 @@ class BarangSeeder extends Seeder
                 'nama_barang' => 'Mobil',
                 'gambar' => '/img/mobil.png',
                 'jumlah_barang' => 2,
-                'id_kategori' => 2,
+                'id_container' => 2,
             ],
             [
                 'kode_barang' => 'KM01',
                 'nama_barang' => 'Komputer',
                 'gambar' => '/img/komputer.jpg',
                 'jumlah_barang' => 50,
-                'id_kategori' => 1,
+                'id_container' => 1,
             ],
             [
                 'kode_barang' => 'LK01',
                 'nama_barang' => 'Mobil',
                 'gambar' => '/img/labkimia.jpg',
                 'jumlah_barang' => 2,
-                'id_kategori' => 3,
+                'id_container' => 3,
             ],
         ]);
     }

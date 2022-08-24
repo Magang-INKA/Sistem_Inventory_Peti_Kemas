@@ -27,23 +27,23 @@
                     <tr>
                         <th>No</th>
                         <th>ID Barang</th>
-                        <th>Kategori</th>
+                        <th>Container</th>
                         <th>Nama Barang</th>
                         <th>Merk Barang</th>
                         <th>Jumlah</th>
                         <th>Harga</th>
-                        <th>Supplier</th>
+                        <th>Transaksi</th>
                     </tr>
                     @foreach ($barang as $br => $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->kode_barang }}</td>
-                        <td>{{ $data->kategori->nama_kategori }}</td>
+                        <td>{{ $data->container->nama_container }}</td>
                         <td>{{ $data->nama_barang }}</td>
                         <td>{{ $data->merk_barang }}</td>
                         <td>{{ $data->jumlah_barang }}</td>
                         <td>{{ $data->harga }}</td>
-                        <td>{{ $data->supplier->nama }}</td>
+                        <td>{{ $data->transaksi->nama }}</td>
                     </tr>
                     @endforeach
                 </table>

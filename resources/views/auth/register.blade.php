@@ -3,12 +3,12 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Sistem Inventory Sekolah</title>
+	<title>Sistem Inventory Peti Kemas</title>
 
 	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="{{asset('vendors/images/apple-touch-icon.png')}}">
-	<link rel="icon" type="image/png" sizes="32x32" href="{{asset('vendors/images/favicon-32x32.png')}}">
-	<link rel="icon" type="image/png" sizes="16x16" href="{{asset('vendors/images/favicon-16x16.png')}}">
+	<link rel="apple-touch-icon" sizes="200x200" href="{{asset('vendors/images/inka.png')}}">
+	<link rel="icon" type="image/png" sizes="35x35" href="{{asset('vendors/images/inka.png')}}">
+	<link rel="icon" type="image/png" sizes="20x20" href="{{asset('vendors/images/inka.png')}}">
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -36,8 +36,8 @@
 <body class="login-page">
 	<div class="login-header box-shadow">
 		<div class="container-fluid d-flex justify-content-between align-items-center">
-			<div class="brand-logo">
-				<img src="{{asset('vendors/images/logo-login.PNG')}}" alt="">
+			<div class="">
+				<img src="{{asset('vendors/images/logo-md.png')}}" alt="" style="width:200px;height:60px">
 			</div>
 			<div class="login-menu">
 				<ul>

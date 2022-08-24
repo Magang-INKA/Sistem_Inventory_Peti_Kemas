@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\KategoriExport;
-use App\Models\Kategori;
+use App\Exports\ContainerExport;
+use App\Models\Container;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use PDF;
 
-class KategoriController extends Controller
+class ContainerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,15 +29,15 @@ class KategoriController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){ // Pemilihan jika ingin melakukan pencarian
-            $kategori = Kategori::where('kode_kategori', 'like', "%" . $request->search . "%")
-            ->orwhere('nama_kategori', 'like', "%" . $request->search . "%")
+            $container = Container::where('kode_container', 'like', "%" . $request->search . "%")
+            ->orwhere('nama_container', 'like', "%" . $request->search . "%")
             ->orwhere('keterangan', 'like', "%" . $request->search . "%")
             ->paginate();
-            return view('Kategori.index', compact('kategori'))->with('i', (request()->input('page', 1) - 1) * 5);
+            return view('Container.index', compact('container'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $kategori = Kategori::paginate(10); // MenPagination menampilkan 5 data
-            return view('Kategori.index', compact('kategori'));
+            $container = Container::paginate(10); // MenPagination menampilkan 5 data
+            return view('Container.index', compact('container'));
         }
     }
 
@@ -48,7 +48,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        return view('Kategori.create');
+        return view('Container.create');
     }
 
     /**
@@ -61,16 +61,16 @@ class KategoriController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'kode_kategori' => 'required',
-            'nama_kategori' => 'required',
+            'kode_container' => 'required',
+            'nama_container' => 'required',
             ]);
 
             //fungsi eloquent untuk menambah data
-            Kategori::create($request->all());
+            Container::create($request->all());
 
             //jika data berhasil ditambahkan, akan kembali ke halaman utama
-            Alert::success('Success', 'Data Kategori Barang Berhasil Ditambahkan');
-            return redirect()->route('kategori.index');
+            Alert::success('Success', 'Data Container Barang Berhasil Ditambahkan');
+            return redirect()->route('container.index');
     }
 
     /**
@@ -81,9 +81,9 @@ class KategoriController extends Controller
      */
     public function show($id)
     {
-        //menampilkan detail data dengan menemukan berdasarkan id kategori
-        $kategori = Kategori::find($id);
-        return view('Kategori.show', compact('kategori'));
+        //menampilkan detail data dengan menemukan berdasarkan id container
+        $container = Container::find($id);
+        return view('Container.show', compact('container'));
     }
 
     /**
@@ -94,9 +94,9 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {
-        //menampilkan detail data dengan menemukan berdasarkan id kategori untuk diedit
-        $kategori = Kategori::find($id);
-        return view('Kategori.edit', compact('kategori'));
+        //menampilkan detail data dengan menemukan berdasarkan id container untuk diedit
+        $container = Container::find($id);
+        return view('Container.edit', compact('container'));
     }
 
     /**
@@ -110,17 +110,17 @@ class KategoriController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'kode_kategori' => 'required',
-            'nama_kategori' => 'required',
+            'kode_container' => 'required',
+            'nama_container' => 'required',
             'keterangan' => 'required',
             ]);
 
         //fungsi eloquent untuk mengupdate data inputan kita
-            Kategori::find($id)->update($request->all());
+            Container::find($id)->update($request->all());
 
         //jika data berhasil diupdate, akan kembali ke halaman utama
-            Alert::success('Success', 'Data Kategori Barang Berhasil Diupdate');
-            return redirect()->route('kategori.index');
+            Alert::success('Success', 'Data Container Barang Berhasil Diupdate');
+            return redirect()->route('container.index');
     }
 
     /**
@@ -132,20 +132,20 @@ class KategoriController extends Controller
     public function destroy($id)
     {
         //fungsi eloquent untuk menghapus data
-        Kategori::find($id)->delete();
-        Alert::success('Success', 'Data kategori berhasil dihapus');
-        return redirect()->route('kategori.index');
+        Container::find($id)->delete();
+        Alert::success('Success', 'Data container berhasil dihapus');
+        return redirect()->route('container.index');
     }
 
     public function laporan()
     {
-        $kategori = Kategori::all();
-        $pdf = PDF::loadview('Kategori.laporan', compact('kategori'));
+        $container = Container::all();
+        $pdf = PDF::loadview('Container.laporan', compact('container'));
         return $pdf->stream();
     }
 
     public function laporanExcel(Request $request)
     {
-        return Excel::download(new KategoriExport, 'kategoriBarang.xlsx');
+        return Excel::download(new ContainerExport, 'containerBarang.xlsx');
     }
 }

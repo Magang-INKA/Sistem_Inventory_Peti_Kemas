@@ -1,16 +1,16 @@
 @extends('layouts.MasterView')
-@section('menu_kategori', 'active')
+@section('menu_transaksi', 'active')
 @section('content')
 <div >
     <div class="page-header">
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>Container Data</h4>
+                    <h4>Transaction Data</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('kategori.index') }}">Container</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('transaksi.index') }}">Transaction</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Index</li>
                     </ol>
                 </nav>
@@ -21,8 +21,8 @@
                     Report Download
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{url('/laporan/kategori')}}">PDF</a>
-                    <a class="dropdown-item" href="{{url('/laporan/kategori/excel')}}">Excel</a>
+                    <a class="dropdown-item" href="{{url('/laporan/transaksi')}}">PDF</a>
+                    <a class="dropdown-item" href="{{url('/laporan/transaksi/excel')}}">Excel</a>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="pb-20">
             <div class="header-left">
                 <div class="header-search col-sm-12">
-                    <form class="form" method="GET" action="{{ route('kategori.index') }}">
+                    <form class="form" method="GET" action="{{ route('transaksi.index') }}">
                         <div class="form-group mb-0">
                             <input type="text" class="form-control search-input" name="search" placeholder="Search Here">
                             <div class="dropdown">
@@ -45,7 +45,7 @@
                     </form>
                 </div>
                 <div class="col-md-40 col-sm-12 text-right">
-                    <a class="btn btn-success" href="{{ route('kategori.create') }}"> Create Data </a>
+                    <a class="btn btn-success" href="{{ route('transaksi.create') }}"> Create Data </a>
                 </div>
             </div>
         </div>
@@ -54,29 +54,36 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
+                        <th>Transaction ID</th>
+                        <th>User ID</th>
+                        <TH>Product ID</TH>
                         <th>Container ID</th>
                         <th>ID Kapal</th>
-                        <th>Container Name</th>
-                        <th>Destination</th>
+                        <th>ID Pelabuhan</th>
+                        <th>Date</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
                 </thead>
-                {{-- <tbody>
-                    @foreach ($kategori as $kt => $data)
+                <tbody>
+                    @foreach ($transaksi as $sup => $data)
                     <tr>
-                        <td class="table-plus">{{ $kt + $kategori->firstitem() }}</td>
-                        <td>{{ $data->kode_kategori }}</td>
-                        <td>{{ $data->nama_kategori }}</td>
-                        <td>{{ $data->keterangan }}</td>
+                        <td class="table-plus">{{ $sup + $transaksi->firstitem() }}</td>
+                        <td>{{ $data->idtransaksi }}</td>
+                        <td>{{ $data->iduser }}</td>
+                        <td>{{ $data->idbarang }}</td>
+                        <td>{{ $data->idcontainer }}</td>
+                        <td>{{ $data->idkapal }}</td>
+                        <td>{{ $data->idpelabuhan }}</td>
+                        <td>{{ $data->date }}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                     <i class="dw dw-more"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <form action="{{ route('kategori.destroy', $data->id) }}" method="POST">
-                                        <a class="dropdown-item" href="{{ route('kategori.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
-                                        <a class="dropdown-item" href="{{ route('kategori.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
+                                    <form action="{{ route('transaksi.destroy', $data->kode) }}" method="POST">
+                                        <a class="dropdown-item" href="{{ route('transaksi.show', $data->kode) }}"><i class="dw dw-eye"></i> View</a>
+                                        <a class="dropdown-item" href="{{ route('transaksi.edit', $data->kode) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <button class="dropdown-item" onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit">
@@ -87,10 +94,10 @@
                         </td>
                     </tr>
                     @endforeach
-                </tbody> --}}
+                </tbody>
             </table>
             <div class="col-md-40 col-sm-12 text-left">
-                {{$kategori->links()}}
+                {{$transaksi->links()}}
             </div>
         </div>
     </div>

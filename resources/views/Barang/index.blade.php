@@ -75,7 +75,7 @@
                     <tr>
                         <td class="table-plus">{{ $br + $barang->firstitem() }}</td>
                         <td>{{ $data->kode_barang }}</td>
-                        <td>{{ $data->kategori->nama_kategori}}</td>
+                        <td>{{ $data->container->nama_container}}</td>
                         <td>{{ $data->nama_barang }}</td>
                         <td>{{ $data->jumlah_barang}}</td>
                         @can('manage-MasterData')

@@ -1,15 +1,15 @@
 @extends('layouts.MasterView')
-@section('menu_supplier', 'active')
+@section('menu_transaksi', 'active')
 @section('content')
 <div class="page-header">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Create Supplier</h4>
+                <h4>Create Transaksi</h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('supplier.index') }}">Supplier</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('transaksi.index') }}">Transaksi</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Create</li>
                 </ol>
             </nav>
@@ -31,16 +31,16 @@
             </ul>
         </div>
     @endif
-	<form method="POST" action="{{ route('supplier.store') }}" id="myForm">
+	<form method="POST" action="{{ route('transaksi.store') }}" id="myForm">
         @csrf
 		<div class="form-group row">
-			<label for="kode" class="col-sm-12 col-md-2 col-form-label text-white">Kode Supplier</label>
+			<label for="kode" class="col-sm-12 col-md-2 col-form-label text-white">Kode Transaksi</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="kode" id="kode" aria-describedby="kode" value="{{$code}}" placeholder readonly="">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="nama" class="col-sm-12 col-md-2 col-form-label text-white">Nama Supplier</label>
+			<label for="nama" class="col-sm-12 col-md-2 col-form-label text-white">Nama Transaksi</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="nama" id="nama" aria-describedby="nama" placeholder="">
 			</div>
@@ -75,7 +75,7 @@
 				<button type="submit" class="btn btn-primary">Submit</button>
 				<button type="reset" class="btn btn-danger">Reset</button>
                 <div class="pull-right">
-                    <a href="{{route('supplier.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
+                    <a href="{{route('transaksi.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
                         <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
                         Kembali
                     </a>

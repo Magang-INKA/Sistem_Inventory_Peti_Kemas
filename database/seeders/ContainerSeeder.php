@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class KategoriSeeder extends Seeder
+class ContainerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,20 +13,20 @@ class KategoriSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Kategori::insert([
+        \App\Models\Container::insert([
             [
-                'kode_kategori' => 'KT001',
-                'nama_kategori' => 'Elektronik',
+                'kode_container' => 'KT001',
+                'nama_container' => 'Elektronik',
                 'keterangan' => 'Semua barang di ruang multimedia',
             ],
             [
-                'kode_kategori' => 'KT002',
-                'nama_kategori' => 'Kendaraan',
+                'kode_container' => 'KT002',
+                'nama_container' => 'Kendaraan',
                 'keterangan' => 'Isi BBM setelah pinjam',
             ],
             [
-                'kode_kategori' => 'KT003',
-                'nama_kategori' => 'Ruangan',
+                'kode_container' => 'KT003',
+                'nama_container' => 'Ruangan',
                 'keterangan' => 'Semua ruangan di sekolah',
             ],
         ]);

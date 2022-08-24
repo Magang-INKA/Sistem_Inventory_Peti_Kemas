@@ -1,15 +1,15 @@
 @extends('layouts.MasterView')
-@section('menu_kategori', 'active')
+@section('menu_container', 'active')
 @section('content')
 <div class="page-header">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Create Kategori Barang</h4>
+                <h4>Create Container Barang</h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('kategori.index') }}">Kategori</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('container.index') }}">Container</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Create</li>
                 </ol>
             </nav>
@@ -31,18 +31,18 @@
             </ul>
         </div>
     @endif
-	<form method="POST" action="{{ route('kategori.store') }}" id="myForm">
+	<form method="POST" action="{{ route('container.store') }}" id="myForm">
         @csrf
 		<div class="form-group row">
-			<label for="kode_kategori" class="col-sm-12 col-md-2 col-form-label text-white">Kode Kategori</label>
+			<label for="kode_container" class="col-sm-12 col-md-2 col-form-label text-white">Kode Container</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="kode_kategori" id="kode_kategori" aria-describedby="kode_kategori" placeholder="">
+				<input class="form-control" type="text" name="kode_container" id="kode_container" aria-describedby="kode_container" placeholder="">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="nama_kategori" class="col-sm-12 col-md-2 col-form-label text-white">Nama Kategori</label>
+			<label for="nama_container" class="col-sm-12 col-md-2 col-form-label text-white">Nama Container</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="nama_kategori" id="nama_kategori" aria-describedby="nama_kategori" placeholder="">
+				<input class="form-control" type="text" name="nama_container" id="nama_container" aria-describedby="nama_container" placeholder="">
 			</div>
 		</div>
 		<div class="form-group row">
@@ -57,7 +57,7 @@
 				<button type="submit" class="btn btn-primary">Submit</button>
 				<button type="reset" class="btn btn-danger">Reset</button>
                 <div class="pull-right">
-                    <a href="{{route('kategori.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
+                    <a href="{{route('container.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
                         <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
                         Kembali
                     </a>

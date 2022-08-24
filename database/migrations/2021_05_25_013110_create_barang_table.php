@@ -19,8 +19,8 @@ class CreateBarangTable extends Migration
             $table->string('nama_barang', 50)->nullable();
             $table->string('gambar',50)->nullable();
             $table->integer('jumlah_barang')->nullable();
-            $table->unsignedBigInteger('id_kategori')->nullable();
-            $table->foreign('id_kategori')->references('id')->on('kategori');
+            $table->unsignedBigInteger('id_container')->nullable();
+            $table->foreign('id_container')->references('id')->on('container');
             $table->timestamps();
         });
     }

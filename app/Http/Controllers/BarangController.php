@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Exports\BarangExport;
 use App\Models\Barang;
-use App\Models\Kategori;
-use App\Models\Supplier;
+use App\Models\Container;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -32,14 +32,14 @@ class BarangController extends Controller
             $barang = Barang::where('kode_barang', 'like', "%" . $search . "%")
             ->orwhere('nama_barang', 'like', "%" . $search . "%")
             ->orwhere('jumlah_barang', 'like', "%" . $search . "%")
-            ->orWhereHas('kategori', function($query) use($search) {
-                return $query->where('nama_kategori', 'like', "%" . $search . "%");
+            ->orWhereHas('container', function($query) use($search) {
+                return $query->where('nama_container', 'like', "%" . $search . "%");
             })
             ->paginate();
             return view('Barang.index', compact('barang'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $barang = Barang::with('kategori')->paginate(10); // Pagination menampilkan 5 data
+            $barang = Barang::with('container')->paginate(10); // Pagination menampilkan 5 data
         }
         return view('Barang.index', compact('barang'));
     }
@@ -56,9 +56,9 @@ class BarangController extends Controller
             return redirect()->to('/barang');
         }
 
-        $kategori = Kategori::all();
-        $supplier = Supplier::all();
-        return view('Barang.create', ['kategori' => $kategori], ['supplier' => $supplier]);
+        $container = Container::all();
+        $transaksi = Transaksi::all();
+        return view('Barang.create', ['container' => $container], ['transaksi' => $transaksi]);
     }
 
     /**
@@ -80,8 +80,8 @@ class BarangController extends Controller
             'nama_barang' => 'required',
             'gambar' => 'required',
             'jumlah_barang' => 'required',
-            'id_kategori' => 'required',
-            'id_supplier' => 'required',
+            'id_container' => 'required',
+            'id_transaksi' => 'required',
             'merk_barang' => 'required',
             'bahan' => 'required',
             'harga' => 'required',
@@ -92,8 +92,8 @@ class BarangController extends Controller
                 $image_name = $request->file('gambar')->store('images', 'public');
             }
 
-            $kategori = Kategori::find($request->get('id_kategori'));
-            $supplier = Supplier::find($request->get('id_supplier'));
+            $container = Container::find($request->get('id_container'));
+            $transaksi = Transaksi::find($request->get('id_transaksi'));
 
             $barang = new Barang;
             $barang->kode_barang = $request->get('kode_barang');
@@ -106,8 +106,8 @@ class BarangController extends Controller
             $barang->tgl_input = $request->get('tgl_input');
 
             //fungsi eloquent untuk menambah data dengan relasi belongsTo
-            $barang->kategori()->associate($kategori);
-            $barang->supplier()->associate($supplier);
+            $barang->container()->associate($container);
+            $barang->transaksi()->associate($transaksi);
             $barang->save();
 
             //jika data berhasil ditambahkan, akan kembali ke halaman utama
@@ -130,7 +130,7 @@ class BarangController extends Controller
             return redirect()->to('/barang');
         }
 
-        $barang = Barang::with('kategori','supplier')->find($id);
+        $barang = Barang::with('container','transaksi')->find($id);
         return view('Barang.show', compact('barang'));
     }
 
@@ -147,10 +147,10 @@ class BarangController extends Controller
             return redirect()->to('/barang');
         }
 
-        $barang = Barang::with('kategori','supplier')->find($id);
-        $kategori = Kategori::all();
-        $supplier = Supplier::all();
-        return view('Barang.edit', compact('barang', 'kategori', 'supplier'));
+        $barang = Barang::with('container','transaksi')->find($id);
+        $container = Container::all();
+        $transaksi = Transaksi::all();
+        return view('Barang.edit', compact('barang', 'container', 'transaksi'));
     }
 
     /**
@@ -171,15 +171,15 @@ class BarangController extends Controller
             'kode_barang'   => 'required',
             'nama_barang'   => 'required',
             'jumlah_barang' => 'required',
-            'id_kategori'   => 'required',
-            'id_supplier'   => 'required',
+            'id_container'   => 'required',
+            'id_transaksi'   => 'required',
             'merk_barang'   => 'required',
             'bahan'         => 'required',
             'harga'         => 'required',
             'tgl_input'     => 'required',
         ]);
 
-        $barang = Barang::with('kategori', 'supplier')->where('id', $id)->first();
+        $barang = Barang::with('container', 'transaksi')->where('id', $id)->first();
 
         if ($request->file('gambar') == ''){
             $barang->kode_barang = $request->get('kode_barang');
@@ -190,11 +190,11 @@ class BarangController extends Controller
             $barang->harga = $request->get('harga');
             $barang->tgl_input = $request->get('tgl_input');
 
-            $kategori = Kategori::find($request->get('id_kategori'));
-            $supplier = Supplier::find($request->get('id_supplier'));
+            $container = Container::find($request->get('id_container'));
+            $transaksi = Transaksi::find($request->get('id_transaksi'));
             //fungsi eloquent untuk menambah data dengan relasi belongsTo
-            $barang->kategori()->associate($kategori);
-            $barang->supplier()->associate($supplier);
+            $barang->container()->associate($container);
+            $barang->transaksi()->associate($transaksi);
             $barang->save();
         } else{
             if ($barang->gambar && file_exists(storage_path('app/public/' .$barang->gambar)))
@@ -212,11 +212,11 @@ class BarangController extends Controller
             $barang->harga = $request->get('harga');
             $barang->tgl_input = $request->get('tgl_input');
 
-            $kategori = Kategori::find($request->get('id_kategori'));
-            $supplier = Supplier::find($request->get('id_supplier'));
+            $container = Container::find($request->get('id_container'));
+            $transaksi = Transaksi::find($request->get('id_transaksi'));
             //fungsi eloquent untuk menambah data dengan relasi belongsTo
-            $barang->kategori()->associate($kategori);
-            $barang->supplier()->associate($supplier);
+            $barang->container()->associate($container);
+            $barang->transaksi()->associate($transaksi);
             $barang->save();
         }
 
@@ -246,9 +246,9 @@ class BarangController extends Controller
     public function laporan()
     {
         $barang = Barang::all();
-        $kategori = Kategori::all();
-        $supplier = Supplier::all();
-        $pdf = PDF::loadview('Barang.laporan', compact('barang', 'kategori', 'supplier'));
+        $container = Container::all();
+        $transaksi = Transaksi::all();
+        $pdf = PDF::loadview('Barang.laporan', compact('barang', 'container', 'transaksi'));
         return $pdf->stream();
     }
 

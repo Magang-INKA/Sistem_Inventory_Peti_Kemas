@@ -1,16 +1,16 @@
 @extends('layouts.MasterView')
-@section('menu_transaksi', 'active')
+@section('menu_container', 'active')
 @section('content')
 <div >
     <div class="page-header">
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>Transaction Data</h4>
+                    <h4>Container Data</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('supplier.index') }}">Transaction</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('container.index') }}">Container</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Index</li>
                     </ol>
                 </nav>
@@ -21,8 +21,8 @@
                     Report Download
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{url('/laporan/supplier')}}">PDF</a>
-                    <a class="dropdown-item" href="{{url('/laporan/supplier/excel')}}">Excel</a>
+                    <a class="dropdown-item" href="{{url('/laporan/container')}}">PDF</a>
+                    <a class="dropdown-item" href="{{url('/laporan/container/excel')}}">Excel</a>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="pb-20">
             <div class="header-left">
                 <div class="header-search col-sm-12">
-                    <form class="form" method="GET" action="{{ route('supplier.index') }}">
+                    <form class="form" method="GET" action="{{ route('container.index') }}">
                         <div class="form-group mb-0">
                             <input type="text" class="form-control search-input" name="search" placeholder="Search Here">
                             <div class="dropdown">
@@ -45,7 +45,7 @@
                     </form>
                 </div>
                 <div class="col-md-40 col-sm-12 text-right">
-                    <a class="btn btn-success" href="{{ route('supplier.create') }}"> Create Data </a>
+                    <a class="btn btn-success" href="{{ route('container.create') }}"> Create Data </a>
                 </div>
             </div>
         </div>
@@ -54,36 +54,29 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>Transaction ID</th>
-                        <th>User ID</th>
-                        <TH>Product ID</TH>
                         <th>Container ID</th>
                         <th>ID Kapal</th>
-                        <th>ID Pelabuhan</th>
-                        <th>Date</th>
+                        <th>Container Name</th>
+                        <th>Destination</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach ($supplier as $sup => $data)
+                {{-- <tbody>
+                    @foreach ($container as $kt => $data)
                     <tr>
-                        <td class="table-plus">{{ $sup + $supplier->firstitem() }}</td>
-                        <td>{{ $data->idtransaksi }}</td>
-                        <td>{{ $data->iduser }}</td>
-                        <td>{{ $data->idbarang }}</td>
-                        <td>{{ $data->idcontainer }}</td>
-                        <td>{{ $data->idkapal }}</td>
-                        <td>{{ $data->idpelabuhan }}</td>
-                        <td>{{ $data->date }}</td>
+                        <td class="table-plus">{{ $kt + $container->firstitem() }}</td>
+                        <td>{{ $data->kode_container }}</td>
+                        <td>{{ $data->nama_container }}</td>
+                        <td>{{ $data->keterangan }}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                     <i class="dw dw-more"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <form action="{{ route('supplier.destroy', $data->kode) }}" method="POST">
-                                        <a class="dropdown-item" href="{{ route('supplier.show', $data->kode) }}"><i class="dw dw-eye"></i> View</a>
-                                        <a class="dropdown-item" href="{{ route('supplier.edit', $data->kode) }}"><i class="dw dw-edit2"></i> Edit</a>
+                                    <form action="{{ route('container.destroy', $data->id) }}" method="POST">
+                                        <a class="dropdown-item" href="{{ route('container.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
+                                        <a class="dropdown-item" href="{{ route('container.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <button class="dropdown-item" onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit">
@@ -94,10 +87,10 @@
                         </td>
                     </tr>
                     @endforeach
-                </tbody>
+                </tbody> --}}
             </table>
             <div class="col-md-40 col-sm-12 text-left">
-                {{$supplier->links()}}
+                {{$container->links()}}
             </div>
         </div>
     </div>

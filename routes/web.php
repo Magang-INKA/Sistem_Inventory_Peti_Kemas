@@ -6,10 +6,10 @@ use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\ContainerController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,21 +35,21 @@ Route::get('/tracking', function () {
     return view('Dashboard/tracking');
 });
 
-Route::get('/', [DashboardController::class,'index']);
+Route::get('/', [DashboardController::class,'index'])->name('home');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('kategori', KategoriController::class);
-Route::get('/laporan/kategori', [KategoriController::class, 'laporan']);
-Route::get('/laporan/kategori/excel', [KategoriController::class, 'laporanExcel']);
+Route::resource('container', ContainerController::class);
+Route::get('/laporan/container', [ContainerController::class, 'laporan']);
+Route::get('/laporan/container/excel', [ContainerController::class, 'laporanExcel']);
 
 Route::resource('barang', BarangController::class);
 Route::get('/laporan/barang', [BarangController::class, 'laporan']);
 Route::get('/laporan/barang/excel', [BarangController::class, 'laporanExcel']);
 
-Route::resource('supplier', SupplierController::class);
-Route::get('/laporan/supplier', [SupplierController::class, 'laporan']);
-Route::get('/laporan/supplier/excel', [SupplierController::class, 'laporanExcel']);
+Route::resource('transaksi', TransaksiController::class);
+Route::get('/laporan/transaksi', [TransaksiController::class, 'laporan']);
+Route::get('/laporan/transaksi/excel', [TransaksiController::class, 'laporanExcel']);
 
 Route::resource('user', UserController::class);
 Route::get('/laporan/user', [UserController::class, 'laporan']);

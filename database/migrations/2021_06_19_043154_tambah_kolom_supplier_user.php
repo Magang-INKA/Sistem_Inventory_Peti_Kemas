@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TambahKolomSupplierUser extends Migration
+class TambahKolomTransaksiUser extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class TambahKolomSupplierUser extends Migration
     public function up()
     {
         Schema::table('barang', function (Blueprint $table) {
-            $table->string('id_supplier', 20)->after('id_kategori')->nullable();
-            $table->foreign('id_supplier')->references('kode')->on('supplier');
+            $table->string('id_transaksi', 20)->after('id_container')->nullable();
+            $table->foreign('id_transaksi')->references('kode')->on('transaksi');
         });
     }
 

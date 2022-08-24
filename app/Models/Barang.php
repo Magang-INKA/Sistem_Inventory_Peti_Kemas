@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Kategori;
+use App\Models\Container;
 use App\Models\BarangKeluar;
 use App\Models\BarangMasuk;
 
@@ -23,13 +23,13 @@ class Barang extends Model
         'nama_barang',
         'gambar',
         'jumlah_barang',
-        'id_kategori',
-        'id_supplier',
+        'id_container',
+        'id_transaksi',
     ];
 
-    public function kategori()
+    public function container()
     {
-        return $this->belongsTo(Kategori::class, 'id_kategori');
+        return $this->belongsTo(Container::class, 'id_container');
     }
     public function BarangKeluar()
     {
@@ -39,8 +39,8 @@ class Barang extends Model
     {
         return $this->hasMany(BarangMasuk::class);
     }
-    public function supplier()
+    public function transaksi()
     {
-        return $this->belongsTo(Supplier::class, 'id_supplier');
+        return $this->belongsTo(Transaksi::class, 'id_transaksi');
     }
 }

@@ -47,22 +47,22 @@
 			</div>
 		</div>
         <div class="form row">
-			<label for="id_kategori" class="col-sm-12 col-md-2 col-form-label text-white">Kategori</label>
+			<label for="id_container" class="col-sm-12 col-md-2 col-form-label text-white">Container</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
-                    <input id="kategori_nama" type="text" class="form-control" value="{{ $barang->kategori->nama_kategori }}" readonly="" required>
-                    <input id="id_kategori" type="hidden" name="id_kategori" value="{{ $barang->id_kategori }}" required readonly="">
-                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Kategori </b><span class="fa fa-search"></span></button>
+                    <input id="container_nama" type="text" class="form-control" value="{{ $barang->container->nama_container }}" readonly="" required>
+                    <input id="id_container" type="hidden" name="id_container" value="{{ $barang->id_container }}" required readonly="">
+                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Container </b><span class="fa fa-search"></span></button>
                 </div>
             </div>
 		</div>
         <div class="form row">
-			<label for="id_supplier" class="col-sm-12 col-md-2 col-form-label text-white">Supplier</label>
+			<label for="id_transaksi" class="col-sm-12 col-md-2 col-form-label text-white">Transaksi</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
-                    <input id="supplier_nama" type="text" class="form-control" value="{{ $barang->supplier->nama }}" readonly="" required>
-                    <input id="id_supplier" type="hidden" name="id_supplier" value="{{ $barang->id_supplier }}" required readonly="">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2"><b>Cari Supplier </b><span class="fa fa-search"></span></button>
+                    <input id="transaksi_nama" type="text" class="form-control" value="{{ $barang->transaksi->nama }}" readonly="" required>
+                    <input id="id_transaksi" type="hidden" name="id_transaksi" value="{{ $barang->id_transaksi }}" required readonly="">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2"><b>Cari Transaksi </b><span class="fa fa-search"></span></button>
                 </div>
             </div>
 		</div>
@@ -120,12 +120,12 @@
 </div>
 <!-- Default Basic Forms End -->
 
-<!-- Modal Kategori -->
+<!-- Modal Container -->
 <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-lg" role="document" >
         <div class="modal-content" style="background: #fff;">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cari Kategori</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Cari Container</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -136,15 +136,15 @@
                         <tr>
                             <th>No</th>
                             <th>Kode</th>
-                            <th>Kategori</th>
+                            <th>Container</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($kategori as $data)
-                        <tr class="pilih_kategori" data-id_kategori="<?php echo $data->id; ?>" data-kategori_nama="<?php echo $data->nama_kategori; ?>" >
+                        @foreach($container as $data)
+                        <tr class="pilih_container" data-id_container="<?php echo $data->id; ?>" data-container_nama="<?php echo $data->nama_container; ?>" >
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$data->kode_kategori}}</td>
-                            <td>{{$data->nama_kategori}}</td>
+                            <td>{{$data->kode_container}}</td>
+                            <td>{{$data->nama_container}}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -153,14 +153,14 @@
         </div>
     </div>
 </div>
-<!-- End Modal Kategori -->
+<!-- End Modal Container -->
 
-<!-- Modal Supplier -->
+<!-- Modal Transaksi -->
 <div class="modal fade bd-example-modal-lg" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-lg" role="document" >
         <div class="modal-content" style="background: #fff;">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cari Supplier</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Cari Transaksi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -169,14 +169,14 @@
                 <table id="lookup" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>ID Supplier</th>
+                            <th>ID Transaksi</th>
                             <th>Nama</th>
                             <th>Penyedia</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($supplier as $data)
-                        <tr class="pilih_supplier" data-id_supplier="<?php echo $data->kode; ?>" data-supplier_nama="<?php echo $data->nama; ?>" >
+                        @foreach($transaksi as $data)
+                        <tr class="pilih_transaksi" data-id_transaksi="<?php echo $data->kode; ?>" data-transaksi_nama="<?php echo $data->nama; ?>" >
                             <td>{{$data->kode}}</td>
                             <td>{{$data->nama}}</td>
                             <td>{{$data->penyedia}}</td>
@@ -188,7 +188,7 @@
         </div>
     </div>
 </div>
-<!-- End Modal Supplier -->
+<!-- End Modal Transaksi -->
 
 <script>
     $(document).ready(function(){
@@ -201,15 +201,15 @@
     });
 </script>
 <script type="text/javascript">
-    $(document).on('click', '.pilih_kategori', function (e) {
-        document.getElementById("kategori_nama").value = $(this).attr('data-kategori_nama');
-        document.getElementById("id_kategori").value = $(this).attr('data-id_kategori');
+    $(document).on('click', '.pilih_container', function (e) {
+        document.getElementById("container_nama").value = $(this).attr('data-container_nama');
+        document.getElementById("id_container").value = $(this).attr('data-id_container');
         $('#myModal').modal('hide');
     });
 
-    $(document).on('click', '.pilih_supplier', function (e) {
-        document.getElementById("supplier_nama").value = $(this).attr('data-supplier_nama');
-        document.getElementById("id_supplier").value = $(this).attr('data-id_supplier');
+    $(document).on('click', '.pilih_transaksi', function (e) {
+        document.getElementById("transaksi_nama").value = $(this).attr('data-transaksi_nama');
+        document.getElementById("id_transaksi").value = $(this).attr('data-id_transaksi');
         $('#myModal2').modal('hide');
     });
 

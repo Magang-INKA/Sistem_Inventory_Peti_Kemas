@@ -39,9 +39,9 @@
                             </div>
                         </div>
                         <div class="form-group row" style="padding-left: 40px">
-                            <label for="id_kategori" class="col-sm-10 col-md-4 col-form-label text-white">Kategori</label>
+                            <label for="id_container" class="col-sm-10 col-md-4 col-form-label text-white">Container</label>
                             <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="text" name="id_kategori" id="id_kategori" value="{{ $barang->kategori->nama_kategori }}" aria-describedby="id_kategori" placeholder="Disabled input" disabled="">
+                                <input class="form-control" type="text" name="id_container" id="id_container" value="{{ $barang->container->nama_container }}" aria-describedby="id_container" placeholder="Disabled input" disabled="">
                             </div>
                         </div>
                         <div class="form-group row" style="padding-left: 40px">
@@ -75,9 +75,9 @@
                             </div>
                         </div>
                         <div class="form-group row" style="padding-left: 40px">
-                            <label for="id_supplier" class="col-sm-10 col-md-4 col-form-label text-white">Supplier</label>
+                            <label for="id_transaksi" class="col-sm-10 col-md-4 col-form-label text-white">Transaksi</label>
                             <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="text" name="id_supplier" id="id_supplier" value="{{ $barang->supplier->nama }}" aria-describedby="id_supplier" placeholder="Disabled input" disabled="">
+                                <input class="form-control" type="text" name="id_transaksi" id="id_transaksi" value="{{ $barang->transaksi->nama }}" aria-describedby="id_transaksi" placeholder="Disabled input" disabled="">
                             </div>
                         </div>
                         <div class="form-group row" style="padding-left: 40px">
@@ -99,9 +99,9 @@
                             </div>
                         </div>
                         <div class="form-group row" style="padding-left: 40px">
-                            <label for="id_kategori" class="col-sm-10 col-md-4 col-form-label text-white">Kategori</label>
+                            <label for="id_container" class="col-sm-10 col-md-4 col-form-label text-white">Container</label>
                             <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="text" name="id_kategori" id="id_kategori" value="{{ $barang->kategori->nama_kategori }}" aria-describedby="id_kategori" placeholder="Disabled input" disabled="">
+                                <input class="form-control" type="text" name="id_container" id="id_container" value="{{ $barang->container->nama_container }}" aria-describedby="id_container" placeholder="Disabled input" disabled="">
                             </div>
                         </div>
                         <div class="form-group row" style="padding-left: 40px">
@@ -135,9 +135,9 @@
                             </div>
                         </div>
                         <div class="form-group row" style="padding-left: 40px">
-                            <label for="id_supplier" class="col-sm-10 col-md-4 col-form-label text-white">Supplier</label>
+                            <label for="id_transaksi" class="col-sm-10 col-md-4 col-form-label text-white">Transaksi</label>
                             <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="text" name="id_supplier" id="id_supplier" value="{{ $barang->supplier->nama }}" aria-describedby="id_supplier" placeholder="Disabled input" disabled="">
+                                <input class="form-control" type="text" name="id_transaksi" id="id_transaksi" value="{{ $barang->transaksi->nama }}" aria-describedby="id_transaksi" placeholder="Disabled input" disabled="">
                             </div>
                         </div>
                         <div class="form-group row" style="padding-left: 40px">

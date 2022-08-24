@@ -20,11 +20,11 @@
         <div class="card-box height-100-p widget-style1">
             <div class="d-flex flex-wrap align-items-center" style="padding-left: 15px;">
                 <div class="progress-data">
-                    <img src="{{asset('vendors/images/kategori.png')}}" alt="">
+                    <img src="{{asset('vendors/images/container.png')}}" alt="">
                 </div>
                 <div class="widget-data">
-                    <div class="h4 mb-0 text-white text-center">{{$kategori->count()}}</div>
-                    <div class="weight-600 font-14 text-white text-center">Total Kategori</div>
+                    <div class="h4 mb-0 text-white text-center">{{$container->count()}}</div>
+                    <div class="weight-600 font-14 text-white text-center">Total Container</div>
                 </div>
             </div>
         </div>
@@ -47,11 +47,11 @@
         <div class="card-box height-100-p widget-style1">
             <div class="d-flex flex-wrap align-items-center" style="padding-left: 15px;">
                 <div class="progress-data">
-                    <img src="{{asset('vendors/images/supplier.png')}}" alt="">
+                    <img src="{{asset('vendors/images/transaksi.png')}}" alt="">
                 </div>
                 <div class="widget-data">
-                    <div class="h4 mb-0 text-white text-center">{{$supplier->count()}}</div>
-                    <div class="weight-600 font-14 text-white text-center">Total Supplier</div>
+                    <div class="h4 mb-0 text-white text-center">{{$transaksi->count()}}</div>
+                    <div class="weight-600 font-14 text-white text-center">Total Transaksi</div>
                 </div>
             </div>
         </div>

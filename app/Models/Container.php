@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Barang;
 
-class Kategori extends Model
+class Container extends Model
 {
     use HasFactory;
-    protected $table="kategori"; // Eloquent akan membuat model Kategori menyimpan record di tabel kategori
+    protected $table="container"; // Eloquent akan membuat model Container menyimpan record di tabel container
     protected $primaryKey = 'id'; // Memanggil isi DB Dengan primarykey
     /**
      * The attributes that are mass assignable. *
@@ -17,8 +17,8 @@ class Kategori extends Model
      */
     protected $fillable = [
         'id',
-        'kode_kategori',
-        'nama_kategori',
+        'kode_container',
+        'nama_container',
         'keterangan',
     ];
 

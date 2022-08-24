@@ -33,14 +33,19 @@
 <body class="login-page">
 	<div class="login-header box-shadow">
 		<div class="container-fluid d-flex justify-content-between align-items-center">
-			<div class="brand-logo">
+			<div class="">
 				<img src="{{asset('vendors/images/logo-md.png')}}" alt="" style="width:200px;height:60px">
 			</div>
-            <div class="login-menu">
-				<ul>
-					<li><a href="{{ route('register') }}">Register</a></li>
-				</ul>
-			</div>
+            <div class="tab">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link text-blue" href="/tracking" role="tab" aria-selected="true" >Tracking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-blue" href="{{ route('register') }}"  role="tab" aria-selected="false">Register</a>
+                    </li>
+                </ul>
+            </div>
 		</div>
 	</div>
 	<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">

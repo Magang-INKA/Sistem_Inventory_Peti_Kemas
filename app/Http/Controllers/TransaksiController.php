@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\SupplierExport;
-use App\Models\Supplier;
+use App\Exports\TransaksiExport;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use PDF;
 
-class SupplierController extends Controller
+class TransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,18 +29,18 @@ class SupplierController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){ // Pemilihan jika ingin melakukan pencarian
-            $supplier = Supplier::where('kode', 'like', "%" . $request->search . "%")
+            $transaksi = Transaksi::where('kode', 'like', "%" . $request->search . "%")
             ->orwhere('nama', 'like', "%" . $request->search . "%")
             ->orwhere('alamat', 'like', "%" . $request->search . "%")
             ->orwhere('telp', 'like', "%" . $request->search . "%")
             ->orwhere('kota', 'like', "%" . $request->search . "%")
             ->orwhere('penyedia', 'like', "%" . $request->search . "%")
             ->paginate();
-            return view('Supplier.index', compact('supplier'))->with('i', (request()->input('page', 1) - 1) * 5);
+            return view('Transaksi.index', compact('transaksi'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $supplier = Supplier::paginate(10); // MenPagination menampilkan 5 data
-            return view('Supplier.index', compact('supplier'));
+            $transaksi = Transaksi::paginate(10); // MenPagination menampilkan 5 data
+            return view('Transaksi.index', compact('transaksi'));
         }
     }
 
@@ -51,8 +51,8 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        $num = Supplier::orderBy('kode','desc')->count();
-        $dataCode = Supplier::orderBy('kode','desc')->first();
+        $num = Transaksi::orderBy('kode','desc')->count();
+        $dataCode = Transaksi::orderBy('kode','desc')->first();
         if ($num == 0) {
             $code = 'SUP001';
         }
@@ -61,7 +61,7 @@ class SupplierController extends Controller
             $code = substr($c, 3)+1;
             $code = "SUP00".$code;
         }
-        return view('Supplier.create',compact('code'));
+        return view('Transaksi.create',compact('code'));
     }
 
     /**
@@ -83,11 +83,11 @@ class SupplierController extends Controller
             ]);
 
             //fungsi eloquent untuk menambah data
-            Supplier::create($request->all());
+            Transaksi::create($request->all());
 
             //jika data berhasil ditambahkan, akan kembali ke halaman utama
-            Alert::success('Success', 'Data Supplier Berhasil Ditambahkan');
-            return redirect()->route('supplier.index');
+            Alert::success('Success', 'Data Transaksi Berhasil Ditambahkan');
+            return redirect()->route('transaksi.index');
     }
 
     /**
@@ -98,9 +98,9 @@ class SupplierController extends Controller
      */
     public function show($kode)
     {
-        //menampilkan detail data dengan menemukan berdasarkan kode supplier
-        $supplier = Supplier::find($kode);
-        return view('Supplier.show', compact('supplier'));
+        //menampilkan detail data dengan menemukan berdasarkan kode transaksi
+        $transaksi = Transaksi::find($kode);
+        return view('Transaksi.show', compact('transaksi'));
     }
 
     /**
@@ -111,9 +111,9 @@ class SupplierController extends Controller
      */
     public function edit($kode)
     {
-        //menampilkan detail data dengan menemukan berdasarkan kode supplier untuk diedit
-        $supplier = Supplier::find($kode);
-        return view('Supplier.edit', compact('supplier'));
+        //menampilkan detail data dengan menemukan berdasarkan kode transaksi untuk diedit
+        $transaksi = Transaksi::find($kode);
+        return view('Transaksi.edit', compact('transaksi'));
     }
 
     /**
@@ -136,11 +136,11 @@ class SupplierController extends Controller
             ]);
 
         //fungsi eloquent untuk mengupdate data inputan kita
-            Supplier::find($kode)->update($request->all());
+            Transaksi::find($kode)->update($request->all());
 
         //jika data berhasil diupdate, akan kembali ke halaman utama
-            Alert::success('Success', 'Data Supplier Berhasil Diupdate');
-            return redirect()->route('supplier.index');
+            Alert::success('Success', 'Data Transaksi Berhasil Diupdate');
+            return redirect()->route('transaksi.index');
     }
 
     /**
@@ -152,20 +152,20 @@ class SupplierController extends Controller
     public function destroy($kode)
     {
         //fungsi eloquent untuk menghapus data
-        Supplier::find($kode)->delete();
-        Alert::success('Success', 'Data Supplier Berhasil Dihapus');
-        return redirect()->route('supplier.index');
+        Transaksi::find($kode)->delete();
+        Alert::success('Success', 'Data Transaksi Berhasil Dihapus');
+        return redirect()->route('transaksi.index');
     }
 
     public function laporan()
     {
-        $supplier = Supplier::all();
-        $pdf = PDF::loadview('Supplier.laporan', compact('supplier'));
+        $transaksi = Transaksi::all();
+        $pdf = PDF::loadview('Transaksi.laporan', compact('transaksi'));
         return $pdf->stream();
     }
 
     public function laporanExcel(Request $request)
     {
-        return Excel::download(new SupplierExport, 'Supplier.xlsx');
+        return Excel::download(new TransaksiExport, 'Transaksi.xlsx');
     }
 }

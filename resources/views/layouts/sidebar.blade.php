@@ -8,7 +8,7 @@
             <i class="ion-close-round"></i>
         </div>
     </div>
-    <div class="dropdown-divider"></div>
+    <div class="garis-sidebar"></div>
     <div class="menu-block customscroll">
         <div class="sidebar-menu">
             <ul id="accordion-menu">
@@ -30,13 +30,13 @@
                 </li>
                 @endcan
                 <li>
-                    <a href="{{ route('kategori.index') }}" class="dropdown-toggle no-arrow @yield('menu_kategori')">
+                    <a href="{{ route('container.index') }}" class="dropdown-toggle no-arrow @yield('menu_container')">
                         <span class="micon dw dw-box"></span><span class="mtext">Container</span>
                     </a>
                 </li>
                 @can('manage-MasterData')
                 <li>
-                    <a href="{{ route('supplier.index') }}" class="dropdown-toggle no-arrow @yield('menu_transaksi')">
+                    <a href="{{ route('transaksi.index') }}" class="dropdown-toggle no-arrow @yield('menu_transaksi')">
                         <span class="micon dw dw-shop"></span><span class="mtext">Transaksi</span>
                     </a>
                 </li>

@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class SupplierSeeder extends Seeder
+class TransaksiSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,7 @@ class SupplierSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Supplier::insert([
+        \App\Models\Transaksi::insert([
             [
                 'kode' => 'SUP001',
                 'nama' => 'PT. Sinar Jaya',

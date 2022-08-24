@@ -101,7 +101,7 @@
                     <thead>
                         <tr>
                             <th>Kode Barang</th>
-                            <th>Kategori</th>
+                            <th>Container</th>
                             <th>Nama Barang</th>
                             <th>Jumlah</th>
                         </tr>
@@ -110,7 +110,7 @@
                         @foreach($barang as $data)
                         <tr class="pilih" data-id_barang="<?php echo $data->id; ?>" data-barang_nama="<?php echo $data->nama_barang; ?>" >
                             <td>{{$data->kode_barang}}</td>
-                            <td>{{$data->kategori->nama_kategori}}</td>
+                            <td>{{$data->container->nama_container}}</td>
                             <td>{{$data->nama_barang}}</td>
                             <td>{{$data->jumlah_barang}}</td>
                         </tr>

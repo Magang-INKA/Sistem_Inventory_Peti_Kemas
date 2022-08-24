@@ -20,24 +20,22 @@
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left mt-2">
                     <h3 align="center">SISTEM INVENTORY SDN GEJUGJATI 2</h3>
-                    <h3 align="center">LAPORAN DATA SUPPLIER</h3>
+                    <h3 align="center">LAPORAN DATA KATEGORI BARANG</h3>
                 </div>
                 <br>
                 <table class="table table-bordered">
                     <tr>
                         <th>No</th>
                         <th>Kode</th>
-                        <th>Nama</th>
-                        <th>Alamat</th>
-                        <th>Telepon</th>
+                        <th>Container</th>
+                        <th>Barang</th>
                     </tr>
-                    @foreach ($supplier as $sup => $data)
+                    @foreach ($container as $kt => $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $data->kode }}</td>
-                        <td>{{ $data->nama }}</td>
-                        <td>{{ $data->alamat }}</td>
-                        <td>{{ $data->telp }}</td>
+                        <td>{{ $data->kode_container }}</td>
+                        <td>{{ $data->nama_container }}</td>
+                        <td>{{ $data->keterangan }}</td>
                     </tr>
                     @endforeach
                 </table>
