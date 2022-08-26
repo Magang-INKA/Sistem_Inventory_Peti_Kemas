@@ -43,7 +43,7 @@
                 <div class="col-lg-4 col-md-12 col-sm-12 mb-30">
 					<div class="card-white posisi-card pd-20 height-100-p">
 						<div class="progress-box text-center">
-                            <h5 class="text-light-green padding-top-10 h5">Capacity</h5><br>
+                            <h5 class="padding-top-10 h4">Capacity</h5><br>
 							{{-- <span class="d-block">75% Allocated</i></span> --}}
                             <div class="progress">
 								<div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
@@ -72,14 +72,14 @@
 				<div class="col-lg-3 col-md-12 col-sm-12 mb-30">
 					<div class="card-white pd-20 height-50-p">
 						<div class="progress-box text-center">
-                            <h5 class="text-blue padding-top-10 h5">Temperature</h5>
+                            <h5 class="padding-top-10 h4">Temperature</h5>
 							<input type="text" class="knob dial1" value="80" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
                             <span class="d-block">80° Celcius</span>
 						</div>
 					</div><br>
                     <div class="card-white pd-20 height-50-p">
 						<div class="progress-box text-center">
-                            <h5 class="text-blue padding-top-10 h5">Door Status</h5>
+                            <h5 class="padding-top-10 h4">Door Status</h5>
 							{{-- <input type="text" class="knob dial1" value="80" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly> --}}
                             {{-- <span class="d-block">80° Celcius</span> --}}
                             {{-- <a href="#" class="btn btn-danger btn-lg disabled" role="button" aria-disabled="true"><i class="icon-copy dw dw-door"></i> Open</a> --}}
@@ -90,7 +90,7 @@
 				<div class="col-lg-5 col-md-12 col-sm-12 mb-30">
 					<div class="card-white pd-20 height-100-p">
 						<div class="progress-box text-center">
-                            <h5 class="text-light-orange padding-top-10 h5">AC Control</h5><br>
+                            <h5 class="padding-top-10 h4">AC Control</h5><br>
                             <div class="row clearfix">
                                 <div class="col-md-6 col-sm-12 mb-30">
                                     <div class="card text-white bg-info card-box">
@@ -172,54 +172,36 @@
                             <table class="table hover multiple-select-row data-table-export nowrap">
                                 <thead>
                                     <tr class="table-primary">
-                                        <th class="table-plus datatable-nosort">Name</th>
-                                        <th>Age</th>
-                                        <th>Office</th>
-                                        <th>Address</th>
-                                        <th>Start Date</th>
-                                        <th>Salart</th>
+                                        <th class="table-plus datatable-nosort">Date & Time</th>
+                                        <th>Latitude</th>
+                                        <th>Longitude</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="table-plus">Gloria F. Mead</td>
-                                        <td>25</td>
-                                        <td>Sagittarius</td>
-                                        <td>2829 Trainer Avenue Peoria, IL 61602 </td>
-                                        <td>29-03-2018</td>
-                                        <td>$162,700</td>
+                                        <td class="table-plus">2022-08-24 07:58:59</td>
+                                        <td>-6.193125</td>
+                                        <td>106.821810</td>
                                     </tr>
                                     <tr>
-                                        <td class="table-plus">Andrea J. Cagle</td>
-                                        <td>30</td>
-                                        <td>Gemini</td>
-                                        <td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
-                                        <td>29-03-2018</td>
-                                        <td>$162,700</td>
+                                        <td class="table-plus">2022-08-24 07:58:59</td>
+                                        <td>-6.193125</td>
+                                        <td>106.821810</td>
                                     </tr>
                                     <tr>
-                                        <td class="table-plus">Andrea J. Cagle</td>
-                                        <td>20</td>
-                                        <td>Gemini</td>
-                                        <td>2829 Trainer Avenue Peoria, IL 61602 </td>
-                                        <td>29-03-2018</td>
-                                        <td>$162,700</td>
+                                        <td class="table-plus">2022-08-24 07:58:59</td>
+                                        <td>-6.193125</td>
+                                        <td>106.821810</td>
                                     </tr>
                                     <tr>
-                                        <td class="table-plus">Andrea J. Cagle</td>
-                                        <td>30</td>
-                                        <td>Sagittarius</td>
-                                        <td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
-                                        <td>29-03-2018</td>
-                                        <td>$162,700</td>
+                                        <td class="table-plus">2022-08-24 07:58:59</td>
+                                        <td>-6.193125</td>
+                                        <td>106.821810</td>
                                     </tr>
                                     <tr>
-                                        <td class="table-plus">Andrea J. Cagle</td>
-                                        <td>25</td>
-                                        <td>Gemini</td>
-                                        <td>2829 Trainer Avenue Peoria, IL 61602 </td>
-                                        <td>29-03-2018</td>
-                                        <td>$162,700</td>
+                                        <td class="table-plus">2022-08-24 07:58:59</td>
+                                        <td>-6.193125</td>
+                                        <td>106.821810</td>
                                     </tr>
                                 </tbody>
                             </table>

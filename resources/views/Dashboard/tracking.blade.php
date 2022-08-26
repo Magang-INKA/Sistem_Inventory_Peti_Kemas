@@ -64,54 +64,36 @@
                                 <table class="table hover multiple-select-row data-table-export nowrap">
                                     <thead>
                                         <tr class="table-primary">
-                                            <th class="table-plus datatable-nosort">Name</th>
-                                            <th>Age</th>
-                                            <th>Office</th>
-                                            <th>Address</th>
-                                            <th>Start Date</th>
-                                            <th>Salart</th>
+                                            <th class="table-plus datatable-nosort">Date & Time</th>
+                                            <th>Latitude</th>
+                                            <th>Longitude</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="table-plus">Gloria F. Mead</td>
-                                            <td>25</td>
-                                            <td>Sagittarius</td>
-                                            <td>2829 Trainer Avenue Peoria, IL 61602 </td>
-                                            <td>29-03-2018</td>
-                                            <td>$162,700</td>
+                                            <td class="table-plus">2022-08-24 07:58:59</td>
+                                            <td>-6.193125</td>
+                                            <td>106.821810</td>
                                         </tr>
                                         <tr>
-                                            <td class="table-plus">Andrea J. Cagle</td>
-                                            <td>30</td>
-                                            <td>Gemini</td>
-                                            <td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
-                                            <td>29-03-2018</td>
-                                            <td>$162,700</td>
+                                            <td class="table-plus">2022-08-24 07:58:59</td>
+                                            <td>-6.193125</td>
+                                            <td>106.821810</td>
                                         </tr>
                                         <tr>
-                                            <td class="table-plus">Andrea J. Cagle</td>
-                                            <td>20</td>
-                                            <td>Gemini</td>
-                                            <td>2829 Trainer Avenue Peoria, IL 61602 </td>
-                                            <td>29-03-2018</td>
-                                            <td>$162,700</td>
+                                            <td class="table-plus">2022-08-24 07:58:59</td>
+                                            <td>-6.193125</td>
+                                            <td>106.821810</td>
                                         </tr>
                                         <tr>
-                                            <td class="table-plus">Andrea J. Cagle</td>
-                                            <td>30</td>
-                                            <td>Sagittarius</td>
-                                            <td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
-                                            <td>29-03-2018</td>
-                                            <td>$162,700</td>
+                                            <td class="table-plus">2022-08-24 07:58:59</td>
+                                            <td>-6.193125</td>
+                                            <td>106.821810</td>
                                         </tr>
                                         <tr>
-                                            <td class="table-plus">Andrea J. Cagle</td>
-                                            <td>25</td>
-                                            <td>Gemini</td>
-                                            <td>2829 Trainer Avenue Peoria, IL 61602 </td>
-                                            <td>29-03-2018</td>
-                                            <td>$162,700</td>
+                                            <td class="table-plus">2022-08-24 07:58:59</td>
+                                            <td>-6.193125</td>
+                                            <td>106.821810</td>
                                         </tr>
                                     </tbody>
                                 </table>

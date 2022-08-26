@@ -24,7 +24,7 @@ class BookingController extends Controller
 
     public function index()
     {
-        return view('Booking/FormBooking');
+        return view('Booking/index');
     }
 
     /**
@@ -34,7 +34,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        return view('Booking/FormBooking');
     }
 
     /**
@@ -66,7 +66,7 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('Booking/show');
     }
 
     /**
@@ -77,7 +77,7 @@ class BookingController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('Booking/edit');
     }
 
     /**

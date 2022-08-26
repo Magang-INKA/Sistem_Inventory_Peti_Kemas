@@ -75,6 +75,8 @@ Auth::routes();
 
 Route::resource('booking', BookingController::class);
 Route::get('/StatusBooking', [BookingController::class, 'store']);
+Route::get('/laporan/booking', [BookingController::class, 'laporan']);
+Route::get('/laporan/booking/excel', [BookingController::class, 'laporanExcel']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
