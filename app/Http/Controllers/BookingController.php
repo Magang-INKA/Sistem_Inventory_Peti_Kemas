@@ -45,7 +45,17 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $request->validate([
+        //     'kode_container' => 'required',
+        //     'nama_container' => 'required',
+        //     ]);
+
+        //     //fungsi eloquent untuk menambah data
+        //     Container::create($request->all());
+
+        //     //jika data berhasil ditambahkan, akan kembali ke halaman utama
+        //     Alert::success('Success', 'Data Container Barang Berhasil Ditambahkan');
+        return view('Booking.StatusBooking');
     }
 
     /**

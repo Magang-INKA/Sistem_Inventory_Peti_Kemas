@@ -74,6 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
 Auth::routes();
 
 Route::resource('booking', BookingController::class);
+Route::get('/StatusBooking', [BookingController::class, 'store']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
