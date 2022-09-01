@@ -36,7 +36,7 @@
 	<div class="login-header box-shadow">
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="brand-logo">
-				<img src="{{asset('vendors/images/logo-login.PNG')}}" alt="">
+				<img src="{{asset('vendors/images/logo-inventory.png')}}" alt="" style="width:595px;height:75px">
 			</div>
 			<div class="login-menu">
 				<ul>

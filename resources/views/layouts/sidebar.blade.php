@@ -14,12 +14,17 @@
             <ul id="accordion-menu">
                 <li>
                     <a href="{{ url('/') }}" class="dropdown-toggle no-arrow @yield('menu_home')">
-                        <span class="micon dw dw-house-1"></span><span class="mtext">Dashboard</span>
+                        <span class="micon dw dw-monitor"></span><span class="mtext">Dashboard</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ url('/booking') }}" class="dropdown-toggle no-arrow @yield('menu_booking')">
-                        <span class="micon dw dw-house-1"></span><span class="mtext">Booking</span>
+                        <span class="micon dw dw-edit"></span><span class="mtext">Booking</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/StatusBooking" class="dropdown-toggle no-arrow @yield('status_booking')">
+                        <span class="micon dw dw-invoice-1"></span><span class="mtext">Booking State</span>
                     </a>
                 </li>
                 @can('manage-MasterData')
@@ -37,7 +42,7 @@
                 @can('manage-MasterData')
                 <li>
                     <a href="{{ route('transaksi.index') }}" class="dropdown-toggle no-arrow @yield('menu_transaksi')">
-                        <span class="micon dw dw-shop"></span><span class="mtext">Transaksi</span>
+                        <span class="micon dw dw-invoice"></span><span class="mtext">Transaksi</span>
                     </a>
                 </li>
                 <li>

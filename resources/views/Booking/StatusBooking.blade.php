@@ -1,5 +1,5 @@
 @extends('layouts.MasterView')
-@section('menu_booking', 'active')
+@section('status_booking', 'active')
 @section('content')
 <div class="card border-danger" >
 	<div class="card-header">

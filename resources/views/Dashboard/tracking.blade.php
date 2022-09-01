@@ -6,9 +6,9 @@
 	<title>Sistem Inventory Sekolah</title>
 
 	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="{{asset('vendors/images/apple-touch-icon.png')}}">
-	<link rel="icon" type="image/png" sizes="32x32" href="{{asset('vendors/images/favicon-32x32.png')}}">
-	<link rel="icon" type="image/png" sizes="16x16" href="{{asset('vendors/images/favicon-16x16.png')}}">
+	<link rel="apple-touch-icon" sizes="200x200" href="{{asset('vendors/images/inka.png')}}">
+	<link rel="icon" type="image/png" sizes="35x35" href="{{asset('vendors/images/inka.png')}}">
+	<link rel="icon" type="image/png" sizes="20x20" href="{{asset('vendors/images/inka.png')}}">
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -40,8 +40,8 @@
 <body class="login-page">
 	<div class="login-header box-shadow">
 		<div class="container-fluid d-flex justify-content-between align-items-center">
-			<div class="brand-logo">
-				<img src="{{asset('vendors/images/logo-login.PNG')}}" alt="">
+			<div class="">
+				<img src="{{asset('vendors/images/logo-inventory.png')}}" alt="" style="width:595px;height:75px">
 			</div>
 			<div class="login-menu">
 				<ul>
@@ -54,7 +54,7 @@
     <div class="register-page-wrap d-flex align-items-center flex-wrap justify-content-center">
 		{{-- <div class="container">
 			<div class="row align-items-center"> --}}
-				<div class="row">
+				{{-- <div class="row"> --}}
                     <div class="col-lg-12 col-md-12 col-sm-12 mb-30">
                         <div class="card-white pd-30 height-100-p">
                             <h2 class="mb-30 h4">Tracking Location</h2>
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                {{-- </div> --}}
 			{{-- </div>
 		</div> --}}
 	</div>
