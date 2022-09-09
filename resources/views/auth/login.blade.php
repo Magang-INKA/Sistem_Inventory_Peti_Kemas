@@ -39,7 +39,7 @@
             <div class="tab">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link text-blue" href="/tracking" role="tab" aria-selected="true" >Tracking</a>
+                        <a class="nav-link text-blue" href="{{ url('tracking') }}" role="tab" aria-selected="true" >Tracking</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-blue" href="{{ route('register') }}"  role="tab" aria-selected="false">Register</a>

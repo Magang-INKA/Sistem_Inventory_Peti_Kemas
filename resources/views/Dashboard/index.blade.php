@@ -27,15 +27,12 @@
 								<a class="dropdown-item" href="#">View Assets</a>
 							</div>
 						</div> --}}
+                        {{-- @foreach($mqtt as $data) --}}
                         <select class="custom-select2 form-control" name="state" style="width: 50%; height: 38px;">
                             <option value="">Pilih Container</option>
-                            <option value="AK">Alaska</option>
-                            <option value="HI">Hawaii</option>
-                            <option value="CA">California</option>
-                            <option value="NV">Nevada</option>
-                            <option value="OR">Oregon</option>
-                            <option value="WA">Washington</option>
+                            <option value="">rc-inka-awu-2022</option>
                         </select>
+                        {{-- @endforeach --}}
 					</div>
 				</div>
 			</div>
@@ -71,10 +68,23 @@
 				</div>
 				<div class="col-lg-3 col-md-12 col-sm-12 mb-30">
 					<div class="card-white pd-20 height-50-p">
+                        {{-- <script>
+                            var t = {{ $data->value['AVG_TMP'] }}
+                            $(".dial1").knob();
+                            $({animatedVal: 0}).animate({animatedVal: t }, {
+                            duration: 3000,
+                            easing: "swing",
+                            step: function() {
+                                $(".dial1").val(Math.ceil(this.animatedVal)).trigger("change");
+                             }
+                         });
+                        </script> --}}
 						<div class="progress-box text-center">
                             <h5 class="padding-top-10 h4">Temperature</h5>
-							<input type="text" class="knob dial1" value="80" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
-                            <span class="d-block">80° Celcius</span>
+                            @foreach ($mqtt as $data)
+							<input type="text" class="knob dial1" value="{{ $data->value['AVG_TMP'] }}" data-info="{{ $data->value['AVG_TMP'] }}" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
+                             <span class="d-block">{{ $data->value['AVG_TMP'] }}° Celcius</span>
+                            @endforeach
 						</div>
 					</div><br>
                     <div class="card-white pd-20 height-50-p">
@@ -169,7 +179,7 @@
 						<div id="browservisit" style="width:100%!important; height:380px"></div>
                         <br>
                         <div class="pb-20">
-                            <table class="table hover multiple-select-row data-table-export nowrap">
+                            <table class="data-table table hover multiple-select-row nowrap">
                                 <thead>
                                     <tr class="table-primary">
                                         <th class="table-plus datatable-nosort">Date & Time</th>
@@ -178,31 +188,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($mqtt_history as $data)
                                     <tr>
-                                        <td class="table-plus">2022-08-24 07:58:59</td>
-                                        <td>-6.193125</td>
-                                        <td>106.821810</td>
+                                        <td class="table-plus">{{ $data->value['TIME_STR'] }}</td>
+                                        <td>{{ $data->value['LAT_STRING'] }}</td>
+                                        <td>{{ $data->value['LON_STRING'] }}</td>
                                     </tr>
-                                    <tr>
-                                        <td class="table-plus">2022-08-24 07:58:59</td>
-                                        <td>-6.193125</td>
-                                        <td>106.821810</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-plus">2022-08-24 07:58:59</td>
-                                        <td>-6.193125</td>
-                                        <td>106.821810</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-plus">2022-08-24 07:58:59</td>
-                                        <td>-6.193125</td>
-                                        <td>106.821810</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-plus">2022-08-24 07:58:59</td>
-                                        <td>-6.193125</td>
-                                        <td>106.821810</td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -222,4 +214,6 @@
 	<script src="{{asset('src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js')}}"></script>
 	<script src="{{asset('src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
 	<script src="{{asset('vendors/scripts/dashboard2.js')}}"></script> --}}
+
+
 @endsection

@@ -3,7 +3,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Sistem Inventory Sekolah</title>
+	<title>Sistem Inventory Peti Kemas</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="200x200" href="{{asset('vendors/images/inka.png')}}">
@@ -61,16 +61,45 @@
                             <div id="browservisit" style="width:100%!important; height:380px"></div>
                             <br>
                             <div class="pb-20">
-                                <table class="table hover multiple-select-row data-table-export nowrap">
+                                <form class="form" method="GET" action="{{ url('/tracking') }}">
+                                    <div class="form-group row">
+                                        <div class="col-sm-12 col-md-6">
+                                            <input class="form-control search-input" type="text" name="search" id="search" placeholder="Masukkan Kode Pesanan">
+                                        </div>
+                                        <div class="col-sm-12 col-md-3 pull-right">
+                                            {{-- <a type="submit" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
+                                                Tracking
+                                            </a> --}}
+                                            <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i> Tracking</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                @if ($message = Session::get('success'))
+                                    <div class="alert alert-success">
+                                        <p>{{ $message }}</p>
+                                    </div>
+                                @endif
+                                <table class="data-table table hover multiple-select-row nowrap">
                                     <thead>
                                         <tr class="table-primary">
                                             <th class="table-plus datatable-nosort">Date & Time</th>
+                                            <th>ID</th>
+                                            <th>Nama Container</th>
                                             <th>Latitude</th>
                                             <th>Longitude</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                            @foreach ($mqtt_history as $data)
+                                            <tr>
+                                                <td class="table-plus">{{ $data->value['TIME_STR'] }}</td>
+                                                <td>{{ $data->id }}</td>
+                                                <td>{{ $data->mqtt->topic }}</td>
+                                                <td>{{ $data->value['LAT_STRING'] }}</td>
+                                                <td>{{ $data->value['LON_STRING'] }}</td>
+                                            </tr>
+                                            @endforeach
+                                        {{-- <tr>
                                             <td class="table-plus">2022-08-24 07:58:59</td>
                                             <td>-6.193125</td>
                                             <td>106.821810</td>
@@ -84,17 +113,7 @@
                                             <td class="table-plus">2022-08-24 07:58:59</td>
                                             <td>-6.193125</td>
                                             <td>106.821810</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="table-plus">2022-08-24 07:58:59</td>
-                                            <td>-6.193125</td>
-                                            <td>106.821810</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="table-plus">2022-08-24 07:58:59</td>
-                                            <td>-6.193125</td>
-                                            <td>106.821810</td>
-                                        </tr>
+                                        </tr> --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -104,23 +123,6 @@
 			{{-- </div>
 		</div> --}}
 	</div>
-	<!-- success Popup html Start -->
-	<button type="button" id="success-modal-btn" hidden data-toggle="modal" data-target="#success-modal" data-backdrop="static">Launch modal</button>
-	<div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered max-width-400" role="document">
-			<div class="modal-content">
-				<div class="modal-body text-center font-18">
-					<h3 class="mb-20">Form Submitted!</h3>
-					<div class="mb-30 text-center"><img src="vendors/images/success.png"></div>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				</div>
-				<div class="modal-footer justify-content-center">
-					<a href="login.html" class="btn btn-primary">Done</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- success Popup html End -->
 	<!-- js -->
 	<script src="{{asset('vendors/scripts/core.js')}}"></script>
 	<script src="{{asset('vendors/scripts/script.min.js')}}"></script>

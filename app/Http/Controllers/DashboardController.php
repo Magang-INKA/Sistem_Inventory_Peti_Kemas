@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dashboard;
+use App\Models\Mqtt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -12,7 +14,6 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -24,7 +25,29 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('Dashboard/index');
+        // return view('Dashboard.index');
+        // $mqtt_history = Dashboard::with('mqtt')->find($id);
+        // return view('Dashboard.index', compact('mqtt_history'));
+
+        $mqtt_dashboard = Dashboard::all();
+        $mqtt = Mqtt::all();
+
+        foreach ($mqtt_dashboard as $key => $item) {
+            $item['value'] = json_decode($item->value,true);
+        }
+        foreach ($mqtt as $key => $item) {
+            $item['value'] = json_decode($item->value,true);
+        }
+
+        $data = array(
+            'id' => 'mqtt',
+            'id' =>'mqtt_history',
+            'mqtt_history' => $mqtt_dashboard,
+            'mqtt' => $mqtt
+        );
+
+        // return response()->json($data);
+        return view('Dashboard.index')->with($data);
     }
 
     /**

@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContainerController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -31,9 +32,7 @@ Route::get('/forgot-password', function () {
     return view('auth.forget');
 });
 
-Route::get('/tracking', function () {
-    return view('Dashboard/tracking');
-});
+Route::get('/tracking', [TrackingController::class,'tracking']);
 
 Route::get('/', [DashboardController::class,'index'])->name('home');
 
