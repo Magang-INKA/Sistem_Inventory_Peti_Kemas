@@ -1,4 +1,5 @@
 @extends('layouts.MasterView')
+{{-- @stack('scripts') --}}
 @section('menu_home', 'active')
 @section('content')
 	{{-- <div class="main-container"> --}}
@@ -68,21 +69,10 @@
 				</div>
 				<div class="col-lg-3 col-md-12 col-sm-12 mb-30">
 					<div class="card-white pd-20 height-50-p">
-                        {{-- <script>
-                            var t = {{ $data->value['AVG_TMP'] }}
-                            $(".dial1").knob();
-                            $({animatedVal: 0}).animate({animatedVal: t }, {
-                            duration: 3000,
-                            easing: "swing",
-                            step: function() {
-                                $(".dial1").val(Math.ceil(this.animatedVal)).trigger("change");
-                             }
-                         });
-                        </script> --}}
 						<div class="progress-box text-center">
                             <h5 class="padding-top-10 h4">Temperature</h5>
                             @foreach ($mqtt as $data)
-							<input type="text" class="knob dial1" value="{{ $data->value['AVG_TMP'] }}" data-info="{{ $data->value['AVG_TMP'] }}" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
+							<input type="text" class="knob dial1" value="{{ $data->value['AVG_TMP'] }}" data-width="120" data-height="120" data-linecap="round" data-thickness="0.2" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
                              <span class="d-block">{{ $data->value['AVG_TMP'] }}° Celcius</span>
                             @endforeach
 						</div>
@@ -203,17 +193,25 @@
 			</div>
 		</div>
 	{{-- </div> --}}
-	<!-- js -->
-	{{-- <script src="{{asset('vendors/scripts/core.js')}}"></script>
-	<script src="{{asset('vendors/scripts/script.min.js')}}"></script>
-	<script src="{{asset('vendors/scripts/process.js')}}"></script>
-	<script src="{{asset('vendors/scripts/layout-settings.js')}}"></script>
-	<script src="{{asset('src/plugins/jQuery-Knob-master/jquery.knob.min.js')}}"></script>
-	<script src="{{asset('src/plugins/highcharts-6.0.7/code/highcharts.js')}}"></script>
-	<script src="{{asset('src/plugins/highcharts-6.0.7/code/highcharts-more.js')}}"></script>
-	<script src="{{asset('src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js')}}"></script>
-	<script src="{{asset('src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
-	<script src="{{asset('vendors/scripts/dashboard2.js')}}"></script> --}}
-
-
+@endsection
+@section('scriptPage')
+<!-- js -->
+    <script>
+        // console.log('tes');
+        $(document).ready(function() {
+            @foreach ($mqtt as $data)
+            var t = Math.abs({{ $data->value['AVG_TMP'] }});
+            var num = {{ $data->value['AVG_TMP'] }};
+            @endforeach
+            // console.log(test);
+            $(".dial1").knob();
+            $({animatedVal: 0}).animate({animatedVal: t }, {
+                duration: 2000,
+                easing: "swing",
+                step: function() {
+                    $(".dial1").val(Math.ceil(this.animatedVal)).trigger("change");
+                }
+            });
+        });
+    </script>
 @endsection
