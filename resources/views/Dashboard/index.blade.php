@@ -18,16 +18,6 @@
 						</nav>
 					</div>
 					<div class="col-md-6 col-sm-12 text-right">
-						{{-- <div class="dropdown">
-							<a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-								January 2018
-							</a>
-							<div class="dropdown-menu dropdown-menu-right">
-								<a class="dropdown-item" href="#">Export List</a>
-								<a class="dropdown-item" href="#">Policies</a>
-								<a class="dropdown-item" href="#">View Assets</a>
-							</div>
-						</div> --}}
                         {{-- @foreach($mqtt as $data) --}}
                         <select class="custom-select2 form-control" name="state" style="width: 50%; height: 38px;">
                             <option value="">Pilih Container</option>
@@ -71,7 +61,7 @@
 					<div class="card-white pd-20 height-50-p">
 						<div class="progress-box text-center">
                             <h5 class="padding-top-10 h4">Temperature</h5>
-                            <div id="chart6" style="margin-top: -25px;"></div>
+                            <div id="chart_temp" style="margin-top: -25px;"></div>
                             {{-- @foreach ($mqtt as $data)
 							<input type="text" class="knob dial1" value="{{ $data->value['AVG_TMP'] }}" data-width="120" data-height="120" data-linecap="round" data-thickness="0.2" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
                              <span class="d-block">{{ $data->value['AVG_TMP'] }}° Celcius</span>
@@ -83,7 +73,7 @@
 					<div class="card-white pd-20 height-50-p">
 						<div class="progress-box text-center">
                             <h5 class="padding-top-10 h4">Humidity</h5>
-                            <div id="chart7" style="margin-top: -25px;"></div>
+                            <div id="chart_hum" style="margin-top: -25px;"></div>
                             {{-- @foreach ($mqtt as $data)
 							<input type="text" class="knob dial1" value="{{ $data->value['AVG_TMP'] }}" data-width="120" data-height="120" data-linecap="round" data-thickness="0.2" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
                              <span class="d-block">{{ $data->value['AVG_TMP'] }}° Celcius</span>
@@ -94,59 +84,61 @@
 				<div class="col-lg-9 col-md-12 col-sm-12 mb-30">
 					<div class="card-white pd-20 height-100-p">
 						<div class="progress-box text-center">
-                            <h5 class="padding-top-10 h4">AC Control</h5>
+                            @foreach ($mqtt as $data)
+                            <h5 class="padding-top-10 h4">Status AC Control</h5>
                             <div class="row clearfix">
-                                @foreach ($mqtt as $data)
-                                <div class="col-md-3 col-sm-12">
-                                    <div class="card text-white bg-info card-box">
+                                <div class="col-md-3 col-sm-12 mb-30">
+                                    <div class="card text-white bg-info card-box" style="margin-bottom: -20px">
                                         <div class="card-header">Evaporator<br>
-                                            <input type="checkbox" id="evap" class="switch-btn" data-size="small" data-color="#0059b2">
+                                            @if ( $data->value['EVAP'] == 1)
+                                                <img src="{{asset('vendors/images/on.png')}}" alt="" width="70px">
+                                            @else
+                                                <img src="{{asset('vendors/images/off.png')}}" alt="" width="70px">
+                                            @endif
                                         </div>
-
-                                        {{-- <div class="card-body">
-                                            <h5 class="card-title text-white">Primary card title</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-12">
                                     <div class="card text-white bg-secondary card-box">
                                         <div class="card-header">Condenser<br>
-                                            <input type="checkbox" id="cond" class="switch-btn" data-size="small" data-color="#41ccba">
+                                            {{-- <input type="checkbox" name="COND" id="COND" value="{{ $data->value['COND'] }}" {{ $data->value['COND'] == 1 ? 'checked' : null }} class="switch-btn" data-size="small" data-color="#41ccba" disabled> --}}
+                                            {{-- <i class="fa fa-solid fa-toggle-off"></i> --}}
+                                            @if ( $data->value['COND'] == 1)
+                                                <img src="{{asset('vendors/images/on.png')}}" alt="" width="70px">
+                                            @else
+                                                <img src="{{asset('vendors/images/off.png')}}" alt="" width="70px">
+                                            @endif
                                         </div>
-                                        {{-- <div class="card-body">
-                                            <h5 class="card-title text-white">Primary card title</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-12">
                                     <div class="card text-white bg-info card-box">
                                         <div class="card-header">Compressor<br>
-                                            <input type="checkbox" id="comp" class="switch-btn" data-size="small" data-color="#0059b2">
+                                            {{-- <input type="checkbox" name="COMP" is="COMP" value="{{ $data->value['COMP'] }}" {{ $data->value['COMP'] == 1 ? 'checked' : null }} class="switch-btn" data-size="small" data-color="#0059b2"> --}}
+                                            @if ( $data->value['COMP'] == 1)
+                                                <img src="{{asset('vendors/images/on.png')}}" alt="" width="70px">
+                                            @else
+                                                <img src="{{asset('vendors/images/off.png')}}" alt="" width="70px">
+                                            @endif
                                         </div>
-                                        {{-- <div class="card-body">
-                                            <h5 class="card-title text-white">Primary card title</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-12">
                                     <div class="card text-white bg-secondary card-box">
                                         <div class="card-header">Heater<br>
-                                            <input type="checkbox" id="heat" class="switch-btn" data-size="small" data-color="#41ccba">
+                                            {{-- <input type="checkbox" name="HEAT" id="HEAT" value="{{ $data->value['HEAT'] }}" {{ $data->value['HEAT'] == 1 ? 'checked' : null }} class="switch-btn" data-size="small" data-color="#41ccba"> --}}
+                                            @if ( $data->value['HEAT'] == 1)
+                                                <img src="{{asset('vendors/images/on.png')}}" alt="" width="70px">
+                                            @else
+                                                <img src="{{asset('vendors/images/off.png')}}" alt="" width="70px">
+                                            @endif
                                         </div>
-                                        {{-- <div class="card-body">
-                                            <h5 class="card-title text-white">Primary card title</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div> --}}
                                     </div>
                                 </div>
                                 @endforeach
                             </div>
 							{{-- <span class="d-block">90% Average</span> --}}
 							 {{-- <input type="text" class="knob dial3" value="90" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#f56767" data-angleOffset="180" readonly> --}}
-
 						</div>
 					</div>
 				</div>
@@ -161,15 +153,6 @@
                         </div><br>
                     </div>
                 </div>
-				{{-- <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
-					<div class="card-white pd-30 height-100-p">
-						<div class="progress-box text-center">
-							 <input type="text" class="knob dial4" value="65" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#a683eb" data-angleOffset="180" readonly>
-							<h5 class="text-light-purple padding-top-10 h5">Panding Orders</h5>
-							<span class="d-block">65% Average <i class="fa text-light-purple fa-line-chart"></i></span>
-						</div>
-					</div>
-				</div> --}}
 			</div>
             <div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 mb-30">
@@ -183,7 +166,7 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 mb-30">
 					<div class="card-white pd-30 height-100-p">
 						<h2 class="mb-30 h4">Tracking Location</h2>
-						<div id="browservisit" style="width:100%!important; height:380px"></div>
+						<div id="map" style="width:100%!important; height:380px"></div>
                         <br>
                         <div class="pb-20">
                             <table class="data-table table hover multiple-select-row nowrap">
@@ -213,6 +196,100 @@
 @endsection
 @section('scriptPage')
 <!-- js -->
+    <script type="text/javascript">
+        var marker;
+        function initialize(){
+            // Variabel untuk menyimpan informasi lokasi
+            var infoWindow = new google.maps.InfoWindow;
+            //  Variabel berisi properti tipe peta
+            var mapOptions = {
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            // Pembuatan peta
+            var peta = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
+            // Variabel untuk menyimpan batas kordinat
+            var bounds = new google.maps.LatLngBounds();
+            // Pengambilan data dari database MySQL
+            // <?php
+            // Sesuaikan dengan konfigurasi koneksi Anda
+                // $host 	  = "localhost";
+                // $username = "root";
+                // $password = "";
+                // $Dbname   = "googlemaps";
+                // $db 	  = new mysqli($host,$username,$password,$Dbname);
+
+                // $query = $db->query("SELECT * FROM lokasi ORDER BY nama_lokasi ASC");
+                // while ($row = $query->fetch_assoc()) {
+                //     $nama = $row["nama_lokasi"];
+                //     $lat  = $row["latitude"];
+                //     $long = $row["longitude"];
+                //     echo "addMarker($lat, $long, '$nama');\n";
+                // }
+            // ?>
+            // Proses membuat marker
+            @foreach ($mqtt as $data)
+            var lat = {{ $data->value['LAT'] }};
+            var lng = {{ $data->value['LON'] }};
+            // var info = {{ $data->value['TIME_STR'] }};
+            @endforeach
+            function addMarker(lat, lng, info){
+                var lokasi = new google.maps.LatLng(lat, lng);
+                bounds.extend(lokasi);
+                var marker = new google.maps.Marker({
+                    map: peta,
+                    position: lokasi
+                });
+                peta.fitBounds(bounds);
+                bindInfoWindow(marker, peta, infoWindow, info);
+             }
+            // Menampilkan informasi pada masing-masing marker yang diklik
+            function bindInfoWindow(marker, peta, infoWindow, html){
+                google.maps.event.addListener(marker, 'click', function() {
+                infoWindow.setContent(html);
+                infoWindow.open(peta, marker);
+              });
+            }
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFTUPQtZCagMonvogopNNncFy8WoSn0og&callback=initialize" async defer></script>
+    <script>
+        function initMap() {
+            @foreach ($mqtt as $data)
+            // membuat objek untuk titik koordinat'
+            var lokasi_terkini = {lat: {{$data->value['LAT']}}, lng: {{$data->value['LON']}}};
+
+            // membuat objek peta
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 7,
+                center: lokasi_terkini
+            });
+
+            // mebuat konten untuk info window
+            var contentString = '<span><b>{{ $data->value['TIME_STR'] }}</b></span>';
+            @endforeach
+
+            // membuat objek info window
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                position: lokasi_terkini
+            });
+
+            // membuat marker
+            var marker = new google.maps.Marker({
+                position: lokasi_terkini,
+                map: map,
+                title: 'Lokasi Terkini'
+            });
+
+            // event saat marker diklik
+            marker.addListener('click', function() {
+                // tampilkan info window di atas marker
+                infowindow.open(map, marker);
+            });
+
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
     <script>
         // console.log('tes');
         // $(document).ready(function() {
@@ -233,7 +310,7 @@
         //     });
         // });
 
-        var options6 = {
+        var options_temp = {
             series: [num],
             chart: {
             height: 250,
@@ -279,7 +356,7 @@
             labels: [' '],
         };
 
-        var options7 = {
+        var options_hum = {
             series: [hum],
             chart: {
             height: 250,
@@ -302,7 +379,7 @@
                     fontSize: '20px',
                     color: undefined,
                     formatter: function (val) {
-                        return nilai_hum + " Humidity";
+                        return nilai_hum + " %";
                     }
                 }
                 }
@@ -325,11 +402,11 @@
             labels: [' '],
         };
 
-        var chart6 = new ApexCharts(document.querySelector("#chart6"), options6);
-        chart6.render();
+        var chart_temp = new ApexCharts(document.querySelector("#chart_temp"), options_temp);
+        chart_temp.render();
 
-        var chart7 = new ApexCharts(document.querySelector("#chart7"), options7);
-        chart7.render();
+        var chart_hum = new ApexCharts(document.querySelector("#chart_hum"), options_hum);
+        chart_hum.render();
 
         // map
         jQuery('#browservisit').vectorMap({
@@ -349,8 +426,16 @@
         });
 
         @foreach ($mqtt as $data)
-        $( "#evap" ).prop( "checked", {{ $data->value['EVAP'] }} );
-        $(".evap").prop('checked', {{ $data->value['EVAP'] }}).trigger("click");
+        // $( "#evap" ).prop( "checked", {{ $data->value['EVAP'] }} );
+        // $(".evap").prop('checked', {{ $data->value['EVAP'] }}).trigger("click");
+        // $('#evap').attr('checked', true);
+        $('#evap').val(false);
+        $("#btn_3").click(function(){
+            switchery["chk_3"].handleOnchange(true);
+        });
+        $("#chk_3").change(function(){
+            alert("change here");
+        });
         $( "#cond" ).prop( "checked", {{ $data->value['COND'] }} );
         $( "#comp" ).prop( "checked", {{ $data->value['COMP'] }} );
         $( "#heat" ).prop( "checked", {{ $data->value['HEAT'] }} );

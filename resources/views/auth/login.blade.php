@@ -63,8 +63,8 @@
                             @csrf
 							<div class="input-group custom">
                                 {{-- <label for="email"></label> --}}
-								<input for="username" id="username" type="username" class="form-control form-control-lg @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Email" autofocus>
-								@error('username')
+								<input for="email" id="email" type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email" autofocus>
+								@error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

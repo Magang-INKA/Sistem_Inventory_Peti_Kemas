@@ -102,7 +102,8 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Dashboard::find($id)->update($request->all());
+        return redirect("Dashboard.index")->withSuccess('AC Control Successfully Updated!');
     }
 
     /**
