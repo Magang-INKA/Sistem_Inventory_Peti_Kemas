@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="col-md-3 col-sm-12">
                                     <div class="card text-white bg-secondary card-box">
-                                        <div class="card-header">Condenser<br>
+                                        <div class="card-header">Condensor<br>
                                             {{-- <input type="checkbox" name="COND" id="COND" value="{{ $data->value['COND'] }}" {{ $data->value['COND'] == 1 ? 'checked' : null }} class="switch-btn" data-size="small" data-color="#41ccba" disabled> --}}
                                             {{-- <i class="fa fa-solid fa-toggle-off"></i> --}}
                                             @if ( $data->value['COND'] == 1)

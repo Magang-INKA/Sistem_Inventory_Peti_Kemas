@@ -50,6 +50,33 @@ class DashboardController extends Controller
         return view('Dashboard.index')->with($data);
     }
 
+    public function history()
+    {
+        // return view('Dashboard.index');
+        // $mqtt_history = Dashboard::with('mqtt')->find($id);
+        // return view('Dashboard.index', compact('mqtt_history'));
+
+        $mqtt_dashboard = Dashboard::all();
+        $mqtt = Mqtt::all();
+
+        foreach ($mqtt_dashboard as $key => $item) {
+            $item['value'] = json_decode($item->value,true);
+        }
+        foreach ($mqtt as $key => $item) {
+            $item['value'] = json_decode($item->value,true);
+        }
+
+        $data = array(
+            'id' => 'mqtt',
+            'id' =>'mqtt_history',
+            'mqtt_history' => $mqtt_dashboard,
+            'mqtt' => $mqtt
+        );
+
+        // return response()->json($data);
+        return view('Dashboard.history')->with($data);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

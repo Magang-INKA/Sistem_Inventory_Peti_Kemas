@@ -79,5 +79,6 @@ Route::get('/laporan/booking/excel', [BookingController::class, 'laporanExcel'])
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::resource('dashboard', DashboardController::class);
+Route::resource('dashboard', DashboardController::class);
+Route::get('/history', [DashboardController::class, 'history']);
 

@@ -18,6 +18,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ url('/history') }}" class="dropdown-toggle no-arrow @yield('menu_history')">
+                        <span class="micon dw dw-library"></span><span class="mtext">History Dashboard</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ url('/booking') }}" class="dropdown-toggle no-arrow @yield('menu_booking')">
                         <span class="micon dw dw-edit"></span><span class="mtext">Booking</span>
                     </a>
