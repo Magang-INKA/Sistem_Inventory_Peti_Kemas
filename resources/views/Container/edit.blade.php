@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Edit Container Barang</h4>
+                <h4>Edit Container</h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
@@ -35,25 +35,30 @@
         @csrf
         @method('PUT')
 		<div class="form-group row">
-			<label for="kode_container" class="col-sm-12 col-md-2 col-form-label text-white">Kode Container</label>
+			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">Nama Kapal</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="kode_container" id="kode_container"
-                value="{{ $container->kode_container }}" aria-describedby="kode_container" placeholder="">
-			</div>
+                <div class="input-group">
+                    <input id="nama_kapal" type="text" class="form-control" readonly="" required>
+                    <input id="id_kapal" type="hidden" name="id_kapal" value="{{ old('id_kapal') }}" required readonly="">
+                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Kapal</b><span class="fa fa-search"></span></button>
+                </div>
+            </div>
 		</div>
 		<div class="form-group row">
 			<label for="nama_container" class="col-sm-12 col-md-2 col-form-label text-white">Nama Container</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="nama_container" id="nama_container"
-                value="{{ $container->nama_container }}" aria-describedby="nama_container" placeholder="">
+				<input class="form-control" type="text" name="nama_container" id="nama_container" aria-describedby="nama_container" placeholder="">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="keterangan" class="col-sm-12 col-md-2 col-form-label text-white">Keterangan</label>
+			<label for="id_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Nama Pelabuhan</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="keterangan" id="keterangan"
-                value="{{ $container->keterangan }}" aria-describedby="keterangan" placeholder="Boleh dikosongi">
-			</div>
+                <div class="input-group">
+                    <input id="nama_pelabuhan" type="text" class="form-control" readonly="" required>
+                    <input id="id_pelabuhan" type="hidden" name="id_pelabuhan" value="{{ old('id_pelabuhan') }}" required readonly="">
+                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal1"><b>Cari Pelabuhan</b><span class="fa fa-search"></span></button>
+                </div>
+            </div>
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label"></label>
@@ -71,4 +76,92 @@
 	</form>
 </div>
 <!-- Default Basic Forms End -->
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content" style="background: #fff;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cari Kapal </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="lookup" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID Kapal</th>
+                            <th>Nama Kapal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($kapal as $data)
+                        <tr class="pilih" data-id="<?php echo $data->id; ?>" data-nama_kapal="<?php echo $data->nama_kapal; ?>" >
+                            <td>{{$data->id}}</td>
+                            <td>{{$data->nama_kapal}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content" style="background: #fff;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cari Pelabuhan </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="lookup" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID Pelabuhan</th>
+                            <th>Nama Pelabuhan Tujuan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($pelabuhan as $data)
+                        <tr class="pilih2" data-id_pelabuhan="<?php echo $data->id; ?>" data-nama_pelabuhan="<?php echo $data->nama_pelabuhan; ?>" >
+                            <td>{{$data->id}}</td>
+                            <td>{{$data->nama_pelabuhan}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+</script>
+<script type="text/javascript">
+    $(document).on('click', '.pilih', function (e) {
+        document.getElementById("nama_kapal").value = $(this).attr('data-nama_kapal');
+        document.getElementById("id_kapal").value = $(this).attr('data-id');
+        $('#myModal').modal('hide');
+    });
+
+    $(document).on('click', '.pilih2', function (e) {
+        document.getElementById("nama_pelabuhan").value = $(this).attr('data-nama_pelabuhan');
+        document.getElementById("id_pelabuhan").value = $(this).attr('data-id_pelabuhan');
+        $('#myModal1').modal('hide');
+    });
+
+    $(function () {
+        $("#lookup, #lookup2, #lookup3").dataTable();
+    });
+</script>
 @endsection

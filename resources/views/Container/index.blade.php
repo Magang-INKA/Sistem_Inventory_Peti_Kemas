@@ -54,20 +54,19 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>Container ID</th>
-                        <th>ID Kapal</th>
                         <th>Container Name</th>
-                        <th>Destination</th>
+                        <th>Nama Kapal</th>
+                        <th>Nama Pelabuhan</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
                 </thead>
-                {{-- <tbody>
-                    @foreach ($container as $kt => $data)
+                <tbody>
+                    @foreach ($container as $ct => $data)
                     <tr>
-                        <td class="table-plus">{{ $kt + $container->firstitem() }}</td>
-                        <td>{{ $data->kode_container }}</td>
+                        <td class="table-plus">{{ $ct + $container->firstitem() }}</td>
                         <td>{{ $data->nama_container }}</td>
-                        <td>{{ $data->keterangan }}</td>
+                        <td>{{ $data->kapal->nama_kapal }}</td>
+                        <td>{{ $data->pelabuhan->nama_pelabuhan }}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -87,7 +86,7 @@
                         </td>
                     </tr>
                     @endforeach
-                </tbody> --}}
+                </tbody>
             </table>
             <div class="col-md-40 col-sm-12 text-left">
                 {{$container->links()}}

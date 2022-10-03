@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Exports\ContainerExport;
 use App\Models\Container;
+use App\Models\Kapal;
+use App\Models\Pelabuhan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
@@ -48,7 +50,9 @@ class ContainerController extends Controller
      */
     public function create()
     {
-        return view('Container.create');
+        $kapal = Kapal::all();
+        $pelabuhan = Pelabuhan::all();
+        return view('Container.create', compact('kapal', 'pelabuhan'));
     }
 
     /**
@@ -61,15 +65,20 @@ class ContainerController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'kode_container' => 'required',
             'nama_container' => 'required',
+            'id_kapal' => 'required',
+            'id_pelabuhan' => 'required',
             ]);
 
             //fungsi eloquent untuk menambah data
-            Container::create($request->all());
+            $container = new Container;
+            $container->nama_container = $request->get('nama_container');
+            $container->id_kapal = $request->get('id_kapal');
+            $container->id_pelabuhan = $request->get('id_pelabuhan');
+            $container->save();
 
             //jika data berhasil ditambahkan, akan kembali ke halaman utama
-            Alert::success('Success', 'Data Container Barang Berhasil Ditambahkan');
+            Alert::success('Success', 'Data Container Berhasil Ditambahkan');
             return redirect()->route('container.index');
     }
 
@@ -83,7 +92,9 @@ class ContainerController extends Controller
     {
         //menampilkan detail data dengan menemukan berdasarkan id container
         $container = Container::find($id);
-        return view('Container.show', compact('container'));
+        $kapal = Kapal::all();
+        $pelabuhan = Pelabuhan::all();
+        return view('Container.show', compact('container', 'kapal', 'pelabuhan'));
     }
 
     /**
@@ -96,7 +107,9 @@ class ContainerController extends Controller
     {
         //menampilkan detail data dengan menemukan berdasarkan id container untuk diedit
         $container = Container::find($id);
-        return view('Container.edit', compact('container'));
+        $kapal = Kapal::all();
+        $pelabuhan = Pelabuhan::all();
+        return view('Container.edit', compact('container', 'kapal', 'pelabuhan'));
     }
 
     /**
@@ -110,17 +123,17 @@ class ContainerController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'kode_container' => 'required',
             'nama_container' => 'required',
-            'keterangan' => 'required',
-            ]);
+            'id_kapal' => 'required',
+            'id_pelabuhan' => 'required',
+        ]);
 
         //fungsi eloquent untuk mengupdate data inputan kita
-            Container::find($id)->update($request->all());
+        Container::find($id)->update($request->all());
 
         //jika data berhasil diupdate, akan kembali ke halaman utama
-            Alert::success('Success', 'Data Container Barang Berhasil Diupdate');
-            return redirect()->route('container.index');
+        Alert::success('Success', 'Data Container Barang Berhasil Diupdate');
+        return redirect()->route('container.index');
     }
 
     /**

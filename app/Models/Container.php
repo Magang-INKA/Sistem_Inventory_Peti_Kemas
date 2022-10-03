@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Barang;
+use App\Models\Kapal;
+use App\Models\Pelabuhan;
 
 class Container extends Model
 {
@@ -17,13 +18,17 @@ class Container extends Model
      */
     protected $fillable = [
         'id',
-        'kode_container',
+        'id_kapal',
         'nama_container',
-        'keterangan',
+        'id_pelabuhan',
     ];
 
-    public function barang()
+    public function kapal()
     {
-        return $this->hasMany(Barang::class);
+        return $this->belongsTo(Kapal::class, 'id_kapal');
+    }
+    public function pelabuhan()
+    {
+        return $this->belongsTo(Pelabuhan::class, 'id_pelabuhan');
     }
 }
