@@ -60,17 +60,6 @@
 						<form class="form-wrap max-width-600 mx-auto" method="POST" action="{{ route('register') }}" id="myForm" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
-                                <label for="email" class="col-sm-3 col-form-label">Email*</label>
-                                <div class="col-sm-9">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-							<div class="form-group row">
                                 <label for="name" class="col-sm-3 col-form-label">Nama*</label>
                                 <div class="col-sm-9">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Nama Lengkap" required autocomplete="name" autofocus>
@@ -82,10 +71,21 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="username" class="col-sm-3 col-form-label">Username*</label>
+                                <label for="email" class="col-sm-3 col-form-label">Email*</label>
                                 <div class="col-sm-9">
-                                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-                                    @error('username')
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="no_telp" class="col-sm-3 col-form-label">No. Telepon*</label>
+                                <div class="col-sm-9">
+                                    <input id="no_telp" type="text" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ old('no_telp') }}" required autocomplete="no_telp" autofocus>
+                                    @error('no_telp')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -103,13 +103,13 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" hidden>
                                 <label for="role" class="col-sm-3 col-form-label">Role*</label>
                                 <div class="col-sm-9">
                                     <select class="custom-select col-12" type="role" name="role" id="role">
-                                        <option value="">Choose Role</option>
-                                        <option value="Administrator">Administrator</option>
-                                        <option value="Operator">Operator</option>
+                                        {{-- <option value="">Choose Role</option> --}}
+                                        {{-- <option value="Administrator">Administrator</option> --}}
+                                        <option value="Client">Client</option>
                                     </select>
                                     @error('role')
                                         <span class="invalid-feedback" role="alert">
