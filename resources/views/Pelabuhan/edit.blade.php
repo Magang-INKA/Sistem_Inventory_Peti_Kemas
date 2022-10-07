@@ -37,7 +37,13 @@
 		<div class="form-group row">
 			<label for="nama_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Nama Pelabuhan</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="nama_pelabuhan" id="nama_pelabuhan" value="{{ $pelabuhan->nama_pelabuhan }}" aria-describedby="kode_pelabuhan" placeholder="">
+				<input class="form-control" type="text" name="nama_pelabuhan" id="nama_pelabuhan" value="{{ $pelabuhan->nama_pelabuhan }}" aria-describedby="nama_pelabuhan" placeholder="">
+			</div>
+		</div>
+        <div class="form-group row">
+			<label for="alamat" class="col-sm-12 col-md-2 col-form-label text-white">Alamat</label>
+			<div class="col-sm-12 col-md-10">
+				<input class="form-control" type="text" name="alamat" id="alamat" value="{{ $pelabuhan->alamat }}" aria-describedby="alamat" placeholder="">
 			</div>
 		</div>
 		<div class="form-group row">

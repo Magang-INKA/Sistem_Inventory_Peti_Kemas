@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left mt-2">
-                    <h3 align="center">SISTEM INVENTORY SDN GEJUGJATI 2</h3>
+                    <h3 align="center">SISTEM INVENTORY PETI KEMAS</h3>
                     <h3 align="center">LAPORAN DATA USER</h3>
                 </div>
                 <br>
@@ -27,7 +27,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Username</th>
+                        <th>No Telepon</th>
                         <th>Email</th>
                         <th>Gambar</th>
                         <th>Role</th>
@@ -36,7 +36,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->name }}</td>
-                        <td>{{ $data->username }}</td>
+                        <td>{{ $data->no_telp }}</td>
                         <td>{{ $data->email }}</td>
                         <td><img width="150px" src="{{ public_path('storage/' . $data->gambar)}}"></td>
                         <td>{{ $data->role }}</td>

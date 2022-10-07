@@ -32,20 +32,10 @@
     <div class="page-header mb-30">
         <div class="pb-20">
             <div class="header-left">
-                <div class="header-search col-sm-12">
-                    <form class="form" method="GET" action="{{ route('user.index') }}">
-                        <div class="form-group mb-0">
-                            <input type="text" class="form-control search-input" name="search" placeholder="Search Here">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle no-arrow" type="submit">
-                                    <i class="dw dw-search2 search-icon"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-40 col-sm-12 text-right">
-                    <a class="btn btn-success" href="{{ route('user.create') }}"> Create Data </a>
+                <div class="">
+                    <div class="col-md-40 col-sm-12 text-right">
+                        <a class="btn btn-success" href="{{ route('user.create') }}"> Create Data </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -54,8 +44,6 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>ID User</th>
-                        <th>ID Container</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Number Phone</th>
@@ -67,11 +55,9 @@
                     @foreach ($user as $us => $data)
                     <tr>
                         <td class="table-plus">{{ $us + $user->firstitem() }}</td>
-                        <td>{{ $data->user }}</td>
-                        <td>{{ $data->idcontainer}}</td>
                         <td>{{ $data->name }}</td>
                         <td>{{ $data->email }}</td>
-                        <td>{{ $data->number}}</td>
+                        <td>{{ $data->no_telp}}</td>
                         <td>{{ $data->role }}</td>
                         <td>
                             <div class="dropdown">

@@ -50,6 +50,18 @@
                     </form>
                 </div>
             </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="product-detail-desc pd-20 card-box height-100-p">
+                    <form>
+                        <div class="form-group row" style="padding-left: 40px">
+                            <label for="alamat" class="col-sm-10 col-md-4 col-form-label text-white">Alamat</label>
+                            <div class="col-md-7 col-sm-12">
+                                <input class="form-control" type="text" name="alamat" id="alamat" value="{{ $pelabuhan->alamat }}" aria-describedby="kode_barang" placeholder="Disabled input" disabled="">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <br>
         <div class="text-center">

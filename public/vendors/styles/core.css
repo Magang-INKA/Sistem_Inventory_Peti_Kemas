@@ -1688,7 +1688,7 @@ pre code {
 .table-responsive > .table-bordered {
   border: 0; }
 
-.form-control {
+.form-control, .select_container {
   display: block;
   width: 100%;
   height: calc(1.5em + .75rem + 2px);

@@ -37,9 +37,9 @@
                             </div>
                         </div>
                         <div class="form-group row" style="padding-left: 25px">
-                            <label for="username" class="col-sm-10 col-md-3 col-form-label text-white">Username</label>
+                            <label for="no_telp" class="col-sm-10 col-md-3 col-form-label text-white">No Telepon</label>
                             <div class="col-md-8 col-sm-12">
-                                <input class="form-control" type="text" name="username" id="username" value="{{ $user->username }}" aria-describedby="name" placeholder="Disabled input" disabled="">
+                                <input class="form-control" type="text" name="no_telp" id="no_telp" value="{{ $user->no_telp }}" aria-describedby="name" placeholder="Disabled input" disabled="">
                             </div>
                         </div>
                         <div class="form-group row" style="padding-left: 25px">

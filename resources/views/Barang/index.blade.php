@@ -49,11 +49,6 @@
                         </div>
                     </form>
                 </div>
-                @can('manage-MasterData')
-                <div class="col-md-40 col-sm-12 text-right">
-                    <a class="btn btn-success" href="{{ route('barang.create') }}"> Create Data </a>
-                </div>
-                @endcan
             </div>
         </div>
         <div class="pb-20">
@@ -62,7 +57,8 @@
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
                         <th>Product ID</th>
-                        <th>Container ID</th>
+                        <th>Container Name</th>
+                        <th>Product Name</th>
                         <th>Quantity</th>
                         <th>Requirement</th>
                         @can('manage-MasterData')
@@ -70,14 +66,15 @@
                         @endcan
                     </tr>
                 </thead>
-                {{-- <tbody>
+                <tbody>
                     @foreach ($barang as $br => $data)
                     <tr>
                         <td class="table-plus">{{ $br + $barang->firstitem() }}</td>
-                        <td>{{ $data->kode_barang }}</td>
+                        <td>{{ $data->id }}</td>
                         <td>{{ $data->container->nama_container}}</td>
                         <td>{{ $data->nama_barang }}</td>
-                        <td>{{ $data->jumlah_barang}}</td>
+                        <td>{{ $data->jumlah}}</td>
+                        <td>{{ $data->requirement }}</td>
                         @can('manage-MasterData')
                         <td>
                             <div class="dropdown">
@@ -99,7 +96,7 @@
                         @endcan
                     </tr>
                     @endforeach
-                </tbody> --}}
+                </tbody>
             </table>
             <div class="col-md-40 col-sm-12 text-left">
                 {{$barang->links()}}

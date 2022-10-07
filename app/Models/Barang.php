@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Container;
+use App\Models\Booking;
 use App\Models\BarangKeluar;
 use App\Models\BarangMasuk;
 
@@ -19,10 +20,10 @@ class Barang extends Model
      */
     protected $fillable = [
         'id',
-        'kode_barang',
         'nama_barang',
-        'gambar',
         'jumlah_barang',
+        'requirement',
+        'id_booking',
         'id_container',
         'id_transaksi',
     ];
@@ -42,5 +43,9 @@ class Barang extends Model
     public function transaksi()
     {
         return $this->belongsTo(Transaksi::class, 'id_transaksi');
+    }
+    public function booking()
+    {
+        return $this->belongsTo(Booking::class, 'id_booking');
     }
 }
