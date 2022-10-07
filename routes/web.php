@@ -90,4 +90,5 @@ Route::get('/laporan/pelabuhan/excel', [PelabuhanController::class, 'laporanExce
 
 Route::resource('dashboard', DashboardController::class);
 Route::get('/history', [DashboardController::class, 'history']);
+Route::get('/history/{id}', [DashboardController::class, 'historyDetail'])->name('show.history');
 
