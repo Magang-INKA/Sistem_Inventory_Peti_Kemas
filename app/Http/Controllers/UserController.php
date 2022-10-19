@@ -63,7 +63,7 @@ class UserController extends Controller
         //melakukan validasi data
         $request->validate([
             'name' => 'required',
-            'username' => 'required',
+            'no_telp' => 'required',
             'email' => 'required',
             'password' => 'required',
             'gambar' => 'required',
@@ -77,7 +77,7 @@ class UserController extends Controller
             //fungsi eloquent untuk menambah data
             $user = new User;
             $user->name = $request->get('name');
-            $user->username = $request->get('username');
+            $user->no_telp = $request->get('no_telp');
             $user->email = $request->get('email');
             $user->password = Hash::make($request->get('password'));
             $user->gambar = $image_name;
@@ -128,7 +128,7 @@ class UserController extends Controller
         //melakukan validasi data
         $request->validate([
             'name' => 'required',
-            'username' => 'required',
+            'no_telp' => 'required',
             'email' => 'required',
             'role' => 'required',
             ]);
@@ -138,7 +138,7 @@ class UserController extends Controller
         //fungsi eloquent untuk mengupdate data inputan kita
         if ($request->file('gambar') == ''){
             $user->name = $request->get('name');
-            $user->username = $request->get('username');
+            $user->no_telp = $request->get('no_telp');
             $user->email = $request->get('email');
             $user->role = $request->get('role');
             $user->save();
@@ -151,7 +151,7 @@ class UserController extends Controller
         $image_name = $request->file('gambar')->store('images', 'public');
         $user->gambar = $image_name;
         $user->name = $request->get('name');
-        $user->username = $request->get('username');
+        $user->no_telp = $request->get('no_telp');
         $user->email = $request->get('email');
         $user->role = $request->get('role');
         $user->save();

@@ -17,8 +17,6 @@ class CreateBookingTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
-            $table->unsignedBigInteger('id_barang');
-            $table->foreign('id_barang')->references('id')->on('barang');
             $table->unsignedBigInteger('id_container');
             $table->foreign('id_container')->references('id')->on('container');
             $table->unsignedBigInteger('id_kapal');

@@ -158,7 +158,8 @@ class KapalController extends Controller
     public function laporan()
     {
         $kapal = Kapal::all();
-        $pdf = PDF::loadview('Kapal.laporan', compact('container'));
+        $pelabuhan = Pelabuhan::all();
+        $pdf = PDF::loadview('Kapal.laporan', compact('kapal', 'pelabuhan'));
         return $pdf->stream();
     }
 

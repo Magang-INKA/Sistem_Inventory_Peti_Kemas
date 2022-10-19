@@ -45,6 +45,12 @@
 				<input class="form-control" type="text" name="nama_pelabuhan" id="nama_pelabuhan" aria-describedby="nama_pelabuhan" placeholder="">
 			</div>
 		</div>
+        <div class="form-group row">
+			<label for="alamat" class="col-sm-12 col-md-2 col-form-label text-white">Alamat</label>
+			<div class="col-sm-12 col-md-10">
+				<input class="form-control" type="text" name="alamat" id="alamat" aria-describedby="alamat" placeholder="">
+			</div>
+		</div>
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label"></label>
 			<div class="col-sm-10">

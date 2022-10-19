@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBarangTable extends Migration
+class TableBarang extends Migration
 {
     /**
      * Run the migrations.
@@ -15,12 +15,13 @@ class CreateBarangTable extends Migration
     {
         Schema::create('barang', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('kode_barang', 50)->nullable();
             $table->string('nama_barang', 50)->nullable();
-            $table->string('gambar',50)->nullable();
-            $table->integer('jumlah_barang')->nullable();
-            $table->unsignedBigInteger('id_container')->nullable();
+            $table->integer('jumlah_barang');
+            $table->string('requierement', 50)->nullable();
+            $table->unsignedBigInteger('id_container');
             $table->foreign('id_container')->references('id')->on('container');
+            $table->unsignedBigInteger('id_booking');
+            $table->foreign('id_booking')->references('id')->on('booking');
             $table->timestamps();
         });
     }

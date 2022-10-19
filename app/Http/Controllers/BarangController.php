@@ -57,8 +57,8 @@ class BarangController extends Controller
         }
 
         $container = Container::all();
-        $transaksi = Transaksi::all();
-        return view('Barang.create', ['container' => $container], ['transaksi' => $transaksi]);
+        // $transaksi = Transaksi::all();
+        return view('Barang.create', ['container' => $container]);
     }
 
     /**
@@ -76,39 +76,38 @@ class BarangController extends Controller
 
         //melakukan validasi data
         $request->validate([
-            'kode_barang' => 'required',
             'nama_barang' => 'required',
-            'gambar' => 'required',
             'jumlah_barang' => 'required',
-            'id_container' => 'required',
-            'id_transaksi' => 'required',
-            'merk_barang' => 'required',
-            'bahan' => 'required',
-            'harga' => 'required',
-            'tgl_input' => 'required',
+            'requirement' => 'required',
             ]);
 
-            if ($request->file('gambar')) {
-                $image_name = $request->file('gambar')->store('images', 'public');
-            }
-
-            $container = Container::find($request->get('id_container'));
-            $transaksi = Transaksi::find($request->get('id_transaksi'));
-
             $barang = new Barang;
-            $barang->kode_barang = $request->get('kode_barang');
             $barang->nama_barang = $request->get('nama_barang');
-            $barang->gambar = $image_name;
             $barang->jumlah_barang = $request->get('jumlah_barang');
-            $barang->merk_barang = $request->get('merk_barang');
-            $barang->bahan = $request->get('bahan');
-            $barang->harga = $request->get('harga');
-            $barang->tgl_input = $request->get('tgl_input');
+            $barang->requirement = $request->get('requirement');
+            $barang->save();
+
+            // if ($request->file('gambar')) {
+            //     $image_name = $request->file('gambar')->store('images', 'public');
+            // }
+
+            // $container = Container::find($request->get('id_container'));
+            // $transaksi = Transaksi::find($request->get('id_transaksi'));
+
+            // $barang = new Barang;
+            // $barang->id_container = $request->get('id_container');
+            // $barang->nama_barang = $request->get('nama_barang');
+            // $barang->gambar = $image_name;
+            // $barang->jumlah = $request->get('jumlah');
+            // $barang->requirement = $request->get('requirement');
+            // $barang->bahan = $request->get('bahan');
+            // $barang->harga = $request->get('harga');
+            // $barang->tgl_input = $request->get('tgl_input');
 
             //fungsi eloquent untuk menambah data dengan relasi belongsTo
-            $barang->container()->associate($container);
-            $barang->transaksi()->associate($transaksi);
-            $barang->save();
+            // $barang->container()->associate($container);
+            // // $barang->transaksi()->associate($transaksi);
+            // $barang->save();
 
             //jika data berhasil ditambahkan, akan kembali ke halaman utama
             Alert::success('Success', 'Data Barang Berhasil Ditambahkan');

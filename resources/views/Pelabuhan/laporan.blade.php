@@ -28,12 +28,14 @@
                         <th>No</th>
                         <th>ID Pelabuhan</th>
                         <th>Nama Pelabuhan</th>
+                        <th>Alamat</th>
                     </tr>
                     @foreach ($pelabuhan as $br => $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->id }}</td>
                         <td>{{ $data->nama_pelabuhan }}</td>
+                        <td>{{ $data->alamat }}</td>
                     </tr>
                     @endforeach
                 </table>
