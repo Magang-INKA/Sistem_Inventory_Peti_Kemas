@@ -94,7 +94,9 @@ class DashboardController extends Controller
         // $mqtt_history = Dashboard::with('mqtt')->find($id);
         // return view('Dashboard.index', compact('mqtt_history'));
 
-        $mqtt_dashboard = Dashboard::all();
+        $topicid = $id;
+        $mqtt_dashboard = Dashboard::where('topicid', $topicid)->get();
+        // $mqtt_dashboard = Dashboard::all();
         $mqtt = Mqtt::all();
         $name = Mqtt::find($id);
 
@@ -151,18 +153,23 @@ class DashboardController extends Controller
         // $mqtt_history = Dashboard::with('mqtt')->find($id);
         // return view('Dashboard.index', compact('mqtt_history'));
 
-        $mqtt_dashboard = Dashboard::all();
-        $mqtt = Mqtt::all();
+        $topicid = $id;
+        $mqtt_dashboard = Dashboard::where('topicid', $topicid)->get();
+        $mqtt = Mqtt::find($id);
         $name = Mqtt::find($id);
-        $mqtt_id = Mqtt::find($id);
+        $mqtt_all = Mqtt::all();
 
+        // $_id = array_column($jsonDecode, '_id');
+        // echo $_id[0]['$id'];
 
         foreach ($mqtt_dashboard as $key => $item) {
             $item['value'] = json_decode($item->value,true);
         }
-        foreach ($mqtt as $key => $item) {
-            $item['value'] = json_decode($item->value,true);
-        }
+        // $mqtt_dashboard['value'] = json_decode($mqtt_dashboard->value,true);
+        // foreach ($mqtt as $key => $item) {
+        //     $item['value'] = json_decode($item->value,true);
+        // }
+        $mqtt['value'] = json_decode($mqtt->value,true);
 
         // $lat_start = Dashboard::select('select value from mqtt_history ORDER BY ts ASC LIMIT 1');
         // $latlon_start = Dashboard::orderBy('ts', 'asc')->first();
@@ -173,19 +180,20 @@ class DashboardController extends Controller
         // $lon_start = Dashboard::select('select'+ 'from users where active = ?', [1]);
 
         $data = array(
-            'id' => 'mqtt',
-            'id' =>'mqtt_history',
+            // 'id' => 'mqtt',
+            // 'id' =>'mqtt_history',
             // 'id' => 'latlon_start',
-            'id' => 'name',
+            // 'id' => 'name',
             // 'id' => 'mqtt_id',
             'mqtt_history' => $mqtt_dashboard,
             'mqtt' => $mqtt,
-            'name' => $name
+            'name' => $name,
+            'mqtt_all' => $mqtt_all
             // 'mqtt_id' => $mqtt_id
             // 'latlon_start' => $latlon_start
         );
 
-        // return $mqtt->find('id', 2);
+        // return $mqtt->value['EVAP'];
         // return response()->json($data);
         return view('Dashboard.show')->with($data);
     }

@@ -13,7 +13,7 @@
 						<nav aria-label="breadcrumb" role="navigation">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href={{ url('/history') }}>History</a></li>
-								<li class="breadcrumb-item active" aria-current="page">{{$name->topic}}</li>
+								<li class="breadcrumb-item" aria-current="page">{{$name->topic}}</li>
 							</ol>
 						</nav>
 					</div>
@@ -39,7 +39,8 @@
                         <thead>
                             <tr>
                                 <th class="table-plus datatable-nosort">Date & Time</th>
-                                <th>Temperature (Celcius)</th>
+                                <th>Supply Air (°C)</th>
+                                <th>Return Air (°C)</th>
                                 <th>Humidity (%)</th>
                             </tr>
                         </thead>
@@ -47,7 +48,8 @@
                             @foreach ($mqtt_history as $data)
                             <tr>
                                 <td class="table-plus">{{ $data->value['TIME_STR'] }}</td>
-                                <td>{{ $data->value['AVG_TMP'] }}</td>
+                                <td>{{ $data->value['TMP1'] }}</td>
+                                <td>{{ $data->value['TMP2'] }}</td>
                                 <td>{{ $data->value['AVG_HMD'] }}</td>
                             </tr>
                             @endforeach

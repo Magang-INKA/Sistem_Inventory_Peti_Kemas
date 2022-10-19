@@ -1,6 +1,6 @@
 <div class="left-side-bar">
-    <div class="brand-logo" style="padding-top: 50px; padding-bottom: 45px">
-        <a href="index.html">
+    <div class="brand-logo" style="padding-top: 35px; padding-bottom: 30px">
+        <a href="">
             <img src="{{asset('vendors/images/logo-dark.png')}}" alt="" class="dark-logo">
             <img src="{{asset('vendors/images/logo-light.png')}}" alt="" class="light-logo">
         </a>
