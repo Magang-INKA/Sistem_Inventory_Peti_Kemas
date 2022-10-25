@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\BarangExport;
 use App\Models\Barang;
+use App\Models\Booking;
 use App\Models\Container;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -51,16 +52,39 @@ class BarangController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->role == 'Operator') {
-            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-            return redirect()->to('/barang');
-        }
-
-        $container = Container::all();
+        // if(Auth::user()->role == 'Operator') {
+        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //     return redirect()->to('/barang');
+        // }
+        $barang = Barang::with('booking')->first();
+        $booking = Booking::all();
+        // $containers = Container::all();
         // $transaksi = Transaksi::all();
-        return view('Barang.create', ['container' => $container]);
+        return view('Booking.FB-step-two', compact('barang',  'booking'));
     }
 
+    public function postCreateStepTwo(Request $request)
+    {
+        // dd($request);
+        $validatedData = $request->validate([
+            'nama_barang' => 'required',
+            'jumlah_barang' => 'required',
+            'requirement' => 'required',
+            'id_container' => 'required',
+            'id_booking' => 'required',
+        ]);
+        if(empty($request->session()->get('booking'))){
+            $barang = new Barang();
+            $barang->fill($validatedData);
+            $request->session()->put('barang', $barang);
+        }else{
+            $barang = $request->session()->get('barang');
+            $barang->fill($validatedData);
+            $request->session()->put('barang', $booking);
+        }
+
+        return redirect()->route('booking.create.step.two');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -69,23 +93,23 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::user()->role == 'Operator') {
-            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-            return redirect()->to('/barang');
-        }
+        // if(Auth::user()->role == 'Operator') {
+        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //     return redirect()->to('/barang');
+        // }
 
-        //melakukan validasi data
-        $request->validate([
-            'nama_barang' => 'required',
-            'jumlah_barang' => 'required',
-            'requirement' => 'required',
-            ]);
+        // //melakukan validasi data
+        // $request->validate([
+        //     'nama_barang' => 'required',
+        //     'jumlah_barang' => 'required',
+        //     'berat' =>
+        //     ]);
 
-            $barang = new Barang;
-            $barang->nama_barang = $request->get('nama_barang');
-            $barang->jumlah_barang = $request->get('jumlah_barang');
-            $barang->requirement = $request->get('requirement');
-            $barang->save();
+        //     $barang = new Barang;
+        //     $barang->nama_barang = $request->get('nama_barang');
+        //     $barang->jumlah_barang = $request->get('jumlah_barang');
+        //     $barang->requirement = $request->get('requirement');
+        //     $barang->save();
 
             // if ($request->file('gambar')) {
             //     $image_name = $request->file('gambar')->store('images', 'public');

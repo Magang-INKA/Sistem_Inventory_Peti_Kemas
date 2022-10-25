@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use RealRashid\SweetAlert\Facades\Alert;
+use Whoops\Run;
 
 class BookingController extends Controller
 {
@@ -56,8 +57,98 @@ class BookingController extends Controller
 
         // $transaksi = Transaksi::all();
         // return view('Booking.FormBooking', compact('booking', 'containers', 'pelabuhan', 'kapal', 'user'));
-        return view('Booking.FormBooking', compact('booking', 'user', 'containers'));
+        return view('Booking.FB-step-one', compact('booking', 'user', 'containers'));
     }
+    public function create2()
+    {
+        // if(Auth::user()->role == 'Client') {
+        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //     return redirect()->to('/booking');
+        // }
+        $barang = Barang::with('booking')->first();
+        $booking = Booking::all();
+        // $containers = Container::all();
+        // $transaksi = Transaksi::all();
+        return view('Booking.FB-step-two', compact('barang',  'booking'));
+    }
+
+    // public function createStepOne()
+    // {
+    //     // if(Auth::user()->role == 'Client') {
+    //     //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+    //     //     return redirect()->to('/booking');
+    //     // }
+    //     $booking = Booking::with('container')->first();
+    //     $containers = Container::all();
+    //     // $pelabuhan = Pelabuhan::all();
+    //     // $kapal = Kapal::all();
+    //     $user = User::all();
+
+    //     // $transaksi = Transaksi::all();
+    //     // return view('Booking.FormBooking', compact('booking', 'containers', 'pelabuhan', 'kapal', 'user'));
+    //     return view('Booking.FB-step-one', compact('booking', 'user', 'containers'));
+    // }
+
+    public function postCreateStepOne(Request $request)
+    {
+        // dd($request);
+        $validatedData = $request->validate([
+            'id_user' => 'required',
+            'id_container' => 'required',
+            'id_kapal' => 'required',
+            'id_pelabuhan' => 'required',
+            'date' => 'required',
+            'status' => 'required',
+        ]);
+        if(empty($request->session()->get('booking'))){
+            $booking = new Booking();
+            $booking->fill($validatedData);
+            $request->session()->put('booking', $booking);
+        }else{
+            $booking = $request->session()->get('booking');
+            $booking->fill($validatedData);
+            $request->session()->put('booking', $booking);
+        }
+
+        return redirect()->route('booking.create.step.two');
+    }
+
+    // public function createStepTwo()
+    // {
+    //     $booking = Booking::with('container')->first();
+    //     $containers = Container::all();
+    //     // $pelabuhan = Pelabuhan::all();
+    //     // $kapal = Kapal::all();
+    //     $user = User::all();
+
+    //     // $transaksi = Transaksi::all();
+    //     // return view('Booking.FormBooking', compact('booking', 'containers', 'pelabuhan', 'kapal', 'user'));
+    //     return view('Booking.FB-step-one', compact('booking', 'user', 'containers'));
+    // }
+
+    public function postCreateStepTwo(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'nama_barang' => 'required',
+            'jumlah_barang' => 'required',
+            'requirement' => 'required',
+            'id_container' => 'required',
+            'id_booking' => 'required',
+        ]);
+        if(empty($request->session()->get('booking'))){
+            $barang = new Barang();
+            $barang->fill($validatedData);
+            $request->session()->put('barang', $barang);
+        }else{
+            $barang = $request->session()->get('barang');
+            $barang->fill($validatedData);
+            $request->session()->put('barang', $barang);
+        }
+
+        return redirect()->route('booking.create.step.two');
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -68,7 +159,7 @@ class BookingController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
+        dd($request);
         // $request->validate([
         //     'id_user' => 'required',
         //     'id_container' => 'required',

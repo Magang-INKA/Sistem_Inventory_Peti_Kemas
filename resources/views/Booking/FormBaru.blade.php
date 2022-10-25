@@ -31,24 +31,56 @@
             </ul>
         </div>
     @endif
-	<form method="POST" action="{{ route('booking.store') }}" id="myForm" >
+	<form method="POST" action="{{ route('booking.create.step.one') }}" id="myForm" >
         @csrf
-        <div class="form-group row">
-			<label for="date" class="col-sm-12 col-md-2 col-form-label text-white">Jadwal</label>
-			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="date" name="date" id="date" aria-describedby="date" placeholder="">
-			</div>
-		</div>
-        <div class="form row">
-			<label for="id_container" class="col-sm-12 col-md-2 col-form-label text-white">Container</label>
-            <div class="col-sm-12 col-md-10">
-                <select class="form-control" name="id">
-                @foreach ($containers as $container)
-                    <option value="{{$container->id}}"selected>{{$container->nama_container}}</option>
-                @endforeach
-                </select>
+        <h5>Data Barang</h5>
+        <section>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="nama_barang">Nama Barang :</label>
+                        <input type="text" class="form-control" name="nama_barang" id="nama_barang">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="jumlah_barang">Jumlah Barang :</label>
+                        <input type="number" class="form-control" name="jumlah_barang"
+                            id="jumlah_barang">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="berat">Berat(kg) :</label>
+                        <input type="number" class="form-control" name="berat" id="berat">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="requirement">Requirement :</label>
+                        <input type="text" class="form-control" name="requirement" id="requirement">
+                    </div>
+                </div>
+                <div class="col-md-6" hidden>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <input type="text" class="form-control" name="status" id="status"
+                            value="1">
+                    </div>
+                </div>
             </div>
-		</div>
+            <div class="form row" hidden>
+                <label for="id_container" class="col-sm-12 col-md-2 col-form-label text-white">Container</label>
+                <div class="col-sm-12 col-md-10">
+                    <input type="text">
+                    {{-- <select class="form-control" name="id_container" id="id_container">
+                    @foreach ($containers as $container)
+                        <option value="{{$container->id}}"selected>{{$container->nama_container}}</option>
+                    @endforeach
+                    </select> --}}
+                </div>
+            </div>
+
         <div class="form-group row" hidden>
 			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">ID Kapal</label>
 			<div class="col-sm-12 col-md-10">

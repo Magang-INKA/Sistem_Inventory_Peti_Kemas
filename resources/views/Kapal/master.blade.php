@@ -1,17 +1,17 @@
 @extends('layouts.MasterView')
-@section('menu_pelabuhan', 'active')
+@section('menu_kapal', 'active')
 @section('content')
 <div >
     <div class="page-header">
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>Pelabuhan Data</h4>
+                    <h4>Ship Data</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('pelabuhan.index') }}">Pelabuhan</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Index</li>
+                        <li class="breadcrumb-item"><a href="{{ route('masterKapal.index') }}">Ship</a></li>
+                        <li class="breadcrumb-item" aria-current="page">Index</li>
                     </ol>
                 </nav>
             </div>
@@ -21,8 +21,8 @@
                     Report Download
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{url('/laporan/pelabuhan')}}">PDF</a>
-                    <a class="dropdown-item" href="{{url('/laporan/pelabuhan/excel')}}">Excel</a>
+                    <a class="dropdown-item" href="{{url('/laporan/kapal')}}">PDF</a>
+                    <a class="dropdown-item" href="{{url('/laporan/kapal/excel')}}">Excel</a>
                 </div>
             </div>
         </div>
@@ -32,11 +32,14 @@
     <div class="page-header mb-30">
         <div class="pb-20">
             <div class="header-left">
+                {{-- <div class="header-search col-sm-12">
+                </div> --}}
                 <div>
                     <div class="col-md-40 col-sm-12 text-right">
-                        <a class="btn btn-success" href="{{ route('pelabuhan.create') }}"> Create Data </a>
+                        <a class="btn btn-success" href="{{ route('kapal.create') }}"> Create Data </a>
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="pb-20">
@@ -44,30 +47,26 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        {{-- <th>Pelabuhan ID</th> --}}
-                        <th>Pelabuhan Name</th>
-                        <th>Address</th>
-                        @can('manage-MasterData')
+                        <th>Ship Number</th>
+                        <th>Ship Name</th>
                         <th class="datatable-nosort">Action</th>
-                        @endcan
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pelabuhan as $br => $data)
+                    @foreach ($masterKapal as $ship => $data)
                     <tr>
-                        <td class="table-plus">{{ $br + $pelabuhan->firstitem() }}</td>
-                        <td>{{ $data->nama_pelabuhan}}</td>
-                        <td>{{ $data->alamat}}</td>
-                        @can('manage-MasterData')
+                        <td class="table-plus">{{ $ship + $kapal->firstitem() }}</td>
+                        <td>{{ $data->no_kapal }}</td>
+                        <td>{{ $data->nama_kapal}}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                     <i class="dw dw-more"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <form action="{{ route('pelabuhan.destroy', $data->id) }}" method="POST">
-                                        <a class="dropdown-item" href="{{ route('pelabuhan.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
-                                        <a class="dropdown-item" href="{{ route('pelabuhan.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
+                                    <form action="{{ route('kapal.destroy', $data->id) }}" method="POST">
+                                        <a class="dropdown-item" href="{{ route('kapal.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
+                                        <a class="dropdown-item" href="{{ route('kapal.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <button class="dropdown-item" onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit">
@@ -76,13 +75,12 @@
                                 </div>
                             </div>
                         </td>
-                        @endcan
                     </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="col-md-40 col-sm-12 text-left">
-                {{$pelabuhan->links()}}
+                {{$masterKapal->links()}}
             </div>
         </div>
     </div>

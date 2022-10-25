@@ -8,6 +8,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContainerController;
 use App\Http\Controllers\KapalController;
+use App\Http\Controllers\MasterContainerController;
+use App\Http\Controllers\MasterKapalController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PelabuhanController;
 use App\Http\Controllers\ProfileController;
@@ -44,6 +46,14 @@ Route::resource('container', ContainerController::class);
 Route::get('/laporan/container', [ContainerController::class, 'laporan']);
 Route::get('/laporan/container/excel', [ContainerController::class, 'laporanExcel']);
 
+Route::resource('masterContainer', MasterContainerController::class);
+Route::get('/laporan/masterContainer', [MasterContainerController::class, 'laporan']);
+Route::get('/laporan/masterContainer/excel', [MasterContainerController::class, 'laporanExcel']);
+
+Route::resource('masterKapal', MasterKapalController::class);
+Route::get('/laporan/masterKapal', [MasterKapalController::class, 'laporan']);
+Route::get('/laporan/masterKapal/excel', [MasterKapalController::class, 'laporanExcel']);
+
 Route::resource('barang', BarangController::class);
 Route::get('/laporan/barang', [BarangController::class, 'laporan']);
 Route::get('/laporan/barang/excel', [BarangController::class, 'laporanExcel']);
@@ -79,6 +89,7 @@ Route::get('/StatusBooking', [BookingController::class, 'store']);
 Route::get('/laporan/booking', [BookingController::class, 'laporan']);
 Route::get('/laporan/booking/excel', [BookingController::class, 'laporanExcel']);
 Route::get('/create', [BookingController::class, 'create']);
+Route::get('/create2', [BookingController::class, 'create2']);
 
 Route::resource('kapal', KapalController::class);
 
@@ -92,3 +103,16 @@ Route::resource('dashboard', DashboardController::class);
 Route::get('/history', [DashboardController::class, 'history']);
 Route::get('/history/{id}', [DashboardController::class, 'historyDetail'])->name('show.history');
 
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::post('booking/create-step-one', [BookingController::class,'postCreateStepOne'])->name('booking.create.step.one.post');
+    Route::post('booking/create-step-two', [BookingController::class,'postCreateStepTwo'])->name('booking.create.step.two.post');
+});
+// Route::get('booking/create-step-one',[BookingController::class,'create'])->name('booking.create.step.one');
+// Route::post('booking/create-step-one', 'FormBookingController@postCreateStepOne')->name('booking.create.step.one.post');
+
+// Route::get('/create-step-two', 'FormBookingController@createStepTwo')->name('formBooking.create.step.two');
+// Route::post('/create-step-two', 'FormBookingController@postCreateStepTwo')->name('booking.create.step.two.post');
+
+// Route::get('/create-step-three', 'FormBookingController@createStepThree')->name('booking.create.step.three');
+// Route::post('/create-step-three', 'FormBookingController@postCreateStepThree')->name('booking.create.step.three.post');

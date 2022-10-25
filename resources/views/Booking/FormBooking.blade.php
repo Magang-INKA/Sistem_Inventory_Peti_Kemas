@@ -36,7 +36,7 @@
                         <h4 class="text-blue h4">Booking Step</h4>
                     </div>
                     <div class="wizard-content">
-                        <form method="POST" action="{{ route('form.store') }}" id="myForm"
+                        <form method="POST" action="{{ route('booking.store') }}" id="myForm"
                             class="tab-wizard wizard-circle wizard" enctype="multipart/form-data">
                             @csrf
                             <h5>Pilih Jadwal</h5>
@@ -45,7 +45,7 @@
                                     <div class="col-md-6" style="">
                                         <div class="form-group">
                                             <label for="id_container">Pilih Container :</label><br>
-                                            <select class="form-control">
+                                            <select class="form-control" name="id_container" id="id_container">
                                                 @foreach ($containers as $container)
                                                     <option value="{{ $container->id }}">{{ $container->nama_container }}
                                                     </option>
@@ -55,9 +55,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-											<label for="date">Pilih Jadwal :</label>
-                                            <input class="form-control" type="date" name="date" id="date" aria-describedby="date" placeholder="">
-										</div>
+                                            <label for="date">Pilih Jadwal :</label>
+                                            <input class="form-control" type="date" name="date" id="date"
+                                                aria-describedby="date" placeholder="">
+                                        </div>
                                     </div>
                                     {{-- <div class="col-md-6" hidden>
 										<div class="form-group">
@@ -75,65 +76,80 @@
                             </section>
                             <!-- Step 2 -->
                             <h5>Data Barang</h5>
-							<section>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="nama_barang">Nama Barang :</label>
-											<input type="text" class="form-control" name="nama_barang" id="nama_barang">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="jumlah_barang">Jumlah Barang :</label>
-											<input type="number" class="form-control" name="jumlah_barang" id="jumlah_barang">
-										</div>
-									</div>
-                            <div class="col-md-6">
-										<div class="form-group">
-											<label for="berat">Berat(kg) :</label>
-											<input type="number" class="form-control" name="berat" id="berat">
-										</div>
-									</div>
-                            <div class="col-md-6">
-										<div class="form-group">
-											<label for="requirement">Requirement :</label>
-											<input type="text" class="form-control" name="requirement" id="requirement">
-										</div>
-									</div>
+                            <section>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nama_barang">Nama Barang :</label>
+                                            <input type="text" class="form-control" name="nama_barang" id="nama_barang">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="jumlah_barang">Jumlah Barang :</label>
+                                            <input type="number" class="form-control" name="jumlah_barang"
+                                                id="jumlah_barang">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="berat">Berat(kg) :</label>
+                                            <input type="number" class="form-control" name="berat" id="berat">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="requirement">Requirement :</label>
+                                            <input type="text" class="form-control" name="requirement" id="requirement">
+                                        </div>
+                                    </div>
                                     <div class="col-md-6" hidden>
-										<div class="form-group">
-											<label for="status">Status</label>
-											<input type="text" class="form-control" name="status" id="status" value="1">
-										</div>
-									</div>
-								</div>
-							</section>
+                                        <div class="form-group">
+                                            <label for="status">Status</label>
+                                            <input type="text" class="form-control" name="status" id="status"
+                                                value="1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
                             <!-- Step 3 -->
                             <h5>Data Penerima</h5>
                             <section>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="nama_penerima">Nama Penerima :</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="form-group">
-											<label for="email">Email :</label>
-											<input type="email" class="form-control">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="alamat">Alamat :</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="form-group">
-											<label for="no_telp">Nomor Telepon :</label>
-											<input class="form-control" type="text">
-										</div>
-									</div>
-								</div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nama_penerima">Nama Penerima :</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email :</label>
+                                            <input type="email" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="alamat">Alamat :</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="no_telp">Nomor Telepon :</label>
+                                            <input class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="reset" class="btn btn-danger">Reset</button>
+                                        {{-- <div class="pull-right">
+                                            <a href="{{route('kapal.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
+                                                <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
+                                                Kembali
+                                            </a>
+                                        </div> --}}
+                                    </div>
+                                </div>
                         </form>
                     </div>
                 </div>
