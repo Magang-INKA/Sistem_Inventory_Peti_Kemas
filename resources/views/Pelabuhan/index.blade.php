@@ -32,17 +32,10 @@
     <div class="page-header mb-30">
         <div class="pb-20">
             <div class="header-left">
-                <div class="header-search col-sm-12">
-                    <form class="form" method="GET" action="{{ route('pelabuhan.index') }}">
-                        <div class="form-group mb-0">
-                            <input type="text" class="form-control search-input" name="search" placeholder="Search Here">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle no-arrow" type="submit">
-                                    <i class="dw dw-search2 search-icon"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+                <div>
+                    <div class="col-md-40 col-sm-12 text-right">
+                        <a class="btn btn-success" href="{{ route('pelabuhan.create') }}"> Create Data </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,6 +46,7 @@
                         <th class="table-plus datatable-nosort">No</th>
                         {{-- <th>Pelabuhan ID</th> --}}
                         <th>Pelabuhan Name</th>
+                        <th>Address</th>
                         @can('manage-MasterData')
                         <th class="datatable-nosort">Action</th>
                         @endcan
@@ -63,6 +57,7 @@
                     <tr>
                         <td class="table-plus">{{ $br + $pelabuhan->firstitem() }}</td>
                         <td>{{ $data->nama_pelabuhan}}</td>
+                        <td>{{ $data->alamat}}</td>
                         @can('manage-MasterData')
                         <td>
                             <div class="dropdown">

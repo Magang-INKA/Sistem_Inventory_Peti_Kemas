@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\BarangExport;
 use App\Models\Barang;
+use App\Models\Booking;
 use App\Models\Container;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -51,16 +52,39 @@ class BarangController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->role == 'Operator') {
-            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-            return redirect()->to('/barang');
-        }
-
-        $container = Container::all();
-        $transaksi = Transaksi::all();
-        return view('Barang.create', ['container' => $container], ['transaksi' => $transaksi]);
+        // if(Auth::user()->role == 'Operator') {
+        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //     return redirect()->to('/barang');
+        // }
+        $barang = Barang::with('booking')->first();
+        $booking = Booking::all();
+        // $containers = Container::all();
+        // $transaksi = Transaksi::all();
+        return view('Booking.FB-step-two', compact('barang',  'booking'));
     }
 
+    public function postCreateStepTwo(Request $request)
+    {
+        // dd($request);
+        $validatedData = $request->validate([
+            'nama_barang' => 'required',
+            'jumlah_barang' => 'required',
+            'requirement' => 'required',
+            'id_container' => 'required',
+            'id_booking' => 'required',
+        ]);
+        if(empty($request->session()->get('booking'))){
+            $barang = new Barang();
+            $barang->fill($validatedData);
+            $request->session()->put('barang', $barang);
+        }else{
+            $barang = $request->session()->get('barang');
+            $barang->fill($validatedData);
+            $request->session()->put('barang', $booking);
+        }
+
+        return redirect()->route('booking.create.step.two');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -69,46 +93,45 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::user()->role == 'Operator') {
-            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-            return redirect()->to('/barang');
-        }
+        // if(Auth::user()->role == 'Operator') {
+        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //     return redirect()->to('/barang');
+        // }
 
-        //melakukan validasi data
-        $request->validate([
-            'kode_barang' => 'required',
-            'nama_barang' => 'required',
-            'gambar' => 'required',
-            'jumlah_barang' => 'required',
-            'id_container' => 'required',
-            'id_transaksi' => 'required',
-            'merk_barang' => 'required',
-            'bahan' => 'required',
-            'harga' => 'required',
-            'tgl_input' => 'required',
-            ]);
+        // //melakukan validasi data
+        // $request->validate([
+        //     'nama_barang' => 'required',
+        //     'jumlah_barang' => 'required',
+        //     'berat' =>
+        //     ]);
 
-            if ($request->file('gambar')) {
-                $image_name = $request->file('gambar')->store('images', 'public');
-            }
+        //     $barang = new Barang;
+        //     $barang->nama_barang = $request->get('nama_barang');
+        //     $barang->jumlah_barang = $request->get('jumlah_barang');
+        //     $barang->requirement = $request->get('requirement');
+        //     $barang->save();
 
-            $container = Container::find($request->get('id_container'));
-            $transaksi = Transaksi::find($request->get('id_transaksi'));
+            // if ($request->file('gambar')) {
+            //     $image_name = $request->file('gambar')->store('images', 'public');
+            // }
 
-            $barang = new Barang;
-            $barang->kode_barang = $request->get('kode_barang');
-            $barang->nama_barang = $request->get('nama_barang');
-            $barang->gambar = $image_name;
-            $barang->jumlah_barang = $request->get('jumlah_barang');
-            $barang->merk_barang = $request->get('merk_barang');
-            $barang->bahan = $request->get('bahan');
-            $barang->harga = $request->get('harga');
-            $barang->tgl_input = $request->get('tgl_input');
+            // $container = Container::find($request->get('id_container'));
+            // $transaksi = Transaksi::find($request->get('id_transaksi'));
+
+            // $barang = new Barang;
+            // $barang->id_container = $request->get('id_container');
+            // $barang->nama_barang = $request->get('nama_barang');
+            // $barang->gambar = $image_name;
+            // $barang->jumlah = $request->get('jumlah');
+            // $barang->requirement = $request->get('requirement');
+            // $barang->bahan = $request->get('bahan');
+            // $barang->harga = $request->get('harga');
+            // $barang->tgl_input = $request->get('tgl_input');
 
             //fungsi eloquent untuk menambah data dengan relasi belongsTo
-            $barang->container()->associate($container);
-            $barang->transaksi()->associate($transaksi);
-            $barang->save();
+            // $barang->container()->associate($container);
+            // // $barang->transaksi()->associate($transaksi);
+            // $barang->save();
 
             //jika data berhasil ditambahkan, akan kembali ke halaman utama
             Alert::success('Success', 'Data Barang Berhasil Ditambahkan');

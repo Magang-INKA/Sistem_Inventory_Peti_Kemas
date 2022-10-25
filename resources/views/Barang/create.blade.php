@@ -33,29 +33,25 @@
     @endif
 	<form method="POST" action="{{ route('barang.store') }}" id="myForm" enctype="multipart/form-data">
         @csrf
-		<div class="form-group row">
-			<label for="kode_barang" class="col-sm-12 col-md-2 col-form-label text-white">Kode Barang</label>
+        <div class="form-group row">
+			<label for="jumlah" class="col-sm-12 col-md-2 col-form-label text-white">Nama Barang</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="kode_barang" id="kode_barang" aria-describedby="kode_barang" placeholder="">
+				<input class="form-control" type="number" name="jumlah" id="jumlah" aria-describedby="jumlah" placeholder="">
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="nama_barang" class="col-sm-12 col-md-2 col-form-label text-white">Nama Barang</label>
+			<label for="jumlah" class="col-sm-12 col-md-2 col-form-label text-white">Jumlah</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="nama_barang" id="nama_barang" aria-describedby="nama_barang" placeholder="">
+				<input class="form-control" type="number" name="jumlah" id="jumlah" aria-describedby="jumlah" placeholder="">
 			</div>
 		</div>
-        <div class="form row">
-			<label for="id_container" class="col-sm-12 col-md-2 col-form-label text-white">Container</label>
-            <div class="col-sm-12 col-md-10">
-                <div class="input-group">
-                    <input id="container_nama" type="text" class="form-control" readonly="" required>
-                    <input id="id_container" type="hidden" name="id_container" value="{{ ('id_container') }}" required readonly="">
-                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Container </b><span class="fa fa-search"></span></button>
-                </div>
-            </div>
+        <div class="form-group row">
+			<label for="requirement" class="col-sm-12 col-md-2 col-form-label text-white">Requirement</label>
+			<div class="col-sm-12 col-md-10">
+				<textarea class="form-control" type="text" name="requirement" id="requirement" aria-describedby="requirement" placeholder=""></textarea>
+			</div>
 		</div>
-        <div class="form row">
+        {{-- <div class="form row">
 			<label for="id_transaksi" class="col-sm-12 col-md-2 col-form-label text-white">Transaksi</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
@@ -100,7 +96,7 @@
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="file" name="gambar" id="gambar" aria-describedby="gambar" placeholder=""><br>
 			</div>
-		</div>
+		</div> --}}
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label"></label>
 			<div class="col-sm-10">
@@ -153,7 +149,7 @@
 </div>
 <!-- End Modal Container -->
 
-<!-- Modal Transaksi -->
+{{-- <!-- Modal Transaksi -->
 <div class="modal fade bd-example-modal-lg" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-lg" role="document" >
         <div class="modal-content" style="background: #fff;">
@@ -172,7 +168,7 @@
                             <th>Penyedia</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    {{-- <tbody>
                         @foreach($transaksi as $data)
                         <tr class="pilih_transaksi" data-id_transaksi="<?php echo $data->kode; ?>" data-transaksi_nama="<?php echo $data->nama; ?>" >
                             <td>{{$data->kode}}</td>
@@ -180,12 +176,12 @@
                             <td>{{$data->penyedia}}</td>
                         </tr>
                         @endforeach
-                    </tbody>
+                    </tbody> --}}
                 </table>
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- End Modal Transaksi -->
 
 <script>

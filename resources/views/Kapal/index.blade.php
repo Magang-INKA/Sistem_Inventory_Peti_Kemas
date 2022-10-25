@@ -10,7 +10,7 @@
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('transaksi.index') }}">Ship</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('kapal.index') }}">Ship</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Index</li>
                     </ol>
                 </nav>
@@ -21,8 +21,8 @@
                     Report Download
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{url('/laporan/transaksi')}}">PDF</a>
-                    <a class="dropdown-item" href="{{url('/laporan/transaksi/excel')}}">Excel</a>
+                    <a class="dropdown-item" href="{{url('/laporan/kapal')}}">PDF</a>
+                    <a class="dropdown-item" href="{{url('/laporan/kapal/excel')}}">Excel</a>
                 </div>
             </div>
         </div>
@@ -32,21 +32,14 @@
     <div class="page-header mb-30">
         <div class="pb-20">
             <div class="header-left">
-                <div class="header-search col-sm-12">
-                    <form class="form" method="GET" action="{{ route('kapal.index') }}">
-                        <div class="form-group mb-0">
-                            <input type="text" class="form-control search-input" name="search" placeholder="Search Here">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle no-arrow" type="submit">
-                                    <i class="dw dw-search2 search-icon"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+                {{-- <div class="header-search col-sm-12">
+                </div> --}}
+                <div>
+                    <div class="col-md-40 col-sm-12 text-right">
+                        <a class="btn btn-success" href="{{ route('kapal.create') }}"> Create Data </a>
+                    </div>
                 </div>
-                <div class="col-md-40 col-sm-12 text-right">
-                    <a class="btn btn-success" href="{{ route('kapal.create') }}"> Create Data </a>
-                </div>
+
             </div>
         </div>
         <div class="pb-20">

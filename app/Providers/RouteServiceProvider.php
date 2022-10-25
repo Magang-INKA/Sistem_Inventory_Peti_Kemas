@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,14 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/';
 
+    // public const BOOKING = '/booking/create';
+    // public function Home()
+    // {
+    //     $role = Auth::user()->role;
+    //     if ($role == 'Client'){
+    //         return redirect()->to('/booking/create');
+    //     }
+    // }
     /**
      * The controller namespace for the application.
      *

@@ -19,6 +19,7 @@ class Pelabuhan extends Model
     protected $fillable = [
         'id',
         'nama_pelabuhan',
+        'alamat'
     ];
 
     public function kapal()

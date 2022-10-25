@@ -32,20 +32,10 @@
     <div class="page-header mb-30">
         <div class="pb-20">
             <div class="header-left">
-                <div class="header-search col-sm-12">
-                    <form class="form" method="GET" action="{{ route('container.index') }}">
-                        <div class="form-group mb-0">
-                            <input type="text" class="form-control search-input" name="search" placeholder="Search Here">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle no-arrow" type="submit">
-                                    <i class="dw dw-search2 search-icon"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-40 col-sm-12 text-right">
-                    <a class="btn btn-success" href="{{ route('container.create') }}"> Create Data </a>
+                <div class="">
+                    <div class="col-md-40 col-sm-12 text-right">
+                        <a class="btn btn-success" href="{{ route('container.create') }}"> Create Data </a>
+                    </div>
                 </div>
             </div>
         </div>

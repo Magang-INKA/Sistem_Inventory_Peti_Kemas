@@ -1,7 +1,7 @@
 @extends('layouts.MasterView')
 @section('menu_booking', 'active')
 @section('content')
-<div class="page-header">
+{{-- <div class="page-header">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
@@ -18,19 +18,19 @@
             <i class="icon-copy fa fa-info-circle fa-3x" aria-hidden="true"></i>
         </div>
     </div>
-</div>
-<div class="product-wrap">
-    <div class="product-detail-wrap mb-30">
+</div> --}}
+{{-- <div class="product-wrap">
+    <div class="product-detail-wrap mb-30"> --}}
         {{-- <div class="pd-20 card-box height-100-p text-center" >
             <img height="300" @if($barang->gambar) src="{{ asset('storage/'.$barang->gambar) }}" @endif />
         </div>
         <br> --}}
-        <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12">
+        {{-- <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12"> --}}
             {{-- <div class="pd-20 card-box height-100-p text-center" >
                     <img height="300" @if($barang->gambar) src="{{ asset('storage/'.$barang->gambar) }}" @endif />
             </div> --}}
-                <div class="product-detail-desc pd-20 card-box height-100-p">
+                {{-- <div class="product-detail-desc pd-20 card-box height-100-p">
                     <form>
                         <div class="form-group row" style="padding-left: 40px">
                             <label for="kode_barang" class="col-sm-10 col-md-4 col-form-label text-white">Nama Pengirim</label>
@@ -129,4 +129,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection --}}

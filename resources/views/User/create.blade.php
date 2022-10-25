@@ -42,9 +42,9 @@
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="username" class="col-sm-12 col-md-2 col-form-label text-white">Username</label>
+			<label for="no_telp" class="col-sm-12 col-md-2 col-form-label text-white">No Telepon</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="username" id="username" aria-describedby="username" placeholder="">
+				<input class="form-control" type="text" name="no_telp" id="no_telp" aria-describedby="no_telp" placeholder="">
 			</div>
 		</div>
 		<div class="form-group row">
@@ -66,6 +66,7 @@
                     <option value="">Choose Role</option>
                     <option value="Administrator">Administrator</option>
                     <option value="Operator">Operator</option>
+                    <option value="Operator">Client</option>
                 </select>
             </div>
 		</div>

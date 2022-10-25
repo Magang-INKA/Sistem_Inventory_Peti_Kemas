@@ -61,6 +61,7 @@ class PelabuhanController extends Controller
         //melakukan validasi data
         $request->validate([
             'nama_pelabuhan' => 'required',
+            'alamat' => 'required',
             ]);
 
             //fungsi eloquent untuk menambah data
@@ -110,6 +111,7 @@ class PelabuhanController extends Controller
         $request->validate([
             // 'id' => 'required',
             'nama_pelabuhan' => 'required',
+            'alamat' => 'required',
             ]);
 
         //fungsi eloquent untuk mengupdate data inputan kita

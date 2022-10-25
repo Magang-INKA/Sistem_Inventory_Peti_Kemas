@@ -58,8 +58,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 mb-30">
                         <div class="card-white pd-30 height-100-p">
                             <h2 class="mb-30 h4">Tracking Location</h2>
-                            <div id="browservisit" style="width:100%!important; height:380px"></div>
-                            <br>
+                            {{-- <div id="browservisit" style="width:100%!important; height:380px"></div> --}}
+                            {{-- <br> --}}
                             <div class="pb-20">
                                 <form class="form" method="GET" action="{{ url('/tracking') }}">
                                     <div class="form-group row">
@@ -83,18 +83,18 @@
                                     <thead>
                                         <tr class="table-primary">
                                             <th class="table-plus datatable-nosort">Date & Time</th>
-                                            <th>ID</th>
-                                            <th>Nama Container</th>
-                                            <th>Latitude</th>
-                                            <th>Longitude</th>
+                                            <th>Drop Point</th>
+                                            <th>Alamat</th>
+                                            {{-- <th>Nama Kapal</th>
+                                            <th>Nama Container</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
                                             @foreach ($mqtt_history as $data)
                                             <tr>
                                                 <td class="table-plus">{{ $data->value['TIME_STR'] }}</td>
-                                                <td>{{ $data->id }}</td>
-                                                <td>{{ $data->mqtt->topic }}</td>
+                                                {{-- <td>{{ $data->id }}</td>
+                                                <td>{{ $data->mqtt->topic }}</td> --}}
                                                 <td>{{ $data->value['LAT_STRING'] }}</td>
                                                 <td>{{ $data->value['LON_STRING'] }}</td>
                                             </tr>
