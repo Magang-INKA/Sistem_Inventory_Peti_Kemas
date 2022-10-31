@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\MasterKapal;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
+use PDF;
 
 class MasterKapalController extends Controller
 {
@@ -33,7 +36,8 @@ class MasterKapalController extends Controller
      */
     public function create()
     {
-        //
+        $masterKapal = MasterKapal::all();
+        return view('Kapal.createMaster', compact('masterKapal'));
     }
 
     /**
@@ -44,7 +48,18 @@ class MasterKapalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'no_kapal' => 'required',
+            'nama_kapal' => 'required',
+        ]);
+
+        $masterKapal = new MasterKapal();
+        $masterKapal->no_kapal = $request->get('no_kapal');
+        $masterKapal->nama_kapal = $request->get('nama_kapal');
+        $masterKapal->save();
+
+        Alert::success('Success', 'Data Master Kapal Berhasil Ditambahkan');
+        return redirect()->route('masterKapal.index');
     }
 
     /**
@@ -64,9 +79,10 @@ class MasterKapalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($kode)
     {
-        //
+        $masterKapal = MasterKapal::where('no_kapal', $kode)->first();
+        return view('Kapal.editMaster', compact('masterKapal'));
     }
 
     /**
@@ -76,9 +92,20 @@ class MasterKapalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $kode)
     {
-        //
+        $request->validate([
+            'no_kapal' => 'required',
+            'nama_kapal' => 'required',
+        ]);
+
+        $masterKapal = MasterKapal::where('no_kapal', $kode)->first();;
+        $masterKapal->no_kapal = $request->get('no_kapal');
+        $masterKapal->nama_kapal = $request->get('nama_kapal');
+        $masterKapal->save();
+
+        Alert::success('Success', 'Data Master Kapal Berhasil Ditambahkan');
+        return redirect()->route('masterKapal.index');
     }
 
     /**
@@ -87,8 +114,10 @@ class MasterKapalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($kode)
     {
-        //
+        MasterKapal::where('no_kapal', $kode)->delete();
+        Alert::success('Success', 'Master Data Kapal berhasil dihapus');
+        return redirect()->route('masterKapal.index');
     }
 }

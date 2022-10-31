@@ -1,15 +1,15 @@
 @extends('layouts.MasterView')
-@section('menu_pelabuhan', 'active')
+@section('menu_master_kapal', 'active')
 @section('content')
 <div class="page-header">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Create Pelabuhan</h4>
+                <h4>Create Kapal</h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('pelabuhan.index') }}">Pelabuhan</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('masterKapal.index') }}">Kapal</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Create</li>
                 </ol>
             </nav>
@@ -31,24 +31,18 @@
             </ul>
         </div>
     @endif
-	<form method="POST" action="{{ route('pelabuhan.store') }}" id="myForm" enctype="multipart/form-data">
+	<form method="POST" action="{{ route('masterKapal.store') }}" id="myForm">
         @csrf
-		<div class="form-group row" hidden>
-			<label for="id" class="col-sm-12 col-md-2 col-form-label text-white">ID Pelabuhan</label>
+        <div class="form-group row">
+            <label for="no_kapal" class="col-sm-12 col-md-2 col-form-label text-white">No Kapal</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="id" id="id" aria-describedby="id" placeholder="">
+				<input class="form-control" type="text" name="no_kapal" id="no_kapal" aria-describedby="no_kapal" placeholder="">
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="nama_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Nama Pelabuhan</label>
+			<label for="nama_kapal" class="col-sm-12 col-md-2 col-form-label text-white">Nama Kapal</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="nama_pelabuhan" id="nama_pelabuhan" aria-describedby="nama_pelabuhan" placeholder="">
-			</div>
-		</div>
-        <div class="form-group row">
-			<label for="alamat" class="col-sm-12 col-md-2 col-form-label text-white">Alamat</label>
-			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="alamat" id="alamat" aria-describedby="alamat" placeholder="">
+				<input class="form-control" type="text" name="nama_kapal" id="nama_kapal" aria-describedby="nama_kapal" placeholder="">
 			</div>
 		</div>
 		<div class="form-group row">
@@ -57,7 +51,7 @@
 				<button type="submit" class="btn btn-primary">Submit</button>
 				<button type="reset" class="btn btn-danger">Reset</button>
                 <div class="pull-right">
-                    <a href="{{route('pelabuhan.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
+                    <a href="{{route('masterKapal.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
                         <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
                         Kembali
                     </a>

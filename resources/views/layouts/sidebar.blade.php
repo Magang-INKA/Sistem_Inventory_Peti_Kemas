@@ -27,10 +27,10 @@
                         <span class=""></span><span class="mtext">Master</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ route('barang.index')}}">Product Master</a></li>
-                        <li><a href="{{ route('masterContainer.index') }}">Container Master</a></li>
-                        <li><a href="{{ route('masterKapal.index') }}">Ship Master</a></li>
-                        <li><a href="{{ route('pelabuhan.index') }}">Harbour Master</a></li>
+                        <li><a href="{{ route('barang.index')}}" class="dropdown-toggle no-arrow @yield('menu_barang')">Product Master</a></li>
+                        <li><a href="{{ route('masterContainer.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_container')">Container Master</a></li>
+                        <li><a href="{{ route('masterKapal.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_kapal')">Ship Master</a></li>
+                        <li><a href="{{ route('pelabuhan.index') }}" class="dropdown-toggle no-arrow @yield('menu_pelabuhan')">Harbour Master</a></li>
                     </ul>
                 </li>
 

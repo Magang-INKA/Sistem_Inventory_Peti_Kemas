@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TambahKolomUsersTable extends Migration
+class CreateTableMasterPelabuhan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class TambahKolomUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('user', function (Blueprint $table) {
-            $table->string('gambar')->after('password')->nullable();
+        Schema::create('master_pelabuhan', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_pelabuhan');
+            $table->string('alamat');
+            $table->timestamps();
         });
-
-        Schema::rename('user', 'users');
     }
 
     /**
@@ -27,6 +28,6 @@ class TambahKolomUsersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('master_pelabuhan');
     }
 }

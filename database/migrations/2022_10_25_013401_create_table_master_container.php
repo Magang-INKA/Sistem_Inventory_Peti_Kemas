@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColomnUsernameUsers extends Migration
+class CreateTableMasterContainer extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddColomnUsernameUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('username', 20)->after('name')->nullable()->unique();
+        Schema::create('master_container', function (Blueprint $table) {
+            $table->string('no_container', 20)->primary();
+            $table->string('jenis', 50);
+            $table->string('ukuran');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddColomnUsernameUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('username');
-        });
+        Schema::dropIfExists('master_container');
     }
 }

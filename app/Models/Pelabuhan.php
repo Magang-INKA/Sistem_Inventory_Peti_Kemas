@@ -10,7 +10,7 @@ use App\Models\Container;
 class Pelabuhan extends Model
 {
     use HasFactory;
-    protected $table="pelabuhan"; // Eloquent akan membuat model Container menyimpan record di tabel container
+    protected $table="master_pelabuhan"; // Eloquent akan membuat model Container menyimpan record di tabel container
     protected $primaryKey = 'id'; // Memanggil isi DB Dengan primarykey
     /**
      * The attributes that are mass assignable. *

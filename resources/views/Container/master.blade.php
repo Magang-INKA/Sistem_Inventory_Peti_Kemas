@@ -1,5 +1,5 @@
 @extends('layouts.MasterView')
-@section('menu_container', 'active')
+@section('menu_master_container', 'active')
 @section('content')
 <div >
     <div class="page-header">
@@ -63,9 +63,9 @@
                                     <i class="dw dw-more"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <form action="{{ route('masterContainer.destroy', $data->id) }}" method="POST">
+                                    <form action="{{ route('masterContainer.destroy', $data->no_container) }}" method="POST">
                                         {{-- <a class="dropdown-item" href="{{ route('container.show', $data->id) }}"><i class="dw dw-eye"></i> View</a> --}}
-                                        <a class="dropdown-item" href="{{ route('masterContainer.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
+                                        <a class="dropdown-item" href="{{ route('masterContainer.edit', $data->no_container) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <button class="dropdown-item" onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit">

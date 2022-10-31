@@ -95,9 +95,9 @@ class MasterContainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($kode)
     {
-        $masterContainer = MasterContainer::find($id);
+        $masterContainer = MasterContainer::where('no_container', $kode)->first();
         return view('Container.editMaster', compact('masterContainer'));
     }
 
@@ -108,7 +108,7 @@ class MasterContainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $kode)
     {
         $request->validate([
             'no_container' => 'required',
@@ -117,7 +117,11 @@ class MasterContainerController extends Controller
             ]);
 
             //fungsi eloquent untuk menambah data
-            MasterContainer::find($id)->update($request->all());
+            $masterContainer = MasterContainer::where('no_container', $kode)->first();
+            $masterContainer->no_container = $request->get('no_container');
+            $masterContainer->jenis = $request->get('jenis');
+            $masterContainer->ukuran = $request->get('ukuran');
+            $masterContainer->save();
 
             //jika data berhasil ditambahkan, akan kembali ke halaman utama
             Alert::success('Success', 'Master Data Container Berhasil Ditambahkan');
@@ -130,9 +134,9 @@ class MasterContainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($kode)
     {
-        MasterContainer::find($id)->delete();
+        MasterContainer::where('no_container', $kode)->delete();
         Alert::success('Success', 'Master Data Container berhasil dihapus');
         return redirect()->route('masterContainer.index');
     }

@@ -31,7 +31,7 @@
             </ul>
         </div>
     @endif
-	<form method="POST" action="{{ route('masterContainer.update', $masterContainer->id) }}" id="myForm">
+	<form method="POST" action="{{ route('masterContainer.update', $masterContainer->no_container) }}" id="myForm" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="form-group row">

@@ -12,7 +12,7 @@ use App\Models\BarangMasuk;
 class Barang extends Model
 {
     use HasFactory;
-    protected $table="barang"; // Eloquent akan membuat model Barang menyimpan record di tabel barang
+    protected $table="master_barang"; // Eloquent akan membuat model Barang menyimpan record di tabel barang
     protected $primaryKey = 'id'; // Memanggil isi DB Dengan primarykey
     /**
      * The attributes that are mass assignable. *

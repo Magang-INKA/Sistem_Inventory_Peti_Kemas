@@ -9,13 +9,13 @@ class MasterContainer extends Model
 {
     use HasFactory;
     protected $table="master_container"; // Eloquent akan membuat model Container menyimpan record di tabel container
-    protected $primaryKey = 'id'; // Memanggil isi DB Dengan primarykey
+    protected $primaryKey = 'no_container'; // Memanggil isi DB Dengan primarykey
+    public $incrementing =false;
     /**
      * The attributes that are mass assignable. *
      * @var array
      */
     protected $fillable = [
-        'id',
         'no_container',
         'jenis',
         'ukuran',
