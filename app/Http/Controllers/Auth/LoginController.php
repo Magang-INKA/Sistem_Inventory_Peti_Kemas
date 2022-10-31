@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -54,4 +55,10 @@ class LoginController extends Controller
     {
         return 'email';
     }
+
+    //Login API
+    // public function getUser(){
+    //   $user = DB::table('User')->get();
+    //   echo json_decode($user,JSON_PRETTY_PRINT);
+    // }
 }
