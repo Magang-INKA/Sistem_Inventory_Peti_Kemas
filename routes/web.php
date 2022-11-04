@@ -102,6 +102,7 @@ Route::get('/laporan/pelabuhan/excel', [PelabuhanController::class, 'laporanExce
 Route::resource('dashboard', DashboardController::class);
 Route::get('/history', [DashboardController::class, 'history']);
 Route::get('/history/{id}', [DashboardController::class, 'historyDetail'])->name('show.history');
+Route::get('/controlling', [DashboardController::class, 'controlling']);
 
 
 Route::group(['middleware' => 'auth'], function () {

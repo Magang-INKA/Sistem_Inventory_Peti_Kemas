@@ -19,7 +19,8 @@ class MasterContainer extends Model
     protected $fillable = [
         'no_container',
         'jenis',
-        'ukuran',
+        'kapasitas',
+        'suhu_ketetapan',
     ];
 
     public function container()

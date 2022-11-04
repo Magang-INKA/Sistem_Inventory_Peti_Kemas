@@ -32,8 +32,9 @@
 			<!-- Temperature dan Humidity -->
             <div class="card-white mb-30">
                 <div class="pd-20">
-                    <h4 class="text-blue h4">History Data Temperature dan Humidity</h4>
+                    <h4 class="h4">History Data Temperature dan Humidity</h4>
                 </div>
+                <div id="chart" class="chart"></div>
                 <div class="pb-20">
                     <table class="data-table table hover multiple-select-row nowrap">
                         <thead>
@@ -61,7 +62,7 @@
             <!-- History AC Control -->
 			<div class="card-white mb-30">
 				<div class="pd-20">
-					<h4 class="text-blue h4">History Status AC Control</h4>
+					<h4 class="h4">History Status AC Control</h4>
 				</div>
 				<div class="pb-20">
 					<table class="data-table table hover multiple-select-row nowrap">
@@ -108,7 +109,7 @@
             <!-- History Tracking Lokasi -->
 			<div class="card-white mb-30">
 				<div class="pd-20">
-					<h4 class="text-blue h4">History Tracking Location</h4>
+					<h4 class="h4">History Tracking Location</h4>
 				</div>
 				<div class="pb-20">
 					<table class="data-table table hover multiple-select-row nowrap">
@@ -134,4 +135,88 @@
 			<!-- Tracking Lokasi End -->
 		{{-- </div> --}}
 	{{-- </div> --}}
+@endsection
+@section('scriptPage')
+<script>
+    Highcharts.chart('chart', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            categories: [
+                @foreach ($mqtt_history as $data)
+                    '{{ $data->value['TIME_STR'] }}',
+                @endforeach
+            ],
+            labels: {
+                style: {
+                    color: '#1b00ff',
+                    fontSize: '12px',
+                }
+            }
+        },
+        yAxis: {
+            labels: {
+                formatter: function () {
+                    return this.value;
+                },
+                style: {
+                    color: '#1b00ff',
+                    fontSize: '14px'
+                }
+            },
+            title: {
+                text: ''
+            },
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+            crosshairs: true,
+            shared: true
+        },
+        plotOptions: {
+            spline: {
+                marker: {
+                    radius: 10,
+                    lineColor: '#1b00ff',
+                    lineWidth: 2
+                }
+            }
+        },
+        legend: {
+            align: 'center',
+            x: 0,
+            y: 0
+        },
+        series: [{
+            name: 'Supply Air (°C)',
+            color: '#00789c',
+            marker: {
+                symbol: 'circle'
+            },
+            data: [
+                @foreach ($mqtt_history as $data)
+                    {{ $data->value['TMP1'] }},
+                @endforeach
+            ]
+        },
+        {
+            name: 'Return Air (°C)',
+            color: '#ff686b',
+            marker: {
+                symbol: 'circle'
+            },
+            data: [
+                @foreach ($mqtt_history as $data)
+                    {{ $data->value['TMP2'] }},
+                @endforeach
+            ]
+        }]
+    });
+</script>
 @endsection

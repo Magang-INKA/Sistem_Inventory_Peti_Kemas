@@ -22,6 +22,11 @@
                         <span class="micon dw dw-library"></span><span class="mtext">History Dashboard</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ url('/controlling') }}" class="dropdown-toggle no-arrow @yield('menu_controlling')">
+                        <span class="micon dw dw-thermometer"></span><span class="mtext">Controlling</span>
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class=""></span><span class="mtext">Master</span>

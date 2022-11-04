@@ -4200,8 +4200,8 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #1b00ff;
-  border-color: #1b00ff; }
+  background-color: rgb(27, 42, 71);
+  border-color: rgb(27, 42, 71); }
 
 .page-item.disabled .page-link {
   color: #6c757d;

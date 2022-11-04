@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dashboard;
+use App\Models\MasterContainer;
 use App\Models\Mqtt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -116,8 +117,23 @@ class DashboardController extends Controller
             'name' => $name
         );
 
-        // return response()->json($data);
+        $dataPoints = [];
+
+        foreach ($mqtt_dashboard as $history) {
+
+            $dataPoints[] = array(
+                "name" => $history['name'],
+                "data" => [
+                    intval($history['term1_marks']),
+                    intval($history['term2_marks']),
+                    intval($history['term3_marks']),
+                    intval($history['term4_marks']),
+                ],
+            );
+        }
+
         return view('Dashboard.DetailHistory')->with($data);
+        // return view ('Dashboard.coba')->with($data);
     }
 
     /**
@@ -125,6 +141,12 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function controlling()
+    {
+        return view('Dashboard.controlling');
+    }
+
     public function create()
     {
         //
@@ -154,11 +176,12 @@ class DashboardController extends Controller
         // return view('Dashboard.index', compact('mqtt_history'));
 
         $topicid = $id;
+        $id_container = Mqtt::where('id', $id)->get('topic');
         $mqtt_dashboard = Dashboard::where('topicid', $topicid)->get();
         $mqtt = Mqtt::find($id);
         $name = Mqtt::find($id);
         $mqtt_all = Mqtt::all();
-
+        $container = MasterContainer::find($id_container);
         // $_id = array_column($jsonDecode, '_id');
         // echo $_id[0]['$id'];
 
@@ -188,12 +211,13 @@ class DashboardController extends Controller
             'mqtt_history' => $mqtt_dashboard,
             'mqtt' => $mqtt,
             'name' => $name,
-            'mqtt_all' => $mqtt_all
+            'mqtt_all' => $mqtt_all,
+            'container' => $container
             // 'mqtt_id' => $mqtt_id
             // 'latlon_start' => $latlon_start
         );
 
-        // return $mqtt->value['EVAP'];
+        // return $container;
         // return response()->json($data);
         return view('Dashboard.show')->with($data);
     }

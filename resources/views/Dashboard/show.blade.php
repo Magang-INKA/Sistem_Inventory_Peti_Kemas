@@ -32,133 +32,134 @@
 			</div>
 			<div class="row clearfix progress-box">
 				<div class="col-lg-4 col-md-12 col-sm-12 mb-30">
-					<div class="card-white pd-20 height-50-p">
-						<div class="progress-box text-center">
-                            <h5 class="padding-top-10 h4">Temperature</h5>
-                            <div id="chart_sup" style="margin-top: -25px;"></div>
-                            {{-- <div id="chart_ret" style="margin-top: -25px;"></div> --}}
-                            {{-- @foreach ($mqtt as $data)
-							<input type="text" class="knob dial1" value="{{ $data->value['AVG_TMP'] }}" data-width="120" data-height="120" data-linecap="round" data-thickness="0.2" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
-                             <span class="d-block">{{ $data->value['AVG_TMP'] }}° Celcius</span>
-                            @endforeach --}}
-						</div>
-					</div>
-				</div>
-                <div class="col-lg-4 col-md-12 col-sm-12 mb-30">
-					<div class="card-white pd-20 height-50-p">
-						<div class="progress-box text-center">
-                            <h5 class="padding-top-10 h4">Return Air</h5>
-                            <div id="chart_ret" style="margin-top: -25px;"></div>
-                            {{-- <div id="chart_ret" style="margin-top: -25px;"></div> --}}
-                            {{-- @foreach ($mqtt as $data)
-							<input type="text" class="knob dial1" value="{{ $data->value['AVG_TMP'] }}" data-width="120" data-height="120" data-linecap="round" data-thickness="0.2" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
-                             <span class="d-block">{{ $data->value['AVG_TMP'] }}° Celcius</span>
-                            @endforeach --}}
-						</div>
-					</div>
-				</div>
-                <div class="col-lg-4 col-md-12 col-sm-12 mb-30">
-					<div class="card-white pd-20 height-50-p">
-						<div class="progress-box text-center">
-                            <h5 class="padding-top-10 h4">Humidity</h5>
-                            <div id="chart_hum" style="margin-top: -25px;"></div>
-                            {{-- @foreach ($mqtt as $data)
-							<input type="text" class="knob dial1" value="{{ $data->value['AVG_TMP'] }}" data-width="120" data-height="120" data-linecap="round" data-thickness="0.2" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
-                             <span class="d-block">{{ $data->value['AVG_TMP'] }}° Celcius</span>
-                            @endforeach --}}
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-7 col-md-12 col-sm-12 mb-30">
 					<div class="card-white pd-20 height-100-p">
 						<div class="progress-box text-center">
-                            <h5 class="padding-top-10 h4">Status AC Control</h5>
-                            {{-- @foreach ($mqtt as $data) --}}
-                            <div class="row clearfix">
-                                <div class="col-md-3 col-sm-12 mb-30">
-                                    <div class="card text-white bg-info card-box" style="margin-bottom: -20px">
-                                        <div class="card-header">Evaporator<br>
-                                            @if ( $mqtt->value['EVAP'] == 1)
-                                                <img src="{{asset('vendors/images/on.png')}}" alt="" width="70px">
-                                            @else
-                                                <img src="{{asset('vendors/images/off.png')}}" alt="" width="70px">
-                                            @endif
-                                        </div>
-                                    </div>
+                            <h5>Temperature</h5>
+                            <div class="row clearfix progress-box">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div id="chart_sup"></div>
                                 </div>
-                                <div class="col-md-3 col-sm-12">
-                                    <div class="card text-white bg-secondary card-box">
-                                        <div class="card-header">Condensor<br>
-                                            {{-- <input type="checkbox" name="COND" id="COND" value="{{ $data->value['COND'] }}" {{ $data->value['COND'] == 1 ? 'checked' : null }} class="switch-btn" data-size="small" data-color="#41ccba" disabled> --}}
-                                            {{-- <i class="fa fa-solid fa-toggle-off"></i> --}}
-                                            @if ( $mqtt->value['COND'] == 1)
-                                                <img src="{{asset('vendors/images/on.png')}}" alt="" width="70px">
-                                            @else
-                                                <img src="{{asset('vendors/images/off.png')}}" alt="" width="70px">
-                                            @endif
-                                        </div>
-                                    </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div id="chart_ret"></div>
                                 </div>
-                                <div class="col-md-3 col-sm-12">
-                                    <div class="card text-white bg-info card-box">
-                                        <div class="card-header">Compressor<br>
-                                            {{-- <input type="checkbox" name="COMP" is="COMP" value="{{ $data->value['COMP'] }}" {{ $data->value['COMP'] == 1 ? 'checked' : null }} class="switch-btn" data-size="small" data-color="#0059b2"> --}}
-                                            @if ( $mqtt->value['COMP'] == 1)
-                                                <img src="{{asset('vendors/images/on.png')}}" alt="" width="70px">
-                                            @else
-                                                <img src="{{asset('vendors/images/off.png')}}" alt="" width="70px">
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-12">
-                                    <div class="card text-white bg-secondary card-box">
-                                        <div class="card-header">Heater<br>
-                                            {{-- <input type="checkbox" name="HEAT" id="HEAT" value="{{ $data->value['HEAT'] }}" {{ $data->value['HEAT'] == 1 ? 'checked' : null }} class="switch-btn" data-size="small" data-color="#41ccba"> --}}
-                                            @if ( $mqtt->value['HEAT'] == 1)
-                                                <img src="{{asset('vendors/images/on.png')}}" alt="" width="70px">
-                                            @else
-                                                <img src="{{asset('vendors/images/off.png')}}" alt="" width="70px">
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                                {{-- @endforeach --}}
                             </div>
-							{{-- <span class="d-block">90% Average</span> --}}
-							 {{-- <input type="text" class="knob dial3" value="90" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#f56767" data-angleOffset="180" readonly> --}}
 						</div>
 					</div>
 				</div>
-                <div class="col-lg-5 col-md-12 col-sm-12 mb-30">
-					<div class="card-white posisi-card pd-20 height-100-p">
+                <div class="col-lg-2 col-md-12 col-sm-12 mb-30">
+					<div class="card-white pd-20 height-100-p">
 						<div class="progress-box text-center">
-                            <h5 class="padding-top-10 h4">Capacity</h5>
-							{{-- <span class="d-block">75% Allocated</i></span> --}}
-                            <div class="progress">
-								<div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
-							</div>
-							{{-- <input type="text" class="knob dial2" value="75" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#00e091" data-angleOffset="180" readonly> --}}
+                            <h5>Humidity</h5>
+                            <div class="row clearfix progress-box">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div id="chart_hum"></div>
+                                </div>
+                            </div>
 						</div>
-                        <br>
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <td>Allocated</td>
-                                    <td>1200 ton</td>
-                                </tr>
-                                <tr>
-                                    <td>Free</td>
-                                    <td>800 ton</td>
-                                </tr>
-                                <tr>
-                                    <td>Total</td>
-                                    <td>2000 ton</td>
-                                </tr>
-                            </tbody>
-                        </table>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-12 col-sm-12 mb-30">
+                    <div class="row clearfix progress-box">
+                        <div class="col-lg-12 col-md-12 mb-30">
+                            <div class="card-white pd-20 height-50-p">
+                                <div class="progress-box text-center">
+                                    <h5 style="padding-bottom: 6px">Status AC Control</h5>
+                                    {{-- @foreach ($mqtt as $data) --}}
+                                    <div class="row clearfix">
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="card text-white bg-info card-box">
+                                                <div class="card-header" style="font-size: 14px; padding: 0.2rem 1rem;">Evaporator<br>
+                                                    @if ( $mqtt->value['EVAP'] == 1)
+                                                        <img src="{{asset('vendors/images/on.png')}}" alt="" width="60px">
+                                                    @else
+                                                        <img src="{{asset('vendors/images/off.png')}}" alt="" width="60px">
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="card text-white bg-secondary card-box">
+                                                <div class="card-header" style="font-size: 14px; padding: 0.2rem 1rem;">Condensor<br>
+                                                    {{-- <input type="checkbox" name="COND" id="COND" value="{{ $data->value['COND'] }}" {{ $data->value['COND'] == 1 ? 'checked' : null }} class="switch-btn" data-size="small" data-color="#41ccba" disabled> --}}
+                                                    {{-- <i class="fa fa-solid fa-toggle-off"></i> --}}
+                                                    @if ( $mqtt->value['COND'] == 1)
+                                                        <img src="{{asset('vendors/images/on.png')}}" alt="" width="60px">
+                                                    @else
+                                                        <img src="{{asset('vendors/images/off.png')}}" alt="" width="60px">
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="card text-white bg-info card-box">
+                                                <div class="card-header" style="font-size: 14px; padding: 0.2rem 1rem;">Compressor<br>
+                                                    {{-- <input type="checkbox" name="COMP" is="COMP" value="{{ $data->value['COMP'] }}" {{ $data->value['COMP'] == 1 ? 'checked' : null }} class="switch-btn" data-size="small" data-color="#0059b2"> --}}
+                                                    @if ( $mqtt->value['COMP'] == 1)
+                                                        <img src="{{asset('vendors/images/on.png')}}" alt="" width="60px">
+                                                    @else
+                                                        <img src="{{asset('vendors/images/off.png')}}" alt="" width="60px">
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="card text-white bg-secondary card-box">
+                                                <div class="card-header" style="font-size: 14px; padding: 0.2rem 1rem;">Heater<br>
+                                                    {{-- <input type="checkbox" name="HEAT" id="HEAT" value="{{ $data->value['HEAT'] }}" {{ $data->value['HEAT'] == 1 ? 'checked' : null }} class="switch-btn" data-size="small" data-color="#41ccba"> --}}
+                                                    @if ( $mqtt->value['HEAT'] == 1)
+                                                        <img src="{{asset('vendors/images/on.png')}}" alt="" width="60px">
+                                                    @else
+                                                        <img src="{{asset('vendors/images/off.png')}}" alt="" width="60px">
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- @endforeach --}}
+                                    </div>
+                                    {{-- <span class="d-block">90% Average</span> --}}
+                                    {{-- <input type="text" class="knob dial3" value="90" data-width="120" data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#f56767" data-angleOffset="180" readonly> --}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="card-white posisi-card pd-20 height-50-p">
+                                <div class="progress-box text-center">
+                                    <h5 style="padding-bottom: 6px">Capacity</h5>
+                                    <div class="row clearfix progress-box">
+                                        <div class="col-lg-6 col-md-12 col-sm-12" style="display: block; margin: auto;">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12">
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="padding: 0.3rem;">Allocated</td>
+                                                        <td style="padding: 0.3rem;">1200 kg</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 0.3rem;">Free</td>
+                                                        <td style="padding: 0.3rem;">800 kg</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 0.3rem;">Total</td>
+                                                        @foreach ($container as $con)
+                                                        <td style="padding: 0.3rem;">{{$con->kapasitas}} kg</td>
+                                                        @endforeach
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 				</div>
+                {{-- <div class="col-lg-5 col-md-12 col-sm-12 mb-30">
+
+				</div> --}}
                 {{-- <div class="col-lg-3 col-md-12 col-sm-12 mb-30">
                     <div class="card-white pd-20 height-50-p">
                         <div class="progress-box text-center">
@@ -176,6 +177,27 @@
 					</div>
 				</div>
 			</div> --}}
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-30">
+                    <div class="pd-20 card-white height-100-p">
+                        <h2 class="mb-30 h4">Notification</h2>
+                        @foreach ($container as $con)
+                        @if ( $mqtt->value['AVG_TMP'] > $con->suhu_ketetapan || $mqtt->value['AVG_TMP'] < $con->suhu_ketetapan)
+                        <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                            <strong> Suhu tidak sesuai ketentuan!</strong> Atur suhu menjadi {{$con->suhu_ketetapan}} °C
+                            {{-- <form action="" method="POST"> --}}
+                            <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{-- </form> --}}
+                        </div>
+                        @else
+                        <p>Nothing notification.</p>
+                        @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 mb-30">
 					<div class="card-white pd-30 height-100-p">
@@ -270,7 +292,7 @@
         var options_sup = {
             series: [supply],
             chart: {
-            height: 250,
+            height: 220,
                 type: 'radialBar',
                 offsetY: 0
             },
@@ -281,13 +303,13 @@
                     endAngle: 135,
                     dataLabels: {
                         name: {
-                            fontSize: '16px',
+                            fontSize: '14px',
                             color: undefined,
-                            offsetY: 120
+                            offsetY: 90
                         },
                         value: {
-                            offsetY: 76,
-                            fontSize: '20px',
+                            offsetY: 50,
+                            fontSize: '16px',
                             color: undefined,
                             formatter: function (val) {
                         return nilai_sup + " °C";
@@ -316,7 +338,7 @@
         var options_ret = {
             series: [return_air],
             chart: {
-            height: 250,
+            height: 220,
                 type: 'radialBar',
                 offsetY: 0
             },
@@ -327,13 +349,13 @@
                     endAngle: 135,
                     dataLabels: {
                         name: {
-                            fontSize: '16px',
+                            fontSize: '14px',
                             color: undefined,
-                            offsetY: 120
+                            offsetY: 90
                         },
                         value: {
-                            offsetY: 76,
-                            fontSize: '20px',
+                            offsetY: 50,
+                            fontSize: '16px',
                             color: undefined,
                             formatter: function (val) {
                         return nilai_ret + " °C";
@@ -362,7 +384,7 @@
         var options_hum = {
             series: [hum],
             chart: {
-            height: 250,
+            height: 220,
             type: 'radialBar',
             offsetY: 0
             },
@@ -375,11 +397,11 @@
                         name: {
                             fontSize: '14px',
                             color: undefined,
-                            offsetY: 120
+                            offsetY: 90
                         },
                         value: {
-                            offsetY: 76,
-                            fontSize: '20px',
+                            offsetY: 50,
+                            fontSize: '16px',
                             color: undefined,
                             formatter: function (val) {
                                 return nilai_hum + " %";

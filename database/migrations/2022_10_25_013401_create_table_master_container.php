@@ -16,7 +16,8 @@ class CreateTableMasterContainer extends Migration
         Schema::create('master_container', function (Blueprint $table) {
             $table->string('no_container', 20)->primary();
             $table->string('jenis', 50);
-            $table->string('ukuran');
+            $table->integer('kapasitas');
+            $table->integer('suhu_ketetapan');
             $table->timestamps();
         });
     }
