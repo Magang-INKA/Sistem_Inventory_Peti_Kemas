@@ -44,8 +44,8 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>Container Name</th>
-                        <th>Nama Kapal</th>
+                        <th>No Container</th>
+                        <th>No Kapal</th>
                         <th>Nama Pelabuhan</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
@@ -54,8 +54,8 @@
                     @foreach ($container as $ct => $data)
                     <tr>
                         <td class="table-plus">{{ $ct + $container->firstitem() }}</td>
-                        <td>{{ $data->nama_container }}</td>
-                        <td>{{ $data->kapal->nama_kapal }}</td>
+                        <td>{{ $data->no_container }}</td>
+                        <td>{{ $data->kapal->no_kapal }}</td>
                         <td>{{ $data->pelabuhan->nama_pelabuhan }}</td>
                         <td>
                             <div class="dropdown">

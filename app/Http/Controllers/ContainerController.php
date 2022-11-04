@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Exports\ContainerExport;
 use App\Models\Container;
 use App\Models\Kapal;
+use App\Models\MasterContainer;
+use App\Models\MasterKapal;
 use App\Models\Pelabuhan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -50,9 +52,10 @@ class ContainerController extends Controller
      */
     public function create()
     {
-        $kapal = Kapal::all();
+        $kapal = MasterKapal::all();
         $pelabuhan = Pelabuhan::all();
-        return view('Container.create', compact('kapal', 'pelabuhan'));
+        $container = MasterContainer::all();
+        return view('Container.create', compact('kapal', 'pelabuhan', 'container'));
     }
 
     /**
@@ -65,15 +68,15 @@ class ContainerController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'nama_container' => 'required',
-            'id_kapal' => 'required',
+            'no_container' => 'required',
+            'no_kapal' => 'required',
             'id_pelabuhan' => 'required',
             ]);
 
             //fungsi eloquent untuk menambah data
             $container = new Container;
-            $container->nama_container = $request->get('nama_container');
-            $container->id_kapal = $request->get('id_kapal');
+            $container->no_container = $request->get('no_container');
+            $container->no_kapal = $request->get('no_kapal');
             $container->id_pelabuhan = $request->get('id_pelabuhan');
             $container->save();
 
@@ -123,8 +126,8 @@ class ContainerController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'nama_container' => 'required',
-            'id_kapal' => 'required',
+            'no_container' => 'required',
+            'no_kapal' => 'required',
             'id_pelabuhan' => 'required',
         ]);
 

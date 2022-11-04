@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Kapal;
+use App\Models\MasterKapal;
 use App\Models\Pelabuhan;
+use App\Models\MasterContainer;
 
 class Container extends Model
 {
@@ -18,17 +19,22 @@ class Container extends Model
      */
     protected $fillable = [
         'id',
-        'id_kapal',
-        'nama_container',
+        'no_kapal',
+        'no_container',
         'id_pelabuhan',
     ];
 
     public function kapal()
     {
-        return $this->belongsTo(Kapal::class, 'id_kapal');
+        return $this->belongsTo(MasterKapal::class, 'no_kapal');
     }
     public function pelabuhan()
     {
         return $this->belongsTo(Pelabuhan::class, 'id_pelabuhan');
     }
+    public function master()
+    {
+        return $this->belongsTo(MasterContainer::class, 'no_container');
+    }
+
 }

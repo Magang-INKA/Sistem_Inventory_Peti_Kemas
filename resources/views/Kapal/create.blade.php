@@ -34,10 +34,17 @@
 	<form method="POST" action="{{ route('kapal.store') }}" id="myForm">
         @csrf
         <div class="form-group row">
-			<label for="nama_kapal" class="col-sm-12 col-md-2 col-form-label text-white">Nama Kapal</label>
-			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="nama_kapal" id="nama_kapal" aria-describedby="nama_kapal" placeholder="">
-			</div>
+			<label for="no_kapal" class="col-sm-12 col-md-2 col-form-label text-white">No Kapal</label>
+			{{-- <div class="col-sm-12 col-md-10">
+				<input class="form-control" type="text" name="no_kapal" id="no_kapal" aria-describedby="no_kapal" placeholder="">
+			</div> --}}
+            <div class="col-sm-12 col-md-10">
+                <div class="input-group">
+                    <input id="nama_kapal" type="text" class="form-control" readonly="" required>
+                    <input id="no_kapal" type="hidden" name="no_kapal" value="{{ old('no_kapal') }}" required readonly="">
+                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal2"><b>Cari Kapal </b><span class="fa fa-search"></span></button>
+                </div>
+            </div>
 		</div>
         <div class="form row">
 			<label for="id_keberangkatan" class="col-sm-12 col-md-2 col-form-label text-white">Keberangkatan</label>
@@ -82,6 +89,36 @@
 </div>
 <!-- Default Basic Forms End -->
 <!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content" style="background: #fff;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cari Kapal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="lookup" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>No Kapal</th>
+                            <th>Nama Kapal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($kapal as $data)
+                        <tr class="pilih3" data-no_kapal="<?php echo $data->no_kapal; ?>" data-nama_kapal="<?php echo $data->nama_kapal; ?>" >
+                            <td>{{$data->no_kapal}}</td>
+                            <td>{{$data->nama_kapal}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-lg" role="document" >
         <div class="modal-content" style="background: #fff;">
@@ -164,6 +201,12 @@
         document.getElementById("nama_pelabuhan2").value = $(this).attr('data-nama_pelabuhan');
         document.getElementById("id_tujuan").value = $(this).attr('data-id_tujuan');
         $('#myModal1').modal('hide');
+    });
+
+    $(document).on('click', '.pilih3', function (e) {
+        document.getElementById("nama_kapal").value = $(this).attr('data-nama_kapal');
+        document.getElementById("no_kapal").value = $(this).attr('data-no_kapal');
+        $('#myModal2').modal('hide');
     });
 
     $(function () {

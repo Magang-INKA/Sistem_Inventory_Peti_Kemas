@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Container;
 
 class MasterContainer extends Model
 {
@@ -20,4 +21,9 @@ class MasterContainer extends Model
         'jenis',
         'ukuran',
     ];
+
+    public function container()
+    {
+        return $this->belongsTo(Container::class, 'no_container');
+    }
 }

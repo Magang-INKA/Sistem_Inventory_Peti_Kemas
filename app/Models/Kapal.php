@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Container;
 use App\Models\Pelabuhan;
+use App\Models\MasterKapal;
 
 class Kapal extends Model
 {
@@ -20,7 +21,7 @@ class Kapal extends Model
         'id',
         'id_keberangkatan',
         'id_tujuan',
-        'nama_kapal',
+        'no_kapal',
         'jadwal',
     ];
 
@@ -34,9 +35,8 @@ class Kapal extends Model
     {
         return $this->hasOne(Pelabuhan::class, 'id','id_tujuan');
     }
-
-    public function container()
+    public function master()
     {
-        return $this->hasMany(Container::class);
+        return $this->hasOne(MasterKapal::class, 'no_kapal', 'no_kapal');
     }
 }

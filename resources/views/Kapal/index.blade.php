@@ -47,7 +47,7 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>Ship Name</th>
+                        <th>Ship Number</th>
                         <th>Departure</th>
                         <th>Destination</th>
                         <th>Schedule</th>
@@ -58,7 +58,7 @@
                     @foreach ($kapal as $ship => $data)
                     <tr>
                         <td class="table-plus">{{ $ship + $kapal->firstitem() }}</td>
-                        <td>{{ $data->nama_kapal }}</td>
+                        <td>{{ $data->no_kapal }}</td>
                         <td>{{ $data->pelabuhan->nama_pelabuhan}}</td>
                         <td>{{ $data->tujuan->nama_pelabuhan }}</td>
                         <td>{{ $data->jadwal }}</td>

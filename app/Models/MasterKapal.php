@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Kapal;
 
 class MasterKapal extends Model
 {
@@ -19,4 +20,13 @@ class MasterKapal extends Model
         'no_kapal',
         'nama_kapal',
     ];
+
+    public function kapal()
+    {
+        return $this->belongsTo(Kapal::class, 'no_kapal');
+    }
+    public function container()
+    {
+        return $this->hasMany(Container::class);
+    }
 }

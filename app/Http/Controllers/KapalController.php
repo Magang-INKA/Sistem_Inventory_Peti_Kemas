@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\KapalExport;
 use App\Models\Kapal;
+use App\Models\MasterKapal;
 use App\Models\Pelabuhan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -54,7 +55,8 @@ class KapalController extends Controller
     public function create()
     {
         $pelabuhan = Pelabuhan::all();
-        return view('Kapal.create', compact('pelabuhan'));
+        $kapal = MasterKapal::all();
+        return view('Kapal.create', compact('pelabuhan', 'kapal'));
     }
 
     /**
@@ -70,12 +72,12 @@ class KapalController extends Controller
         $request->validate([
             'id_keberangkatan' => 'required',
             'id_tujuan'  => 'required',
-            'nama_kapal' => 'required',
+            'no_kapal' => 'required',
             'jadwal' => 'required',
         ]);
 
         $kapal = new Kapal;
-        $kapal->nama_kapal = $request->get('nama_kapal');
+        $kapal->no_kapal = $request->get('no_kapal');
         $kapal->id_keberangkatan = $request->get('id_keberangkatan');
         $kapal->id_tujuan = $request->get('id_tujuan');
         $kapal->jadwal = $request->get('jadwal');
