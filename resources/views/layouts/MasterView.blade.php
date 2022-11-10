@@ -3,6 +3,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
+    {{-- <meta http-equiv="refresh" content="3" /> --}}
 	<title>Sistem Inventory Peti Kemas</title>
 
 	<!-- Site favicon -->
@@ -37,6 +38,7 @@
     {{-- JS Filter --}}
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {{-- End JS Filter --}}
+    @livewireStyles
 </head>
 <body>
 
@@ -91,5 +93,6 @@
     <!-- Datatable Setting js -->
 	 {{-- <script src="{{asset('vendors/scripts/datatable-setting.js')}}"></script>  --}}
     @yield('scriptPage')
+    @livewireScripts
 </body>
 </html>

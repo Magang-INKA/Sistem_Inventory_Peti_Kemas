@@ -220,6 +220,9 @@ class DashboardController extends Controller
         // return $container;
         // return response()->json($data);
         return view('Dashboard.show')->with($data);
+        // return view('Dashboard.show', [
+        //     'data' => $data
+        // ]);
     }
 
     /**
