@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MasterKapalExport;
 use App\Models\MasterKapal;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -119,5 +120,17 @@ class MasterKapalController extends Controller
         MasterKapal::where('no_kapal', $kode)->delete();
         Alert::success('Success', 'Master Data Kapal berhasil dihapus');
         return redirect()->route('masterKapal.index');
+    }
+
+    public function laporan()
+    {
+        $masterKapal = MasterKapal::all();
+        $pdf = PDF::loadview('Kapal.laporanMaster', compact('masterKapal'));
+        return $pdf->stream();
+    }
+
+    public function laporanExcel(Request $request)
+    {
+        return Excel::download(new MasterKapalExport, 'masterKapal.xlsx');
     }
 }

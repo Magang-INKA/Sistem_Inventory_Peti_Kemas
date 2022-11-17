@@ -51,13 +51,6 @@
                     </a>
                 </li>
                 @endcan
-                @can('manage-booking')
-                <li>
-                    <a href="/StatusBooking" class="dropdown-toggle no-arrow @yield('status_booking')">
-                        <span class="micon dw dw-invoice-1"></span><span class="mtext">Booking State</span>
-                    </a>
-                </li>
-                @endcan
                 @can('manage-MasterData')
                 <li>
                     <a href="{{ route('container.index') }}" class="dropdown-toggle no-arrow @yield('menu_container')">
@@ -69,10 +62,14 @@
                         <span class="micon dw dw-invoice"></span><span class="mtext">Transaksi</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('kapal.index') }}" class="dropdown-toggle no-arrow @yield('menu_kapal')">
-                        <span class="micon dw dw-box"></span><span class="mtext">Data Kapal</span>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class=""></span><span class="mtext">Data Jadwal Kapal</span>
                     </a>
+                    <ul class="submenu">
+                        <li><a href="{{ route('trip.index')}}" class="dropdown-toggle no-arrow @yield('menu_trip')">Trip Kapal</a></li>
+                        <li><a href="{{ route('JadwalKapal.index') }}" class="dropdown-toggle no-arrow @yield('menu_jadwal_kapal')">Jadwal Kapal</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="{{ route('user.index') }}" class="dropdown-toggle no-arrow @yield('menu_user')">

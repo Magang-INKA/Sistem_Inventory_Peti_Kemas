@@ -65,9 +65,9 @@
                                     <i class="dw dw-more"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <form action="{{ route('pelabuhan.destroy', $data->id) }}" method="POST">
-                                        <a class="dropdown-item" href="{{ route('pelabuhan.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
-                                        <a class="dropdown-item" href="{{ route('pelabuhan.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
+                                    <form action="{{ route('pelabuhan.destroy', $data->kode_pelabuhan) }}" method="POST">
+                                        <a class="dropdown-item" href="{{ route('pelabuhan.show', $data->kode_pelabuhan) }}"><i class="dw dw-eye"></i> View</a>
+                                        <a class="dropdown-item" href="{{ route('pelabuhan.edit', $data->kode_pelabuhan) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <button class="dropdown-item" onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit">

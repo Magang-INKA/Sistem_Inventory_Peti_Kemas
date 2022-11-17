@@ -46,9 +46,15 @@
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="ukuran" class="col-sm-12 col-md-2 col-form-label text-white">Size (feet)</label>
+			<label for="kapasitas" class="col-sm-12 col-md-2 col-form-label text-white">Kapasitas</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="number" name="ukuran" id="ukuran" aria-describedby="ukuran" placeholder="">
+				<input class="form-control" type="number" name="kapasitas" id="kapasitas" aria-describedby="kapasitas" placeholder="">
+			</div>
+		</div>
+        <div class="form-group row">
+			<label for="suhu_ketetapan" class="col-sm-12 col-md-2 col-form-label text-white">Suhu Ketetapan</label>
+			<div class="col-sm-12 col-md-10">
+				<input class="form-control" type="number" name="suhu_ketetapan" id="suhu_ketetapan" aria-describedby="kapasitas" placeholder="">
 			</div>
 		</div>
 		<div class="form-group row">

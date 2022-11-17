@@ -22,10 +22,10 @@ class CreateTableBooking extends Migration
             $table->foreign('no_container')->references('no_container')->on('master_container');
             $table->unsignedBigInteger('id_barang');
             $table->foreign('id_barang')->references('id')->on('master_barang');
-            $table->string('no_kapal');
+            $table->char('no_kapal');
             $table->foreign('no_kapal')->references('no_kapal')->on('master_kapal');
-            $table->unsignedBigInteger('id_pelabuhan');
-            $table->foreign('id_pelabuhan')->references('id')->on('master_pelabuhan');
+            $table->char('id_pelabuhan');
+            $table->foreign('id_pelabuhan')->references('kode_pelabuhan')->on('master_pelabuhan');
             $table->date('date');
             $table->string('status');
             $table->timestamps();

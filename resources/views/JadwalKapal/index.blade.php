@@ -1,17 +1,17 @@
 @extends('layouts.MasterView')
-@section('menu_master_kapal', 'active')
+@section('menu_jadwal_kapal', 'active')
 @section('content')
 <div >
     <div class="page-header">
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>Ship Data</h4>
+                    <h4>Jadwal Kapal Data</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('masterKapal.index') }}">Ship</a></li>
-                        <li class="breadcrumb-item" aria-current="page">Index</li>
+                        <li class="breadcrumb-item"><a href="{{ route('JadwalKapal.index') }}">Jadwal Kapal</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Index</li>
                     </ol>
                 </nav>
             </div>
@@ -21,8 +21,8 @@
                     Report Download
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{url('/laporan/masterKapal')}}">PDF</a>
-                    <a class="dropdown-item" href="{{url('/laporan/masterKapal/excel')}}">Excel</a>
+                    <a class="dropdown-item" href="{{url('/laporan/JadwalKapal')}}">PDF</a>
+                    <a class="dropdown-item" href="{{url('/laporan/JadwalKapal/excel')}}">Excel</a>
                 </div>
             </div>
         </div>
@@ -32,14 +32,11 @@
     <div class="page-header mb-30">
         <div class="pb-20">
             <div class="header-left">
-                {{-- <div class="header-search col-sm-12">
-                </div> --}}
                 <div>
                     <div class="col-md-40 col-sm-12 text-right">
-                        <a class="btn btn-success" href="{{ route('masterKapal.create') }}"> Create Data </a>
+                        <a class="btn btn-success" href="{{ route('JadwalKapal.create') }}"> Create Data </a>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="pb-20">
@@ -47,25 +44,33 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>Ship Number</th>
-                        <th>Ship Name</th>
+                        <th>No-Nama Kapal</th>
+                        <th>Nama Trip</th>
+                        <th>ETA</th>
+                        <th>ETD</th>
+                        @can('manage-MasterData')
                         <th class="datatable-nosort">Action</th>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($masterKapal as $ship => $data)
+                    @foreach ($jadwalKapal as $br => $data)
                     <tr>
-                        <td class="table-plus">{{ $ship + $masterKapal->firstitem() }}</td>
-                        <td>{{ $data->no_kapal }}</td>
-                        <td>{{ $data->nama_kapal}}</td>
+                        <td class="table-plus">{{ $br + $jadwalKapal->firstitem() }}</td>
+                        <td>{{ $data->id_kapal}} - {{ $data->kapal->nama_kapal}}</td>
+                        <td>{{ $data->trip->nama_trip}}</td>
+                        <td>{{ $data->ETA}}</td>
+                        <td>{{$data->ETD}}</td>
+                        @can('manage-MasterData')
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                     <i class="dw dw-more"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <form action="{{ route('masterKapal.destroy', $data->no_kapal) }}" method="POST">
-                                        <a class="dropdown-item" href="{{ route('masterKapal.edit', $data->no_kapal) }}"><i class="dw dw-edit2"></i> Edit</a>
+                                    <form action="{{ route('JadwalKapal.destroy', $data->id) }}" method="POST">
+                                        <a class="dropdown-item" href="{{ route('JadwalKapal.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
+                                        <a class="dropdown-item" href="{{ route('JadwalKapal.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <button class="dropdown-item" onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit">
@@ -74,12 +79,13 @@
                                 </div>
                             </div>
                         </td>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="col-md-40 col-sm-12 text-left">
-                {{$masterKapal->links()}}
+                {{$jadwalKapal->links()}}
             </div>
         </div>
     </div>

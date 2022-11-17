@@ -17,10 +17,10 @@ class CreateTableContainer extends Migration
             $table->id();
             $table->string('no_container', 20);
             $table->foreign('no_container')->references('no_container')->on('master_container');
-            $table->string('no_kapal', 20);
+            $table->char('no_kapal', 20);
             $table->foreign('no_kapal')->references('no_kapal')->on('master_kapal');
-            $table->unsignedBigInteger('id_pelabuhan');
-            $table->foreign('id_pelabuhan')->references('id')->on('master_pelabuhan');
+            $table->char('id_pelabuhan');
+            $table->foreign('id_pelabuhan')->references('kode_pelabuhan')->on('master_pelabuhan');
             $table->timestamps();
         });
     }

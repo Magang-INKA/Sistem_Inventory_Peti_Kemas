@@ -7,6 +7,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContainerController;
+use App\Http\Controllers\JadwalKapalController;
 use App\Http\Controllers\KapalController;
 use App\Http\Controllers\MasterContainerController;
 use App\Http\Controllers\MasterKapalController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\PelabuhanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\TripController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -96,6 +98,11 @@ Route::resource('kapal', KapalController::class);
 Route::resource('pelabuhan', PelabuhanController::class);
 Route::get('/laporan/pelabuhan', [PelabuhanController::class, 'laporan']);
 Route::get('/laporan/pelabuhan/excel', [PelabuhanController::class, 'laporanExcel']);
+
+Route::resource('JadwalKapal', JadwalKapalController::class);
+Route::resource('trip', TripController::class);
+Route::get('/laporan/trip', [TripController::class, 'laporan']);
+Route::get('/laporan/trip/excel', [TripController::class, 'laporanExcel']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

@@ -14,7 +14,7 @@ class CreateTableMasterPelabuhan extends Migration
     public function up()
     {
         Schema::create('master_pelabuhan', function (Blueprint $table) {
-            $table->id();
+            $table->char('kode_pelabuhan',10)->primary();
             $table->string('nama_pelabuhan');
             $table->string('alamat');
             $table->timestamps();

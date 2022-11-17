@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Kapal;
 use App\Models\Container;
+use App\Models\Trip;
+use App\Models\JadwalKapal;
 
 class Pelabuhan extends Model
 {
@@ -17,7 +19,7 @@ class Pelabuhan extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
+        'kode_pelabuhan',
         'nama_pelabuhan',
         'alamat'
     ];
@@ -30,5 +32,15 @@ class Pelabuhan extends Model
     public function container()
     {
         return $this->hasMany(Container::class);
+    }
+
+    public function trip()
+    {
+        return $this->hasMany(Trip::class);
+    }
+
+    public function jadwalKapal()
+    {
+        return $this->belongsTo(JadwalKapal::class);
     }
 }

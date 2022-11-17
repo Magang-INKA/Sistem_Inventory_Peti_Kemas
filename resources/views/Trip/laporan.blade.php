@@ -20,22 +20,26 @@
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left mt-2">
                     <h3 align="center">SISTEM INVENTORY PETI KEMAS</h3>
-                    <h3 align="center">LAPORAN DATA PELABUHAN</h3>
+                    <h3 align="center">LAPORAN DATA TRIP KAPAL</h3>
                 </div>
                 <br>
                 <table class="table table-bordered">
                     <tr>
                         <th>No</th>
-                        <th>ID Pelabuhan</th>
-                        <th>Nama Pelabuhan</th>
-                        <th>Alamat</th>
+                        <th>Nama Trip</th>
+                        <th>Pelabuhan Asal</th>
+                        <th>Pelabuhan Tujuan</th>
+                        <th>No Kapal</th>
+                        <th>Nama Kapal</th>
                     </tr>
-                    @foreach ($pelabuhan as $br => $data)
+                    @foreach ($trip as $tr => $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $data->kode_pelabuhan }}</td>
-                        <td>{{ $data->nama_pelabuhan }}</td>
-                        <td>{{ $data->alamat }}</td>
+                        <td>{{ $data->nama_trip }}</td>
+                        <td>{{ $data->keberangkatan->nama_pelabuhan }}</td>
+                        <td>{{ $data->tujuan->nama_pelabuhan }}</td>
+                        <td>{{ $data->kapal->no_kapal }}</td>
+                        <td>{{ $data->kapal->nama_kapal }}</td>
                     </tr>
                     @endforeach
                 </table>

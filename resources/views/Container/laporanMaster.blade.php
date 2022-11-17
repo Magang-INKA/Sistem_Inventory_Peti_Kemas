@@ -26,16 +26,18 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>No</th>
-                        <th>Container Number</th>
-                        <th>Type</th>
-                        <th>Size</th>
+                        <th>No Container</th>
+                        <th>Jenis</th>
+                        <th>Kapasitas</th>
+                        <th>Suhu Ketetapan</th>
                     </tr>
                     @foreach ($masterContainer as $mc => $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->no_container }}</td>
                         <td>{{ $data->jenis }}</td>
-                        <td>{{ $data->ukuran }}</td>
+                        <td>{{ $data->kapasitas }}</td>
+                        <td>{{ $data->suhu_ketetapan }}</td>
                     </tr>
                     @endforeach
                 </table>

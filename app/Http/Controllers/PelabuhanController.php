@@ -60,6 +60,7 @@ class PelabuhanController extends Controller
     {
         //melakukan validasi data
         $request->validate([
+            'kode_pelabuhan' => 'required',
             'nama_pelabuhan' => 'required',
             'alamat' => 'required',
             ]);
@@ -105,17 +106,21 @@ class PelabuhanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $kode)
     {
         //melakukan validasi data
         $request->validate([
-            // 'id' => 'required',
+            'kode_pelabuhan' => 'required',
             'nama_pelabuhan' => 'required',
             'alamat' => 'required',
             ]);
 
         //fungsi eloquent untuk mengupdate data inputan kita
-            Pelabuhan::find($id)->update($request->all());
+        $pelabuhan = Pelabuhan::where('kode_pelabuhan', $kode)->first();
+        $pelabuhan->kode_pelabuhan = $request->get('kode_pelabuhan');
+        $pelabuhan->nama_pelabuhan = $request->get('nama_pelabuhan');
+        $pelabuhan->alamat = $request->get('alamat');
+        $pelabuhan->save();
 
         //jika data berhasil diupdate, akan kembali ke halaman utama
             Alert::success('Success', 'Data Pelabuhan Berhasil Diupdate');
@@ -128,10 +133,10 @@ class PelabuhanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($kode)
     {
         //fungsi eloquent untuk menghapus data
-        Pelabuhan::find($id)->delete();
+        Pelabuhan::where('kode_pelabuhan', $kode)->delete();
         Alert::success('Success', 'Data Pelabuhan berhasil dihapus');
         return redirect()->route('pelabuhan.index');
     }

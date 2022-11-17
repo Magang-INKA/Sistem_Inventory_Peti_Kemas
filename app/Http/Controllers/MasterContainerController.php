@@ -63,14 +63,16 @@ class MasterContainerController extends Controller
         $request->validate([
             'no_container' => 'required',
             'jenis' => 'required',
-            'ukuran' => 'required',
+            'kapasitas' => 'required',
+            'suhu_ketetapan' => 'required',
             ]);
 
             //fungsi eloquent untuk menambah data
             $masterContainer = new MasterContainer();
             $masterContainer->no_container = $request->get('no_container');
             $masterContainer->jenis = $request->get('jenis');
-            $masterContainer->ukuran = $request->get('ukuran');
+            $masterContainer->kapasitas = $request->get('kapasitas');
+            $masterContainer->suhu_ketetapan = $request->get('suhu_ketetapan');
             $masterContainer->save();
 
             //jika data berhasil ditambahkan, akan kembali ke halaman utama
@@ -113,14 +115,16 @@ class MasterContainerController extends Controller
         $request->validate([
             'no_container' => 'required',
             'jenis' => 'required',
-            'ukuran' => 'required',
+            'kapasitas' => 'required',
+            'suhu_ketetapan' => 'required',
             ]);
 
             //fungsi eloquent untuk menambah data
             $masterContainer = MasterContainer::where('no_container', $kode)->first();
             $masterContainer->no_container = $request->get('no_container');
             $masterContainer->jenis = $request->get('jenis');
-            $masterContainer->ukuran = $request->get('ukuran');
+            $masterContainer->kapasitas = $request->get('kapasitas');
+            $masterContainer->suhu_ketetapan = $request->get('suhu_ketetapan');
             $masterContainer->save();
 
             //jika data berhasil ditambahkan, akan kembali ke halaman utama
