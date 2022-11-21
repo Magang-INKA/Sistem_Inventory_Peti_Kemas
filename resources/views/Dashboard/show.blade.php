@@ -4,7 +4,7 @@
 @section('content')
 	{{-- <div class="main-container"> --}}
 		{{-- <div class="xs-pd-20-10 pd-ltr-20"> --}}
-            @livewire('dashboard-detail',['name' => $name, 'mqtt_all' => $mqtt_all, 'mqtt' => $mqtt, 'container' => $container, 'mqtt_history' => $mqtt_history])
+            @livewire('dashboard-detail',['idmqtt' => $idmqtt])
 		{{-- </div> --}}
 	{{-- </div> --}}
 @endsection

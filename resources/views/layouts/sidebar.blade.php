@@ -1,8 +1,8 @@
 <div class="left-side-bar">
-    <div class="brand-logo" style="padding-top: 35px; padding-bottom: 30px">
+    <div class="brand-logo" style="padding-top: 30px; padding-bottom: 30px; padding-left: 15px;">
         <a href="">
-            <img src="{{asset('vendors/images/logo-dark.png')}}" alt="" class="dark-logo">
-            <img src="{{asset('vendors/images/logo-light.png')}}" alt="" class="light-logo">
+            <img src="{{asset('vendors/images/logo-inventory-3b.png')}}" alt="" style="height: 65px" class="dark-logo">
+            <img src="{{asset('vendors/images/logo-inventory-3b.png')}}" alt="" style="height: 65px" class="light-logo">
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>

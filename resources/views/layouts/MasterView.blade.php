@@ -4,12 +4,12 @@
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
     {{-- <meta http-equiv="refresh" content="3" /> --}}
-	<title>Sistem Inventory Peti Kemas</title>
+	<title>SimocoRC</title>
 
 	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="200x200" href="{{asset('vendors/images/inka.png')}}">
-	<link rel="icon" type="image/png" sizes="35x35" href="{{asset('vendors/images/inka.png')}}">
-	<link rel="icon" type="image/png" sizes="20x20" href="{{asset('vendors/images/inka.png')}}">
+	<link rel="apple-touch-icon" sizes="200x200" href="{{asset('vendors/images/round-2.png')}}">
+	<link rel="icon" type="image/png" sizes="35x35" href="{{asset('vendors/images/round-2.png')}}">
+	<link rel="icon" type="image/png" sizes="20x20" href="{{asset('vendors/images/round-2.png')}}">
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">

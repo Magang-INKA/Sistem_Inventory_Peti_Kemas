@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
+use App\Models\Booking;
 use App\Models\Dashboard;
 use App\Models\MasterContainer;
 use App\Models\Mqtt;
@@ -171,57 +173,54 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        // return view('Dashboard.index');
-        // $mqtt_history = Dashboard::with('mqtt')->find($id);
-        // return view('Dashboard.index', compact('mqtt_history'));
-
         $topicid = $id;
-        $id_container = Mqtt::where('id', $id)->get('topic');
+        // $id_container = Mqtt::where('id', $id)->get();
+        $id_container = Mqtt::find($id);
+        foreach ($id_container as $topic_container) {
+            $topic_container = $id_container->topic;
+        }
+
         $mqtt_dashboard = Dashboard::where('topicid', $topicid)->get();
         $mqtt = Mqtt::find($id);
+        // $idmqtt = $mqtt->id;
+
         $name = Mqtt::find($id);
         $mqtt_all = Mqtt::all();
-        $container = MasterContainer::find($id_container);
-        // $_id = array_column($jsonDecode, '_id');
-        // echo $_id[0]['$id'];
+        $container = MasterContainer::find($topic_container);
+
+        // $booking = Booking::with('container')->find($id_container);
+        // $booking = Booking::where('no_container', $container)->get('id_barang');
+        $booking = Booking::where('no_container', $topic_container)->get();
+        foreach ($booking as $barang) {
+            $barang_id =  $barang->id_barang;
+        }
+        // $barang = $booking->id_barang;
+        // $booking = Booking::find($topic_container);
+        // foreach ($booking as $id_barang) {
+        //     $id_barang = $booking->id_barang;
+        // }
+        // $barang = Barang::where('id', $booking)->get('berat');
+
 
         foreach ($mqtt_dashboard as $key => $item) {
             $item['value'] = json_decode($item->value,true);
         }
-        // $mqtt_dashboard['value'] = json_decode($mqtt_dashboard->value,true);
-        // foreach ($mqtt as $key => $item) {
-        //     $item['value'] = json_decode($item->value,true);
-        // }
         $mqtt['value'] = json_decode($mqtt->value,true);
-
-        // $lat_start = Dashboard::select('select value from mqtt_history ORDER BY ts ASC LIMIT 1');
-        // $latlon_start = Dashboard::orderBy('ts', 'asc')->first();
-        // foreach ($latlon_start as $key => $item) {
-        //     $item['value'] = json_decode($latlon_start->value,true);
-        // }
-        // $latlon_start = $mqtt_dashboard->firstOrFail();
-        // $lon_start = Dashboard::select('select'+ 'from users where active = ?', [1]);
+        // return $idmqtt;
 
         $data = array(
-            // 'id' => 'mqtt',
-            // 'id' =>'mqtt_history',
-            // 'id' => 'latlon_start',
-            // 'id' => 'name',
-            // 'id' => 'mqtt_id',
             'mqtt_history' => $mqtt_dashboard,
             'mqtt' => $mqtt,
             'name' => $name,
             'mqtt_all' => $mqtt_all,
-            'container' => $container
-            // 'mqtt_id' => $mqtt_id
-            // 'latlon_start' => $latlon_start
+            'container' => $container,
+            'booking' => $booking,
+            'barang' => $barang
         );
-
-        // return $container;
+        return $booking;
         // return response()->json($data);
-        return view('Dashboard.show')->with($data);
-        // return view('Dashboard.show', [
-        //     'data' => $data
+        // return view('Dashboard.show',[
+        //     'idmqtt'=> $idmqtt
         // ]);
     }
 

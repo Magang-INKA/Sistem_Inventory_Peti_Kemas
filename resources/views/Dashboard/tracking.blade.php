@@ -6,9 +6,9 @@
 	<title>Sistem Inventory Peti Kemas</title>
 
 	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="200x200" href="{{asset('vendors/images/inka.png')}}">
-	<link rel="icon" type="image/png" sizes="35x35" href="{{asset('vendors/images/inka.png')}}">
-	<link rel="icon" type="image/png" sizes="20x20" href="{{asset('vendors/images/inka.png')}}">
+	<link rel="apple-touch-icon" sizes="200x200" href="{{asset('vendors/images/round-2.png')}}">
+	<link rel="icon" type="image/png" sizes="35x35" href="{{asset('vendors/images/round-2.png')}}">
+	<link rel="icon" type="image/png" sizes="20x20" href="{{asset('vendors/images/round-2.png')}}">
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -40,8 +40,8 @@
 <body class="login-page">
 	<div class="login-header box-shadow">
 		<div class="container-fluid d-flex justify-content-between align-items-center">
-			<div class="">
-				<img src="{{asset('vendors/images/logo-inventory.png')}}" alt="" style="width:595px;height:75px">
+			<div class="" style="padding-left: 50px;">
+				<img src="{{asset('vendors/images/logo-inventory-3b.png')}}" alt="" style="height:75px; padding-top:5px; padding-bottom:5px;">
 			</div>
 			<div class="login-menu">
 				<ul>

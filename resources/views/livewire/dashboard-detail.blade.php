@@ -1,4 +1,4 @@
-<div>
+<div wire:click="$emit('some-event')">
     <div class="page-header">
         <div class="row">
             <div class="col-md-8 col-sm-12">
