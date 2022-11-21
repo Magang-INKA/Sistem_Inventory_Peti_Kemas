@@ -57,7 +57,7 @@
         <div class="form-group row">
 			<label for="ETA" class="col-sm-12 col-md-2 col-form-label text-white">ETA</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control datetimepicker" type="text" name="ETA" value="{{ $jadwalKapal->ETA }}" id="ETA" aria-describedby="ETA" placeholder="">
+				<input class="form-control" type="datetime-local" name="ETA" value="{{ $jadwalKapal->ETA }}" id="ETA" aria-describedby="ETA" placeholder="">
 			</div>
 		</div>
         <div class="form-group row">
