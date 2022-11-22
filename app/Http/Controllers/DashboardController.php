@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use DB;
 
 use App\Models\Barang;
 use App\Models\Booking;
@@ -173,55 +174,13 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        $topicid = $id;
-        // $id_container = Mqtt::where('id', $id)->get();
-        $id_container = Mqtt::find($id);
-        foreach ($id_container as $topic_container) {
-            $topic_container = $id_container->topic;
-        }
-
-        $mqtt_dashboard = Dashboard::where('topicid', $topicid)->get();
         $mqtt = Mqtt::find($id);
-        // $idmqtt = $mqtt->id;
+        $idmqtt = $mqtt->id;
 
-        $name = Mqtt::find($id);
-        $mqtt_all = Mqtt::all();
-        $container = MasterContainer::find($topic_container);
-
-        // $booking = Booking::with('container')->find($id_container);
-        // $booking = Booking::where('no_container', $container)->get('id_barang');
-        $booking = Booking::where('no_container', $topic_container)->get();
-        foreach ($booking as $barang) {
-            $barang_id =  $barang->id_barang;
-        }
-        // $barang = $booking->id_barang;
-        // $booking = Booking::find($topic_container);
-        // foreach ($booking as $id_barang) {
-        //     $id_barang = $booking->id_barang;
-        // }
-        // $barang = Barang::where('id', $booking)->get('berat');
-
-
-        foreach ($mqtt_dashboard as $key => $item) {
-            $item['value'] = json_decode($item->value,true);
-        }
-        $mqtt['value'] = json_decode($mqtt->value,true);
-        // return $idmqtt;
-
-        $data = array(
-            'mqtt_history' => $mqtt_dashboard,
-            'mqtt' => $mqtt,
-            'name' => $name,
-            'mqtt_all' => $mqtt_all,
-            'container' => $container,
-            'booking' => $booking,
-            'barang' => $barang
-        );
-        return $booking;
         // return response()->json($data);
-        // return view('Dashboard.show',[
-        //     'idmqtt'=> $idmqtt
-        // ]);
+        return view('Dashboard.show',[
+            'idmqtt'=> $idmqtt
+        ]);
     }
 
     /**

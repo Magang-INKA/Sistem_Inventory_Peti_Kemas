@@ -123,7 +123,7 @@
                             <div class="row clearfix progress-box">
                                 <div class="col-lg-6 col-md-12 col-sm-12" style="display: block; margin: auto;">
                                     <div class="progress">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: {{$persen}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$persen}}%</div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12">
@@ -131,11 +131,11 @@
                                         <tbody>
                                             <tr>
                                                 <td style="padding: 0.3rem;">Allocated</td>
-                                                <td style="padding: 0.3rem;">1200 kg</td>
+                                                <td style="padding: 0.3rem;">{{$allocated}} kg</td>
                                             </tr>
                                             <tr>
                                                 <td style="padding: 0.3rem;">Free</td>
-                                                <td style="padding: 0.3rem;">800 kg</td>
+                                                <td style="padding: 0.3rem;">{{$free}} kg</td>
                                             </tr>
                                             <tr>
                                                 <td style="padding: 0.3rem;">Total</td>
@@ -177,17 +177,32 @@
             <div class="pd-20 card-white height-100-p">
                 <h2 class="mb-30 h4">Notification</h2>
                 @foreach ($container as $con)
-                @if ( $mqtt->value['AVG_TMP'] > $con->suhu_ketetapan || $mqtt->value['AVG_TMP'] < $con->suhu_ketetapan)
-                <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                    <strong> Suhu tidak sesuai ketentuan!</strong> Atur suhu menjadi {{$con->suhu_ketetapan}} °C
-                    {{-- <form action="" method="POST"> --}}
-                    <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    {{-- </form> --}}
-                </div>
-                @else
-                <p>Nothing notification.</p>
+                @if ($mqtt->value['AVG_TMP'] < 0)
+                    @if ( ceil($mqtt->value['AVG_TMP']) > ($con->suhu_ketetapan)+1 || ceil($mqtt->value['AVG_TMP']) < ($con->suhu_ketetapan)-1)
+                    <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                        <strong> Suhu tidak sesuai ketentuan!</strong> Atur suhu menjadi {{$con->suhu_ketetapan}} °C
+                        {{-- <form action="" method="POST"> --}}
+                        <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{-- </form> --}}
+                    </div>
+                    @else
+                    <p>Nothing notification.</p>
+                    @endif
+                @elseif ($mqtt->value['AVG_TMP'] >= 0)
+                    @if ( floor($mqtt->value['AVG_TMP']) > ($con->suhu_ketetapan)+1 || floor($mqtt->value['AVG_TMP']) < ($con->suhu_ketetapan)-1)
+                    <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                        <strong> Suhu tidak sesuai ketentuan!</strong> Atur suhu menjadi {{$con->suhu_ketetapan}} °C
+                        {{-- <form action="" method="POST"> --}}
+                        <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{-- </form> --}}
+                    </div>
+                    @else
+                    <p>Nothing notification.</p>
+                    @endif
                 @endif
                 @endforeach
             </div>

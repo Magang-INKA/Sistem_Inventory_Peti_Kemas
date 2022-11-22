@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use DB;
+use App\Models\Barang;
 use App\Models\Booking;
 use Livewire\Component;
 use App\Models\Dashboard;
@@ -13,7 +15,7 @@ use Illuminate\Support\Facades\Gate;
 
 class DashboardDetail extends Component
 {
-    public $name, $mqtt_all, $mqtt, $container, $mqtt_history;
+    public $name, $mqtt_all, $mqtt, $container, $mqtt_history, $allocated, $free, $persen;
     public $data = [];
     public $idmqtt;
     // public $listener = ['ubahData' => 'changeData'];
@@ -27,12 +29,25 @@ class DashboardDetail extends Component
     public function mount($idmqtt)
     {
         $topicid = $idmqtt;
-        $id_container = Mqtt::where('id', $idmqtt)->get('topic');
+        // $id_container = Mqtt::where('id', $idmqtt)->get('topic');
+        $id_container = Mqtt::find($idmqtt);
+        foreach ($id_container as $topic_container) {
+            $topic_container = $id_container->topic;
+        }
         $mqtt_dashboard = Dashboard::where('topicid', $topicid)->get();
         $mqtt = Mqtt::find($idmqtt);
         $name = Mqtt::find($idmqtt);
         $mqtt_all = Mqtt::all();
         $container = MasterContainer::find($id_container);
+        $allocated = DB::table('master_barang')->join('booking', 'master_barang.id', '=', 'booking.id_barang')
+        ->where('booking.no_container', '=', $topic_container)->sum('master_barang.berat');
+        foreach ($container as $key => $rc) {
+            $kapasitas = $rc->kapasitas;
+        }
+        $free = $kapasitas - $allocated;
+        $persen = round(($allocated/$kapasitas)*100,2);
+        $coba1 = ceil(16.7);
+        $coba2 = floor(-16.7);
 
         foreach ($mqtt_dashboard as $key => $item) {
             $item['value'] = json_decode($item->value,true);
@@ -44,7 +59,10 @@ class DashboardDetail extends Component
             'mqtt' => $mqtt,
             'name' => $name,
             'mqtt_all' => $mqtt_all,
-            'container' => $container
+            'container' => $container,
+            'allocated' => $allocated,
+            'free' => $free,
+            'persen' => $persen
         );
 
         // $this->data = $data;
@@ -53,10 +71,13 @@ class DashboardDetail extends Component
         $this->mqtt = $mqtt;
         $this->container = $container;
         $this->mqtt_history = $mqtt_dashboard;
+        $this->allocated = $allocated;
+        $this->free = $free;
+        $this->persen = $persen;
         // $this->emitSelf('refresh-me');
         $this->emit('some-event');
         // return response()->json($data);
-        // dd($name);
+        // dd($coba2);
     }
 
     public function loadData()
@@ -67,6 +88,9 @@ class DashboardDetail extends Component
         $this->mqtt = $this->mqtt;
         $this->container = $this->container;
         $this->mqtt_history = $this->mqtt_history;
+        $this->allocated = $this->allocated;
+        $this->free = $this->free;
+        $this->persen = $this->persen;
         // return response()->json($data);
         // dd($name);
     }
