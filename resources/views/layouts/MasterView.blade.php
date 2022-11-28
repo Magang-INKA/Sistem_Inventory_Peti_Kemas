@@ -11,6 +11,9 @@
 	<link rel="icon" type="image/png" sizes="35x35" href="{{asset('vendors/images/round-2.png')}}">
 	<link rel="icon" type="image/png" sizes="20x20" href="{{asset('vendors/images/round-2.png')}}">
 
+	<!-- Select2 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -40,6 +43,53 @@
     {{-- End JS Filter --}}
     @livewireStyles
 </head>
+<style>
+
+	/* Hide all steps by default: */
+	.tab {
+	  display: none;
+	}
+
+	button {
+	  background-color: #04AA6D;
+	  color: #ffffff;
+	  border: none;
+	  padding: 10px 20px;
+	  font-size: 17px;
+	  font-family: Raleway;
+	  cursor: pointer;
+	}
+
+	button:hover {
+	  opacity: 0.8;
+	}
+
+	#prevBtn {
+	  background-color: #bbbbbb;
+	}
+
+	/* Make circles that indicate the steps of the form: */
+	.step {
+	  height: 15px;
+	  width: 15px;
+	  margin: 0 2px;
+	  background-color: #bbbbbb;
+	  border: none;
+	  border-radius: 50%;
+	  display: inline-block;
+	  opacity: 0.5;
+	}
+
+	.step.active {
+	  opacity: 1;
+	}
+
+	/* Mark the steps that are finished and valid: */
+	.step.finish {
+	  background-color: #04AA6D;
+	}
+	</style>
+
 <body>
 
 	{{--  Header  --}}
@@ -90,9 +140,11 @@
 	<script src="{{asset('src/plugins/switchery/switchery.min.js')}}"></script>
     <script src="{{asset('vendors/scripts/advanced-components.js')}}"></script>
 
-
+	<!-- Select2 -->
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Datatable Setting js -->
 	 {{-- <script src="{{asset('vendors/scripts/datatable-setting.js')}}"></script>  --}}
+	 @stack('javascript-internal')
     @yield('scriptPage')
     @livewireScripts
 </body>

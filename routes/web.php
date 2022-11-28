@@ -116,11 +116,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('booking/create-step-one', [BookingController::class,'postCreateStepOne'])->name('booking.create.step.one.post');
     Route::post('booking/create-step-two', [BookingController::class,'postCreateStepTwo'])->name('booking.create.step.two.post');
 });
-// Route::get('booking/create-step-one',[BookingController::class,'create'])->name('booking.create.step.one');
-// Route::post('booking/create-step-one', 'FormBookingController@postCreateStepOne')->name('booking.create.step.one.post');
 
-// Route::get('/create-step-two', 'FormBookingController@createStepTwo')->name('formBooking.create.step.two');
-// Route::post('/create-step-two', 'FormBookingController@postCreateStepTwo')->name('booking.create.step.two.post');
 
-// Route::get('/create-step-three', 'FormBookingController@createStepThree')->name('booking.create.step.three');
-// Route::post('/create-step-three', 'FormBookingController@postCreateStepThree')->name('booking.create.step.three.post');
+//Select2 dependency dropdown
+Route::get('/pelabuhan1', [\App\Http\Controllers\BookingController::class, 'select'])->name('pelabuhan1.select');
+Route::get('/pelabuhan2', [\App\Http\Controllers\BookingController::class, 'select2'])->name('pelabuhan2.select');
+Route::get('/jadwal-kapal', [\App\Http\Controllers\BookingController::class, 'select3'])->name('jadwalkapal.select');

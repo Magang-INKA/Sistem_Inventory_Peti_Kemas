@@ -137,11 +137,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <button type="submit" style="display:none;"></button>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                        <button type="reset" class="btn btn-danger">Reset</button>
+                                        <button type="submit" style="display:none;"></button>
+                                        {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
                                         {{-- <div class="pull-right">
                                             <a href="{{route('kapal.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
                                                 <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
@@ -152,10 +153,13 @@
                                 </div>
                         </form>
                     </div>
+
+                    {{-- submit button --}}
+
                 </div>
 
                 <!-- success Popup html Start -->
-                <div class="modal fade" id="success-modal" tabindex="-1" role="dialog"
+                {{-- <div class="modal fade" id="success-modal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -164,14 +168,14 @@
                                 <div class="mb-30 text-center"><img src="{{ asset('vendors/images/success.png') }}"></div>
                             </div>
                             <div class="modal-footer justify-content-center">
-                                {{-- <a href="booking.store"> --}}
+                                <a href="booking.store">
                                 <button type="button" class="btn btn-primary" data-dismiss="modal"
                                     onclick="window.location.href='/StatusBooking'">Done</button>
-                                {{-- </a> --}}
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- success Popup html End -->
             </div>
         </div>

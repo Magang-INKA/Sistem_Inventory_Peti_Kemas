@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Models\Booking;
 use App\Models\Container;
+use App\Models\JadwalKapal;
+use App\Models\JenisBarang;
 use App\Models\Kapal;
 use App\Models\Pelabuhan;
 use App\Models\User;
@@ -57,7 +59,12 @@ class BookingController extends Controller
 
         // $transaksi = Transaksi::all();
         // return view('Booking.FormBooking', compact('booking', 'containers', 'pelabuhan', 'kapal', 'user'));
-        return view('Booking.FB-step-one', compact('booking', 'user', 'containers'));
+        //$jb = JenisBarang::all();
+
+        //return view('booking.create',compact('user','jb'));
+        //return view('booking.create',compact('user'));
+        return view('booking.FormBooking',compact('user','containers'));
+        //return view('Booking.FB-step-one', compact('booking', 'user', 'containers'));
     }
     public function create2()
     {
@@ -244,5 +251,67 @@ class BookingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function select(Request $request)
+    {
+        $pelabuhan1 = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $pelabuhan1 = Pelabuhan::select("kode_pelabuhan", "nama_pelabuhan")
+                ->Where('nama_pelabuhan', 'LIKE', "%$search%")
+                ->get();
+
+        } else {
+            $pelabuhan1 = Pelabuhan::limit(10)->get();
+        }
+        return response()->json($pelabuhan1);
+    }
+
+    public function select2 (Request $request)
+    {
+        $pelabuhan2 = [];
+        $asalID = $request->asalID;
+        $tujuanID = $request->tujuanID;
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $pelabuhan2=JadwalKapal::select('id','jadwalkapal.asal_pelabuhan_id','pelabuhan.nama_pelabuhan')
+                    ->where('pelabuhan.nama_pelabuhan','LIKE',"%$search%")
+                    ->join('pelabuhan', 'pelabuhan.kode_pelabuhan', '=', 'jadwalkapal.asal_pelabuhan_id')
+                    ->get();
+        } else {
+            $pelabuhan2 = JadwalKapal::where('asal_pelabuhan_id', $asalID)
+                            ->orWhere('asal_pelabuhan_id',$tujuanID)
+                            ->limit(10)
+                            ->join('pelabuhan', 'pelabuhan.kode_pelabuhan', '=', 'jadwalkapal.tujuan_pelabuhan_id')
+                            ->get();
+        }
+        return response()->json($pelabuhan2);
+    }
+
+    public function select3 (Request $request)
+    {
+        $pelabuhan2 = [];
+        $asalID = $request->asalID;
+        $tujuanID = $request->tujuanID;
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $pelabuhan2=JadwalKapal::select('id','jadwalkapal.asal_pelabuhan_id','pelabuhan.nama_pelabuhan')
+                    ->where('pelabuhan.nama_pelabuhan','LIKE',"%$search%")
+                    ->join('pelabuhan', 'pelabuhan.kode_pelabuhan', '=', 'jadwalkapal.asal_pelabuhan_id')
+                    ->get();
+        } else {
+            $pelabuhan2 = JadwalKapal::select('jadwalkapal.id','jadwalkapal.id_trip','trip.nama_trip', 'jadwalkapal.ETA','jadwalkapal.ETD','kapal.nama_kapal')
+                            ->join('trip', 'trip.id', '=', 'jadwalkapal.id_trip')
+                            ->join('kapal', 'kapal.id', '=', 'trip.id_kapal')
+                            ->where('jadwalkapal.asal_pelabuhan_id', $asalID)
+                            ->Where('jadwalkapal.tujuan_pelabuhan_id',$tujuanID)
+                            ->limit(10)
+                            ->get();
+        }
+        return response()->json($pelabuhan2);
     }
 }
