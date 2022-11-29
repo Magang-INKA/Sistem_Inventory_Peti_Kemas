@@ -71,23 +71,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($bookings as $br => $data)
+                    @foreach($booking as $br => $data)
                     <tr>
                         <td class="table-plus">{{ $loop->iteration }}</td>
                         <td>{{ $data->no_resi }}</td>
+<<<<<<< HEAD
+                        <td>{{ $data->id_user }}</td>
+                        <td>{{ $data->id_container}}</td>
+                        <td>{{ $data->id_jadwal }}</td>
+                        <td>{{ $data->id_barang }}</td>
+                        <td>{{ $data->nama_penerima}}</td>
+                        <td>{{ $data->status}}</td>
+                        @can('manage-MasterData')
+=======
                         <td>{{ $data->jadwalKapal->trip->kapal->nama_kapal }}</td>
                         <td>{{ $data->jadwalKapal->keberangkatan->nama_pelabuhan }}=>{{ $data->jadwalKapal->ETA }}</td>
                         <td>{{ $data->status }}</td>
                         {{-- @can('manage-MasterData') --}}
+>>>>>>> 2ffc49fcf517cbd4dd7acd4d8f78af10e7f01ac5
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                     <i class="dw dw-more"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <form action="{{ route('JadwalKapal.destroy', $data->id) }}" method="POST">
-                                        <a class="dropdown-item" href="{{ route('JadwalKapal.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
-                                        <a class="dropdown-item" href="{{ route('JadwalKapal.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
+                                    <form action="{{ route('booking.destroy', $data->id) }}" method="POST">
+                                        <a class="dropdown-item" href="{{ route('booking.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
+                                        <a class="dropdown-item" href="{{ route('booking.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <button class="dropdown-item" onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit">
@@ -96,12 +106,20 @@
                                 </div>
                             </div>
                         </td>
+<<<<<<< HEAD
+                        @endcan
+=======
                         {{-- @endcan --}}
+>>>>>>> 2ffc49fcf517cbd4dd7acd4d8f78af10e7f01ac5
                     </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="col-md-40 col-sm-12 text-left">
+<<<<<<< HEAD
+                {{$bookings->links()}}
+=======
+>>>>>>> 2ffc49fcf517cbd4dd7acd4d8f78af10e7f01ac5
             </div>
         </div>
     </div>

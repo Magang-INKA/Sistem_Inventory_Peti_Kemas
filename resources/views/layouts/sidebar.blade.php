@@ -39,10 +39,15 @@
                         <li><a href="{{ route('pelabuhan.index') }}" class="dropdown-toggle no-arrow @yield('menu_pelabuhan')">Harbour Master</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="{{ url('/booking') }}" class="dropdown-toggle no-arrow @yield('menu_booking')">
+                        <span class="micon dw dw-edit"></span><span class="mtext">Booking</span>
+                    </a>
+                </li>
                 @endif
                 @can('manage-booking')
                 <li>
-                    <a href="/booking/create" class="dropdown-toggle no-arrow @yield('menu_booking')">
+                    <a href="{{url('/booking/create')}}" class="dropdown-toggle no-arrow @yield('menu_booking')">
                         <span class="micon dw dw-invoice-1"></span><span class="mtext">Booking Form</span>
                     </a>
                 </li>

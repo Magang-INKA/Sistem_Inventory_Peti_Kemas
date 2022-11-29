@@ -1,98 +1,152 @@
-@extends('mylayout')
-
+@extends('layouts.MasterView')
+@section('menu_user', 'active')
 @section('content')
-   <h2>Edit book</h2>
-   <div class="row">
-      <div class="col">
-         <form action="" method="post">
-            {{-- <form action="{{ route('booking.update', ['booking' => $product]) }}" method="post"> --}}
-            @csrf
-            @method('PUT')
-            <div class="mb-3">
-               <label class="form-label">No Resi</label>
-               <input name="name" value="{{ $booking->no_resi }}" type="text" class="form-control" readonly>
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="title">
+                <h4>Edit Booking</h4>
             </div>
-            <div class="mb-3">
-               <label class="form-label">Pengirim</label>
-               <input name="name" value="{{ $booking->id_user }}" type="text" class="form-control" readonly>
-            </div>
-            <div class="mb-3">
-               <label class="form-label">Jadwal</label>
-               <table id="lookup" class="table table-bordered table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>ID Jadwal</th>
-                        <th>Asal</th>
-                        <th>Tujuan</th>
-                        <th>ETA</th>
-                        <th>ETD</th>
-                        <th>Nama Kapal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($jadwal as $data)
-                    <tr>
-                     <td>{{$data->id_jadwal}}</td>
-                     <td>{{$data->asal}}</td>
-                     <td>{{$data->tujuan}}</td>
-                     <td>{{$data->ETA}}</td>
-                     <td>{{$data->ETD}}</td>
-                     <td>{{$data->nama_kapal}}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('booking.index') }}">Booking</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-md-6 col-sm-12 text-right">
+            <i class="icon-copy dw dw-add-file-1 fa-3x" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>
+<!-- Default Basic Forms Start -->
+<div class="pd-20 card-box mb-30">
+	@if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+	<form method="POST" action="{{ route('booking.update', $booking->id) }}" id="myForm" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+		<div class="form-group row">
+			<label for="no_telp" class="col-sm-12 col-md-2 col-form-label text-white">No Resi</label>
+			<div class="col-sm-12 col-md-10">
+            <input name="no_resi" value="{{ $booking->no_resi }}" type="text" class="form-control" >
+			</div>
+		</div>
+        <div class="form-group row">
+			<label for="no_telp" class="col-sm-12 col-md-2 col-form-label text-white">Pengirim</label>
+			<div class="col-sm-12 col-md-10">
+            <input name="id_user" value="{{ $booking->id_user }}" type="text" class="form-control" >
+			</div>
+		</div>
+		<div class="form-group row">
+         <label for="jadwal" class="col-sm-12 col-md-2 col-form-label text-white">Jadwal</label>
+			<div class="col-sm-12 col-md-10">
+            <table id="lookup" class="table table-bordered table-hover table-striped">
+             <thead>
+                 <tr>
+                     <th>ID Jadwal</th>
+                     <th>Asal</th>
+                     <th>Tujuan</th>
+                     <th>ETA</th>
+                     <th>ETD</th>
+                     <th>Nama Kapal</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 @foreach($jadwal as $data)
+                 <tr>
+                  <td>{{$data->id_jadwal}}</td>
+                  <td>{{$data->asal}}</td>
+                  <td>{{$data->tujuan}}</td>
+                  <td>{{$data->ETA}}</td>
+                  <td>{{$data->ETD}}</td>
+                  <td>{{$data->nama_kapal}}</td>
+                 </tr>
+                 @endforeach
+             </tbody>
+         </table>
 
-               {{-- <input name="id_jadwal" value="{{ $jadwal_decode }}" type="text" class="form-control" readonly> --}}
-            </div>
-            <input id="id_jadwal" type="hidden" name="id_jadwal" value="{{ old('id_jadwal') }}" required readonly>
-               <span class="input-group-btn">
-                  <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Jadwal</b> <span class="fa fa-search"></span></button>
-               </span>
-            <div class="mb-3">
-               <label class="form-label">
-                  Detail Barang
-               </label>
-               <label class="form-label">Jadwal</label>
-               <input name="address" class="form-control" rows="3" value="{{ $barang->id }}">
-               <label class="form-label">Jenis Barang</label>
-               <input id="nama_barang" name="nama_barang" value="{{ $barang->jenis_barang }}" required readonly>
-               <label class="form-label">Nama Barang</label>
-               <input id="nama_barang" name="nama_barang" value="{{ $barang->nama_barang }}" required readonly>
-               <label class="form-label">Berat Barang</label>
-               <input id="nama_barang" name="nama_barang" value="{{ $barang->berat_barang }}" required readonly>
-            </div>
-            <div class="mb-3">
-               <label class="form-label">
-                  Detail Penerima
-               </label>
-               <label class="form-label">Nama Penerima</label>
-               <input name="address" class="form-control" rows="3" value="{{ $booking->nama_penerima }}">
-               <label class="form-label">Jenis Barang</label>
-               <input id="nama_barang" name="nama_barang" value="{{ $booking->telp_penerima }}" required readonly>
-               <label class="form-label">Nama Barang</label>
-               <input id="nama_barang" name="nama_barang" value="{{ $booking->alamat_penerima }}" required readonly>
-            </div>
-            <label class="form-label">
-              Status Booking
-            </label>
-            <select class="form-control" id="status" name="status">
-               <option value="belum">Belum</option>
-               <option value="terima">Terima</option>
-               <option value="reschedule">Reschedule</option>
-               <option value="tolak">Tolak</option>
-            </select>
-            <div class="mb-3">
-               <button class="btn btn-primary" type="submit">Update</button>
-            </div>
-         </form>
-      </div>
-   </div>
+         <input id="id_jadwal" type="hidden" name="id_jadwal" value="{{ $booking->id_jadwal }}" required readonly>
+         <span class="input-group-btn">
+            <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Jadwal</b> <span class="fa fa-search"></span></button>
+         </span> {{-- <input name="id_jadwal" value="{{ $jadwal_decode }}" type="text" class="form-control" readonly> --}}
+         </div>
 
-   {{-- Modal Jadwal--}}
+		</div>
+      <div class="form-group row">
+			<label for="role" class="col-sm-12 col-md-2 col-form-label text-white">Container</label>
+			<div class="col-sm-12 col-md-10">
+				<input name="address" class="form-control" rows="3" value="{{ $booking->id_container }}">
+			</div>
+		</div>
 
-<div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
-   <div class="modal-dialog modal-lg" role="document" >
+      <div class="form-group row">
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label text-white">Jenis Barang</label>
+			<div class="col-sm-12 col-md-10">
+            <select class="custom-select col-12" type="role" name="jenis_barang" id="role">
+               @foreach($jb as $jenisbarang)
+                   <option value="{{ $jenisbarang->id }}">{{ $jenisbarang->jenis_barang }}</option>
+                @endforeach
+           </select>
+			</div>
+		</div>
+      <div class="form-group row">
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label text-white">Nama Barang</label>
+			<div class="col-sm-12 col-md-10">
+            <input id="nama_barang" class="form-control" name="nama_barang" value="{{ $barang->nama_barang }}" required >
+			</div>
+		</div>
+      <div class="form-group row">
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label text-white">Berat Barang</label>
+			<div class="col-sm-12 col-md-10">
+            <input id="nama_barang" class="form-control" name="berat_barang" value="{{ $barang->berat_barang }}" required >
+			</div>
+		</div>
+      <div class="form-group row">
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label text-white">Nama Penerima</label>
+			<div class="col-sm-12 col-md-10">
+            <input id="nama_barang" class="form-control" name="nama_penerima" value="{{ $booking->nama_penerima }}" required >
+			</div>
+		</div>
+      <div class="form-group row">
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label text-white">Telepon Penerima</label>
+			<div class="col-sm-12 col-md-10">
+            <input id="nama_barang" class="form-control" name="telp_penerima" value="{{ $booking->telp_penerima }}" required >
+			</div>
+		</div>
+      <div class="form-group row">
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label text-white">Alamat Penerima</label>
+			<div class="col-sm-12 col-md-10">
+            <input id="nama_barang" class="form-control" name="alamat_penerima" value="{{ $booking->alamat_penerima }}" required >
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label"></label>
+			<div class="col-sm-10">
+				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="reset" class="btn btn-danger">Reset</button>
+                <div class="pull-right">
+                    <a href="{{route('booking.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
+                        <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
+                        Kembali
+                    </a>
+                </div>
+			</div>
+		</div>
+	</form>
+</div>
+  {{-- Modal Jadwal--}}
+
+  <div class="modal fade bd-example-modal-xl" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
+   <div class="modal-dialog modal-xl" role="document" >
        <div class="modal-content" style="background: #fff;">
            <div class="modal-header">
                <h5 class="modal-title" id="exampleModalLabel">Cari Jadwal</h5>
@@ -115,7 +169,6 @@
                            <th> Kapasitas </th>
                            <th> ETA </th>
                            <th> ETD </th>
-                           <th> Action</th>
                        </tr>
                    </thead>
                    <tbody>
@@ -128,12 +181,11 @@
                            </td>
                            <td>{{$data->tujuan->nama_pelabuhan}}</td>
                            <td>{{$data->nama_kapal}}</td>
-                           <td>{{$data->kode_container}}</td>
+                           <td>{{$data->no_container}}</td>
                            {{-- <td>{{$data->tujuan_pelabuhan_id}}</td> --}}
-                           <td>{{$data->kapasitas_berat}}</td>
+                           <td>{{$data->kapasitas}}</td>
                            <td>{{$data->ETA}}</td>
                            <td>{{$data->ETD}}</td>
-                           <td><button>Select</button></td>
                        </tr>
                        @endforeach
                    </tbody>
@@ -155,7 +207,7 @@ $(document).ready(function(){
 
 });
    $(document).on('click', '.pilih', function (e) {
-                //document.getElementById("id_jadwal").value = $(this).attr('data-id_jadwal');
+                document.getElementById("id_jadwal").value = $(this).attr('data-id_jadwal');
                 $('#myModal').modal('hide');
             });
 
@@ -165,4 +217,6 @@ $(document).ready(function(){
 
         </script>
 
+
+<!-- Default Basic Forms End -->
 @endsection

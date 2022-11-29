@@ -54,4 +54,8 @@ class Booking extends Model
     {
         return $this->belongsTo(Pelabuhan::class, 'id_pelabuhan');
     }
+    public function rute()
+    {
+        return $this->belongsTo(Rute::class, 'id_jadwal');
+    }
 }

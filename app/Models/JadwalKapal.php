@@ -27,7 +27,7 @@ class JadwalKapal extends Model
         return $this->hasOne(Trip::class, 'id','id_trip');
     }
 
-    public function keberangkatan()
+    public function awal()
     {
         return $this->hasOne(Pelabuhan::class, 'kode_pelabuhan', 'asal_pelabuhan_id');
     }
