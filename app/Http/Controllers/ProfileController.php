@@ -55,7 +55,6 @@ class ProfileController extends Controller
         //melakukan validasi data
         $request->validate([
             'name' => 'required',
-            'username' => 'required',
             'email' => 'required',
             'role' => 'required',
             ]);
@@ -65,7 +64,6 @@ class ProfileController extends Controller
             //fungsi eloquent untuk mengupdate data inputan kita
             if ($request->file('gambar') == ''){
                 $user->name = $request->get('name');
-                $user->username = $request->get('username');
                 $user->email = $request->get('email');
                 $user->role = $request->get('role');
                 $user->save();
@@ -78,7 +76,6 @@ class ProfileController extends Controller
             $image_name = $request->file('gambar')->store('images', 'public');
             $user->gambar = $image_name;
             $user->name = $request->get('name');
-            $user->username = $request->get('username');
             $user->email = $request->get('email');
             $user->role = $request->get('role');
             $user->save();
@@ -86,6 +83,6 @@ class ProfileController extends Controller
 
         //jika data berhasil diupdate, akan kembali ke halaman utama
         Alert::success('Success', 'Data User Berhasil Diupdate');
-        return redirect()->route('home');
+        return redirect()->to('dashboard');
     }
 }

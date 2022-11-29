@@ -46,12 +46,6 @@
 				<input class="form-control" type="text" name="name" id="name" value="{{ $user->name }}" aria-describedby="name" placeholder="">
 			</div>
 		</div>
-        <div class="form-group row">
-			<label for="username" class="col-sm-12 col-md-2 col-form-label text-white">Username</label>
-			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="username" id="username" value="{{ $user->username }}" aria-describedby="username" placeholder="">
-			</div>
-		</div>
 		<div class="form-group row">
 			<label for="email" class="col-sm-12 col-md-2 col-form-label text-white">Email</label>
 			<div class="col-sm-12 col-md-10">

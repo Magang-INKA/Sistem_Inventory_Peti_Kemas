@@ -37,12 +37,6 @@
                             </div>
                         </div>
                         <div class="form-group row" style="padding-left: 25px">
-                            <label for="username" class="col-sm-10 col-md-3 col-form-label text-white">Username</label>
-                            <div class="col-md-8 col-sm-12">
-                                <input class="form-control" type="text" name="username" id="username" value="{{ $user->username }}" aria-describedby="name" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group row" style="padding-left: 25px">
                             <label for="email" class="col-sm-10 col-md-3 col-form-label text-white">Email</label>
                             <div class="col-md-8 col-sm-12">
                                 <input class="form-control" type="email" name="email" id="email" value="{{ $user->email }}" aria-describedby="email" placeholder="Disabled input" disabled="">
