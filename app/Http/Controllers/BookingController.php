@@ -128,7 +128,7 @@ class BookingController extends Controller
             $date = Carbon::now()->toDateString();
             $q = new Booking();
             $q->no_resi = $resi;
-            $q->id_user = '1';
+            $q->id_user = Auth::user()->id;
             $q->id_jadwal = $request->input('id_jadwal');
             // $q->jenis_container = $request->input('jenis_container');
             $q->id_container = '1';
@@ -141,7 +141,8 @@ class BookingController extends Controller
             $q->save();
 
             Alert::success('Success', 'Data Booking Berhasil Ditambahkan');
-            return view('Booking.StatusBooking');
+            $book = Booking::where('id_user', Auth::user()->id)->get();
+            return view('Booking.StatusBooking', compact('book'));
         } catch (\Throwable $th) {
             dd($th->getMessage());
         }
