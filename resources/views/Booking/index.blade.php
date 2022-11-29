@@ -74,7 +74,6 @@
                     </tr>
                 </thead>
                 <tbody>
-<<<<<<< HEAD
                     @foreach($bookings as $br => $data)
                     <tr>
                         <td class="table-plus">{{ $br + $bookings->firstitem() }}</td>
@@ -86,16 +85,6 @@
                         <td>{{ $data->nama_penerima}}</td>
                         <td>{{ $data->status}}</td>
                         {{-- @can('manage-MasterData')
-=======
-                    @foreach ($booking as $br => $data)
-                    <tr>
-                        <td class="table-plus">{{ $br + $booking->firstitem() }}</td>
-                        <td>{{ $data->user->name }}</td>
-                        {{-- <td>{{ $data->trip->nama_trip }}</td>
-                        <td>{{ $data->ETA }}</td>
-                        <td>{{ $data->ETD }}</td> --}}
-                        @can('manage-MasterData')
->>>>>>> 1dcda2e8751c7eea44fd07769742d99413e4c353
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

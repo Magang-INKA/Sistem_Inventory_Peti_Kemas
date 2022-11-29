@@ -21,13 +21,8 @@ class Barang extends Model
     protected $fillable = [
         'id',
         'nama_barang',
-<<<<<<< HEAD
         'jenis_barang',
         'berat_barang',
-=======
-        'berat',
-        'gambar',
->>>>>>> 1dcda2e8751c7eea44fd07769742d99413e4c353
     ];
 
     // public function container()
