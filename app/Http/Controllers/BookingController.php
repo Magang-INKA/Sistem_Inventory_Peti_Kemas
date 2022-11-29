@@ -38,8 +38,18 @@ class BookingController extends Controller
 
     public function index()
     {
-        $bookings = Booking::paginate(10);
-        return view('booking.index',compact('bookings'));
+
+        if(Auth::user()->role == 'Administrator') {
+            $booking = Booking::all();
+            return view('Booking.index', compact('booking'));
+        }
+        elseif(Auth::user()->role == 'Client') {
+            $book = Booking::where('id_user', Auth::user()->id)->get();
+            // $book = Booking::all();
+            // return $book;
+            return view('Booking.StatusBooking', compact('book'));
+        }
+
     }
 
     /**
@@ -49,10 +59,10 @@ class BookingController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->role == 'Client') {
-            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-            return redirect()->to('/booking');
-        }
+        // if(Auth::user()->role == 'Client') {
+        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //     return redirect()->to('/booking');
+        // }
         $booking = Booking::with('container')->first();
         $containers = Container::all();
 

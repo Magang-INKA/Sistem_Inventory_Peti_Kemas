@@ -40,7 +40,8 @@ class DashboardDetail extends Component
         $mqtt_all = Mqtt::all();
         $container = MasterContainer::find($id_container);
         $allocated = DB::table('master_barang')->join('booking', 'master_barang.id', '=', 'booking.id_barang')
-        ->where('booking.no_container', '=', $topic_container)->sum('master_barang.berat');
+        ->join('container', 'booking.id_container', '=', 'container.id')
+        ->where('container.no_container', '=', $topic_container)->sum('master_barang.berat_barang');
         foreach ($container as $key => $rc) {
             $kapasitas = $rc->kapasitas;
         }

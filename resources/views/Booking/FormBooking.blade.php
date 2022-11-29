@@ -1,5 +1,5 @@
 @extends('layouts.MasterView')
-@section('menu_booking', 'active')
+@section('menu_booking', 'active') 
 @section('content')
     {{-- <div class="main-container"> --}}
     <div class="pd-20 card-box mb-30">

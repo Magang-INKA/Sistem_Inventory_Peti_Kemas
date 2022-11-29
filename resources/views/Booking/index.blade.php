@@ -62,11 +62,8 @@
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
                         <th>No Resi</th>
-                        <th>Nama Pengirim</th>
-                        <th>Container</th>
-                        <th>Jadwal</th>
-                        <th>Barang</th>
-                        <th>Penerima</th>
+                        <th>Nama Kapal</th>
+                        <th>Keberangkatan</th>
                         <th>Status Booking</th>
                         @can('manage-MasterData')
                         <th class="datatable-nosort">Action</th>
@@ -74,10 +71,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($bookings as $br => $data)
+                    @foreach($booking as $br => $data)
                     <tr>
-                        <td class="table-plus">{{ $br + $bookings->firstitem() }}</td>
+                        <td class="table-plus">{{ $loop->iteration }}</td>
                         <td>{{ $data->no_resi }}</td>
+<<<<<<< HEAD
                         <td>{{ $data->id_user }}</td>
                         <td>{{ $data->id_container}}</td>
                         <td>{{ $data->id_jadwal }}</td>
@@ -85,6 +83,12 @@
                         <td>{{ $data->nama_penerima}}</td>
                         <td>{{ $data->status}}</td>
                         @can('manage-MasterData')
+=======
+                        <td>{{ $data->jadwalKapal->trip->kapal->nama_kapal }}</td>
+                        <td>{{ $data->jadwalKapal->keberangkatan->nama_pelabuhan }}=>{{ $data->jadwalKapal->ETA }}</td>
+                        <td>{{ $data->status }}</td>
+                        {{-- @can('manage-MasterData') --}}
+>>>>>>> 2ffc49fcf517cbd4dd7acd4d8f78af10e7f01ac5
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -102,13 +106,20 @@
                                 </div>
                             </div>
                         </td>
+<<<<<<< HEAD
                         @endcan
+=======
+                        {{-- @endcan --}}
+>>>>>>> 2ffc49fcf517cbd4dd7acd4d8f78af10e7f01ac5
                     </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="col-md-40 col-sm-12 text-left">
+<<<<<<< HEAD
                 {{$bookings->links()}}
+=======
+>>>>>>> 2ffc49fcf517cbd4dd7acd4d8f78af10e7f01ac5
             </div>
         </div>
     </div>
