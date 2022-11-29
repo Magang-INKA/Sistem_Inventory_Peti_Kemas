@@ -45,7 +45,7 @@ Route::get('/', function () {
     return view('LandingPage');
 });
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('container', ContainerController::class);
 Route::get('/laporan/container', [ContainerController::class, 'laporan']);

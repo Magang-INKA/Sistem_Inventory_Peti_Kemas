@@ -28,10 +28,10 @@ class Booking extends Model
         'id_barang',
         'id_container',
         'date',
+        'status',
         'nama_penerima',
         'telp_penerima',
         'alamat_penerima',
-        'status'
     ];
 
     public function jadwalKapal()

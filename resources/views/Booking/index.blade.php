@@ -62,8 +62,16 @@
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
                         <th>No Resi</th>
+<<<<<<< HEAD
                         <th>Nama Kapal</th>
                         <th>Keberangkatan</th>
+=======
+                        <th>Nama Pengirim</th>
+                        <th>Container</th>
+                        <th>Jadwal</th>
+                        <th>Barang</th>
+                        <th>Penerima</th>
+>>>>>>> dce954de7419aadafff3cef4e9d9ae059da8d9d7
                         <th>Status Booking</th>
                         @can('manage-MasterData')
                         <th class="datatable-nosort">Action</th>
@@ -71,14 +79,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($booking as $br => $data)
+                    @foreach($bookings as $br => $data)
                     <tr>
+<<<<<<< HEAD
                         <td class="table-plus">{{ $loop->iteration }}</td>
                         <td>{{ $data->no_resi }}</td>
                         <td>{{ $data->jadwalKapal->trip->kapal->nama_kapal }}</td>
                         <td>{{ $data->jadwalKapal->keberangkatan->nama_pelabuhan }}=>{{ $data->jadwalKapal->ETA }}</td>
                         <td>{{ $data->status }}</td>
                         {{-- @can('manage-MasterData') --}}
+=======
+                        <td class="table-plus">{{ $br + $bookings->firstitem() }}</td>
+                        <td>{{ $data->no_resi }}</td>
+                        <td>{{ $data->id_user }}</td>
+                        <td>{{ $data->id_container}}</td>
+                        <td>{{ $data->id_jadwal }}</td>
+                        <td>{{ $data->id_barang }}</td>
+                        <td>{{ $data->nama_penerima}}</td>
+                        <td>{{ $data->status}}</td>
+                        {{-- @can('manage-MasterData')
+>>>>>>> dce954de7419aadafff3cef4e9d9ae059da8d9d7
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -96,13 +116,25 @@
                                 </div>
                             </div>
                         </td>
+<<<<<<< HEAD
                         {{-- @endcan --}}
+=======
+                        @endcan --}}
+>>>>>>> dce954de7419aadafff3cef4e9d9ae059da8d9d7
                     </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="col-md-40 col-sm-12 text-left">
+<<<<<<< HEAD
                 {{-- {{$booking->links()}} --}}
+=======
+<<<<<<< HEAD
+                {{$bookings->links()}}
+=======
+                {{$booking->links()}}
+>>>>>>> 1dcda2e8751c7eea44fd07769742d99413e4c353
+>>>>>>> dce954de7419aadafff3cef4e9d9ae059da8d9d7
             </div>
         </div>
     </div>

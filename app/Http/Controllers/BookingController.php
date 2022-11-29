@@ -10,6 +10,7 @@ use App\Models\JenisBarang;
 use App\Models\Kapal;
 use App\Models\Pelabuhan;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -37,6 +38,7 @@ class BookingController extends Controller
 
     public function index()
     {
+<<<<<<< HEAD
 
         if(Auth::user()->role == 'Administrator') {
             $booking = Booking::all();
@@ -49,6 +51,10 @@ class BookingController extends Controller
             return view('Booking.StatusBooking', compact('book'));
         }
 
+=======
+        $bookings = Booking::paginate(10);
+        return view('booking.index',compact('bookings'));
+>>>>>>> dce954de7419aadafff3cef4e9d9ae059da8d9d7
     }
 
     /**
@@ -58,113 +64,16 @@ class BookingController extends Controller
      */
     public function create()
     {
-        // if(Auth::user()->role == 'Client') {
-        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-        //     return redirect()->to('/booking');
-        // }
+        if(Auth::user()->role == 'Client') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('/booking');
+        }
         $booking = Booking::with('container')->first();
         $containers = Container::all();
-        // $pelabuhan = Pelabuhan::all();
-        // $kapal = Kapal::all();
+
         $user = User::all();
-
-        // $transaksi = Transaksi::all();
-        // return view('Booking.FormBooking', compact('booking', 'containers', 'pelabuhan', 'kapal', 'user'));
-        //$jb = JenisBarang::all();
-
-        //return view('booking.create',compact('user','jb'));
-        //return view('booking.create',compact('user'));
-        return view('booking.FormBooking',compact('user','containers'));
-        //return view('Booking.FB-step-one', compact('booking', 'user', 'containers'));
-    }
-    public function create2()
-    {
-        // if(Auth::user()->role == 'Client') {
-        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-        //     return redirect()->to('/booking');
-        // }
-        $barang = Barang::with('booking')->first();
-        $booking = Booking::all();
-        // $containers = Container::all();
-        // $transaksi = Transaksi::all();
-        return view('Booking.FB-step-two', compact('barang',  'booking'));
-    }
-
-    // public function createStepOne()
-    // {
-    //     // if(Auth::user()->role == 'Client') {
-    //     //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-    //     //     return redirect()->to('/booking');
-    //     // }
-    //     $booking = Booking::with('container')->first();
-    //     $containers = Container::all();
-    //     // $pelabuhan = Pelabuhan::all();
-    //     // $kapal = Kapal::all();
-    //     $user = User::all();
-
-    //     // $transaksi = Transaksi::all();
-    //     // return view('Booking.FormBooking', compact('booking', 'containers', 'pelabuhan', 'kapal', 'user'));
-    //     return view('Booking.FB-step-one', compact('booking', 'user', 'containers'));
-    // }
-
-    public function postCreateStepOne(Request $request)
-    {
-        // dd($request);
-        $validatedData = $request->validate([
-            'id_user' => 'required',
-            'id_container' => 'required',
-            'id_kapal' => 'required',
-            'id_pelabuhan' => 'required',
-            'date' => 'required',
-            'status' => 'required',
-        ]);
-        if(empty($request->session()->get('booking'))){
-            $booking = new Booking();
-            $booking->fill($validatedData);
-            $request->session()->put('booking', $booking);
-        }else{
-            $booking = $request->session()->get('booking');
-            $booking->fill($validatedData);
-            $request->session()->put('booking', $booking);
-        }
-
-        return redirect()->route('booking.create.step.two');
-    }
-
-    // public function createStepTwo()
-    // {
-    //     $booking = Booking::with('container')->first();
-    //     $containers = Container::all();
-    //     // $pelabuhan = Pelabuhan::all();
-    //     // $kapal = Kapal::all();
-    //     $user = User::all();
-
-    //     // $transaksi = Transaksi::all();
-    //     // return view('Booking.FormBooking', compact('booking', 'containers', 'pelabuhan', 'kapal', 'user'));
-    //     return view('Booking.FB-step-one', compact('booking', 'user', 'containers'));
-    // }
-
-    public function postCreateStepTwo(Request $request)
-    {
-
-        $validatedData = $request->validate([
-            'nama_barang' => 'required',
-            'jumlah_barang' => 'required',
-            'requirement' => 'required',
-            'id_container' => 'required',
-            'id_booking' => 'required',
-        ]);
-        if(empty($request->session()->get('booking'))){
-            $barang = new Barang();
-            $barang->fill($validatedData);
-            $request->session()->put('barang', $barang);
-        }else{
-            $barang = $request->session()->get('barang');
-            $barang->fill($validatedData);
-            $request->session()->put('barang', $barang);
-        }
-
-        return redirect()->route('booking.create.step.two');
+        $jb = JenisBarang::all();
+        return view('booking.create',compact('user','containers','jb'));
     }
 
 
@@ -177,46 +86,71 @@ class BookingController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
-        // $request->validate([
-        //     'id_user' => 'required',
-        //     'id_container' => 'required',
-        //     'id_kapal' => 'required',
-        //     'id_pelabuhan' => 'required',
-        //     'date' => 'required',
-        //     'status' => 'required',
-        //     // 'status_booking' => 'required',
-        //     // 'nama_barang' => 'required',
-        //     // 'jumlah_barang' => 'required',
-        //     // 'requirement' => 'required',
-        // ]);
-        // $booking = new Booking;
-        // // $booking = Booking::where('id_user', auth()->user()->id);
-        // $booking->id_user = auth()->user()->id;
-        // $booking->id_container = $request->get('id_container');
-        // $booking->id_kapal = $request->get('id_kapal');
-        // $booking->id_pelabuhan = $request->get('id_pelabuhan');
-        // $booking->date = $request->get('date');
-        // // $booking->status = $request->get('status');
-        // $booking->save();
+        //dd($request);
+        try {
+            // dd($request);
+            $this->validate($request, [
+                'jenis_barang' => 'required',
+                'nama_barang' => 'required|string',
+                'berat_barang' => 'required|integer',
+            ]);
+            $barang = DB::table('master_barang')->orderByDesc('id')->pluck('id')->first();
+            $id=(int)$barang+1;
 
-        // $barang = new Barang;
-        // $barang->id_booking = $booking->id;
-        // $barang->nama_barang = $request->input('nama_barang');
-        // $barang->jumlah_barang = $request->input('jumlah_barang');
-        // $barang->requirement = $request->input('requirement');
-        // $barang->save();
-        // $barang->booking()->create([
-        //     'nama_barang' => $request->input('nama_barang'),
-        //     'jumlah_barang' => $request->input('jumlah_barang'),
-        //     'requirement' => $request->input('requirement'),
-        // ]);
-        //fungsi eloquent untuk menambah data
-        // Booking::create($request->all());
+            $huruf = 'BKG';
+            Barang::create([
+                'jenis_barang' => $request->input('jenis_barang'),
+                'nama_barang' =>  $request->input('nama_barang'),
+                'berat_barang' => $request->input('berat_barang'),
+            ]);
 
-        //jika data berhasil ditambahkan, akan kembali ke halaman utama
-        Alert::success('Success', 'Data Booking Berhasil Ditambahkan');
-        return view('Booking.StatusBooking');
+            $num = Booking::orderBy('no_resi','desc')->count();
+            $dataCode = Booking::orderBy('no_resi','desc')->first();
+            if ($num == 0) {
+                $resi = 'BKG001';
+            }
+            else{
+                $c = $dataCode->no_resi;
+                $cod = (int) substr($c, 3);
+                $cod++;
+                $resi = $huruf . sprintf("%03s", $cod);
+                // $code = "BK00".$cod;
+            }
+            //echo $student_id;
+            // Booking::create([
+            //     'no_resi' => $student_id,
+            //     'id_user' => '1',
+            //     'id_jadwal' => $request->input('id_jadwal'),
+            //     'jenis_container'=> $request->input('jenis_container'),
+            //     'id_container'=> '0',
+            //     'id_barang' => $id,
+            //     'nama_penerima' => $request->input('nama_penerima'),
+            //     'telp_penerima' => $request->input('telp_penerima'),
+            //     'alamat_penerima' => $request->input('alamat_penerima'),
+            //     'status' => 'belum',
+            // ]);
+
+            $date = Carbon::now()->toDateString();
+            $q = new Booking();
+            $q->no_resi = $resi;
+            $q->id_user = '1';
+            $q->id_jadwal = $request->input('id_jadwal');
+            // $q->jenis_container = $request->input('jenis_container');
+            $q->id_container = '1';
+            $q->id_barang = $id;
+            $q->date = $date;
+            $q->nama_penerima = $request->input('nama_penerima');
+            $q->telp_penerima = $request->input('telp_penerima');
+            $q->alamat_penerima = $request->input('alamat_penerima');;
+            $q->status = 'belum';
+            $q->save();
+
+            Alert::success('Success', 'Data Booking Berhasil Ditambahkan');
+            return view('Booking.StatusBooking');
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
+
     }
 
     /**
@@ -288,15 +222,15 @@ class BookingController extends Controller
 
         if ($request->has('q')) {
             $search = $request->q;
-            $pelabuhan2=JadwalKapal::select('id','jadwalkapal.asal_pelabuhan_id','pelabuhan.nama_pelabuhan')
-                    ->where('pelabuhan.nama_pelabuhan','LIKE',"%$search%")
-                    ->join('pelabuhan', 'pelabuhan.kode_pelabuhan', '=', 'jadwalkapal.asal_pelabuhan_id')
+            $pelabuhan2=JadwalKapal::select('id','jadwal_kapal.asal_pelabuhan_id','master_pelabuhan.nama_pelabuhan')
+                    ->where('master_pelabuhan.nama_pelabuhan','LIKE',"%$search%")
+                    ->join('master_pelabuhan', 'master_pelabuhan.kode_pelabuhan', '=', 'jadwal_kapal.asal_pelabuhan_id')
                     ->get();
         } else {
             $pelabuhan2 = JadwalKapal::where('asal_pelabuhan_id', $asalID)
                             ->orWhere('asal_pelabuhan_id',$tujuanID)
                             ->limit(10)
-                            ->join('pelabuhan', 'pelabuhan.kode_pelabuhan', '=', 'jadwalkapal.tujuan_pelabuhan_id')
+                            ->join('master_pelabuhan', 'master_pelabuhan.kode_pelabuhan', '=', 'jadwal_kapal.tujuan_pelabuhan_id')
                             ->get();
         }
         return response()->json($pelabuhan2);
@@ -310,16 +244,16 @@ class BookingController extends Controller
 
         if ($request->has('q')) {
             $search = $request->q;
-            $pelabuhan2=JadwalKapal::select('id','jadwalkapal.asal_pelabuhan_id','pelabuhan.nama_pelabuhan')
-                    ->where('pelabuhan.nama_pelabuhan','LIKE',"%$search%")
-                    ->join('pelabuhan', 'pelabuhan.kode_pelabuhan', '=', 'jadwalkapal.asal_pelabuhan_id')
+            $pelabuhan2=JadwalKapal::select('id','jadwal_kapal.asal_pelabuhan_id','master_pelabuhan.nama_pelabuhan')
+                    ->where('master_pelabuhan.nama_pelabuhan','LIKE',"%$search%")
+                    ->join('master_pelabuhan', 'master_pelabuhan.kode_pelabuhan', '=', 'jadwal_kapal.asal_pelabuhan_id')
                     ->get();
         } else {
-            $pelabuhan2 = JadwalKapal::select('jadwalkapal.id','jadwalkapal.id_trip','trip.nama_trip', 'jadwalkapal.ETA','jadwalkapal.ETD','kapal.nama_kapal')
-                            ->join('trip', 'trip.id', '=', 'jadwalkapal.id_trip')
-                            ->join('kapal', 'kapal.id', '=', 'trip.id_kapal')
-                            ->where('jadwalkapal.asal_pelabuhan_id', $asalID)
-                            ->Where('jadwalkapal.tujuan_pelabuhan_id',$tujuanID)
+            $pelabuhan2 = JadwalKapal::select('jadwal_kapal.id','jadwal_kapal.id_trip','trip.nama_trip', 'jadwal_kapal.ETA','jadwal_kapal.ETD','master_kapal.nama_kapal')
+                            ->join('trip', 'trip.id', '=', 'jadwal_kapal.id_trip')
+                            ->join('master_kapal', 'master_kapal.id', '=', 'trip.id_kapal')
+                            ->where('jadwal_kapal.asal_pelabuhan_id', $asalID)
+                            ->Where('jadwal_kapal.tujuan_pelabuhan_id',$tujuanID)
                             ->limit(10)
                             ->get();
         }
