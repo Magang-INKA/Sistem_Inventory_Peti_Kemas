@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Trip;
-use App\Models\MasterKapal;
 use App\Models\Pelabuhan;
 
 class JadwalKapal extends Model
@@ -16,8 +15,9 @@ class JadwalKapal extends Model
 
     protected $fillable = [
         'id',
-        'id_kapal',
         'id_trip',
+        'asal_pelabuhan_id',
+        'tujuan_pelabuhan_id',
         'ETA',
         'ETD',
     ];
@@ -25,10 +25,6 @@ class JadwalKapal extends Model
     public function trip()
     {
         return $this->hasOne(Trip::class, 'id','id_trip');
-    }
-    public function kapal()
-    {
-        return $this->hasOne(MasterKapal::class, 'no_kapal','id_kapal');
     }
 
     public function keberangkatan()
@@ -38,6 +34,6 @@ class JadwalKapal extends Model
 
     public function tujuan()
     {
-        return $this->hasOne(Pelabuhan::class, 'kode_pelabuhan' , 'final_pelabuhan_id');
+        return $this->hasOne(Pelabuhan::class, 'kode_pelabuhan' , 'tujuan_pelabuhan_id');
     }
 }

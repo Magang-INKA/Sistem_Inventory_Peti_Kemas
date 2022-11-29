@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableMasterContainer extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateTableMasterContainer extends Migration
      */
     public function up()
     {
-        Schema::create('master_container', function (Blueprint $table) {
-            $table->char('no_container', 20)->primary();
-            $table->string('jenis_container');
-            $table->integer('kapasitas');
-            $table->integer('suhu_ketetapan');
+        Schema::create('jenis_barang', function (Blueprint $table) {
+            $table->increments('id');
+            $table->char('jenis_barang');
+            $table->char('suhu');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateTableMasterContainer extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('master_container');
+        Schema::dropIfExists('jenis_barang');
     }
-}
+};

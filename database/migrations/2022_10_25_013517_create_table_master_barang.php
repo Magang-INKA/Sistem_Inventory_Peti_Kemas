@@ -15,9 +15,11 @@ class CreateTableMasterBarang extends Migration
     {
         Schema::create('master_barang', function (Blueprint $table) {
             $table->id();
+            $table->integer('jenis_barang')->unsigned();
             $table->string('nama_barang', 50);
-            $table->integer('berat');
-            $table->string('gambar')->nullable();
+            $table->double('berat_barang');
+            $table->string('qrcode')->nullable();
+            $table->foreign('jenis_barang')->references('id')->on('jenis_barang')->onDelete('cascade');
             $table->timestamps();
         });
     }

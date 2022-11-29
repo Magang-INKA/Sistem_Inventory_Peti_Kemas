@@ -15,12 +15,10 @@ class CreateTableContainer extends Migration
     {
         Schema::create('container', function (Blueprint $table) {
             $table->id();
-            $table->string('no_container', 20);
+            $table->char('no_container', 20);
             $table->foreign('no_container')->references('no_container')->on('master_container');
-            $table->char('no_kapal', 20);
-            $table->foreign('no_kapal')->references('no_kapal')->on('master_kapal');
-            $table->char('id_pelabuhan');
-            $table->foreign('id_pelabuhan')->references('kode_pelabuhan')->on('master_pelabuhan');
+            $table->unsignedBigInteger('id_kapal');
+            $table->foreign('id_kapal')->references('id')->on('master_kapal');
             $table->timestamps();
         });
     }

@@ -46,7 +46,6 @@
                         <th class="table-plus datatable-nosort">No</th>
                         <th>No Container</th>
                         <th>No Kapal</th>
-                        <th>Nama Pelabuhan</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
                 </thead>
@@ -56,7 +55,6 @@
                         <td class="table-plus">{{ $ct + $container->firstitem() }}</td>
                         <td>{{ $data->no_container }}</td>
                         <td>{{ $data->kapal->no_kapal }}</td>
-                        <td>{{ $data->pelabuhan->nama_pelabuhan }}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\PelabuhanExport;
+use App\Models\JadwalKapal;
 use App\Models\Pelabuhan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -25,6 +26,81 @@ class PelabuhanController extends Controller
         abort(403, 'Anda tidak memiliki cukup hak akses');
         });
     }
+
+    public function select(Request $request)
+    {
+        $pelabuhan1 = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $pelabuhan1 = Pelabuhan::select("kode_pelabuhan", "nama_pelabuhan")
+                ->Where('nama_pelabuhan', 'LIKE', "%$search%")
+                ->get();
+        } else {
+            $pelabuhan1 = Pelabuhan::limit(10)->get();
+        }
+        return response()->json($pelabuhan1);
+    }
+
+    public function select2 (Request $request)
+    {
+        $pelabuhan2 = [];
+        $asalID = $request->asalID;
+        $tujuanID = $request->tujuanID;
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $pelabuhan2=JadwalKapal::select('id','jadwal.asal_pelabuhan_id','pelabuhan.nama_pelabuhan')
+                    ->where('pelabuhan.nama_pelabuhan','LIKE',"%$search%")
+                    ->join('pelabuhan', 'pelabuhan.kode_pelabuhan', '=', 'rute.asal_pelabuhan_id')
+                    ->get();
+
+        } else {
+            $pelabuhan2 = JadwalKapal::where('asal_pelabuhan_id', $asalID)
+                            ->orWhere('asal_pelabuhan_id',$tujuanID)
+                            ->limit(10)
+                            ->join('pelabuhan', 'pelabuhan.kode_pelabuhan', '=', 'rute.tujuan_pelabuhan_id')
+                            ->get();
+        }
+        return response()->json($pelabuhan2);
+    }
+
+    public function select3 (Request $request)
+    {
+        $pelabuhan2 = [];
+        $asalID = $request->asalID;
+        $tujuanID = $request->tujuanID;
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $pelabuhan2=Rute::select('id','rute.asal_pelabuhan_id','pelabuhan.nama_pelabuhan')
+                    ->where('pelabuhan.nama_pelabuhan','LIKE',"%$search%")
+                    ->join('pelabuhan', 'pelabuhan.kode_pelabuhan', '=', 'rute.asal_pelabuhan_id')
+                    ->get();
+
+        } else {
+            $pelabuhan2 = Rute::select('rute.id','rute.id_trip','trip.nama_trip', 'rute.ETA','rute.ETD','kapal.nama_kapal')
+                            ->join('trip', 'trip.id', '=', 'rute.id_trip')
+                            ->join('kapal', 'kapal.id', '=', 'trip.id_kapal')
+                            ->where('rute.asal_pelabuhan_id', $asalID)
+                            ->Where('rute.tujuan_pelabuhan_id',$tujuanID)
+                            ->get();
+        }
+        //dd($pelabuhan2);
+        return response()->json($pelabuhan2);
+    }
+
+    public function search(Request $request)
+    {
+        $trip = DB::table('rute');
+        if( $request->select_pelabuhan1 && $request->select_pelabuhan2 ){
+            $trip = $trip->where('asal_pelabuhan_id', $request->select_pelabuhan1)
+                         ->where('tujuan_pelabuhan_id',$request->select_pelabuhan2);
+        }
+        $trip = $trip->paginate(10);
+        return view('booking.index', compact('trip'));
+    }
+
 
     public function index(Request $request)
     {

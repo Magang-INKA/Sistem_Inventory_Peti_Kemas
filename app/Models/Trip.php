@@ -35,7 +35,7 @@ class Trip extends Model
 
     public function kapal()
     {
-        return $this->hasOne(MasterKapal::class, 'no_kapal' , 'id_kapal');
+        return $this->hasOne(MasterKapal::class, 'id' , 'id_kapal');
     }
     public function jadwalKapal()
     {

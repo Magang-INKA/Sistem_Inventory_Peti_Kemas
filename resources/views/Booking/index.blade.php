@@ -70,14 +70,14 @@
                         @endcan
                     </tr>
                 </thead>
-                {{-- <tbody>
-                    @foreach ($barang as $br => $data)
+                <tbody>
+                    @foreach ($booking as $br => $data)
                     <tr>
-                        <td class="table-plus">{{ $br + $barang->firstitem() }}</td>
-                        <td>{{ $data->kode_barang }}</td>
-                        <td>{{ $data->container->nama_container}}</td>
-                        <td>{{ $data->nama_barang }}</td>
-                        <td>{{ $data->jumlah_barang}}</td>
+                        <td class="table-plus">{{ $br + $booking->firstitem() }}</td>
+                        <td>{{ $data->user->name }}</td>
+                        {{-- <td>{{ $data->trip->nama_trip }}</td>
+                        <td>{{ $data->ETA }}</td>
+                        <td>{{ $data->ETD }}</td> --}}
                         @can('manage-MasterData')
                         <td>
                             <div class="dropdown">
@@ -85,9 +85,9 @@
                                     <i class="dw dw-more"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <form action="{{ route('barang.destroy', $data->id) }}" method="POST">
-                                        <a class="dropdown-item" href="{{ route('barang.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
-                                        <a class="dropdown-item" href="{{ route('barang.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
+                                    <form action="{{ route('JadwalKapal.destroy', $data->id) }}" method="POST">
+                                        <a class="dropdown-item" href="{{ route('JadwalKapal.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
+                                        <a class="dropdown-item" href="{{ route('JadwalKapal.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <button class="dropdown-item" onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit">
@@ -99,10 +99,10 @@
                         @endcan
                     </tr>
                     @endforeach
-                </tbody> --}}
+                </tbody>
             </table>
             <div class="col-md-40 col-sm-12 text-left">
-                {{-- {{$booking->links()}} --}}
+                {{$booking->links()}}
             </div>
         </div>
     </div>

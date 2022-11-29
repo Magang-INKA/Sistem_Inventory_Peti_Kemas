@@ -34,11 +34,11 @@
 	<form method="POST" action="{{ route('container.store') }}" id="myForm">
         @csrf
 		<div class="form-group row">
-			<label for="no_kapal" class="col-sm-12 col-md-2 col-form-label text-white">No Kapal</label>
+			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">No Kapal</label>
 			<div class="col-sm-12 col-md-10">
                 <div class="input-group">
-                    {{-- <input id="nama_kapal" type="text" class="form-control" readonly="" required> --}}
-                    <input id="no_kapal" type="text" name="no_kapal" class="form-control" value="{{ old('no_kapal') }}" required readonly="">
+                    <input id="no_kapal" type="text" class="form-control" readonly="" value="{{ old('no_kapal') }}" required readonly="">
+                    <input id="id_kapal" type="hidden" name="id_kapal" class="form-control" value="{{ old('id_kapal') }}" required readonly="">
                     <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Kapal</b><span class="fa fa-search"></span></button>
                 </div>
             </div>
@@ -50,16 +50,6 @@
                     {{-- <input id="no_container" type="text" class="form-control" readonly="" required> --}}
                     <input id="no_container" type="text" class="form-control" name="no_container" value="{{ old('no_container') }}" required readonly="">
                     <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal2"><b>Cari Container</b><span class="fa fa-search"></span></button>
-                </div>
-            </div>
-		</div>
-		<div class="form-group row">
-			<label for="id_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Nama Pelabuhan</label>
-			<div class="col-sm-12 col-md-10">
-                <div class="input-group">
-                    <input id="nama_pelabuhan" type="text" class="form-control" readonly="" required>
-                    <input id="id_pelabuhan" type="hidden" name="id_pelabuhan" value="{{ old('id_pelabuhan') }}" required readonly="">
-                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal3"><b>Cari Pelabuhan</b><span class="fa fa-search"></span></button>
                 </div>
             </div>
 		</div>
@@ -99,7 +89,7 @@
                     </thead>
                     <tbody>
                         @foreach($kapal as $data)
-                        <tr class="pilih" data-no_kapal="<?php echo $data->no_kapal; ?>" data-nama_kapal="<?php echo $data->nama_kapal; ?>" >
+                        <tr class="pilih" data-id_kapal="<?php echo $data->id; ?>" data-no_kapal="<?php echo $data->no_kapal; ?>" >
                             <td>{{$data->no_kapal}}</td>
                             <td>{{$data->nama_kapal}}</td>
                         </tr>
@@ -124,42 +114,18 @@
                     <thead>
                         <tr>
                             <th>No Container</th>
+                            <th>jenis_container</th>
+                            <th>kapasitas</th>
+                            <th>suhu_ketetapan</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($container as $data)
                         <tr class="pilih2" data-no_container="<?php echo $data->no_container; ?>" >
                             <td>{{$data->no_container}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade bd-example-modal-lg" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
-    <div class="modal-dialog modal-lg" role="document" >
-        <div class="modal-content" style="background: #fff;">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cari Pelabuhan </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table id="lookup" class="table table-bordered table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID Pelabuhan</th>
-                            <th>Nama Pelabuhan Tujuan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($pelabuhan as $data)
-                        <tr class="pilih3" data-id_pelabuhan="<?php echo $data->id; ?>" data-nama_pelabuhan="<?php echo $data->nama_pelabuhan; ?>" >
-                            <td>{{$data->id}}</td>
-                            <td>{{$data->nama_pelabuhan}}</td>
+                            <td>{{$data->jenis_container}}</td>
+                            <td>{{$data->kapasitas}}</td>
+                            <td>{{$data->suhu_ketetapan}}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -180,20 +146,14 @@
 </script>
 <script type="text/javascript">
     $(document).on('click', '.pilih', function (e) {
-        // document.getElementById("nama_kapal").value = $(this).attr('data-nama_kapal');
         document.getElementById("no_kapal").value = $(this).attr('data-no_kapal');
+        document.getElementById("id_kapal").value = $(this).attr('data-id_kapal');
         $('#myModal').modal('hide');
     });
 
     $(document).on('click', '.pilih2', function (e) {
         document.getElementById("no_container").value = $(this).attr('data-no_container');
         $('#myModal2').modal('hide');
-    });
-
-    $(document).on('click', '.pilih3', function (e) {
-        document.getElementById("nama_pelabuhan").value = $(this).attr('data-nama_pelabuhan');
-        document.getElementById("id_pelabuhan").value = $(this).attr('data-id_pelabuhan');
-        $('#myModal3').modal('hide');
     });
 
     $(function () {

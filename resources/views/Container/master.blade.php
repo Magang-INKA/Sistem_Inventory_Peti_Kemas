@@ -46,7 +46,8 @@
                         <th class="table-plus datatable-nosort">No</th>
                         <th>Container Number (Code)</th>
                         <th>Container Type</th>
-                        <th>Size (Feet)</th>
+                        <th>Capacity (Kg)</th>
+                        <th>Temperature (°C)</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
                 </thead>
@@ -55,8 +56,9 @@
                     <tr>
                         <td class="table-plus">{{ $mc + $masterContainer->firstitem() }}</td>
                         <td>{{ $data->no_container }}</td>
-                        <td>{{ $data->jenis }}</td>
-                        <td>{{ $data->ukuran }}</td>
+                        <td>{{ $data->jenis_container }}</td>
+                        <td>{{ $data->kapasitas }}</td>
+                        <td>{{ $data->suhu_ketetapan }}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

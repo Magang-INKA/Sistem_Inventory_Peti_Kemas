@@ -21,17 +21,14 @@ class Barang extends Model
     protected $fillable = [
         'id',
         'nama_barang',
-        'jumlah_barang',
-        'requirement',
-        'id_booking',
-        'id_container',
-        'id_transaksi',
+        'berat',
+        'gambar',
     ];
 
-    public function container()
-    {
-        return $this->belongsTo(Container::class, 'id_container');
-    }
+    // public function container()
+    // {
+    //     return $this->belongsTo(Container::class, 'id_container');
+    // }
     public function BarangKeluar()
     {
         return $this->hasMany(BarangKeluar::class);
@@ -46,6 +43,6 @@ class Barang extends Model
     }
     public function booking()
     {
-        return $this->belongsTo(Booking::class, 'id_booking');
+        return $this->hasMany(Booking::class);
     }
 }

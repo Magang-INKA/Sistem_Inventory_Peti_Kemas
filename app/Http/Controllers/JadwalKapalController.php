@@ -40,7 +40,8 @@ class JadwalKapalController extends Controller
         $jadwalKapal = JadwalKapal::all();
         $trip = Trip::all();
         $kapal = MasterKapal::all();
-        return view('JadwalKapal.create', compact('jadwalKapal', 'trip', 'kapal'));
+        $pelabuhan = Pelabuhan::all();
+        return view('JadwalKapal.create', compact('jadwalKapal', 'trip', 'kapal', 'pelabuhan'));
     }
 
     /**
@@ -52,15 +53,17 @@ class JadwalKapalController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_kapal' => 'required',
             'id_trip' => 'required',
+            'asal_pelabuhan_id' => 'required',
+            'tujuan_pelabuhan_id' => 'required',
             'ETA' => 'required',
             'ETD' => 'required',
         ]);
 
         $jadwalKapal = new JadwalKapal;
-        $jadwalKapal->id_kapal = $request->get('id_kapal');
         $jadwalKapal->id_trip = $request->get('id_trip');
+        $jadwalKapal->asal_pelabuhan_id = $request->get('asal_pelabuhan_id');
+        $jadwalKapal->tujuan_pelabuhan_id = $request->get('tujuan_pelabuhan_id');
         $jadwalKapal->ETA = $request->get('ETA');
         $jadwalKapal->ETD = $request->get('ETD');
         $jadwalKapal->save();
@@ -105,8 +108,9 @@ class JadwalKapalController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id_kapal' => 'required',
             'id_trip' => 'required',
+            'asal_pelabuhan_id' => 'required',
+            'tujuan_pelabuhan_id' => 'required',
             'ETA' => 'required',
             'ETD' => 'required',
         ]);
@@ -127,5 +131,26 @@ class JadwalKapalController extends Controller
         JadwalKapal::find($id)->delete();
         Alert::success('Success', 'Data Jadwal Kapal berhasil dihapus');
         return redirect()->route('JadwalKapal.index');
+    }
+    public function select(Request $request)
+    {
+        $jadwal = [];
+        $asalID = $request->asalID;
+        $tujuanID = $request->tujuanID;
+        if ($request->has('q')) {
+            $search = $request->q;
+            $jadwal = JadwalKapal::select("id", "asal_pelabuhan_id")
+                // ->join('kapal', 'kapal.kode_kapal', '=', 'jadwal_kapal.id_kapal')
+                ->where('asal_pelabuhan_id', $asalID)
+                ->orWhere('asal_pelabuhan_id', 'LIKE', "%$search%")
+                ->get();
+        } else {
+            $jadwal = JadwalKapal::where('asal_pelabuhan_id', $asalID)
+            //->orwhere('tujuan_pelabuhan_id', $tujuanID)
+            ->join('pelabuhan', 'pelabuhan.kode_pelabuhan', '=', 'rute.tujuan_pelabuhan_id')
+            ->limit(10)
+            ->get();
+        }
+        return response()->json($jadwal);
     }
 }
