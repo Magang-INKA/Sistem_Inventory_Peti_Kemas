@@ -34,16 +34,6 @@
 	<form method="POST" action="{{ route('JadwalKapal.update' , $jadwalKapal->id) }}" id="myForm" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-		<div class="form row">
-			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">No Kapal</label>
-            <div class="col-sm-12 col-md-10">
-                <div class="input-group">
-                    <input id="nama_kapal" type="hidden" readonly="" required>
-                    <input id="id_kapal" type="text" class="form-control" name="id_kapal" value="{{ $jadwalKapal->kapal->no_kapal }}" required readonly="">
-                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal1"><b>Cari Kapal </b><span class="fa fa-search"></span></button>
-                </div>
-            </div>
-		</div>
         <div class="form row">
 			<label for="id_trip" class="col-sm-12 col-md-2 col-form-label text-white">ID Trip</label>
             <div class="col-sm-12 col-md-10">
@@ -51,6 +41,14 @@
                     <input id="nama_trip" type="hidden"  readonly="" required>
                     <input id="id_trip" type="text" class="form-control" name="id_trip" value="{{ $jadwalKapal->trip->id }}" required readonly="">
                     <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal2"><b>Cari Trip </b><span class="fa fa-search"></span></button>
+                </div>
+            </div>
+		</div>
+        <div class="form row">
+			<label for="" class="col-sm-12 col-md-2 col-form-label text-white">No-Nama Kapal</label>
+            <div class="col-sm-12 col-md-10">
+                <div class="input-group">
+                    <input id="" type="text" class="form-control" name="" value="{{ $jadwalKapal->trip->kapal->no_kapal }} - {{ $jadwalKapal->trip->kapal->nama_kapal }}" required readonly="" aria-disabled="">
                 </div>
             </div>
 		</div>
@@ -82,36 +80,6 @@
 	</form>
 </div>
 <!-- Default Basic Forms End -->
-<div class="modal fade bd-example-modal-lg" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
-    <div class="modal-dialog modal-lg" role="document" >
-        <div class="modal-content" style="background: #fff;">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cari Kapal</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table id="lookup" class="table table-bordered table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th>No Kapal</th>
-                            <th>Nama Kapal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($kapal as $data)
-                        <tr class="pilih1" data-id_kapal="<?php echo $data->no_kapal; ?>" data-nama_kapal="<?php echo $data->nama_kapal; ?>" >
-                            <td>{{$data->no_kapal}}</td>
-                            <td>{{$data->nama_kapal}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="modal fade bd-example-modal-lg" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-lg" role="document" >
         <div class="modal-content" style="background: #fff;">

@@ -19,18 +19,13 @@ class Container extends Model
      */
     protected $fillable = [
         'id',
-        'no_kapal',
+        'id_kapal',
         'no_container',
-        'id_pelabuhan',
     ];
 
     public function kapal()
     {
-        return $this->belongsTo(MasterKapal::class, 'no_kapal');
-    }
-    public function pelabuhan()
-    {
-        return $this->belongsTo(Pelabuhan::class, 'id_pelabuhan');
+        return $this->belongsTo(MasterKapal::class, 'id_kapal', 'id');
     }
     public function master()
     {

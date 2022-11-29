@@ -14,7 +14,8 @@ class CreateTableMasterKapal extends Migration
     public function up()
     {
         Schema::create('master_kapal', function (Blueprint $table) {
-            $table->char('no_kapal', 20)->primary();
+            $table->id();
+            $table->char('no_kapal', 20);
             $table->string('nama_kapal');
             $table->timestamps();
         });

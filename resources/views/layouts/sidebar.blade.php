@@ -13,7 +13,7 @@
         <div class="sidebar-menu">
             <ul id="accordion-menu">
                 <li>
-                    <a href="{{ url('/') }}" class="dropdown-toggle no-arrow @yield('menu_home')">
+                    <a href="{{ url('/dashboard') }}" class="dropdown-toggle no-arrow @yield('menu_home')">
                         <span class="micon dw dw-monitor"></span><span class="mtext">Dashboard</span>
                     </a>
                 </li>

@@ -15,19 +15,20 @@ class CreateTableBooking extends Migration
     {
         Schema::create('booking', function (Blueprint $table) {
             $table->id();
-            $table->string('kode', 20)->unique();
+            $table->char('no_resi',255);
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
-            $table->string('no_container');
-            $table->foreign('no_container')->references('no_container')->on('master_container');
+            $table->integer('id_jadwal')->unsigned();
+            $table->foreign('id_jadwal')->references('id')->on('jadwal_kapal')->onDelete('cascade');
+            $table->unsignedBigInteger('id_container');
+            $table->foreign('id_container')->references('id')->on('container');
             $table->unsignedBigInteger('id_barang');
             $table->foreign('id_barang')->references('id')->on('master_barang');
-            $table->char('no_kapal');
-            $table->foreign('no_kapal')->references('no_kapal')->on('master_kapal');
-            $table->char('id_pelabuhan');
-            $table->foreign('id_pelabuhan')->references('kode_pelabuhan')->on('master_pelabuhan');
             $table->date('date');
             $table->string('status');
+            $table->string('nama_penerima');
+            $table->string('telp_penerima');
+            $table->string('alamat_penerima');
             $table->timestamps();
         });
     }

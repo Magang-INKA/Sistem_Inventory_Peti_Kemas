@@ -69,15 +69,13 @@ class ContainerController extends Controller
         //melakukan validasi data
         $request->validate([
             'no_container' => 'required',
-            'no_kapal' => 'required',
-            'id_pelabuhan' => 'required',
+            'id_kapal' => 'required',
             ]);
 
             //fungsi eloquent untuk menambah data
             $container = new Container;
             $container->no_container = $request->get('no_container');
-            $container->no_kapal = $request->get('no_kapal');
-            $container->id_pelabuhan = $request->get('id_pelabuhan');
+            $container->id_kapal = $request->get('id_kapal');
             $container->save();
 
             //jika data berhasil ditambahkan, akan kembali ke halaman utama

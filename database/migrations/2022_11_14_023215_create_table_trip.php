@@ -18,7 +18,7 @@ class CreateTableTrip extends Migration
             $table->char('nama_trip');
             $table->char('asal_pelabuhan_id',10);
             $table->char('final_pelabuhan_id',10);
-            $table->char('id_kapal',20);
+            $table->unsignedBigInteger('id_kapal');
             $table->timestamps();
 
             $table->foreign('asal_pelabuhan_id')
@@ -32,7 +32,7 @@ class CreateTableTrip extends Migration
             ->onDelete('cascade');
 
             $table->foreign('id_kapal')
-            ->references('no_kapal')
+            ->references('id')
             ->on('master_kapal')
             ->onDelete('cascade');
         });

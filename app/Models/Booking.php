@@ -21,33 +21,41 @@ class Booking extends Model
      */
     protected $fillable = [
         'id',
+        'no_resi',
         'id_user',
+        'id_jadwal',
+        'id_container',
         'id_barang',
         'id_container',
-        'id_kapal',
-        'id_pelabuhan',
         'date',
+<<<<<<< HEAD
         'status',
         'nama_penerima',
         'telp_penerima',
         'alamat_penerima',
+=======
+        'nama_penerima',
+        'telp_penerima',
+        'alamat_penerima',
+        'status'
+>>>>>>> 1dcda2e8751c7eea44fd07769742d99413e4c353
     ];
 
+    public function jadwalKapal()
+    {
+        return $this->belongsTo(JadwalKapal::class, 'id_jadwal');
+    }
     public function container()
     {
         return $this->belongsTo(Container::class, 'id_container');
     }
     public function barang()
     {
-        return $this->hasMany(Barang::class);
+        return $this->belongsTo(Barang::class, 'id_barang');
     }
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user');
-    }
-    public function kapal()
-    {
-        return $this->belongsTo(Kapal::class, 'id_kapal');
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
     public function pelabuhan()
     {

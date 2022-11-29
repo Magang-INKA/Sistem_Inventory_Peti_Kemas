@@ -41,7 +41,7 @@
 			</div>
 			<div class="login-menu">
 				<ul>
-					<li><a href="{{ route('login') }}">Login</a></li>
+					<li><a href="{{ url('/') }}" class="micon dw dw-home"></a></li>
 				</ul>
 			</div>
 		</div>

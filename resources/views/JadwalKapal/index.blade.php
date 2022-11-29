@@ -45,7 +45,9 @@
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
                         <th>No-Nama Kapal</th>
-                        <th>Nama Trip</th>
+                        {{-- <th>Nama Trip</th> --}}
+                        <th>Keberangkatan</th>
+                        <th>Tujuan</th>
                         <th>ETA</th>
                         <th>ETD</th>
                         @can('manage-MasterData')
@@ -57,10 +59,12 @@
                     @foreach ($jadwalKapal as $br => $data)
                     <tr>
                         <td class="table-plus">{{ $br + $jadwalKapal->firstitem() }}</td>
-                        <td>{{ $data->id_kapal}} - {{ $data->kapal->nama_kapal}}</td>
-                        <td>{{ $data->trip->nama_trip}}</td>
-                        <td>{{ $data->ETA}}</td>
-                        <td>{{$data->ETD}}</td>
+                        <td>{{ $data->trip->kapal->no_kapal }} - {{ $data->trip->kapal->nama_kapal }}</td>
+                        {{-- <td>{{ $data->trip->nama_trip }}</td> --}}
+                        <td>{{ $data->keberangkatan->nama_pelabuhan}}</td>
+                        <td>{{ $data->tujuan->nama_pelabuhan}}</td>
+                        <td>{{ $data->ETA }}</td>
+                        <td>{{ $data->ETD }}</td>
                         @can('manage-MasterData')
                         <td>
                             <div class="dropdown">

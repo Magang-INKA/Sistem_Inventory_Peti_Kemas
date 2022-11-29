@@ -18,7 +18,7 @@ class MasterContainer extends Model
      */
     protected $fillable = [
         'no_container',
-        'jenis',
+        'jenis_container',
         'kapasitas',
         'suhu_ketetapan',
     ];
