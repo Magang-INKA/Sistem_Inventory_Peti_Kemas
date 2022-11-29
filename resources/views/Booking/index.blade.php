@@ -61,9 +61,9 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>Nama Pengirim</th>
-                        <th>Container</th>
-                        <th>Jadwal</th>
+                        <th>No Resi</th>
+                        <th>Nama Kapal</th>
+                        <th>Keberangkatan</th>
                         <th>Status Booking</th>
                         @can('manage-MasterData')
                         <th class="datatable-nosort">Action</th>
@@ -73,12 +73,12 @@
                 <tbody>
                     @foreach ($booking as $br => $data)
                     <tr>
-                        <td class="table-plus">{{ $br + $booking->firstitem() }}</td>
-                        <td>{{ $data->user->name }}</td>
-                        {{-- <td>{{ $data->trip->nama_trip }}</td>
-                        <td>{{ $data->ETA }}</td>
-                        <td>{{ $data->ETD }}</td> --}}
-                        @can('manage-MasterData')
+                        <td class="table-plus">{{ $loop->iteration }}</td>
+                        <td>{{ $data->no_resi }}</td>
+                        <td>{{ $data->jadwalKapal->trip->kapal->nama_kapal }}</td>
+                        <td>{{ $data->jadwalKapal->keberangkatan->nama_pelabuhan }}=>{{ $data->jadwalKapal->ETA }}</td>
+                        <td>{{ $data->status }}</td>
+                        {{-- @can('manage-MasterData') --}}
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -96,13 +96,13 @@
                                 </div>
                             </div>
                         </td>
-                        @endcan
+                        {{-- @endcan --}}
                     </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="col-md-40 col-sm-12 text-left">
-                {{$booking->links()}}
+                {{-- {{$booking->links()}} --}}
             </div>
         </div>
     </div>

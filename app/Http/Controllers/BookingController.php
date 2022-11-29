@@ -37,7 +37,18 @@ class BookingController extends Controller
 
     public function index()
     {
-        return view('Booking/index');
+
+        if(Auth::user()->role == 'Administrator') {
+            $booking = Booking::all();
+            return view('Booking.index', compact('booking'));
+        }
+        elseif(Auth::user()->role == 'Client') {
+            $book = Booking::where('id_user', Auth::user()->id)->get();
+            // $book = Booking::all();
+            // return $book;
+            return view('Booking.StatusBooking', compact('book'));
+        }
+
     }
 
     /**
