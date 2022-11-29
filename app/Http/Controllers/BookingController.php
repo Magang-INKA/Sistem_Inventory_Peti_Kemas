@@ -59,10 +59,10 @@ class BookingController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->role == 'Client') {
-            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-            return redirect()->to('/booking');
-        }
+        // if(Auth::user()->role == 'Client') {
+        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //     return redirect()->to('/booking');
+        // }
         $booking = Booking::with('container')->first();
         $containers = Container::all();
 
