@@ -71,7 +71,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($bookings as $br => $data)
+                    @foreach($booking as $br => $data)
                     <tr>
                         <td class="table-plus">{{ $loop->iteration }}</td>
                         <td>{{ $data->no_resi }}</td>
