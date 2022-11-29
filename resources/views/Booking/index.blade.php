@@ -84,16 +84,16 @@
                         <td>{{ $data->id_barang }}</td>
                         <td>{{ $data->nama_penerima}}</td>
                         <td>{{ $data->status}}</td>
-                        {{-- @can('manage-MasterData')
+                        @can('manage-MasterData')
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                     <i class="dw dw-more"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <form action="{{ route('JadwalKapal.destroy', $data->id) }}" method="POST">
-                                        <a class="dropdown-item" href="{{ route('JadwalKapal.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
-                                        <a class="dropdown-item" href="{{ route('JadwalKapal.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
+                                    <form action="{{ route('booking.destroy', $data->id) }}" method="POST">
+                                        <a class="dropdown-item" href="{{ route('booking.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
+                                        <a class="dropdown-item" href="{{ route('booking.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <button class="dropdown-item" onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit">
@@ -102,17 +102,13 @@
                                 </div>
                             </div>
                         </td>
-                        @endcan --}}
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="col-md-40 col-sm-12 text-left">
-<<<<<<< HEAD
                 {{$bookings->links()}}
-=======
-                {{$booking->links()}}
->>>>>>> 1dcda2e8751c7eea44fd07769742d99413e4c353
             </div>
         </div>
     </div>

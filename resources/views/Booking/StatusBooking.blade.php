@@ -11,7 +11,7 @@
             <div class="form-group row">
                 <label for="no_resi" class="col-sm-12 col-md-2 col-form-label text-white">No Resi</label>
                 <div class="col-sm-12 col-md-10">
-                    @foreach ($booking as $item)
+                    @foreach ($bookings as $item)
                     <input class="form-control" type="text" name="no_resi" id="no_resi"
                     value="{{ $item->no_resi }}" aria-describedby="no_resi"  disabled="">
                     @endforeach
@@ -21,7 +21,7 @@
                 <label for="status" class="col-sm-12 col-md-2 col-form-label text-white">Nama Container</label>
                 <div class="col-sm-12 col-md-10">
                     <input class="form-control" type="text" name="status" id="status"
-                    value="{{ $booking->status }}" aria-describedby="status" placeholder="Disabled input" disabled="">
+                    value="{{ $bookings->status }}" aria-describedby="status" placeholder="Disabled input" disabled="">
                 </div>
             </div>
             {{-- <div class="form-group row">
