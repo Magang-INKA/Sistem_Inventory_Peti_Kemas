@@ -38,7 +38,6 @@ class BookingController extends Controller
 
     public function index()
     {
-<<<<<<< HEAD
 
         if(Auth::user()->role == 'Administrator') {
             $booking = Booking::all();
@@ -51,10 +50,6 @@ class BookingController extends Controller
             return view('Booking.StatusBooking', compact('book'));
         }
 
-=======
-        $bookings = Booking::paginate(10);
-        return view('booking.index',compact('bookings'));
->>>>>>> dce954de7419aadafff3cef4e9d9ae059da8d9d7
     }
 
     /**
