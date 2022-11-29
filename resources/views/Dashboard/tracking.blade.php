@@ -45,7 +45,7 @@
 			</div>
 			<div class="login-menu">
 				<ul>
-					<li><a href="{{ route('login') }}">Login</a></li>
+					<li><a href="{{ url('/') }}" class="micon dw dw-home"></a></li>
 				</ul>
 			</div>
 		</div>
@@ -56,7 +56,7 @@
 			<div class="row align-items-center"> --}}
 				{{-- <div class="row"> --}}
                     <div class="col-lg-12 col-md-12 col-sm-12 mb-30">
-                        <div class="card-white pd-30 height-100-p">
+                        <div class="card-white pd-30">
                             <h2 class="mb-30 h4">Tracking Location</h2>
                             {{-- <div id="browservisit" style="width:100%!important; height:380px"></div> --}}
                             {{-- <br> --}}

@@ -36,7 +36,7 @@ class LoginController extends Controller
             return '/booking/create';
             break;
           default:
-            return '/';
+            return '/dashboard';
           break;
         }
     }

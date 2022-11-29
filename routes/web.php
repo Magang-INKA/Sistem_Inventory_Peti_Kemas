@@ -40,7 +40,10 @@ Route::get('/forgot-password', function () {
 
 Route::get('/tracking', [TrackingController::class,'tracking']);
 
-Route::get('/', [DashboardController::class,'index'])->name('home');
+// Route::get('/', [DashboardController::class,'index'])->name('home');
+Route::get('/', function () {
+    return view('LandingPage');
+});
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
