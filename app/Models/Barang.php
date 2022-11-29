@@ -21,11 +21,8 @@ class Barang extends Model
     protected $fillable = [
         'id',
         'nama_barang',
-        'jumlah_barang',
-        'requirement',
-        'id_booking',
-        'id_container',
-        'id_transaksi',
+        'jenis_barang',
+        'berat_barang',
     ];
 
     public function container()

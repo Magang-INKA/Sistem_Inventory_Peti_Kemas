@@ -61,24 +61,30 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
+                        <th>No Resi</th>
                         <th>Nama Pengirim</th>
                         <th>Container</th>
                         <th>Jadwal</th>
+                        <th>Barang</th>
+                        <th>Penerima</th>
                         <th>Status Booking</th>
                         @can('manage-MasterData')
                         <th class="datatable-nosort">Action</th>
                         @endcan
                     </tr>
                 </thead>
-                {{-- <tbody>
-                    @foreach ($barang as $br => $data)
+                <tbody>
+                    @foreach($bookings as $br => $data)
                     <tr>
-                        <td class="table-plus">{{ $br + $barang->firstitem() }}</td>
-                        <td>{{ $data->kode_barang }}</td>
-                        <td>{{ $data->container->nama_container}}</td>
-                        <td>{{ $data->nama_barang }}</td>
-                        <td>{{ $data->jumlah_barang}}</td>
-                        @can('manage-MasterData')
+                        <td class="table-plus">{{ $br + $bookings->firstitem() }}</td>
+                        <td>{{ $data->no_resi }}</td>
+                        <td>{{ $data->id_user }}</td>
+                        <td>{{ $data->id_container}}</td>
+                        <td>{{ $data->id_jadwal }}</td>
+                        <td>{{ $data->id_barang }}</td>
+                        <td>{{ $data->nama_penerima}}</td>
+                        <td>{{ $data->status}}</td>
+                        {{-- @can('manage-MasterData')
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -96,13 +102,13 @@
                                 </div>
                             </div>
                         </td>
-                        @endcan
+                        @endcan --}}
                     </tr>
                     @endforeach
-                </tbody> --}}
+                </tbody>
             </table>
             <div class="col-md-40 col-sm-12 text-left">
-                {{-- {{$booking->links()}} --}}
+                {{$bookings->links()}}
             </div>
         </div>
     </div>

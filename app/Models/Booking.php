@@ -28,6 +28,9 @@ class Booking extends Model
         'id_pelabuhan',
         'date',
         'status',
+        'nama_penerima',
+        'telp_penerima',
+        'alamat_penerima',
     ];
 
     public function container()
