@@ -54,10 +54,17 @@
         </div>
         <br>
         <div class="text-center">
+            @if (Auth::user()->role != 'Client')
             <a href="{{url('/dashboard')}}" type="button" class="btn btn-lg btn-block" data-bgcolor="rgb(40 94 138)" data-color="#ffffff">
                 <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
                 Kembali
             </a>
+            @elseif (Auth::user()->role == 'Client')
+            <a href="{{url('/booking')}}" type="button" class="btn btn-lg btn-block" data-bgcolor="rgb(40 94 138)" data-color="#ffffff">
+                <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
+                Kembali
+            </a>
+            @endif
         </div>
     </div>
 </div>

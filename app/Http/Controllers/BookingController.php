@@ -200,7 +200,16 @@ class BookingController extends Controller
 
         $jb = JenisBarang::all();
 
-        return view('booking.edit', compact('booking','tjadwal','fjadwal','barang', 'jadwal', 'jadwal_decode','jb', 'container'));
+        foreach ($container as $key => $rc) {
+            $kapasitas = $rc->kapasitas;
+        }
+        $allocated = DB::table('master_barang')->join('booking', 'master_barang.id', '=', 'booking.id_barang')
+        ->join('container', 'booking.id_container', '=', 'container.id')
+        ->where('booking.id', '=', $id)->where('booking.status', '=', 'terima')->sum('master_barang.berat_barang');
+        $free = $kapasitas - $allocated;
+
+        // return $free;
+        return view('booking.edit', compact('booking','tjadwal','fjadwal','barang', 'jadwal', 'jadwal_decode','jb', 'container', 'free'));
         // return $jadwal;
     }
 

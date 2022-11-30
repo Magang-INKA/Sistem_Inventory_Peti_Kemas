@@ -93,7 +93,8 @@
 			<label for="id_container" class="col-sm-12 col-md-2 col-form-label">Container</label>
 			<div class="col-sm-12 col-md-10">
                 <div class="input-group">
-                    <input id="id_container" type="text" class="form-control" name="id_container" value="{{ $booking->id_container }}" required readonly="">
+                    <input id="no_container" type="text" class="form-control" name="no_container" value="{{ old('no_container') }}" required readonly="">
+                    <input id="id_container" type="hidden" class="form-control" name="id_container" value="{{ old('id_container') }}" required readonly="">
                     <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal2"><b>Cari Container</b><span class="fa fa-search"></span></button>
                 </div>
             </div>
@@ -231,18 +232,18 @@
                     <thead>
                         <tr>
                             <th>No Container</th>
-                            <th>jenis_container</th>
-                            <th>kapasitas</th>
-                            <th>suhu_ketetapan</th>
+                            <th>jenis container</th>
+                            <th>kapasitas tersedia</th>
+                            <th>suhu ketetapan</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($container as $data)
-                        <tr class="pilih2" data-id="<?php echo $data->id; ?>" >
+                        <tr class="pilih2" data-id="<?php echo $data->id; ?>" data-no_container="<?php echo $data->no_container; ?>" >
                             {{-- <td>{{$data->id}}</td> --}}
                             <td>{{$data->no_container}}</td>
                             <td>{{$data->jenis_container}}</td>
-                            <td>{{$data->kapasitas}}</td>
+                            <td>{{$free}}</td>
                             <td>{{$data->suhu_ketetapan}}</td>
                         </tr>
                         @endforeach
@@ -270,6 +271,7 @@ $(document).ready(function(){
             });
 
             $(document).on('click', '.pilih2', function (e) {
+                document.getElementById("no_container").value = $(this).attr('data-no_container');
                 document.getElementById("id_container").value = $(this).attr('data-id');
                 $('#myModal2').modal('hide');
             });

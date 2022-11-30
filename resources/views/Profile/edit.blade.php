@@ -74,10 +74,17 @@
 				<button type="submit" class="btn btn-primary">Submit</button>
 				<button type="reset" class="btn btn-danger">Reset</button>
                 <div class="pull-right">
-                    <a href="{{url('/dashboard')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
+                    @if (Auth::user()->role != 'Client')
+                    <a href="{{url('/dashboard')}}" type="button" class="btn btn-lg btn-block" data-bgcolor="rgb(40 94 138)" data-color="#ffffff">
                         <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
                         Kembali
                     </a>
+                    @elseif (Auth::user()->role == 'Client')
+                    <a href="{{url('/booking')}}" type="button" class="btn btn-lg btn-block" data-bgcolor="rgb(40 94 138)" data-color="#ffffff">
+                        <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
+                        Kembali
+                    </a>
+                    @endif
                 </div>
 			</div>
 		</div>
