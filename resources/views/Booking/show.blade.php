@@ -1,7 +1,7 @@
 @extends('layouts.MasterView')
 @section('menu_booking', 'active')
 @section('content')
-{{-- <div class="page-header">
+<div class="page-header">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
@@ -18,115 +18,111 @@
             <i class="icon-copy fa fa-info-circle fa-3x" aria-hidden="true"></i>
         </div>
     </div>
-</div> --}}
-{{-- <div class="product-wrap">
-    <div class="product-detail-wrap mb-30"> --}}
-        {{-- <div class="pd-20 card-box height-100-p text-center" >
-            <img height="300" @if($barang->gambar) src="{{ asset('storage/'.$barang->gambar) }}" @endif />
-        </div>
-        <br> --}}
-        {{-- <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12"> --}}
-            {{-- <div class="pd-20 card-box height-100-p text-center" >
-                    <img height="300" @if($barang->gambar) src="{{ asset('storage/'.$barang->gambar) }}" @endif />
-            </div> --}}
-                {{-- <div class="product-detail-desc pd-20 card-box height-100-p">
-                    <form>
-                        <div class="form-group row" style="padding-left: 40px">
-                            <label for="kode_barang" class="col-sm-10 col-md-4 col-form-label text-white">Nama Pengirim</label>
-                            <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="text" name="kode_barang" id="kode_barang" value="{{ $barang->kode_barang }}" aria-describedby="kode_barang" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group row" style="padding-left: 40px">
-                            <label for="id_container" class="col-sm-10 col-md-4 col-form-label text-white">No.Telp Pengirim</label>
-                            <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="text" name="id_container" id="id_container" value="{{ $barang->container->nama_container }}" aria-describedby="id_container" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group row" style="padding-left: 40px">
-                            <label for="nama_barang" class="col-sm-10 col-md-4 col-form-label text-white">Email Pengirim</label>
-                            <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="text" name="nama_barang" id="nama_barang" value="{{ $barang->nama_barang }}" aria-describedby="nama_barang" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group row" style="padding-left: 40px">
-                            <label for="merk_barang" class="col-sm-10 col-md-4 col-form-label text-white">Status Booking</label>
-                            <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="text" name="merk_barang" id="merk_barang" value="{{ $barang->merk_barang }}" aria-describedby="merk_barang" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group row" style="padding-left: 40px">
-                            <label for="bahan" class="col-sm-10 col-md-4 col-form-label text-white">Container</label>
-                            <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="text" name="bahan" id="bahan" value="{{ $barang->bahan }}" aria-describedby="bahan" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group row" style="padding-left: 40px">
-                            <label for="jumlah_barang" class="col-sm-10 col-md-4 col-form-label text-white">Jadwal</label>
-                            <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="number" name="jumlah_barang" id="jumlah_barang" value="{{ $barang->jumlah_barang }}" aria-describedby="jumlah_barang" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group row" style="padding-left: 40px">
-                            <label for="harga" class="col-sm-10 col-md-4 col-form-label text-white">Nama Barang</label>
-                            <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="number" name="harga" id="harga" value="{{ $barang->harga }}" aria-describedby="harga" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group row" style="padding-left: 40px">
-                            <label for="id_transaksi" class="col-sm-10 col-md-4 col-form-label text-white">Jumlah Barang</label>
-                            <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="text" name="id_transaksi" id="id_transaksi" value="{{ $barang->transaksi->nama }}" aria-describedby="id_transaksi" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group row" style="padding-left: 40px">
-                            <label for="tgl_input" class="col-sm-10 col-md-4 col-form-label text-white">Berat Barang (Kg)</label>
-                            <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="date" name="tgl_input" id="tgl_input" value="{{ $barang->tgl_input }}" aria-describedby="tgl_input" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group row" style="padding-left: 40px">
-                            <label for="tgl_input" class="col-sm-10 col-md-4 col-form-label text-white">Requirement</label>
-                            <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="date" name="tgl_input" id="tgl_input" value="{{ $barang->tgl_input }}" aria-describedby="tgl_input" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group row" style="padding-left: 40px">
-                            <label for="id_transaksi" class="col-sm-10 col-md-4 col-form-label text-white">Nama Penerima</label>
-                            <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="text" name="id_transaksi" id="id_transaksi" value="{{ $barang->transaksi->nama }}" aria-describedby="id_transaksi" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group row" style="padding-left: 40px">
-                            <label for="id_transaksi" class="col-sm-10 col-md-4 col-form-label text-white">Alamat Penerima</label>
-                            <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="text" name="id_transaksi" id="id_transaksi" value="{{ $barang->transaksi->nama }}" aria-describedby="id_transaksi" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group row" style="padding-left: 40px">
-                            <label for="id_transaksi" class="col-sm-10 col-md-4 col-form-label text-white">No.Telp Penerima</label>
-                            <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="text" name="id_transaksi" id="id_transaksi" value="{{ $barang->transaksi->nama }}" aria-describedby="id_transaksi" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group row" style="padding-left: 40px">
-                            <label for="id_transaksi" class="col-sm-10 col-md-4 col-form-label text-white">Email Penerima</label>
-                            <div class="col-md-7 col-sm-12">
-                                <input class="form-control" type="text" name="id_transaksi" id="id_transaksi" value="{{ $barang->transaksi->nama }}" aria-describedby="id_transaksi" placeholder="Disabled input" disabled="">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="text-center">
-            <a href="{{route('barang.index')}}" type="button" class="btn btn-lg btn-block" data-bgcolor="rgb(40 94 138)" data-color="#ffffff">
-                <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
-                Kembali
-            </a>
-        </div>
-    </div>
 </div>
-@endsection --}}
+<!-- Default Basic Forms Start -->
+<div class="pd-20 card-white mb-30">
+	<form method="POST" action="{{ route('booking.update', $booking->id) }}" id="myForm" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+		<div class="form-group row">
+			<label for="no_telp" class="col-sm-12 col-md-2 col-form-label">No Resi</label>
+			<div class="col-sm-12 col-md-10">
+            <input name="no_resi" value="{{ $booking->no_resi }}" type="text" class="form-control" disabled>
+			</div>
+		</div>
+        <div class="form-group row">
+			<label for="no_telp" class="col-sm-12 col-md-2 col-form-label">Pengirim</label>
+			<div class="col-sm-12 col-md-10">
+            <input name="id_user" value="{{ $booking->user->name }}" type="text" class="form-control" disabled>
+			</div>
+		</div>
+		<div class="form-group row">
+            <label for="jadwal" class="col-sm-12 col-md-2 col-form-label">Jadwal</label>
+			<div class="col-sm-12 col-md-10">
+                <table id="lookup" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID Jadwal</th>
+                            <th>Asal</th>
+                            <th>Tujuan</th>
+                            <th>ETA</th>
+                            <th>ETD</th>
+                            <th>Nama Kapal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($jadwal as $data)
+                        <tr>
+                            <td>{{$data->id_jadwal}}</td>
+                            <td>{{$data->asal}}</td>
+                            <td>{{$data->tujuan}}</td>
+                            <td>{{$data->ETA}}</td>
+                            <td>{{$data->ETD}}</td>
+                            <td>{{$data->nama_kapal}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+		</div>
+        <div class="form-group row">
+			<label for="role" class="col-sm-12 col-md-2 col-form-label">Container</label>
+			<div class="col-sm-12 col-md-10">
+                @foreach($container as $data)
+				<input name="address" class="form-control" rows="3" value="{{ $data->no_container }}" disabled>
+                @endforeach
+			</div>
+		</div>
+
+      <div class="form-group row">
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Jenis Barang</label>
+			<div class="col-sm-12 col-md-10">
+                <input name="jenis_barang" class="form-control" rows="3" value="{{ $barang->JenisBarang->jenis_barang }}" disabled>
+			</div>
+		</div>
+      <div class="form-group row">
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Nama Barang</label>
+			<div class="col-sm-12 col-md-10">
+            <input id="nama_barang" class="form-control" name="nama_barang" value="{{ $barang->nama_barang }}" disabled>
+			</div>
+		</div>
+      <div class="form-group row">
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Berat Barang</label>
+			<div class="col-sm-12 col-md-10">
+            <input id="nama_barang" class="form-control" name="berat_barang" value="{{ $barang->berat_barang }}" disabled>
+			</div>
+		</div>
+      <div class="form-group row">
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Nama Penerima</label>
+			<div class="col-sm-12 col-md-10">
+            <input id="nama_barang" class="form-control" name="nama_penerima" value="{{ $booking->nama_penerima }}" disabled>
+			</div>
+		</div>
+      <div class="form-group row">
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Telepon Penerima</label>
+			<div class="col-sm-12 col-md-10">
+            <input id="nama_barang" class="form-control" name="telp_penerima" value="{{ $booking->telp_penerima }}" disabled>
+			</div>
+		</div>
+      <div class="form-group row">
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Alamat Penerima</label>
+			<div class="col-sm-12 col-md-10">
+            <input id="nama_barang" class="form-control" name="alamat_penerima" value="{{ $booking->alamat_penerima }}" disabled>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label"></label>
+			<div class="col-sm-10">
+				{{-- <button type="submit" class="btn btn-primary">Submit</button>
+				<button type="reset" class="btn btn-danger">Reset</button> --}}
+                <div class="pull-right">
+                    <a href="{{route('booking.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
+                        <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
+                        Kembali
+                    </a>
+                </div>
+			</div>
+		</div>
+	</form>
+</div>
+@endsection

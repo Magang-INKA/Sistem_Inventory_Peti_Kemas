@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/booking') }}" class="dropdown-toggle no-arrow @yield('menu_booking')">
+                    <a href="{{ url('/booking') }}" class="dropdown-toggle no-arrow @yield('status_booking')">
                         <span class="micon dw dw-edit"></span><span class="mtext">Status Booking</span>
                     </a>
                 </li>

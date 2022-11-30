@@ -84,7 +84,7 @@
                                         <tr class="table-primary">
                                             <th class="table-plus datatable-nosort">Date & Time</th>
                                             <th>Drop Point</th>
-                                            <th>Alamat</th>
+                                            {{-- <th>Alamat</th> --}}
                                             {{-- <th>Nama Kapal</th>
                                             <th>Nama Container</th> --}}
                                         </tr>
@@ -96,7 +96,7 @@
                                                 {{-- <td>{{ $data->id }}</td>
                                                 <td>{{ $data->mqtt->topic }}</td> --}}
                                                 <td>{{ $data->value['LAT_STRING'] }}</td>
-                                                <td>{{ $data->value['LON_STRING'] }}</td>
+                                                {{-- <td>{{ $data->value['LON_STRING'] }}</td> --}}
                                             </tr>
                                             @endforeach
                                         {{-- <tr>
