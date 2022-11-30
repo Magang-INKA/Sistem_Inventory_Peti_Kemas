@@ -106,7 +106,8 @@
             <select name="country" class="form-control custom-select">
                 <option value="">Jenis Barang</option>
                 @foreach($jb as $jenisbarang)
-                  <option value="{{ $jenisbarang->id }}" @if($jenisbarang->id == $jb->jenisbarang) selected @endif>{{ $jenisbarang->nama_barang }}</option>
+                  <option value="{{ $jenisbarang->id }}">{{ $jenisbarang->jenis_barang}}</option>
+                  {{-- <option value="{{ $jenisbarang->id }}" @if($jenisbarang->id == $jb->jenisbarang) selected @endif>{{ $jenisbarang->nama_barang }}</option> --}}
                 @endforeach
               </select>
 			</div>
