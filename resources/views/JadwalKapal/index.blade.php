@@ -60,8 +60,7 @@
                     <tr>
                         <td class="table-plus">{{ $br + $jadwalKapal->firstitem() }}</td>
                         <td>{{ $data->trip->kapal->no_kapal }} - {{ $data->trip->kapal->nama_kapal }}</td>
-                        {{-- <td>{{ $data->trip->nama_trip }}</td> --}}
-                        <td>{{ $data->keberangkatan->nama_pelabuhan}}</td>
+                        <td>{{ $data->awal->nama_pelabuhan}}</td>
                         <td>{{ $data->tujuan->nama_pelabuhan}}</td>
                         <td>{{ $data->ETA }}</td>
                         <td>{{ $data->ETD }}</td>

@@ -81,11 +81,20 @@
          </div>
 
 		</div>
-      <div class="form-group row">
+      {{-- <div class="form-group row">
 			<label for="role" class="col-sm-12 col-md-2 col-form-label">Container</label>
 			<div class="col-sm-12 col-md-10">
-				<input name="address" class="form-control" rows="3" value="{{ $booking->id_container }}">
+				<input name="address" class="form-control" rows="3" value="{{ $booking->container }}">
 			</div>
+		</div> --}}
+        <div class="form-group row">
+			<label for="id_container" class="col-sm-12 col-md-2 col-form-label">Container</label>
+			<div class="col-sm-12 col-md-10">
+                <div class="input-group">
+                    <input id="id_container" type="text" class="form-control" name="id_container" value="{{ old('id_container') }}" required readonly="">
+                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal2"><b>Cari Container</b><span class="fa fa-search"></span></button>
+                </div>
+            </div>
 		</div>
 
       <div class="form-group row">
@@ -194,6 +203,41 @@
        </div>
    </div>
 </div>
+<div class="modal fade bd-example-modal-lg" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content" style="background: #fff;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cari Container </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="lookup" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>No Container</th>
+                            <th>jenis_container</th>
+                            <th>kapasitas</th>
+                            <th>suhu_ketetapan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($container as $data)
+                        <tr class="pilih2" data-id="<?php echo $data->id; ?>" >
+                            {{-- <td>{{$data->id}}</td> --}}
+                            <td>{{$data->no_container}}</td>
+                            <td>{{$data->jenis_container}}</td>
+                            <td>{{$data->kapasitas}}</td>
+                            <td>{{$data->suhu_ketetapan}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 {{-- Script --}}
 <script type="text/javascript">
@@ -206,13 +250,18 @@ $(document).ready(function(){
   });
 
 });
-   $(document).on('click', '.pilih', function (e) {
+            $(document).on('click', '.pilih', function (e) {
                 document.getElementById("id_jadwal").value = $(this).attr('data-id_jadwal');
                 $('#myModal').modal('hide');
             });
 
+            $(document).on('click', '.pilih2', function (e) {
+                document.getElementById("id_container").value = $(this).attr('data-id');
+                $('#myModal2').modal('hide');
+            });
+
              $(function () {
-                $("#lookup").dataTable();
+                $("#lookup, #lookup2").dataTable();
             });
 
         </script>

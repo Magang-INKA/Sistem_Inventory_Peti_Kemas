@@ -155,6 +155,13 @@ class BookingController extends Controller
     public function edit($id)
     {
         //form booking
+        $container = Container::select('container.id' , 'container.no_container' , 'master_container.jenis_container', 'master_container.kapasitas', 'master_container.suhu_ketetapan')
+        ->join('trip', 'container.id_kapal', '=', 'trip.id_kapal')
+        ->join('master_container', 'container.no_container', '=', 'master_container.no_container')
+        ->join('jadwal_kapal', 'trip.id', '=', 'jadwal_kapal.id_trip')
+        ->join('booking', 'jadwal_kapal.id', '=', 'booking.id_jadwal')
+        ->where('booking.id', '=', $id)->get();
+
         $booking = Booking::find($id);
         $fjadwal = JadwalKapal::select('jadwal_kapal.id','jadwal_kapal.id_trip','trip.nama_trip', 'jadwal_kapal.ETA','jadwal_kapal.ETD','master_kapal.nama_kapal')
                             ->join('trip', 'trip.id', '=', 'jadwal_kapal.id_trip')
@@ -193,7 +200,7 @@ class BookingController extends Controller
 
         $jb = JenisBarang::all();
 
-        return view('booking.edit', compact('booking','tjadwal','fjadwal','barang', 'jadwal', 'jadwal_decode','jb'));
+        return view('booking.edit', compact('booking','tjadwal','fjadwal','barang', 'jadwal', 'jadwal_decode','jb', 'container'));
         // return $jadwal;
     }
 
