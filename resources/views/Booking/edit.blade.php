@@ -74,7 +74,9 @@
              </tbody>
          </table>
 
-         <input id="id_jadwal" type="text" name="id_jadwal" value="{{ $booking->id_jadwal }}" required readonly>
+            <input id="id_jadwal" type="text" name="id_jadwal" value="{{ $booking->id_jadwal }}" required readonly>
+            <button type="submit" name="action" value="gantijadwal">Ganti Jadwal</button>
+
          <span class="input-group-btn">
             <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Jadwal</b> <span class="fa fa-search"></span></button>
          </span> {{-- <input name="id_jadwal" value="{{ $jadwal_decode }}" type="text" class="form-control" readonly> --}}
@@ -140,7 +142,7 @@
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label"></label>
 			<div class="col-sm-10">
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" name="action" class="btn btn-primary" value="save">Submit</button>
 				<button type="reset" class="btn btn-danger">Reset</button>
                 <div class="pull-right">
                     <a href="{{route('booking.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">

@@ -213,59 +213,62 @@ class BookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request);
-        try {
-            // dd($request);
-            $this->validate($request, [
-                'id_user' => 'required',
-                'id_jadwal' => 'required|string',
-                'id_container' => 'required',
-                'nama_penerima' => 'required',
-                'telp_penerima' => 'required',
-                'alamat_penerima' => 'required',
-            ]);
-            $barang = DB::table('master_barang')->orderByDesc('id')->pluck('id')->first();
-            $id=(int)$barang+1;
+        //dd($request);
+        switch ($request->input('action')) {
+            case 'save':
+                try {
+                    // dd($request);
+                    $this->validate($request, [
+                        'id_user' => 'required',
+                        'id_jadwal' => 'required|string',
+                        'id_container' => 'required',
+                        'nama_penerima' => 'required',
+                        'telp_penerima' => 'required',
+                        'alamat_penerima' => 'required',
+                    ]);
+                    $barang = DB::table('master_barang')->orderByDesc('id')->pluck('id')->first();
+                    $id=(int)$barang+1;
 
-            $huruf = 'BKG';
-            Barang::create([
-                'jenis_barang' => $request->input('jenis_barang'),
-                'nama_barang' =>  $request->input('nama_barang'),
-                'berat_barang' => $request->input('berat_barang'),
-            ]);
+                    $date = Carbon::now()->toDateString();
+                    $q = Booking::find($id);
 
-            $num = Booking::orderBy('no_resi','desc')->count();
-            $dataCode = Booking::orderBy('no_resi','desc')->first();
-            if ($num == 0) {
-                $resi = 'BKG001';
-            }
-            else{
-                $c = $dataCode->no_resi;
-                $cod = (int) substr($c, 3);
-                $cod++;
-                $resi = $huruf . sprintf("%03s", $cod);
-            }
+                    $q->id_user = '1';
+                    $q->id_jadwal = $request->input('id_jadwal');
+                    // $q->jenis_container = $request->input('jenis_container');
+                    $q->id_container = '1';
+                    $q->id_barang = $id;
+                    $q->date = $date;
+                    $q->nama_penerima = $request->input('nama_penerima');
+                    $q->telp_penerima = $request->input('telp_penerima');
+                    $q->alamat_penerima = $request->input('alamat_penerima');;
+                    $q->status = 'belum';
+                    $q->save();
 
-            $date = Carbon::now()->toDateString();
-            $q = new Booking();
-            $q->no_resi = $resi;
-            $q->id_user = '1';
-            $q->id_jadwal = $request->input('id_jadwal');
-            // $q->jenis_container = $request->input('jenis_container');
-            $q->id_container = '1';
-            $q->id_barang = $id;
-            $q->date = $date;
-            $q->nama_penerima = $request->input('nama_penerima');
-            $q->telp_penerima = $request->input('telp_penerima');
-            $q->alamat_penerima = $request->input('alamat_penerima');;
-            $q->status = 'belum';
-            $q->save();
+                    Alert::success('Success', 'Data Booking Berhasil Ditambahkan');
+                    return view('Booking.StatusBooking');
+                } catch (\Throwable $th) {
+                    dd($th->getMessage());
+                }
+                break;
 
-            Alert::success('Success', 'Data Booking Berhasil Ditambahkan');
-            return view('Booking.StatusBooking');
-        } catch (\Throwable $th) {
-            dd($th->getMessage());
+            case 'gantijadwal':
+                $this->validate($request, [
+                    'id_jadwal' => 'required'
+                ]);
+                $q = Booking::find($id);
+                $q->id_jadwal = $request->input('id_jadwal');
+                $q->save();
+
+                $url = ('booking/'.$id.'/edit');
+                redirect( $url);
+                // route('booking.edit',$id);
+                //return redirect('booking.edit',$id);
+                // return url('/booking/$id/edit');
+                //return redirect()->route('booking.edit', ['id' => $id]);
+                //redirect('BookingController/edit/'.$id, 'refresh');
+                break;
         }
+
     }
 
     /**
@@ -339,5 +342,22 @@ class BookingController extends Controller
                             ->get();
         }
         return response()->json($pelabuhan2);
+    }
+
+    public function updateJadwal(Request $request, $id)
+    {
+        try {
+            // dd($request);
+            $this->validate($request, [
+                'id_jadwal' => 'required'
+            ]);
+            $q = Booking::find($id);
+            $q->id_jadwal = $request->input('id_jadwal');
+            $q->save();
+
+            return route('booking.edit',$id);
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
     }
 }

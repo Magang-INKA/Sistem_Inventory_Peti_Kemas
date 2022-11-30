@@ -125,3 +125,6 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/pelabuhan1', [\App\Http\Controllers\BookingController::class, 'select'])->name('pelabuhan1.select');
 Route::get('/pelabuhan2', [\App\Http\Controllers\BookingController::class, 'select2'])->name('pelabuhan2.select');
 Route::get('/jadwal-kapal', [\App\Http\Controllers\BookingController::class, 'select3'])->name('jadwalkapal.select');
+
+Route::get('/updateJadwal', [\App\Http\Controllers\BookingController::class, 'updateJadwal'])->name('booking.updateJadwal');
+
