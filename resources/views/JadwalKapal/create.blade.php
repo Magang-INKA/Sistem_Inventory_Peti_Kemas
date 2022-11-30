@@ -9,8 +9,8 @@
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('JadwalKapal.index') }}">Jadwal Kapal</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Create</li>
+                    <li class="breadcrumb-item active"><a href="{{ route('JadwalKapal.index') }}">Jadwal Kapal</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Create</li>
                 </ol>
             </nav>
         </div>

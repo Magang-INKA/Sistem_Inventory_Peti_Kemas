@@ -5,12 +5,12 @@
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Create Kapal</h4>
+                <h4>Create Ship Master</h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('masterKapal.index') }}">Kapal</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Create</li>
+                    <li class="breadcrumb-item active"><a href="{{ route('masterKapal.index') }}">Kapal</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Create</li>
                 </ol>
             </nav>
         </div>

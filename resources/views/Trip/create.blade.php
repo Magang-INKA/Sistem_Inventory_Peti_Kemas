@@ -9,8 +9,8 @@
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('trip.index') }}">Trip</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Create</li>
+                    <li class="breadcrumb-item active"><a href="{{ route('trip.index') }}">Trip</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Create</li>
                 </ol>
             </nav>
         </div>
@@ -75,7 +75,7 @@
 				<button type="submit" class="btn btn-primary">Submit</button>
 				<button type="reset" class="btn btn-danger">Reset</button>
                 <div class="pull-right">
-                    <a href="{{route('pelabuhan.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
+                    <a href="{{route('trip.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
                         <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
                         Kembali
                     </a>
