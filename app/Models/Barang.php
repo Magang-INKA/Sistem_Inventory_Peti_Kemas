@@ -8,6 +8,7 @@ use App\Models\Container;
 use App\Models\Booking;
 use App\Models\BarangKeluar;
 use App\Models\BarangMasuk;
+use App\Models\JenisBarang;
 
 class Barang extends Model
 {
@@ -20,8 +21,8 @@ class Barang extends Model
      */
     protected $fillable = [
         'id',
-        'nama_barang',
         'jenis_barang',
+        'nama_barang',
         'berat_barang',
     ];
 
@@ -37,12 +38,21 @@ class Barang extends Model
     {
         return $this->hasMany(BarangMasuk::class);
     }
-    public function transaksi()
-    {
-        return $this->belongsTo(Transaksi::class, 'id_transaksi');
-    }
+    // public function transaksi()
+    // {
+    //     return $this->belongsTo(Transaksi::class, 'id_transaksi');
+    // }
     public function booking()
     {
         return $this->hasMany(Booking::class);
+    }
+
+    public function container()
+    {
+        return $this->hasMany(Container::class);
+    }
+    public function JenisBarang()
+    {
+        return $this->belongsTo(JenisBarang::class, 'jenis_barang');
     }
 }

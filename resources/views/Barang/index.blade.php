@@ -56,11 +56,9 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>Product ID</th>
-                        <th>Container Name</th>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
-                        <th>Requirement</th>
+                        <th>Jenis Barang</th>
+                        <th>Nama Barang</th>
+                        <th>Berat Barang</th>
                         @can('manage-MasterData')
                         <th class="datatable-nosort">Action</th>
                         @endcan
@@ -70,11 +68,9 @@
                     @foreach ($barang as $br => $data)
                     <tr>
                         <td class="table-plus">{{ $br + $barang->firstitem() }}</td>
-                        <td>{{ $data->id }}</td>
-                        <td>{{ $data->container->nama_container}}</td>
+                        <td>{{ $data->JenisBarang->jenis_barang}}</td>
                         <td>{{ $data->nama_barang }}</td>
-                        <td>{{ $data->jumlah}}</td>
-                        <td>{{ $data->requirement }}</td>
+                        <td>{{ $data->berat_barang}}</td>
                         @can('manage-MasterData')
                         <td>
                             <div class="dropdown">

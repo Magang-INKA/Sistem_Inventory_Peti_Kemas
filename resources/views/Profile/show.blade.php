@@ -54,7 +54,7 @@
         </div>
         <br>
         <div class="text-center">
-            <a href="{{url('/')}}" type="button" class="btn btn-lg btn-block" data-bgcolor="rgb(40 94 138)" data-color="#ffffff">
+            <a href="{{url('/dashboard')}}" type="button" class="btn btn-lg btn-block" data-bgcolor="rgb(40 94 138)" data-color="#ffffff">
                 <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
                 Kembali
             </a>

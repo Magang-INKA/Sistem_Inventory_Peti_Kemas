@@ -33,14 +33,14 @@ class BarangController extends Controller
             $barang = Barang::where('kode_barang', 'like', "%" . $search . "%")
             ->orwhere('nama_barang', 'like', "%" . $search . "%")
             ->orwhere('jumlah_barang', 'like', "%" . $search . "%")
-            ->orWhereHas('container', function($query) use($search) {
-                return $query->where('nama_container', 'like', "%" . $search . "%");
+            ->orWhereHas('jenis_barang', function($query) use($search) {
+                return $query->where('jenis_barang', 'like', "%" . $search . "%");
             })
             ->paginate();
             return view('Barang.index', compact('barang'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $barang = Barang::with('container')->paginate(10); // Pagination menampilkan 5 data
+            $barang = Barang::with('JenisBarang')->paginate(10); // Pagination menampilkan 5 data
         }
         return view('Barang.index', compact('barang'));
     }
