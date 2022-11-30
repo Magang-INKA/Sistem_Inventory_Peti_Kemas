@@ -20,7 +20,7 @@
     </div>
 </div>
 <!-- Default Basic Forms Start -->
-<div class="pd-20 card-box mb-30">
+<div class="pd-20 card-white mb-30">
 	@if ($errors->any())
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -35,19 +35,19 @@
         @csrf
         @method('PUT')
 		<div class="form-group row">
-			<label for="no_telp" class="col-sm-12 col-md-2 col-form-label text-white">No Resi</label>
+			<label for="no_telp" class="col-sm-12 col-md-2 col-form-label">No Resi</label>
 			<div class="col-sm-12 col-md-10">
             <input name="no_resi" value="{{ $booking->no_resi }}" type="text" class="form-control" >
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="no_telp" class="col-sm-12 col-md-2 col-form-label text-white">Pengirim</label>
+			<label for="no_telp" class="col-sm-12 col-md-2 col-form-label">Pengirim</label>
 			<div class="col-sm-12 col-md-10">
             <input name="id_user" value="{{ $booking->id_user }}" type="text" class="form-control" >
 			</div>
 		</div>
 		<div class="form-group row">
-         <label for="jadwal" class="col-sm-12 col-md-2 col-form-label text-white">Jadwal</label>
+         <label for="jadwal" class="col-sm-12 col-md-2 col-form-label">Jadwal</label>
 			<div class="col-sm-12 col-md-10">
             <table id="lookup" class="table table-bordered table-hover table-striped">
              <thead>
@@ -74,7 +74,7 @@
              </tbody>
          </table>
 
-         <input id="id_jadwal" type="hidden" name="id_jadwal" value="{{ $booking->id_jadwal }}" required readonly>
+         <input id="id_jadwal" type="text" name="id_jadwal" value="{{ $booking->id_jadwal }}" required readonly>
          <span class="input-group-btn">
             <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Jadwal</b> <span class="fa fa-search"></span></button>
          </span> {{-- <input name="id_jadwal" value="{{ $jadwal_decode }}" type="text" class="form-control" readonly> --}}
@@ -82,14 +82,14 @@
 
 		</div>
       <div class="form-group row">
-			<label for="role" class="col-sm-12 col-md-2 col-form-label text-white">Container</label>
+			<label for="role" class="col-sm-12 col-md-2 col-form-label">Container</label>
 			<div class="col-sm-12 col-md-10">
 				<input name="address" class="form-control" rows="3" value="{{ $booking->id_container }}">
 			</div>
 		</div>
 
       <div class="form-group row">
-			<label for="gambar" class="col-sm-12 col-md-2 col-form-label text-white">Jenis Barang</label>
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Jenis Barang</label>
 			<div class="col-sm-12 col-md-10">
             <select class="custom-select col-12" type="role" name="jenis_barang" id="role">
                @foreach($jb as $jenisbarang)
@@ -99,31 +99,31 @@
 			</div>
 		</div>
       <div class="form-group row">
-			<label for="gambar" class="col-sm-12 col-md-2 col-form-label text-white">Nama Barang</label>
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Nama Barang</label>
 			<div class="col-sm-12 col-md-10">
             <input id="nama_barang" class="form-control" name="nama_barang" value="{{ $barang->nama_barang }}" required >
 			</div>
 		</div>
       <div class="form-group row">
-			<label for="gambar" class="col-sm-12 col-md-2 col-form-label text-white">Berat Barang</label>
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Berat Barang</label>
 			<div class="col-sm-12 col-md-10">
             <input id="nama_barang" class="form-control" name="berat_barang" value="{{ $barang->berat_barang }}" required >
 			</div>
 		</div>
       <div class="form-group row">
-			<label for="gambar" class="col-sm-12 col-md-2 col-form-label text-white">Nama Penerima</label>
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Nama Penerima</label>
 			<div class="col-sm-12 col-md-10">
             <input id="nama_barang" class="form-control" name="nama_penerima" value="{{ $booking->nama_penerima }}" required >
 			</div>
 		</div>
       <div class="form-group row">
-			<label for="gambar" class="col-sm-12 col-md-2 col-form-label text-white">Telepon Penerima</label>
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Telepon Penerima</label>
 			<div class="col-sm-12 col-md-10">
             <input id="nama_barang" class="form-control" name="telp_penerima" value="{{ $booking->telp_penerima }}" required >
 			</div>
 		</div>
       <div class="form-group row">
-			<label for="gambar" class="col-sm-12 col-md-2 col-form-label text-white">Alamat Penerima</label>
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Alamat Penerima</label>
 			<div class="col-sm-12 col-md-10">
             <input id="nama_barang" class="form-control" name="alamat_penerima" value="{{ $booking->alamat_penerima }}" required >
 			</div>
