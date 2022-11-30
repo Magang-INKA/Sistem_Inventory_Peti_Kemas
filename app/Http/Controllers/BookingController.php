@@ -260,7 +260,7 @@ class BookingController extends Controller
                 $q->save();
 
                 $url = ('booking/'.$id.'/edit');
-                redirect( $url);
+                return redirect( $url);
                 // route('booking.edit',$id);
                 //return redirect('booking.edit',$id);
                 // return url('/booking/$id/edit');
