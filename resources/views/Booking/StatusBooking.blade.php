@@ -11,11 +11,7 @@
             <div class="form-group row">
                 <label for="no_resi" class="col-sm-12 col-md-2 col-form-label">No Resi</label>
                 <div class="col-sm-12 col-md-10">
-<<<<<<< HEAD
-                    @foreach ($bookings as $item)
-=======
                     @foreach ($book as $br => $data)
->>>>>>> 2ffc49fcf517cbd4dd7acd4d8f78af10e7f01ac5
                     <input class="form-control" type="text" name="no_resi" id="no_resi"
                     value="{{ $data->no_resi }}" aria-describedby="no_resi"  disabled="">
                     @endforeach
@@ -26,12 +22,8 @@
                 <div class="col-sm-12 col-md-10">
                     @foreach ($book as $br => $data)
                     <input class="form-control" type="text" name="status" id="status"
-<<<<<<< HEAD
-                    value="{{ $bookings->status }}" aria-describedby="status" placeholder="Disabled input" disabled="">
-=======
                     value="{{ $data->status }}" aria-describedby="status" placeholder="Disabled input" disabled="">
                     @endforeach
->>>>>>> 2ffc49fcf517cbd4dd7acd4d8f78af10e7f01ac5
                 </div>
             </div>
             {{-- <div class="form-group row">

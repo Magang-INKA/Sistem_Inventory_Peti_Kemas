@@ -28,7 +28,7 @@
 				</div>
 			</div>
 
-            <div class="card-white pd-20 height-100-p mb-30">
+            <div class="card-white pd-20 height-50-p mb-30">
 				<div class="row align-items-center" style="justify-content: center">
                     <iframe src="http://168.138.6.144:1880/ui/#!/10?socketid=DFfjrh6XNf5W2OvlAAAD" title="Controlling System" height="400px" width="50%"></iframe>
 				</div>
