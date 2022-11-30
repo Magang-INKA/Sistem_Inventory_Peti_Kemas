@@ -75,7 +75,7 @@
          </table>
 
             <input id="id_jadwal" type="text" name="id_jadwal" value="{{ $booking->id_jadwal }}" required readonly>
-            <button type="submit" name="action" value="gantijadwal">Ganti Jadwal</button>
+            <button type="submit" name="action" class="btn btn-primary" value="gantijadwal">Ganti Jadwal</button>
 
          <span class="input-group-btn">
             <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Jadwal</b> <span class="fa fa-search"></span></button>
@@ -93,7 +93,7 @@
 			<label for="id_container" class="col-sm-12 col-md-2 col-form-label">Container</label>
 			<div class="col-sm-12 col-md-10">
                 <div class="input-group">
-                    <input id="id_container" type="text" class="form-control" name="id_container" value="{{ old('id_container') }}" required readonly="">
+                    <input id="id_container" type="text" class="form-control" name="id_container" value="{{ $booking->id_container }}" required readonly="">
                     <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal2"><b>Cari Container</b><span class="fa fa-search"></span></button>
                 </div>
             </div>
@@ -102,11 +102,13 @@
       <div class="form-group row">
 			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Jenis Barang</label>
 			<div class="col-sm-12 col-md-10">
-            <select class="custom-select col-12" type="role" name="jenis_barang" id="role">
-               @foreach($jb as $jenisbarang)
-                   <option value="{{ $jenisbarang->id }}">{{ $jenisbarang->jenis_barang }}</option>
+            <input id="id_container" type="hidden" class="form-control" name="id_barang" value="{{ $booking->id_barang }}" required readonly="">
+            <select name="country" class="form-control custom-select">
+                <option value="">Jenis Barang</option>
+                @foreach($jb as $jenisbarang)
+                  <option value="{{ $jenisbarang->id }}" @if($jenisbarang->id == $jb->jenisbarang) selected @endif>{{ $jenisbarang->nama_barang }}</option>
                 @endforeach
-           </select>
+              </select>
 			</div>
 		</div>
       <div class="form-group row">
@@ -139,11 +141,20 @@
             <input id="nama_barang" class="form-control" name="alamat_penerima" value="{{ $booking->alamat_penerima }}" required >
 			</div>
 		</div>
+        <div class="form-group row">
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Status</label>
+			<div class="col-sm-12 col-md-10">
+                <select class="custom-select col-12" type="status" name="status" id="status">
+                    <option value="belum" @if($booking->status == 'belum') selected @endif>Belum</option>
+                    <option value="reschedule" @if($booking->status == 'reschedule') selected @endif>Reschedule</option>
+                    <option value="terima" @if($booking->status == 'terima') selected @endif>Terima</option>
+                </select>
+            </div>
+		</div>
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label"></label>
 			<div class="col-sm-10">
 				<button type="submit" name="action" class="btn btn-primary" value="save">Submit</button>
-				<button type="reset" class="btn btn-danger">Reset</button>
                 <div class="pull-right">
                     <a href="{{route('booking.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
                         <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
