@@ -29,6 +29,7 @@ class CreateTableBooking extends Migration
             $table->string('nama_penerima');
             $table->string('telp_penerima');
             $table->string('alamat_penerima');
+            $table->string('catatan',255)->nullable();
             $table->timestamps();
         });
     }
