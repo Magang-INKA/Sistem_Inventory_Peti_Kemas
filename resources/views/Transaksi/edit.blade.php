@@ -31,49 +31,35 @@
             </ul>
         </div>
     @endif
-	<form method="POST" action="{{ route('transaksi.update', $transaksi->kode) }}" id="myForm">
+	<form method="POST" action="{{ route('transaksi.update', $transaksi->id) }}" id="myForm">
         @csrf
         @method('PUT')
 		<div class="form-group row">
 			<label for="kode" class="col-sm-12 col-md-2 col-form-label text-white">Kode Transaksi</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="kode" id="kode"
-                value="{{ $transaksi->kode }}" aria-describedby="kode" placeholder readonly="">
+                value="{{ $transaksi->id }}" aria-describedby="kode" placeholder readonly="">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="nama" class="col-sm-12 col-md-2 col-form-label text-white">Nama Transaksi</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="nama" id="nama"
-                value="{{ $transaksi->nama }}" aria-describedby="nama" placeholder="">
+                value="{{ $transaksi->id_booking }}" aria-describedby="nama" placeholder="">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="alamat" class="col-sm-12 col-md-2 col-form-label text-white">Alamat</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="alamat" id="alamat"
-                value="{{ $transaksi->alamat }}" aria-describedby="alamat" placeholder="">
+                value="{{ $transaksi->harga }}" aria-describedby="alamat" placeholder="">
 			</div>
 		</div>
         <div class="form-group row">
 			<label for="telp" class="col-sm-12 col-md-2 col-form-label text-white">Telepon</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="telp" id="telp"
-                value="{{ $transaksi->telp }}" aria-describedby="telp" placeholder="">
-			</div>
-		</div>
-        <div class="form-group row">
-			<label for="kota" class="col-sm-12 col-md-2 col-form-label text-white">Kota</label>
-			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="kota" id="kota"
-                value="{{ $transaksi->kota }}" aria-describedby="kota" placeholder="">
-			</div>
-		</div>
-        <div class="form-group row">
-			<label for="penyedia" class="col-sm-12 col-md-2 col-form-label text-white">Penyedia Barang</label>
-			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="penyedia" id="penyedia"
-                value="{{ $transaksi->penyedia }}" aria-describedby="penyedia" placeholder="">
+                value="{{ $transaksi->qrcode }}" aria-describedby="telp" placeholder="">
 			</div>
 		</div>
 		<div class="form-group row">

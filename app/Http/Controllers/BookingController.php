@@ -261,7 +261,7 @@ class BookingController extends Controller
 
                         $idbooking = DB::table('booking')->orderByDesc('id')->pluck('id')->first();
                         // $idb=(int)$booking+1;
-
+                        $idt = DB::table('table_transaksi')->orderByDesc('id')->pluck('id')->first();
                         $transaksi = new Transaksi();
                         $transaksi->id_booking = $idbooking;
                         $transaksi->qrcode=null;
