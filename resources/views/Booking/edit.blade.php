@@ -105,9 +105,9 @@
 			<div class="col-sm-12 col-md-10">
             <input id="id_container" type="hidden" class="form-control" name="id_barang" value="{{ $booking->id_barang }}" required readonly="">
             <select name="jenis_barang" class="form-control custom-select">
-                @foreach($jb as $jenisbarang)
-                  <option value="{{ $jenisbarang->id }}">{{ $jenisbarang->jenis_barang}}</option>
-                  {{-- <option value="{{ $jenisbarang->id }}" @if($jenisbarang->id == $jb->jenisbarang) selected @endif>{{ $jenisbarang->nama_barang }}</option> --}}
+                @foreach ($jb as $jenisbarang)
+                    <option value="{{ $jenisbarang->id }}" {{ $jenisbarang->id == $barang->jenis_barang ? 'selected' : '' }}>{{ $jenisbarang->jenis_barang }}</option>
+                       {{-- <option value="{{ $jenisbarang->id }}">{{ $jenisbarang->jenis_barang }}</option> --}}
                 @endforeach
               </select>
 			</div>

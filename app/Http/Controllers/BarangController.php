@@ -6,6 +6,7 @@ use App\Exports\BarangExport;
 use App\Models\Barang;
 use App\Models\Booking;
 use App\Models\Container;
+use App\Models\JenisBarang;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -165,15 +166,14 @@ class BarangController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::user()->role == 'Operator') {
-            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-            return redirect()->to('/barang');
-        }
+        // if(Auth::user()->role == 'Operator') {
+        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //     return redirect()->to('/barang');
+        // }
 
-        $barang = Barang::with('container','transaksi')->find($id);
-        $container = Container::all();
-        $transaksi = Transaksi::all();
-        return view('Barang.edit', compact('barang', 'container', 'transaksi'));
+        $barang = Barang::find($id);
+        $jb = JenisBarang::all();
+        return view('Barang.edit', compact('barang', 'jb'));
     }
 
     /**
@@ -191,57 +191,21 @@ class BarangController extends Controller
         }
 
         $request->validate([
-            'kode_barang'   => 'required',
+            'jenis_barang'   => 'required',
             'nama_barang'   => 'required',
-            'jumlah_barang' => 'required',
-            'id_container'   => 'required',
-            'id_transaksi'   => 'required',
-            'merk_barang'   => 'required',
-            'bahan'         => 'required',
-            'harga'         => 'required',
-            'tgl_input'     => 'required',
+            'berat_barang' => 'required',
         ]);
 
-        $barang = Barang::with('container', 'transaksi')->where('id', $id)->first();
+        $barang = Barang::with('JenisBarang')->where('id', $id)->first();
 
-        if ($request->file('gambar') == ''){
-            $barang->kode_barang = $request->get('kode_barang');
-            $barang->nama_barang = $request->get('nama_barang');
-            $barang->jumlah_barang = $request->get('jumlah_barang');
-            $barang->merk_barang = $request->get('merk_barang');
-            $barang->bahan = $request->get('bahan');
-            $barang->harga = $request->get('harga');
-            $barang->tgl_input = $request->get('tgl_input');
+        // $barang->jenis_barang = $request->get('jenis_barang');
+        $barang->nama_barang = $request->get('nama_barang');
+        $barang->berat_barang = $request->get('berat_barang');
+        $JenisBarang = JenisBarang::find($request->get('jenis_barang'));
 
-            $container = Container::find($request->get('id_container'));
-            $transaksi = Transaksi::find($request->get('id_transaksi'));
-            //fungsi eloquent untuk menambah data dengan relasi belongsTo
-            $barang->container()->associate($container);
-            $barang->transaksi()->associate($transaksi);
-            $barang->save();
-        } else{
-            if ($barang->gambar && file_exists(storage_path('app/public/' .$barang->gambar)))
-            {
-                \Storage::delete(['public/' . $barang->gambar]);
-            }
-            $image_name = $request->file('gambar')->store('images', 'public');
-            $barang->gambar = $image_name;
-
-            $barang->kode_barang = $request->get('kode_barang');
-            $barang->nama_barang = $request->get('nama_barang');
-            $barang->jumlah_barang = $request->get('jumlah_barang');
-            $barang->merk_barang = $request->get('merk_barang');
-            $barang->bahan = $request->get('bahan');
-            $barang->harga = $request->get('harga');
-            $barang->tgl_input = $request->get('tgl_input');
-
-            $container = Container::find($request->get('id_container'));
-            $transaksi = Transaksi::find($request->get('id_transaksi'));
-            //fungsi eloquent untuk menambah data dengan relasi belongsTo
-            $barang->container()->associate($container);
-            $barang->transaksi()->associate($transaksi);
-            $barang->save();
-        }
+        //fungsi eloquent untuk menambah data dengan relasi belongsTo
+        $barang->JenisBarang()->associate($JenisBarang);
+        $barang->save();
 
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
         Alert::success('Success', 'Data Barang Berhasil Diedit');

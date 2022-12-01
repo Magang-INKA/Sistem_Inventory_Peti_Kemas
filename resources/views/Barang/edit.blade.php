@@ -35,9 +35,16 @@
         @csrf
         @method('PUT')
 		<div class="form-group row">
-			<label for="kode_barang" class="col-sm-12 col-md-2 col-form-label text-white">Kode Barang</label>
+			<label for="kode_barang" class="col-sm-12 col-md-2 col-form-label text-white">Jenis Barang</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="kode_barang" id="kode_barang" value="{{ $barang->kode_barang }}" aria-describedby="kode_barang" placeholder="">
+                <select class="form-control" id="jenis_barang" name="jenis_barang">
+                    {{-- <option value="">{{ $barang->JenisBarang->jenis_barang}}</option> --}}
+                    @foreach ($jb as $jenisbarang)
+                    <option value="{{ $jenisbarang->id }}" {{ $jenisbarang->id == $barang->jenis_barang ? 'selected' : '' }}>{{ $jenisbarang->jenis_barang }}</option>
+                       {{-- <option value="{{ $jenisbarang->id }}">{{ $jenisbarang->jenis_barang }}</option> --}}
+                    @endforeach
+                 </select>
+				{{-- <input class="form-control" type="text" name="kode_barang" id="kode_barang" value="{{ $barang->JenisBarang->jenis_barang }}" aria-describedby="kode_barang" placeholder=""> --}}
 			</div>
 		</div>
         <div class="form-group row">
@@ -46,7 +53,13 @@
 				<input class="form-control" type="text" name="nama_barang" id="nama_barang" value="{{ $barang->nama_barang }}" aria-describedby="nama_barang" placeholder="">
 			</div>
 		</div>
-        <div class="form row">
+        <div class="form-group row">
+			<label for="berat_barang" class="col-sm-12 col-md-2 col-form-label text-white">Berat Barang (Kg)</label>
+			<div class="col-sm-12 col-md-10">
+				<input class="form-control" type="number" name="berat_barang" id="berat_barang" value="{{ $barang->berat_barang }}" aria-describedby="berat_barang" placeholder="">
+			</div>
+		</div>
+        {{-- <div class="form row">
 			<label for="id_container" class="col-sm-12 col-md-2 col-form-label text-white">Container</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
@@ -55,8 +68,8 @@
                     <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Container </b><span class="fa fa-search"></span></button>
                 </div>
             </div>
-		</div>
-        <div class="form row">
+		</div> --}}
+        {{-- <div class="form row">
 			<label for="id_transaksi" class="col-sm-12 col-md-2 col-form-label text-white">Transaksi</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
@@ -65,8 +78,8 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2"><b>Cari Transaksi </b><span class="fa fa-search"></span></button>
                 </div>
             </div>
-		</div>
-        <div class="form-group row">
+		</div> --}}
+        {{-- <div class="form-group row">
 			<label for="merk_barang" class="col-sm-12 col-md-2 col-form-label text-white">Merk Barang</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="merk_barang" id="merk_barang" value="{{ $barang->merk_barang }}" aria-describedby="merk_barang" placeholder="">
@@ -102,7 +115,7 @@
                 <img class="product" width="200" height="200" @if($barang->gambar) src="{{ asset('storage/'.$barang->gambar) }}" @endif />
                 <input type="file" class="uploads form-control" style="margin-top: 20px;" name="gambar">
             </div>
-        </div>
+        </div> --}}
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label"></label>
 			<div class="col-sm-10">
@@ -121,7 +134,7 @@
 <!-- Default Basic Forms End -->
 
 <!-- Modal Container -->
-<div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
+{{-- <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-lg" role="document" >
         <div class="modal-content" style="background: #fff;">
             <div class="modal-header">
@@ -152,11 +165,11 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- End Modal Container -->
 
 <!-- Modal Transaksi -->
-<div class="modal fade bd-example-modal-lg" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
+{{-- <div class="modal fade bd-example-modal-lg" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-lg" role="document" >
         <div class="modal-content" style="background: #fff;">
             <div class="modal-header">
@@ -187,10 +200,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- End Modal Transaksi -->
 
-<script>
+{{-- <script>
     $(document).ready(function(){
       $("#myInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();
@@ -216,5 +229,5 @@
     $(function () {
         $("#lookup, #lookup2").dataTable();
     });
-</script>
+</script> --}}
 @endsection

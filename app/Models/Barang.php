@@ -47,10 +47,10 @@ class Barang extends Model
         return $this->hasMany(Booking::class);
     }
 
-    public function container()
-    {
-        return $this->hasMany(Container::class);
-    }
+    // public function container()
+    // {
+    //     return $this->hasMany(Container::class);
+    // }
     public function JenisBarang()
     {
         return $this->belongsTo(JenisBarang::class, 'jenis_barang');
