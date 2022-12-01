@@ -42,6 +42,12 @@ Route::get('/tracking', [TrackingController::class,'tracking']);
 
 // Route::get('/', [DashboardController::class,'index'])->name('home');
 Route::get('/', function () {
+    if (Auth::check()) {
+        if (Auth::user()->role != 'Client') {
+            return redirect('/dashboard');
+        }
+        return redirect('/booking');
+    }
     return view('LandingPage');
 });
 
