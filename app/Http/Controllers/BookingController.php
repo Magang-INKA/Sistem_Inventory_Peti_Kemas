@@ -9,6 +9,7 @@ use App\Models\JadwalKapal;
 use App\Models\JenisBarang;
 use App\Models\Kapal;
 use App\Models\Pelabuhan;
+use App\Models\Transaksi;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -235,6 +236,7 @@ class BookingController extends Controller
                         'telp_penerima' => 'required',
                         'alamat_penerima' => 'required',
                         'status' => 'required',
+                        'catatan' => 'required',
                     ]);
                     //update barang
                     $idbarang = $request->input('id_barang');
@@ -252,7 +254,25 @@ class BookingController extends Controller
                     $q->telp_penerima = $request->input('telp_penerima');
                     $q->alamat_penerima = $request->input('alamat_penerima');
                     $q->status = $request->input('status');
+                    $q->catatan = $request->input('catatan');
                     $q->save();
+
+                    if ($request->input('status','=','terima')){
+
+                        $idbooking = DB::table('booking')->orderByDesc('id')->pluck('id')->first();
+                        // $idb=(int)$booking+1;
+
+                        $transaksi = new Transaksi();
+                        $transaksi->id_booking = $idbooking;
+                        $transaksi->qrcode=null;
+                        $transaksi->harga=null;
+                        $transaksi->save();
+
+                        $url = ('transaksi/'.$idbooking.'/edit');
+                        return redirect( $url);
+                    }
+                    //insert transaksi
+
 
                     $booking = Booking::all();
                     Alert::success('Success', 'Data Booking Berhasil Diupdate');
@@ -272,11 +292,6 @@ class BookingController extends Controller
 
                 $url = ('booking/'.$id.'/edit');
                 return redirect( $url);
-                // route('booking.edit',$id);
-                //return redirect('booking.edit',$id);
-                // return url('/booking/$id/edit');
-                //return redirect()->route('booking.edit', ['id' => $id]);
-                //redirect('BookingController/edit/'.$id, 'refresh');
                 break;
         }
 

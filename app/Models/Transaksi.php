@@ -9,17 +9,14 @@ use App\Models\Barang;
 class Transaksi extends Model
 {
     use HasFactory;
-    protected $table="transaksi"; // Eloquent akan membuat model Transaksi menyimpan record di tabel transaksi
-    protected $primaryKey = 'kode'; // Memanggil isi DB Dengan primarykey
+    protected $table="table_transaksi"; // Eloquent akan membuat model Transaksi menyimpan record di tabel transaksi
+    protected $primaryKey = 'id'; // Memanggil isi DB Dengan primarykey
     public $incrementing =false;
 
     protected $fillable = [
-        'kode',
-        'nama',
-        'alamat',
-        'telp',
-        'kota',
-        'penyedia',
+        'id_booking',
+        'harga',
+        'qr',
     ];
     public function barang()
     {

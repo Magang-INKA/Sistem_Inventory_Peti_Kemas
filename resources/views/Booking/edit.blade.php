@@ -93,8 +93,8 @@
 			<label for="id_container" class="col-sm-12 col-md-2 col-form-label">Container</label>
 			<div class="col-sm-12 col-md-10">
                 <div class="input-group">
-                    <input id="no_container" type="text" class="form-control" name="no_container" value="{{ old('no_container') }}" required readonly="">
-                    <input id="id_container" type="hidden" class="form-control" name="id_container" value="{{ old('id_container') }}" required readonly="">
+                    <input id="no_container" type="text" class="form-control" name="no_container" value="{{ $booking->no_container }}" required readonly="">
+                    <input id="id_container" type="hidden" class="form-control" name="id_container" value="{{ $booking->id_container }}" required readonly="">
                     <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal2"><b>Cari Container</b><span class="fa fa-search"></span></button>
                 </div>
             </div>
@@ -104,8 +104,7 @@
 			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Jenis Barang</label>
 			<div class="col-sm-12 col-md-10">
             <input id="id_container" type="hidden" class="form-control" name="id_barang" value="{{ $booking->id_barang }}" required readonly="">
-            <select name="country" class="form-control custom-select">
-                <option value="">Jenis Barang</option>
+            <select name="jenis_barang" class="form-control custom-select">
                 @foreach($jb as $jenisbarang)
                   <option value="{{ $jenisbarang->id }}">{{ $jenisbarang->jenis_barang}}</option>
                   {{-- <option value="{{ $jenisbarang->id }}" @if($jenisbarang->id == $jb->jenisbarang) selected @endif>{{ $jenisbarang->nama_barang }}</option> --}}
@@ -153,6 +152,12 @@
                 </select>
             </div>
 		</div>
+        <div class="form-group row">
+			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Note</label>
+			<div class="col-sm-12 col-md-10">
+            <input id="nama_barang" class="form-control" name="catatan" value="{{ $booking->note }}" required >
+			</div>
+		</div>
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label"></label>
 			<div class="col-sm-10">
@@ -189,7 +194,6 @@
                            <th> Pelabuhan tujuan </th>
                            <th> Kapal </th>
                            <th> Kode Container </th>
-                           {{-- <th> Jenis Container </th> --}}
                            <th> Kapasitas </th>
                            <th> ETA </th>
                            <th> ETD </th>
