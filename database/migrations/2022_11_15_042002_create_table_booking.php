@@ -20,7 +20,7 @@ class CreateTableBooking extends Migration
             $table->foreign('id_user')->references('id')->on('users');
             $table->integer('id_jadwal')->unsigned();
             $table->foreign('id_jadwal')->references('id')->on('jadwal_kapal')->onDelete('cascade');
-            $table->unsignedBigInteger('id_container');
+            $table->unsignedBigInteger('id_container')->nullable();
             $table->foreign('id_container')->references('id')->on('container');
             $table->unsignedBigInteger('id_barang');
             $table->foreign('id_barang')->references('id')->on('master_barang');
