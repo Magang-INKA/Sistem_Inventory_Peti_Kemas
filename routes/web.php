@@ -18,6 +18,7 @@ use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\JenisBarangController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +69,8 @@ Route::get('/laporan/masterKapal/excel', [MasterKapalController::class, 'laporan
 Route::resource('barang', BarangController::class);
 Route::get('/laporan/barang', [BarangController::class, 'laporan']);
 Route::get('/laporan/barang/excel', [BarangController::class, 'laporanExcel']);
+
+Route::resource('JenisBarang', JenisBarangController::class);
 
 Route::resource('transaksi', TransaksiController::class);
 Route::get('/laporan/transaksi', [TransaksiController::class, 'laporan']);

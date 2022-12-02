@@ -27,7 +27,7 @@
                     <tr>
                         <th>No</th>
                         <th>No Container</th>
-                        <th>Jenis</th>
+                        <th>Jenis Container</th>
                         <th>Kapasitas</th>
                         <th>Suhu Ketetapan</th>
                     </tr>
@@ -35,7 +35,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->no_container }}</td>
-                        <td>{{ $data->jenis }}</td>
+                        <td>{{ $data->jenis_container }}</td>
                         <td>{{ $data->kapasitas }}</td>
                         <td>{{ $data->suhu_ketetapan }}</td>
                     </tr>

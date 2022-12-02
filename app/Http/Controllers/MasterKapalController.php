@@ -105,7 +105,7 @@ class MasterKapalController extends Controller
         $masterKapal->nama_kapal = $request->get('nama_kapal');
         $masterKapal->save();
 
-        Alert::success('Success', 'Data Master Kapal Berhasil Ditambahkan');
+        Alert::success('Success', 'Data Master Kapal Berhasil Diedit');
         return redirect()->route('masterKapal.index');
     }
 

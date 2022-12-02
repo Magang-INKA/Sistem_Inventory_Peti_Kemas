@@ -94,51 +94,7 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        // if(Auth::user()->role == 'Operator') {
-        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-        //     return redirect()->to('/barang');
-        // }
-
-        // //melakukan validasi data
-        // $request->validate([
-        //     'nama_barang' => 'required',
-        //     'jumlah_barang' => 'required',
-        //     'berat' =>
-        //     ]);
-
-        //     $barang = new Barang;
-        //     $barang->nama_barang = $request->get('nama_barang');
-        //     $barang->jumlah_barang = $request->get('jumlah_barang');
-        //     $barang->requirement = $request->get('requirement');
-        //     $barang->save();
-
-            // if ($request->file('gambar')) {
-            //     $image_name = $request->file('gambar')->store('images', 'public');
-            // }
-
-            // $container = Container::find($request->get('id_container'));
-            // $transaksi = Transaksi::find($request->get('id_transaksi'));
-
-            // $barang = new Barang;
-            // $barang->id_container = $request->get('id_container');
-            // $barang->nama_barang = $request->get('nama_barang');
-            // $barang->gambar = $image_name;
-            // $barang->jumlah = $request->get('jumlah');
-            // $barang->requirement = $request->get('requirement');
-            // $barang->bahan = $request->get('bahan');
-            // $barang->harga = $request->get('harga');
-            // $barang->tgl_input = $request->get('tgl_input');
-
-            //fungsi eloquent untuk menambah data dengan relasi belongsTo
-            // $barang->container()->associate($container);
-            // // $barang->transaksi()->associate($transaksi);
-            // $barang->save();
-
-            //jika data berhasil ditambahkan, akan kembali ke halaman utama
-            Alert::success('Success', 'Data Barang Berhasil Ditambahkan');
-            return redirect()->route('barang.index');
-
-
+            //
     }
 
     /**
