@@ -31,9 +31,15 @@
             </ul>
         </div>
     @endif
-	<form method="POST" action="{{ route('pelabuhan.update', $pelabuhan->id) }}" id="myForm" enctype="multipart/form-data">
+	<form method="POST" action="{{ route('pelabuhan.update', $pelabuhan->kode_pelabuhan) }}" id="myForm" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+        <div class="form-group row">
+			<label for="kode_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Kode Pelabuhan</label>
+			<div class="col-sm-12 col-md-10">
+				<input class="form-control" type="text" name="kode_pelabuhan" id="kode_pelabuhan" value="{{ $pelabuhan->kode_pelabuhan }}" aria-describedby="kode_pelabuhan" placeholder="">
+			</div>
+		</div>
 		<div class="form-group row">
 			<label for="nama_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Nama Pelabuhan</label>
 			<div class="col-sm-12 col-md-10">

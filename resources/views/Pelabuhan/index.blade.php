@@ -45,7 +45,7 @@
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
                         {{-- <th>Pelabuhan ID</th> --}}
-                        <th>Pelabuhan Name</th>
+                        <th>Harbour Name</th>
                         <th>Address</th>
                         @can('manage-MasterData')
                         <th class="datatable-nosort">Action</th>

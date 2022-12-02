@@ -168,10 +168,10 @@ class PelabuhanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($kode_pelabuhan)
     {
         //menampilkan detail data dengan menemukan berdasarkan id container untuk diedit
-        $pelabuhan = Pelabuhan::find($id);
+        $pelabuhan = Pelabuhan::find($kode_pelabuhan);
         return view('Pelabuhan.edit', compact('pelabuhan'));
     }
 

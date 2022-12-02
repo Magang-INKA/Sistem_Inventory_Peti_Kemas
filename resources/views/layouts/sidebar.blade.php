@@ -32,8 +32,16 @@
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class=""></span><span class="mtext">Master</span>
                     </a>
-                    <ul class="submenu">
-                        <li><a href="{{ route('barang.index')}}" class="dropdown-toggle no-arrow @yield('menu_barang')">Product Master</a></li>
+                    <ul class="submenu" style="display: block;">
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle">
+                                <span class=""></span><span class="mtext">Product</span>
+                            </a>
+                            <ul class="submenu child">
+                                <li><a href="{{ route('JenisBarang.index')}}" class="dropdown-toggle no-arrow @yield('menu_jenis_barang')">Types of Products</a></li>
+                                <li><a href="{{ route('barang.index')}}" class="dropdown-toggle no-arrow @yield('menu_barang')">Product Master</a></li>
+                            </ul>
+                        </li>
                         <li><a href="{{ route('masterContainer.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_container')">Container Master</a></li>
                         <li><a href="{{ route('masterKapal.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_kapal')">Ship Master</a></li>
                         <li><a href="{{ route('pelabuhan.index') }}" class="dropdown-toggle no-arrow @yield('menu_pelabuhan')">Harbour Master</a></li>
