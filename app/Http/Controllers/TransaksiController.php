@@ -234,6 +234,8 @@ class TransaksiController extends Controller
         // dd($request);
         $transaksi = DB::table('table_transaksi')
         ->select('table_transaksi.id',
+        'table_transaksi.id_booking',
+        'table_transaksi.harga',
         'booking.no_resi',
         'users.name',
         'users.email',
@@ -244,8 +246,9 @@ class TransaksiController extends Controller
         'jadwal_kapal.id',
         'jadwal_kapal.ETA',
         'jadwal_kapal.ETD',
-        'p.nama_pelabuhan',
-        'p2.nama_pelabuhan',
+        'p.nama_pelabuhan as asal',
+        'p2.nama_pelabuhan as tujuan',
+        'master_kapal.no_kapal',
         'master_kapal.nama_kapal',
         'master_container.no_container',
         'booking.nama_penerima',
