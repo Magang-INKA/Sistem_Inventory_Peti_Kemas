@@ -31,9 +31,9 @@
             </ul>
         </div>
     @endif
-	<form method="POST" action="{{ route('resi', $transaksi->id) }}" id="myForm">
+	<form method="POST" action="{{ route('transaksi.update', $transaksi->id) }}" id="myForm">
         @csrf
-        {{-- @method('PUT') --}}
+        @method('PUT')
 		<div class="form-group row">
 			<label for="kode" class="col-sm-12 col-md-2 col-form-label ">ID Transaksi</label>
 			<div class="col-sm-12 col-md-10">
@@ -59,24 +59,14 @@
 			<label for="telp" class="col-sm-12 col-md-2 col-form-label ">QR</label>
 			<div class="col-sm-12 col-md-10">
                 {{-- {!! QrCode::format('png')->generate($transaksi->id_booking); !!} --}}
-                <img src="data:image/png;base64,{{ base64_encode(SimpleSoftwareIO\QrCode\Facades\QrCode::size(300)->format('png')->generate($transaksi->id_booking) ) }}">
+                <img src="data:image/png;base64,{{ base64_encode(SimpleSoftwareIO\QrCode\Facades\QrCode::size(150)->format('png')->generate($transaksi->id_booking) ) }}">
 			</div>
 		</div>
-        {{-- <div class="form-group row">
-			<label for="telp" class="col-sm-12 col-md-2 col-form-label ">QR</label>
-			<div class="col-sm-12 col-md-10">
-                <input class="form-control" type="hidden" name="alamat" id="alamat"
-                value="{{$var}}" aria-describedby="alamat" placeholder="">
-                {!! QrCode::size(250)->generate('www.google.com'); !!}
-			</div>
-		</div> --}}
-
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label"></label>
 			<div class="col-sm-10">
 				<button type="submit" class="btn btn-primary">Submit</button>
-                <a class="btn btn-danger" href="{{url('/resi/'.$transaksi->id)}}">PDF</a>
-				<button type="submit" class="btn btn-danger" value="print" name="action">Print</button>
+                <a class="btn btn-danger" href="{{url('/resi/'.$transaksi->id)}}">Print</a>
                 <div class="pull-right">
                     <a href="{{route('transaksi.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
                         <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>

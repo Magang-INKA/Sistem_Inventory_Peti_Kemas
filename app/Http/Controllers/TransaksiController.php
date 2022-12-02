@@ -137,101 +137,14 @@ class TransaksiController extends Controller
     public function update(Request $request, $id)
     {
         //melakukan validasi data
-        // $request->validate([
-        //     'harga' => 'required',
-        // ]);
+        $request->validate([
+            'harga' => 'required',
+        ]);
+        $t = Transaksi::find($id);
+        $t->harga = $request->input('harga');
+        $t->save();
+
         //fungsi eloquent untuk mengupdate data inputan kita
-        switch ($request->input('action')) {
-            case 'print':
-                $transaksi = DB::table('table_transaksi')
-                ->join('booking', 'booking.id', '=', 'table_transaksi.id_booking')
-                ->join('users','users.id','=','booking.id_user')
-                ->join('master_barang','master_barang.id','=','booking.id_barang')
-                ->join('jenis_barang','jenis_barang.id','=','master_barang.jenis_barang')
-                ->join('jadwal_kapal','jadwal_kapal.id_jadwal','=','booking.id_jadwal')
-                ->join('trip','trip.id','=','jadwal_kapal.id_trip')
-                ->join('master_kapal','master_kapal.id','=','master_kapal.id')
-                ->join('master_pelabuhan as p', 'jadwal_kapal.asal_pelabuhan_id', '=', 'p.id_pelabuhan')
-                ->join('master_pelabuhan as p2', 'jadwal_kapal.tujuan_pelabuhan_id', '=', 'p2.id_pelabuhan')
-                ->join('container','container.id_kapal','=','master_kapal.id')
-                ->join('master_container','master_container.no_container','=','container.no_container')
-                ->select('table_transaksi.id',
-                'booking.no_resi',
-                'users.name',
-                'users.email',
-                'users.no_telp',
-                'jenis_barang.jenis_barang',
-                'master_barang.nama_barang',
-                'master_barang.berat_barang',
-                'jadwal_kapal.id',
-                'jadwal_kapal.ETA',
-                'jadwal_kapal.ETD',
-                'master_kapal.nama_kapal',
-                'master_container.no_container',
-                'booking.nama_penerima',
-                'booking.telp_penerima',
-                'booking.alamat_penerima'
-                )
-                ->where('table_transaksi.id', '=', $id)->get();
-
-                // $struk = Transaksi::find($id);
-
-                // $pdf = PDF::loadview('Transaksi.struk', compact('transaksi'));
-                // return $pdf->stream();
-                // return redirect()->route('transaksi.index');
-                return view('Transaksi.resi', compact('transaksi'));
-            break;
-            // Transaksi::find($id)->update($request->all());
-            //jika data berhasil diupdate, akan kembali ke halaman utama
-            // Alert::success('Success', 'Data Transaksi Berhasil Diupdate');
-
-        }
-        return view('Transaksi.index', compact('transaksi'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //fungsi eloquent untuk menghapus data
-        Transaksi::find($id)->delete();
-        Alert::success('Success', 'Data Transaksi Berhasil Dihapus');
-        return redirect()->route('transaksi.index');
-    }
-
-    public function laporan()
-    {
-        $transaksi = Transaksi::all();
-        $pdf = PDF::loadview('Transaksi.laporan', compact('transaksi'));
-        return $pdf->stream();
-    }
-
-    public function laporanExcel(Request $request)
-    {
-        return Excel::download(new TransaksiExport, 'Transaksi.xlsx');
-    }
-
-    public function struk($id)
-    {
-        $transaksi = Transaksi::all();
-        $booking = Booking::all();
-        $user = User::all();
-        $jadwal = JadwalKapal::all();
-
-
-
-        $pdf = PDF::loadview('Transaksi.laporan', compact('transaksi'));
-        return $pdf->stream();
-    }
-
-
-    public function resi($id)
-    {
-        // dd($request);
         $transaksi = DB::table('table_transaksi')
         ->select('table_transaksi.id',
         'table_transaksi.id_booking',
@@ -266,17 +179,41 @@ class TransaksiController extends Controller
         ->join('master_pelabuhan as p2', 'jadwal_kapal.tujuan_pelabuhan_id', '=', 'p2.kode_pelabuhan')
         ->join('container','container.id_kapal','=','master_kapal.id')
         ->join('master_container','master_container.no_container','=','container.no_container')
-
         ->where('table_transaksi.id', '=', $id)->get();
+        //return view('Transaksi.resi', compact('transaksi'));
+        // return view('Transaksi.index', compact('transaksi'));
 
-        // $struk = Transaksi::find($id);
-
-        // $pdf = PDF::loadview('Transaksi.struk', compact('transaksi'));
-        // return $pdf->stream();
-        // return redirect()->route('transaksi.index');
-        return view('Transaksi.resi', compact('transaksi'));
-        // dd($transaksi);
-        // return $transaksi;
-
+        $tr = Transaksi::all();
+        Alert::success('Success', 'Data Transaksi Berhasil Diupdate');
+        $pdf = PDF::loadview('Transaksi.resi', compact('transaksi'));
+        return $pdf->stream();
+        // return view('Transaksi.index', compact('tr'));
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //fungsi eloquent untuk menghapus data
+        Transaksi::find($id)->delete();
+        Alert::success('Success', 'Data Transaksi Berhasil Dihapus');
+        return redirect()->route('transaksi.index');
+    }
+
+    public function laporan()
+    {
+        $transaksi = Transaksi::all();
+        $pdf = PDF::loadview('Transaksi.laporan', compact('transaksi'));
+        return $pdf->stream();
+    }
+
+    public function laporanExcel(Request $request)
+    {
+        return Excel::download(new TransaksiExport, 'Transaksi.xlsx');
+    }
+
 }
