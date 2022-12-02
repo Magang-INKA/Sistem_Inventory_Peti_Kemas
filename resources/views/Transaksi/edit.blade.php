@@ -58,7 +58,8 @@
         <div class="form-group row">
 			<label for="telp" class="col-sm-12 col-md-2 col-form-label ">QR</label>
 			<div class="col-sm-12 col-md-10">
-                {!! QrCode::size(250)->generate($transaksi->id_booking); !!}
+                {{-- {!! QrCode::format('png')->generate($transaksi->id_booking); !!} --}}
+                <img src="data:image/png;base64,{{ base64_encode(SimpleSoftwareIO\QrCode\Facades\QrCode::size(300)->format('png')->generate($transaksi->id_booking) ) }}">
 			</div>
 		</div>
         {{-- <div class="form-group row">

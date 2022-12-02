@@ -116,7 +116,7 @@ class TransaksiController extends Controller
         //menampilkan detail data dengan menemukan berdasarkan kode transaksi untuk diedit
 
         $transaksi = Transaksi::find($kode);
-        $var = (string)QrCode::format('svg')->margin(0)->size(200)->generate($transaksi);
+        $var = (string)QrCode::format('png')->margin(0)->size(200)->generate($transaksi);
         // return response($image)->header('Content-type','image/png');
         // $output_file = '/img/qr-code/img-' . time() . '.png';
         // Storage::disk('local')->put($output_file, $image);
