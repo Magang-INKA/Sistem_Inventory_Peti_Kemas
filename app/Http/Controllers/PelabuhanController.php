@@ -171,7 +171,7 @@ class PelabuhanController extends Controller
     public function edit($kode_pelabuhan)
     {
         //menampilkan detail data dengan menemukan berdasarkan id container untuk diedit
-        $pelabuhan = Pelabuhan::find($kode_pelabuhan);
+        $pelabuhan = Pelabuhan::where('kode_pelabuhan', $kode_pelabuhan)->first();
         return view('Pelabuhan.edit', compact('pelabuhan'));
     }
 
@@ -182,18 +182,18 @@ class PelabuhanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $kode)
+    public function update(Request $request, $kode_pelabuhan)
     {
         //melakukan validasi data
         $request->validate([
-            'kode_pelabuhan' => 'required',
+            // 'kode_pelabuhan' => 'required',
             'nama_pelabuhan' => 'required',
             'alamat' => 'required',
             ]);
 
         //fungsi eloquent untuk mengupdate data inputan kita
-        $pelabuhan = Pelabuhan::where('kode_pelabuhan', $kode)->first();
-        $pelabuhan->kode_pelabuhan = $request->get('kode_pelabuhan');
+        $pelabuhan = Pelabuhan::where('kode_pelabuhan', $kode_pelabuhan)->first();
+        // $pelabuhan->kode_pelabuhan = $request->get('kode_pelabuhan');
         $pelabuhan->nama_pelabuhan = $request->get('nama_pelabuhan');
         $pelabuhan->alamat = $request->get('alamat');
         $pelabuhan->save();

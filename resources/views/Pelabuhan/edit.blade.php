@@ -37,7 +37,7 @@
         <div class="form-group row">
 			<label for="kode_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Kode Pelabuhan</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="kode_pelabuhan" id="kode_pelabuhan" value="{{ $pelabuhan->kode_pelabuhan }}" aria-describedby="kode_pelabuhan" placeholder="">
+				<input class="form-control" type="text" name="kode_pelabuhan" id="kode_pelabuhan" value="{{ $pelabuhan->kode_pelabuhan }}" aria-describedby="kode_pelabuhan" placeholder="" disabled>
 			</div>
 		</div>
 		<div class="form-group row">

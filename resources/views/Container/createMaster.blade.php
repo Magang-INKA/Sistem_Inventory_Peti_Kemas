@@ -41,7 +41,6 @@
 		</div>
         <div class="form-group row">
 			<label for="jenis_container" class="col-sm-12 col-md-2 col-form-label text-white">Type</label>
-            {{-- <label for="role" class="col-sm-12 col-md-2 col-form-label text-white">Role</label> --}}
             <div class="col-sm-12 col-md-10">
                 <select class="custom-select col-12" type="jenis_container" name="jenis_container" id="jenis_container">
                     <option value="">Choose Container</option>
@@ -49,9 +48,6 @@
                     <option value="40 feet">40 feet</option>
                 </select>
             </div>
-			{{-- <div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="jenis_container" id="jenis_container" aria-describedby="jenis_container" placeholder="">
-			</div> --}}
 		</div>
         <div class="form-group row">
 			<label for="kapasitas" class="col-sm-12 col-md-2 col-form-label text-white">Kapasitas</label>

@@ -14,6 +14,7 @@ class Pelabuhan extends Model
     use HasFactory;
     protected $table="master_pelabuhan"; // Eloquent akan membuat model Container menyimpan record di tabel container
     protected $primaryKey = 'kode_pelabuhan'; // Memanggil isi DB Dengan primarykey
+    public $incrementing =false;
     /**
      * The attributes that are mass assignable. *
      * @var array

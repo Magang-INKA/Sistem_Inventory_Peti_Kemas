@@ -20,7 +20,7 @@
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left mt-2">
                     <h3 align="center">SISTEM INVENTORY PETI KEMAS</h3>
-                    <h3 align="center">LAPORAN DATA CONTAINER</h3>
+                    <h3 align="center">LAPORAN DATA MASTER CONTAINER</h3>
                 </div>
                 <br>
                 <table class="table table-bordered">

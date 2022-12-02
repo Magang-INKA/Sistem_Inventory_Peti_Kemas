@@ -40,7 +40,7 @@
                 <div class="input-group">
                     <input id="nama_trip" type="hidden"  readonly="" required>
                     <input id="id_trip" type="text" class="form-control" name="id_trip" value="{{ $jadwalKapal->trip->id }}" required readonly="">
-                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal2"><b>Cari Trip </b><span class="fa fa-search"></span></button>
+                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal1"><b>Cari Trip </b><span class="fa fa-search"></span></button>
                 </div>
             </div>
 		</div>
@@ -49,6 +49,26 @@
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
                     <input id="" type="text" class="form-control" name="" value="{{ $jadwalKapal->trip->kapal->no_kapal }} - {{ $jadwalKapal->trip->kapal->nama_kapal }}" required readonly="" aria-disabled="">
+                </div>
+            </div>
+		</div>
+        <div class="form row">
+			<label for="asal_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Pelabuhan Asal</label>
+            <div class="col-sm-12 col-md-10">
+                <div class="input-group">
+                    <input id="nama_pelabuhan1" type="text" class="form-control" value="{{  $jadwalKapal->awal->nama_pelabuhan }}" readonly="" required>
+                    <input id="asal_pelabuhan_id" type="hidden" name="asal_pelabuhan_id" value="{{  $jadwalKapal->awal->kode_pelabuhan }}" required readonly="">
+                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal2"><b>Cari Pelabuhan </b><span class="fa fa-search"></span></button>
+                </div>
+            </div>
+		</div>
+        <div class="form row">
+			<label for="tujuan_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Pelabuhan Tujuan</label>
+            <div class="col-sm-12 col-md-10">
+                <div class="input-group">
+                    <input id="nama_pelabuhan2" type="text" class="form-control" value="{{  $jadwalKapal->tujuan->nama_pelabuhan }}" readonly="" required>
+                    <input id="tujuan_pelabuhan_id" type="hidden" name="tujuan_pelabuhan_id" value="{{  $jadwalKapal->tujuan->kode_pelabuhan }}" required readonly="">
+                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal3"><b>Cari Pelabuhan </b><span class="fa fa-search"></span></button>
                 </div>
             </div>
 		</div>
@@ -80,7 +100,7 @@
 	</form>
 </div>
 <!-- Default Basic Forms End -->
-<div class="modal fade bd-example-modal-lg" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
+<div class="modal fade bd-example-modal-lg" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-lg" role="document" >
         <div class="modal-content" style="background: #fff;">
             <div class="modal-header">
@@ -101,11 +121,71 @@
                     </thead>
                     <tbody>
                         @foreach($trip as $data)
-                        <tr class="pilih2" data-id_trip="<?php echo $data->id; ?>" data-nama_trip="<?php echo $data->nama_trip; ?>" >
+                        <tr class="pilih1" data-id_trip="<?php echo $data->id; ?>" data-nama_trip="<?php echo $data->nama_trip; ?>" >
                             <td>{{$data->id}}</td>
                             <td>{{$data->nama_trip}}</td>
                             <td>{{$data->keberangkatan->nama_pelabuhan}}</td>
                             <td>{{$data->tujuan->nama_pelabuhan}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content" style="background: #fff;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cari Pelabuhan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="lookup" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Kode Pelabuhan</th>
+                            <th>Nama Pelabuhan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($pelabuhan as $data)
+                        <tr class="pilih2" data-asal_pelabuhan="<?php echo $data->kode_pelabuhan; ?>" data-nama_pelabuhan="<?php echo $data->nama_pelabuhan; ?>" >
+                            <td>{{$data->kode_pelabuhan}}</td>
+                            <td>{{$data->nama_pelabuhan}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content" style="background: #fff;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cari Pelabuhan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="lookup" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Kode Pelabuhan</th>
+                            <th>Nama Pelabuhan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($pelabuhan as $data)
+                        <tr class="pilih3" data-tujuan_pelabuhan="<?php echo $data->kode_pelabuhan; ?>" data-nama_pelabuhan="<?php echo $data->nama_pelabuhan; ?>" >
+                            <td>{{$data->kode_pelabuhan}}</td>
+                            <td>{{$data->nama_pelabuhan}}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -126,16 +206,23 @@
     });
 </script>
 <script type="text/javascript">
+
     $(document).on('click', '.pilih1', function (e) {
-        document.getElementById("nama_kapal").value = $(this).attr('data-nama_kapal');
-        document.getElementById("id_kapal").value = $(this).attr('data-id_kapal');
+        document.getElementById("nama_trip").value = $(this).attr('data-nama_trip');
+        document.getElementById("id_trip").value = $(this).attr('data-id_trip');
         $('#myModal1').modal('hide');
     });
 
     $(document).on('click', '.pilih2', function (e) {
-        document.getElementById("nama_trip").value = $(this).attr('data-nama_trip');
-        document.getElementById("id_trip").value = $(this).attr('data-id_trip');
+        document.getElementById("nama_pelabuhan1").value = $(this).attr('data-nama_pelabuhan');
+        document.getElementById("asal_pelabuhan_id").value = $(this).attr('data-asal_pelabuhan');
         $('#myModal2').modal('hide');
+    });
+
+    $(document).on('click', '.pilih3', function (e) {
+        document.getElementById("nama_pelabuhan2").value = $(this).attr('data-nama_pelabuhan');
+        document.getElementById("tujuan_pelabuhan_id").value = $(this).attr('data-tujuan_pelabuhan');
+        $('#myModal3').modal('hide');
     });
 
     $(function () {

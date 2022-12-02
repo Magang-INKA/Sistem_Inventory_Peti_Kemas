@@ -37,19 +37,28 @@
         <div class="form-group row">
 			<label for="no_container" class="col-sm-12 col-md-2 col-form-label text-white">No Container</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="no_container" id="no_container" aria-describedby="no_container" placeholder="" value="{{ $masterContainer->no_container }}">
+				<input class="form-control" type="text" name="no_container" id="no_container" aria-describedby="no_container" placeholder="" value="{{ $masterContainer->no_container }}" disabled>
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="jenis" class="col-sm-12 col-md-2 col-form-label text-white">Type</label>
+			<label for="jenis_container" class="col-sm-12 col-md-2 col-form-label text-white">Type</label>
+            <div class="col-sm-12 col-md-10">
+                <select class="custom-select col-12" type="jenis_container" name="jenis_container" id="jenis_container">
+                        <option value="20 feet" @if($masterContainer->jenis_container == '20 feet') selected @endif>20 feet</option>
+                        <option value="40 feet" @if($masterContainer->jenis_container == '40 feet') selected @endif>40 feet</option>
+                </select>
+            </div>
+		</div>
+        <div class="form-group row">
+			<label for="kapasitas" class="col-sm-12 col-md-2 col-form-label text-white">Capacity</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="jenis" id="jenis" aria-describedby="jenis" placeholder="" value="{{ $masterContainer->jenis }}">
+				<input class="form-control" type="number" name="kapasitas" id="kapasitas" aria-describedby="kapasitas" placeholder="" value="{{ $masterContainer->kapasitas }}">
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="ukuran" class="col-sm-12 col-md-2 col-form-label text-white">Size (feet)</label>
+			<label for="suhu_ketetapan" class="col-sm-12 col-md-2 col-form-label text-white">Temperature</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="number" name="ukuran" id="ukuran" aria-describedby="ukuran" placeholder="" value="{{ $masterContainer->ukuran }}">
+				<input class="form-control" type="number" name="suhu_ketetapan" id="suhu_ketetapan" aria-describedby="suhu_ketetapan" placeholder="" value="{{ $masterContainer->suhu_ketetapan }}">
 			</div>
 		</div>
 		<div class="form-group row">

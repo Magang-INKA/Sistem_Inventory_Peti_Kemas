@@ -113,22 +113,22 @@ class MasterContainerController extends Controller
     public function update(Request $request, $kode)
     {
         $request->validate([
-            'no_container' => 'required',
-            'jenis' => 'required',
+            // 'no_container' => 'required',
+            'jenis_container' => 'required',
             'kapasitas' => 'required',
             'suhu_ketetapan' => 'required',
             ]);
 
             //fungsi eloquent untuk menambah data
             $masterContainer = MasterContainer::where('no_container', $kode)->first();
-            $masterContainer->no_container = $request->get('no_container');
-            $masterContainer->jenis = $request->get('jenis');
+            // $masterContainer->no_container = $request->get('no_container');
+            $masterContainer->jenis_container = $request->get('jenis_container');
             $masterContainer->kapasitas = $request->get('kapasitas');
             $masterContainer->suhu_ketetapan = $request->get('suhu_ketetapan');
             $masterContainer->save();
 
             //jika data berhasil ditambahkan, akan kembali ke halaman utama
-            Alert::success('Success', 'Master Data Container Berhasil Ditambahkan');
+            Alert::success('Success', 'Master Data Container Berhasil Diedit');
             return redirect()->route('masterContainer.index');
     }
 

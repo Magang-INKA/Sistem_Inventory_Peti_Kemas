@@ -64,8 +64,8 @@
 			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">No Kapal</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
-                    <input id="nama_kapal" type="hidden" readonly="" required>
-                    <input id="id_kapal" type="text" class="form-control" name="id_kapal" value="{{ $trip->kapal->no_kapal }}" required readonly="">
+                    <input id="no_kapal" type="text" class="form-control" readonly="" required value="{{ $trip->kapal->no_kapal }}">
+                    <input id="id_kapal" type="hidden" class="form-control" name="id_kapal" value="{{ $trip->kapal->id }}" required readonly="">
                     <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal2"><b>Cari Kapal </b><span class="fa fa-search"></span></button>
                 </div>
             </div>
@@ -166,7 +166,7 @@
                     </thead>
                     <tbody>
                         @foreach($kapal as $data)
-                        <tr class="pilih3" data-no_kapal="<?php echo $data->no_kapal; ?>" data-nama_kapal="<?php echo $data->nama_kapal; ?>" >
+                        <tr class="pilih3" data-id="<?php echo $data->id; ?>" data-no_kapal="<?php echo $data->no_kapal; ?>" >
                             <td>{{$data->no_kapal}}</td>
                             <td>{{$data->nama_kapal}}</td>
                         </tr>
@@ -202,8 +202,8 @@
     });
 
     $(document).on('click', '.pilih3', function (e) {
-        document.getElementById("nama_kapal").value = $(this).attr('data-nama_kapal');
-        document.getElementById("id_kapal").value = $(this).attr('data-no_kapal');
+        document.getElementById("no_kapal").value = $(this).attr('data-no_kapal');
+        document.getElementById("id_kapal").value = $(this).attr('data-id');
         $('#myModal2').modal('hide');
     });
 
