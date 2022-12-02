@@ -135,5 +135,5 @@ Route::get('/pelabuhan1', [\App\Http\Controllers\BookingController::class, 'sele
 Route::get('/pelabuhan2', [\App\Http\Controllers\BookingController::class, 'select2'])->name('pelabuhan2.select');
 Route::get('/jadwal-kapal', [\App\Http\Controllers\BookingController::class, 'select3'])->name('jadwalkapal.select');
 
-Route::get('/updateJadwal', [\App\Http\Controllers\BookingController::class, 'updateJadwal'])->name('booking.updateJadwal');
+Route::get('/resi/{id}', [TransaksiController::class, 'resi'])->name('resi');
 

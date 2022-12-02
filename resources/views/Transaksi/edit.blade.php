@@ -31,9 +31,9 @@
             </ul>
         </div>
     @endif
-	<form method="POST" action="{{ route('transaksi.update', $transaksi->id) }}" id="myForm">
+	<form method="POST" action="{{ route('resi', $transaksi->id) }}" id="myForm">
         @csrf
-        @method('PUT')
+        {{-- @method('PUT') --}}
 		<div class="form-group row">
 			<label for="kode" class="col-sm-12 col-md-2 col-form-label ">ID Transaksi</label>
 			<div class="col-sm-12 col-md-10">
@@ -44,14 +44,14 @@
 		<div class="form-group row">
 			<label for="nama" class="col-sm-12 col-md-2 col-form-label ">ID Booking</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="nama" id="nama"
-                value="{{ $transaksi->id_booking }}" aria-describedby="nama" placeholder="">
+				<input class="form-control" type="text" name="id_booking" id="nama"
+                value="{{ $transaksi->id_booking }}" readonly>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="alamat" class="col-sm-12 col-md-2 col-form-label ">Harga</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="alamat" id="alamat"
+				<input class="form-control" type="text" name="harga" id="alamat"
                 value="{{ $transaksi->harga }}" aria-describedby="alamat" placeholder="">
 			</div>
 		</div>
@@ -75,7 +75,8 @@
 			<label class="col-sm-2 col-form-label"></label>
 			<div class="col-sm-10">
 				<button type="submit" class="btn btn-primary">Submit</button>
-				<button type="reset" class="btn btn-danger">Reset</button>
+                <a class="btn btn-danger" href="{{url('/resi/'.$transaksi->id)}}">PDF</a>
+				<button type="submit" class="btn btn-danger" value="print" name="action">Print</button>
                 <div class="pull-right">
                     <a href="{{route('transaksi.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
                         <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>

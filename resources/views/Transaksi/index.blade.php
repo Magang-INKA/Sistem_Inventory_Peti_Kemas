@@ -64,7 +64,7 @@
                     @foreach ($transaksi as $sup => $data)
                     <tr>
                         <td class="table-plus">{{ $sup + $transaksi->firstitem() }}</td>
-                        <td>{{ $data->qrcode }}</td>
+                        <td><img src="data:image/png;base64,{{ base64_encode(SimpleSoftwareIO\QrCode\Facades\QrCode::size(75)->format('png')->generate($data->id_booking) ) }}"></td>
                         <td>{{ $data->id_booking }}</td>
                         <td>{{ $data->harga }}</td>
                         <td>
