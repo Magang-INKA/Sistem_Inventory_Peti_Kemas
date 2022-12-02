@@ -6,8 +6,10 @@ use App\Exports\TransaksiExport;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use PDF;
 
 class TransaksiController extends Controller
@@ -112,8 +114,13 @@ class TransaksiController extends Controller
     public function edit($kode)
     {
         //menampilkan detail data dengan menemukan berdasarkan kode transaksi untuk diedit
+
         $transaksi = Transaksi::find($kode);
-        return view('Transaksi.edit', compact('transaksi'));
+        $var = (string)QrCode::format('svg')->margin(0)->size(200)->generate($transaksi);
+        // return response($image)->header('Content-type','image/png');
+        // $output_file = '/img/qr-code/img-' . time() . '.png';
+        // Storage::disk('local')->put($output_file, $image);
+        return view('Transaksi.edit', compact('transaksi','var'));
     }
 
     /**

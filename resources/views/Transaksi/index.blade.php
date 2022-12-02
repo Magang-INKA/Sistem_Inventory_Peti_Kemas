@@ -54,13 +54,9 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>Transaction ID</th>
-                        <th>User ID</th>
-                        <TH>Product ID</TH>
-                        <th>Container ID</th>
-                        <th>ID Kapal</th>
-                        <th>ID Pelabuhan</th>
-                        <th>Date</th>
+                        <th>QR Code</th>
+                        <th>ID Booking</th>
+                        <th>Harga</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
                 </thead>
@@ -68,22 +64,18 @@
                     @foreach ($transaksi as $sup => $data)
                     <tr>
                         <td class="table-plus">{{ $sup + $transaksi->firstitem() }}</td>
-                        <td>{{ $data->idtransaksi }}</td>
-                        <td>{{ $data->iduser }}</td>
-                        <td>{{ $data->idbarang }}</td>
-                        <td>{{ $data->idcontainer }}</td>
-                        <td>{{ $data->idkapal }}</td>
-                        <td>{{ $data->idpelabuhan }}</td>
-                        <td>{{ $data->date }}</td>
+                        <td>{{ $data->qrcode }}</td>
+                        <td>{{ $data->id_booking }}</td>
+                        <td>{{ $data->harga }}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                     <i class="dw dw-more"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <form action="{{ route('transaksi.destroy', $data->kode) }}" method="POST">
-                                        <a class="dropdown-item" href="{{ route('transaksi.show', $data->kode) }}"><i class="dw dw-eye"></i> View</a>
-                                        <a class="dropdown-item" href="{{ route('transaksi.edit', $data->kode) }}"><i class="dw dw-edit2"></i> Edit</a>
+                                    <form action="{{ route('transaksi.destroy', $data->id) }}" method="POST">
+                                        <a class="dropdown-item" href="{{ route('transaksi.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
+                                        <a class="dropdown-item" href="{{ route('transaksi.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <button class="dropdown-item" onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit">

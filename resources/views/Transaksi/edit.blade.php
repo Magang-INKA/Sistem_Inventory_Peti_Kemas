@@ -20,7 +20,7 @@
     </div>
 </div>
 <!-- Default Basic Forms Start -->
-<div class="pd-20 card-box mb-30">
+<div class="pd-20 card-white mb-30">
 	@if ($errors->any())
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -35,33 +35,41 @@
         @csrf
         @method('PUT')
 		<div class="form-group row">
-			<label for="kode" class="col-sm-12 col-md-2 col-form-label text-white">Kode Transaksi</label>
+			<label for="kode" class="col-sm-12 col-md-2 col-form-label ">ID Transaksi</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="kode" id="kode"
                 value="{{ $transaksi->id }}" aria-describedby="kode" placeholder readonly="">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="nama" class="col-sm-12 col-md-2 col-form-label text-white">Nama Transaksi</label>
+			<label for="nama" class="col-sm-12 col-md-2 col-form-label ">ID Booking</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="nama" id="nama"
                 value="{{ $transaksi->id_booking }}" aria-describedby="nama" placeholder="">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="alamat" class="col-sm-12 col-md-2 col-form-label text-white">Alamat</label>
+			<label for="alamat" class="col-sm-12 col-md-2 col-form-label ">Harga</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="alamat" id="alamat"
                 value="{{ $transaksi->harga }}" aria-describedby="alamat" placeholder="">
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="telp" class="col-sm-12 col-md-2 col-form-label text-white">Telepon</label>
+			<label for="telp" class="col-sm-12 col-md-2 col-form-label ">QR</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="telp" id="telp"
-                value="{{ $transaksi->qrcode }}" aria-describedby="telp" placeholder="">
+                {!! QrCode::size(250)->generate($transaksi->id_booking); !!}
 			</div>
 		</div>
+        {{-- <div class="form-group row">
+			<label for="telp" class="col-sm-12 col-md-2 col-form-label ">QR</label>
+			<div class="col-sm-12 col-md-10">
+                <input class="form-control" type="hidden" name="alamat" id="alamat"
+                value="{{$var}}" aria-describedby="alamat" placeholder="">
+                {!! QrCode::size(250)->generate('www.google.com'); !!}
+			</div>
+		</div> --}}
+
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label"></label>
 			<div class="col-sm-10">
