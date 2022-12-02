@@ -35,30 +35,20 @@
         @csrf
         @method('PUT')
 		<div class="form-group row">
-			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">Nama Kapal</label>
+			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">No Kapal - Nama Kapal</label>
 			<div class="col-sm-12 col-md-10">
                 <div class="input-group">
-                    <input id="nama_kapal" type="text" class="form-control" readonly="" required>
-                    <input id="id_kapal" type="hidden" name="id_kapal" value="{{ old('id_kapal') }}" required readonly="">
+                    <input id="nama_kapal" type="text" class="form-control" value="{{ $container->kapal->no_kapal }} - {{ $container->kapal->nama_kapal }}"  readonly="" required>
+                    <input id="id_kapal" type="hidden" name="id_kapal" value="{{ $container->id_kapal }}" required readonly="">
                     <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Kapal</b><span class="fa fa-search"></span></button>
                 </div>
             </div>
 		</div>
 		<div class="form-group row">
-			<label for="nama_container" class="col-sm-12 col-md-2 col-form-label text-white">Nama Container</label>
+			<label for="no_container" class="col-sm-12 col-md-2 col-form-label text-white">No Container</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="nama_container" id="nama_container" aria-describedby="nama_container" placeholder="">
+				<input class="form-control" type="text" name="no_container" value="{{ $container->no_container }}" id="no_container" aria-describedby="no_container" placeholder="">
 			</div>
-		</div>
-		<div class="form-group row">
-			<label for="id_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Nama Pelabuhan</label>
-			<div class="col-sm-12 col-md-10">
-                <div class="input-group">
-                    <input id="nama_pelabuhan" type="text" class="form-control" readonly="" required>
-                    <input id="id_pelabuhan" type="hidden" name="id_pelabuhan" value="{{ old('id_pelabuhan') }}" required readonly="">
-                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal1"><b>Cari Pelabuhan</b><span class="fa fa-search"></span></button>
-                </div>
-            </div>
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label"></label>
@@ -90,45 +80,15 @@
                 <table id="lookup" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>ID Kapal</th>
+                            <th>No Kapal</th>
                             <th>Nama Kapal</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($kapal as $data)
-                        <tr class="pilih" data-id="<?php echo $data->id; ?>" data-nama_kapal="<?php echo $data->nama_kapal; ?>" >
-                            <td>{{$data->id}}</td>
+                        <tr class="pilih" data-id="<?php echo $data->id; ?>" data-nama_kapal="<?php echo $data->no_kapal; ?> - <?php echo $data->nama_kapal; ?>" >
+                            <td>{{$data->no_kapal}}</td>
                             <td>{{$data->nama_kapal}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade bd-example-modal-lg" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
-    <div class="modal-dialog modal-lg" role="document" >
-        <div class="modal-content" style="background: #fff;">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cari Pelabuhan </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table id="lookup" class="table table-bordered table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID Pelabuhan</th>
-                            <th>Nama Pelabuhan Tujuan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($pelabuhan as $data)
-                        <tr class="pilih2" data-id_pelabuhan="<?php echo $data->id; ?>" data-nama_pelabuhan="<?php echo $data->nama_pelabuhan; ?>" >
-                            <td>{{$data->id}}</td>
-                            <td>{{$data->nama_pelabuhan}}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -152,12 +112,6 @@
         document.getElementById("nama_kapal").value = $(this).attr('data-nama_kapal');
         document.getElementById("id_kapal").value = $(this).attr('data-id');
         $('#myModal').modal('hide');
-    });
-
-    $(document).on('click', '.pilih2', function (e) {
-        document.getElementById("nama_pelabuhan").value = $(this).attr('data-nama_pelabuhan');
-        document.getElementById("id_pelabuhan").value = $(this).attr('data-id_pelabuhan');
-        $('#myModal1').modal('hide');
     });
 
     $(function () {

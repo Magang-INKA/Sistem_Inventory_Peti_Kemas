@@ -62,7 +62,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                     <form action="{{ route('container.destroy', $data->id) }}" method="POST">
-                                        <a class="dropdown-item" href="{{ route('container.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
+                                        {{-- <a class="dropdown-item" href="{{ route('container.show', $data->id) }}"><i class="dw dw-eye"></i> View</a> --}}
                                         <a class="dropdown-item" href="{{ route('container.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')

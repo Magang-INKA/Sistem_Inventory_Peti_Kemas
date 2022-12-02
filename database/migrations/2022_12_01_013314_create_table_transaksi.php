@@ -13,11 +13,11 @@ class CreateTableTransaksi extends Migration
      */
     public function up()
     {
-        Schema::create('table_transaksi', function (Blueprint $table) {
+        Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_booking');
             $table->foreign('id_booking')->references('id')->on('booking')->onDelete('cascade');
-            $table->float('harga');
+            $table->float('harga')->nullable();
             $table->string('qrcode')->nullable();
             $table->timestamps();
         });

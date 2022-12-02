@@ -108,7 +108,7 @@ class ContainerController extends Controller
     {
         //menampilkan detail data dengan menemukan berdasarkan id container untuk diedit
         $container = Container::find($id);
-        $kapal = Kapal::all();
+        $kapal = MasterKapal::all();
         $pelabuhan = Pelabuhan::all();
         return view('Container.edit', compact('container', 'kapal', 'pelabuhan'));
     }
@@ -125,8 +125,7 @@ class ContainerController extends Controller
         //melakukan validasi data
         $request->validate([
             'no_container' => 'required',
-            'no_kapal' => 'required',
-            'id_pelabuhan' => 'required',
+            'id_kapal' => 'required',
         ]);
 
         //fungsi eloquent untuk mengupdate data inputan kita
