@@ -272,7 +272,8 @@ class TransaksiController extends Controller
         // return $pdf->stream();
         // return redirect()->route('transaksi.index');
         return view('Transaksi.resi', compact('transaksi'));
-        //dd($transaksi);
+        // dd($transaksi);
+        // return $transaksi;
 
     }
 }
