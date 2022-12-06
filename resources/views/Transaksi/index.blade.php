@@ -74,6 +74,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                     <form action="{{ route('transaksi.destroy', $data->id) }}" method="POST">
+                                        <a class="dropdown-item" href="{{ route('resi', $data->id) }}"><i class="dw dw-download"></i> Cetak Resi</a>
                                         <a class="dropdown-item" href="{{ route('transaksi.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
                                         <a class="dropdown-item" href="{{ route('transaksi.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf

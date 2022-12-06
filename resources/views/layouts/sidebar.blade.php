@@ -42,16 +42,20 @@
                                 <li><a href="{{ route('barang.index')}}" class="dropdown-toggle no-arrow @yield('menu_barang')">Product Master</a></li>
                             </ul>
                         </li>
+                        @if(Auth::user()->role == 'Administrator')
                         <li><a href="{{ route('masterContainer.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_container')">Container Master</a></li>
                         <li><a href="{{ route('masterKapal.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_kapal')">Ship Master</a></li>
                         <li><a href="{{ route('pelabuhan.index') }}" class="dropdown-toggle no-arrow @yield('menu_pelabuhan')">Harbour Master</a></li>
+                        @endif
                     </ul>
                 </li>
+                @if(Auth::user()->role == 'Administrator')
                 <li>
                     <a href="{{ url('/booking') }}" class="dropdown-toggle no-arrow @yield('menu_booking')">
                         <span class="micon dw dw-edit"></span><span class="mtext">Booking</span>
                     </a>
                 </li>
+                @endif
                 @endif
                 @can('manage-booking')
                 <li>
@@ -88,18 +92,6 @@
                 <li>
                     <a href="{{ route('user.index') }}" class="dropdown-toggle no-arrow @yield('menu_user')">
                         <span class="micon fa fa-users"></span><span class="mtext">Data User</span>
-                    </a>
-                </li>
-                @endcan
-                @can('manage-transaksi')
-                <li>
-                    <a href="{{ route('BarangKeluar.index') }}" class="dropdown-toggle no-arrow @yield('menu_BarangKeluar')">
-                        <span class="micon dw dw-outbox"></span><span class="mtext">Barang Keluar</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('BarangMasuk.index') }}" class="dropdown-toggle no-arrow @yield('menu_BarangMasuk')">
-                        <span class="micon dw dw-inbox"></span><span class="mtext">Barang Masuk</span>
                     </a>
                 </li>
                 @endcan

@@ -18,14 +18,14 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware(function($request, $next){
-        if(Gate::allows('manage-MasterData')) return $next($request);
-        abort(403, 'Anda tidak memiliki cukup hak akses');
-        });
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    //     $this->middleware(function($request, $next){
+    //     if(Gate::allows('manage-MasterData')) return $next($request);
+    //     abort(403, 'Anda tidak memiliki cukup hak akses');
+    //     });
+    // }
 
     public function index()
     {
