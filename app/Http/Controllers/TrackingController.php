@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dashboard;
+use App\Models\DropPoint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Session;
 
 class TrackingController extends Controller
 {
@@ -11,47 +14,76 @@ class TrackingController extends Controller
     {
         $search = $request->search;
         if($request->has('search')){
-            $mqtt = Dashboard::where('value', 'like', "%" . $search . "%")
-            ->orwhere('id', 'like', "%" . $search . "%")
-            ->orwhereHas('mqtt', function($query) use($search) {
-                return $query->where('topic', '=', $search);
-            });
-            foreach ($mqtt as $key => $item) {
-                $item['value'] = json_decode($item->value,true);
+            $tracking = DB::table('drop_point')
+            ->select('drop_point.keterangan',
+            'drop_point.created_at',
+            'drop_point.pelabuhan',
+            'master_pelabuhan.nama_pelabuhan'
+            )
+            ->join('master_pelabuhan', 'drop_point.pelabuhan', '=', 'master_pelabuhan.kode_pelabuhan')
+            ->join('table_transaksi', 'drop_point.id_transaksi', '=', 'table_transaksi.id')
+            ->join('booking', 'table_transaksi.id_booking', '=', 'booking.id')
+            ->where('booking.no_resi', '=', $search)
+            ->orderBy('drop_point.created_at', 'desc')->get();
+            if (!$tracking->isEmpty()) {
+                Session::flash('success', 'Tracking berhasil!');
+                // Session::flash('alert-class', 'alert-success');
+                // $request->session()->flash('message', 'Tracking berhasil!');
+                // $request->session()->flash('alert-class', 'alert-success');
+                return view('Dashboard.tracking',compact('tracking'));
+                // return $tracking;
+            } else {
+                Session::flash('error', 'Data tidak ditemukan!');
+                // Session::flash('alert-class', 'alert-danger');
+                // $request->session()->flash('message', 'Data tidak ditemukan!');
+                // $request->session()->flash('alert-class', 'alert-danger');
+                return view('Dashboard.tracking',compact('tracking'));
+                // return $tracking;
             }
-
-            $data = array(
-                'id' =>'mqtt_history',
-                'mqtt_history' => $mqtt
-            );
-            // return response()->json($data);
-            return view('Dashboard.tracking')->with($data);
-        } else {
-            $mqtt = Dashboard::all();
-
-            foreach ($mqtt as $key => $item) {
-                $item['value'] = json_decode($item->value,true);
-            }
-
-            $data = array(
-                'id' =>'mqtt_history',
-                'mqtt_history' => $mqtt
-            );
-            // return response()->json($data);
-            return view('Dashboard.tracking')->with($data);
         }
-
-        // $mqtt = Dashboard::all();
-
-        // foreach ($mqtt as $key => $item) {
-        //     $item['value'] = json_decode($item->value,true);
+        // else {
+        //     $tracking = DropPoint::with('pelabuhan');
+        //     // return $tracking;
+        //     return view('Dashboard.tracking',compact('tracking'));
         // }
+        $tracking = DropPoint::with('pelabuhan');
+        Session::flush();
+        // return $tracking;
+        return view('Dashboard.tracking',compact('tracking'));
+    }
 
-        // $data = array(
-        //     'id' =>'mqtt_history',
-        //     'mqtt_history' => $mqtt
-        // );
-        // // return response()->json($data);
-        // return view('Dashboard.tracking')->with($data);
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        if($request->has('search')){
+            $tracking = DB::table('drop_point')
+            ->select('drop_point.keterangan',
+            'drop_point.created_at',
+            'drop_point.pelabuhan'
+            )
+            ->join('table_transaksi', 'drop_point.id_transaksi', '=', 'table_transaksi.id')
+            ->join('booking', 'table_transaksi.id_booking', '=', 'booking.id')
+            ->where('booking.no_resi', '=', $search)
+            ->orderBy('drop_point.created_at', 'desc')->get();
+            if (!$tracking->isEmpty()) {
+                Session::flash('success', 'Tracking berhasil!');
+                // Session::flash('alert-class', 'alert-success');
+                // $request->session()->flash('message', 'Tracking berhasil!');
+                // $request->session()->flash('alert-class', 'alert-success');
+                return view('Dashboard.tracking',compact('tracking'));
+                // return $tracking;
+            } else {
+                Session::flash('error', 'Data tidak ditemukan!');
+                // Session::flash('alert-class', 'alert-danger');
+                // $request->session()->flash('message', 'Data tidak ditemukan!');
+                // $request->session()->flash('alert-class', 'alert-danger');
+                return view('Dashboard.tracking',compact('tracking'));
+                // return $tracking;
+            }
+        } else {
+            $tracking = DropPoint::with('pelabuhan');
+            // return $tracking;
+            return view('Dashboard.tracking',compact('tracking'));
+        }
     }
 }

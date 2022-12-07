@@ -3,7 +3,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Sistem Inventory Peti Kemas</title>
+	<title>SimocoRC</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="200x200" href="{{asset('vendors/images/round-2.png')}}">
@@ -51,7 +51,7 @@
 		</div>
 	</div>
 	{{-- <div class="register-page-wrap d-flex align-items-center flex-wrap justify-content-center"> --}}
-    <div class="register-page-wrap d-flex align-items-center flex-wrap justify-content-center">
+    <div class="register-page-wrap d-flex flex-wrap justify-content-center">
 		{{-- <div class="container">
 			<div class="row align-items-center"> --}}
 				{{-- <div class="row"> --}}
@@ -71,49 +71,51 @@
                                                 Tracking
                                             </a> --}}
                                             <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i> Tracking</button>
+                                            {{-- <button type="reset" class="btn btn-danger">Reset</button> --}}
+                                            <a href="{{ url('/tracking') }}" type="button" class="btn btn-danger" onClick="refreshPage()">Reset</a>
                                         </div>
                                     </div>
                                 </form>
-                                @if ($message = Session::get('success'))
-                                    <div class="alert alert-success">
-                                        <p>{{ $message }}</p>
-                                    </div>
+                                @if ($message = Session::get('error'))
+                                {{-- <div class="alert alert-danger alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>{{ $message }}</strong>
+                                </div> --}}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
                                 @endif
-                                <table class="data-table table hover multiple-select-row nowrap">
+                                @if ($message = Session::get('success'))
+                                {{-- <div class="alert alert-success alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>{{ $message }}</strong>
+                                </div> --}}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                @endif
+                                <table class="table">
                                     <thead>
                                         <tr class="table-primary">
-                                            <th class="table-plus datatable-nosort">Date & Time</th>
+                                            <th>Date & Time</th>
                                             <th>Drop Point</th>
-                                            {{-- <th>Alamat</th> --}}
-                                            {{-- <th>Nama Kapal</th>
-                                            <th>Nama Container</th> --}}
+                                            <th>Keterangan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                            @foreach ($mqtt_history as $data)
-                                            <tr>
-                                                <td class="table-plus">{{ $data->value['TIME_STR'] }}</td>
-                                                {{-- <td>{{ $data->id }}</td>
-                                                <td>{{ $data->mqtt->topic }}</td> --}}
-                                                <td>{{ $data->value['LAT_STRING'] }}</td>
-                                                {{-- <td>{{ $data->value['LON_STRING'] }}</td> --}}
-                                            </tr>
-                                            @endforeach
-                                        {{-- <tr>
-                                            <td class="table-plus">2022-08-24 07:58:59</td>
-                                            <td>-6.193125</td>
-                                            <td>106.821810</td>
-                                        </tr>
+                                        @foreach ($tracking as $data)
                                         <tr>
-                                            <td class="table-plus">2022-08-24 07:58:59</td>
-                                            <td>-6.193125</td>
-                                            <td>106.821810</td>
+                                            <td>{{ $data->created_at }}</td>
+                                            <td>{{ $data->nama_pelabuhan }}</td>
+                                            <td>{{ $data->keterangan }}</td>
                                         </tr>
-                                        <tr>
-                                            <td class="table-plus">2022-08-24 07:58:59</td>
-                                            <td>-6.193125</td>
-                                            <td>106.821810</td>
-                                        </tr> --}}
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
