@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Container;
 use App\Models\Booking;
-use App\Models\BarangKeluar;
-use App\Models\BarangMasuk;
 use App\Models\JenisBarang;
 
 class Barang extends Model
@@ -30,14 +28,7 @@ class Barang extends Model
     // {
     //     return $this->belongsTo(Container::class, 'id_container');
     // }
-    public function BarangKeluar()
-    {
-        return $this->hasMany(BarangKeluar::class);
-    }
-    public function BarangMasuk()
-    {
-        return $this->hasMany(BarangMasuk::class);
-    }
+   
     // public function transaksi()
     // {
     //     return $this->belongsTo(Transaksi::class, 'id_transaksi');

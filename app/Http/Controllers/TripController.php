@@ -95,9 +95,6 @@ class TripController extends Controller
     {
         $trip = Trip::find($id);
         $kapal = MasterKapal::all();
-        // $keluar = BarangKeluar::with('barang')->find($kode);
-        // $keberangkatan = Pelabuhan::all();
-        // $tujuan = Pelabuhan::all();
         $pelabuhan = Pelabuhan::all();
         return view('Trip.edit', compact('trip','kapal', 'pelabuhan'));
     }

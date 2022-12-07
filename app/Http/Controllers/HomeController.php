@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
-use App\Models\BarangKeluar;
-use App\Models\BarangMasuk;
 use App\Models\Container;
 use App\Models\Transaksi;
 use App\Models\User;
@@ -33,9 +31,8 @@ class HomeController extends Controller
         $barang         = Barang::get();
         $transaksi       = Transaksi::get();
         $user           = User::get();
-        $BarangKeluar   = BarangKeluar::get();
-        $BarangMasuk    = BarangMasuk::get();
 
-        return view('coba', compact('container', 'barang', 'transaksi', 'user', 'BarangKeluar', 'BarangMasuk'));
+
+        return view('coba', compact('container', 'barang', 'transaksi', 'user'));
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\BarangKeluarController;
-use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -81,14 +79,6 @@ Route::get('/laporan/user', [UserController::class, 'laporan']);
 Route::get('/laporan/user/excel', [UserController::class, 'laporanExcel']);
 Route::get('password/user/{id}', [UserController::class, 'EditPassword'])->name('user.edit.password');
 Route::post('password/user/{id}', [UserController::class, 'UpdatePassword'])->name('user.update.password');
-
-Route::resource('BarangKeluar', BarangKeluarController::class);
-Route::get('/laporan/BarangKeluar', [BarangKeluarController::class, 'laporan']);
-Route::get('/laporan/BarangKeluar/excel', [BarangKeluarController::class, 'laporanExcel']);
-
-Route::resource('BarangMasuk', BarangMasukController::class);
-Route::get('/laporan/BarangMasuk', [BarangMasukController::class, 'laporan']);
-Route::get('/laporan/BarangMasuk/excel', [BarangMasukController::class, 'laporanExcel']);
 
 Route::resource('profile', ProfileController::class);
 Route::group(['middleware' => 'auth'], function () {
