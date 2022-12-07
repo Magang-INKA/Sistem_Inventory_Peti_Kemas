@@ -45,7 +45,7 @@
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
                         <th>No Container</th>
-                        <th>No Kapal</th>
+                        <th>Vessel Name</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
                 </thead>
@@ -54,7 +54,7 @@
                     <tr>
                         <td class="table-plus">{{ $ct + $container->firstitem() }}</td>
                         <td>{{ $data->no_container }}</td>
-                        <td>{{ $data->kapal->no_kapal }}</td>
+                        <td>{{ $data->kapal->nama_kapal }} V. {{ $data->kapal->no_kapal }}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -62,7 +62,6 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                     <form action="{{ route('container.destroy', $data->id) }}" method="POST">
-                                        {{-- <a class="dropdown-item" href="{{ route('container.show', $data->id) }}"><i class="dw dw-eye"></i> View</a> --}}
                                         <a class="dropdown-item" href="{{ route('container.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')

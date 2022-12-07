@@ -105,8 +105,6 @@ Route::get('/laporan/booking/excel', [BookingController::class, 'laporanExcel'])
 Route::get('/create', [BookingController::class, 'create']);
 Route::get('/create2', [BookingController::class, 'create2']);
 
-Route::resource('kapal', KapalController::class);
-
 Route::resource('pelabuhan', PelabuhanController::class);
 Route::get('/laporan/pelabuhan', [PelabuhanController::class, 'laporan']);
 Route::get('/laporan/pelabuhan/excel', [PelabuhanController::class, 'laporanExcel']);

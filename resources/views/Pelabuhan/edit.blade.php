@@ -5,12 +5,12 @@
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Edit Pelabuhan</h4>
+                <h4>Port Edit</h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('pelabuhan.index') }}">Pelabuhan</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                    <li class="breadcrumb-item active"><a href="{{ route('pelabuhan.index') }}">Port</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Edit</li>
                 </ol>
             </nav>
         </div>
@@ -35,19 +35,19 @@
         @csrf
         @method('PUT')
         <div class="form-group row">
-			<label for="kode_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Kode Pelabuhan</label>
+			<label for="kode_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Port Code</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="kode_pelabuhan" id="kode_pelabuhan" value="{{ $pelabuhan->kode_pelabuhan }}" aria-describedby="kode_pelabuhan" placeholder="" disabled>
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="nama_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Nama Pelabuhan</label>
+			<label for="nama_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Port Name</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="nama_pelabuhan" id="nama_pelabuhan" value="{{ $pelabuhan->nama_pelabuhan }}" aria-describedby="nama_pelabuhan" placeholder="">
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="alamat" class="col-sm-12 col-md-2 col-form-label text-white">Alamat</label>
+			<label for="alamat" class="col-sm-12 col-md-2 col-form-label text-white">Address</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="alamat" id="alamat" value="{{ $pelabuhan->alamat }}" aria-describedby="alamat" placeholder="">
 			</div>

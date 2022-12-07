@@ -10,8 +10,8 @@
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('booking.index') }}">Booking</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Index</li>
+                        <li class="breadcrumb-item active"><a href="{{ route('booking.index') }}">Booking</a></li>
+                        <li class="breadcrumb-item" aria-current="page">Index</li>
                     </ol>
                 </nav>
             </div>
@@ -62,9 +62,9 @@
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
                         <th>No Resi</th>
-                        <th>Nama Kapal</th>
-                        <th>Keberangkatan</th>
-                        <th>Status Booking</th>
+                        <th>Vessel Name</th>
+                        <th>Departure</th>
+                        <th>Booking State</th>
                         @can('manage-MasterData')
                         <th class="datatable-nosort">Action</th>
                         @endcan
@@ -86,7 +86,6 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                     <form action="{{ route('booking.destroy', $data->id) }}" method="POST">
-                                        <a class="dropdown-item" href="{{ route('booking.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
                                         <a class="dropdown-item" href="{{ route('booking.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')

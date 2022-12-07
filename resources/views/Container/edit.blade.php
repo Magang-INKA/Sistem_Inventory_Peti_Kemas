@@ -44,11 +44,14 @@
                 </div>
             </div>
 		</div>
-		<div class="form-group row">
+        <div class="form-group row">
 			<label for="no_container" class="col-sm-12 col-md-2 col-form-label text-white">No Container</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="no_container" value="{{ $container->no_container }}" id="no_container" aria-describedby="no_container" placeholder="">
-			</div>
+                <div class="input-group">
+                    <input id="no_container" type="text" class="form-control" name="no_container" value="{{ $container->no_container }}" required readonly="">
+                    <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal2"><b>Cari Container</b><span class="fa fa-search"></span></button>
+                </div>
+            </div>
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label"></label>
@@ -80,15 +83,49 @@
                 <table id="lookup" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>No Kapal</th>
-                            <th>Nama Kapal</th>
+                            <th>Vessel Name</th>
+                            <th>Voyage Number</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($kapal as $data)
-                        <tr class="pilih" data-id="<?php echo $data->id; ?>" data-nama_kapal="<?php echo $data->no_kapal; ?> - <?php echo $data->nama_kapal; ?>" >
-                            <td>{{$data->no_kapal}}</td>
+                        <tr class="pilih" data-id="<?php echo $data->id; ?>" data-nama_kapal="<?php echo $data->nama_kapal; ?> V. <?php echo $data->no_kapal; ?>" >
                             <td>{{$data->nama_kapal}}</td>
+                            <td>{{$data->no_kapal}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content" style="background: #fff;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cari Container </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="lookup" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Container Number</th>
+                            <th>Container Type</th>
+                            <th>Capacity</th>
+                            <th>Temperature</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($masterContainer as $data)
+                        <tr class="pilih2" data-no_container="<?php echo $data->no_container; ?>" >
+                            <td>{{$data->no_container}}</td>
+                            <td>{{$data->jenis_container}}</td>
+                            <td>{{$data->kapasitas}}</td>
+                            <td>{{$data->suhu_ketetapan}}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -112,6 +149,10 @@
         document.getElementById("nama_kapal").value = $(this).attr('data-nama_kapal');
         document.getElementById("id_kapal").value = $(this).attr('data-id');
         $('#myModal').modal('hide');
+    });
+    $(document).on('click', '.pilih2', function (e) {
+        document.getElementById("no_container").value = $(this).attr('data-no_container');
+        $('#myModal2').modal('hide');
     });
 
     $(function () {

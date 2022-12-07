@@ -27,15 +27,15 @@
                     <tr>
                         <th>No</th>
                         <th>No Container</th>
-                        <th>No Kapal</th>
-                        <th>Nama Kapal</th>
+                        <th>Vessel Name</th>
+                        <th>Voyage Number</th>
                     </tr>
                     @foreach ($container as $kt => $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->no_container }}</td>
-                        <td>{{ $data->kapal->no_kapal }}</td>
                         <td>{{ $data->kapal->nama_kapal }}</td>
+                        <td>{{ $data->kapal->no_kapal }}</td>
                     </tr>
                     @endforeach
                 </table>

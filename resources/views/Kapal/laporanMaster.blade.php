@@ -26,14 +26,14 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>No</th>
-                        <th>No Kapal</th>
-                        <th>Nama Kapal</th>
+                        <th>Vessel Name</th>
+                        <th>Voyage Number</th>
                     </tr>
                     @foreach ($masterKapal as $mk => $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $data->no_kapal }}</td>
                         <td>{{ $data->nama_kapal }}</td>
+                        <td>{{ $data->no_kapal }}</td>
                     </tr>
                     @endforeach
                 </table>

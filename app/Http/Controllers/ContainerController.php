@@ -32,10 +32,12 @@ class ContainerController extends Controller
 
     public function index(Request $request)
     {
+        $search = $request->search;
         if($request->has('search')){ // Pemilihan jika ingin melakukan pencarian
-            $container = Container::where('kode_container', 'like', "%" . $request->search . "%")
-            ->orwhere('nama_container', 'like', "%" . $request->search . "%")
-            ->orwhere('keterangan', 'like', "%" . $request->search . "%")
+            $container = Container::where('no_container', 'like', "%" . $request->search . "%")
+            ->orWhereHas('kapal', function($query) use($search) {
+                return $query->where('nama_kapal', 'like', "%" . $search . "%");
+            })
             ->paginate();
             return view('Container.index', compact('container'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
@@ -108,9 +110,10 @@ class ContainerController extends Controller
     {
         //menampilkan detail data dengan menemukan berdasarkan id container untuk diedit
         $container = Container::find($id);
+        $masterContainer = MasterContainer::all();
         $kapal = MasterKapal::all();
         $pelabuhan = Pelabuhan::all();
-        return view('Container.edit', compact('container', 'kapal', 'pelabuhan'));
+        return view('Container.edit', compact('container', 'kapal', 'pelabuhan', 'masterContainer'));
     }
 
     /**
@@ -132,7 +135,7 @@ class ContainerController extends Controller
         Container::find($id)->update($request->all());
 
         //jika data berhasil diupdate, akan kembali ke halaman utama
-        Alert::success('Success', 'Data Container Barang Berhasil Diupdate');
+        Alert::success('Success', 'Data Container Berhasil Diupdate');
         return redirect()->route('container.index');
     }
 
@@ -159,6 +162,6 @@ class ContainerController extends Controller
 
     public function laporanExcel(Request $request)
     {
-        return Excel::download(new ContainerExport, 'containerBarang.xlsx');
+        return Excel::download(new ContainerExport, 'Container.xlsx');
     }
 }

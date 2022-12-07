@@ -39,13 +39,11 @@ class TransaksiController extends Controller
             ->orwhere('nama', 'like', "%" . $request->search . "%")
             ->orwhere('alamat', 'like', "%" . $request->search . "%")
             ->orwhere('telp', 'like', "%" . $request->search . "%")
-            ->orwhere('kota', 'like', "%" . $request->search . "%")
-            ->orwhere('penyedia', 'like', "%" . $request->search . "%")
             ->paginate();
             return view('Transaksi.index', compact('transaksi'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $transaksi = Transaksi::paginate(10); // MenPagination menampilkan 5 data
+            $transaksi = Transaksi::paginate(5);
             return view('Transaksi.index', compact('transaksi'));
         }
     }
@@ -104,9 +102,7 @@ class TransaksiController extends Controller
      */
     public function show($id)
     {
-        //menampilkan detail data dengan menemukan berdasarkan id transaksi
-        $transaksi = Transaksi::find($id);
-        return view('Transaksi.show', compact('transaksi'));
+        //
     }
 
     /**
@@ -120,11 +116,8 @@ class TransaksiController extends Controller
         //menampilkan detail data dengan menemukan berdasarkan id transaksi untuk diedit
 
         $transaksi = Transaksi::find($id);
-        $var = (string)QrCode::format('png')->margin(0)->size(200)->generate($transaksi);
-        // return response($image)->header('Content-type','image/png');
-        // $output_file = '/img/qr-code/img-' . time() . '.png';
-        // Storage::disk('local')->put($output_file, $image);
-        return view('Transaksi.edit', compact('transaksi','var'));
+        // $var = (string)QrCode::format('png')->margin(0)->size(200)->generate($transaksi);
+        return view('Transaksi.edit', compact('transaksi'));
     }
 
     /**
@@ -180,13 +173,13 @@ class TransaksiController extends Controller
         ->join('container','container.id_kapal','=','master_kapal.id')
         ->join('master_container','master_container.no_container','=','container.no_container')
         ->where('table_transaksi.id', '=', $id)->get();
-        //return view('Transaksi.resi', compact('transaksi'));
-        // return view('Transaksi.index', compact('transaksi'));
+        // return view('Transaksi.resi', compact('transaksi'));
+        return view('Transaksi.index', compact('transaksi', 't'));
 
-        $tr = Transaksi::all();
+        // $tr = Transaksi::all();
         Alert::success('Success', 'Data Transaksi Berhasil Diupdate');
-        $pdf = PDF::loadview('Transaksi.resi', compact('transaksi'));
-        return $pdf->stream();
+        // $pdf = PDF::loadview('Transaksi.resi', compact('transaksi'));
+        // return $pdf->stream();
         // return view('Transaksi.index', compact('tr'));
     }
 

@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Create Harbour Master</h4>
+                <h4>Create Port Master</h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active"><a href="{{ route('pelabuhan.index') }}">Harbour</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('pelabuhan.index') }}">Port</a></li>
                     <li class="breadcrumb-item" aria-current="page">Create</li>
                 </ol>
             </nav>
@@ -34,19 +34,19 @@
 	<form method="POST" action="{{ route('pelabuhan.store') }}" id="myForm" enctype="multipart/form-data">
         @csrf
 		<div class="form-group row">
-			<label for="kode_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Kode Pelabuhan</label>
+			<label for="kode_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Port Code</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="kode_pelabuhan" id="kode_pelabuhan" aria-describedby="kode_pelabuhan" placeholder="">
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="nama_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Nama Pelabuhan</label>
+			<label for="nama_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Port Name</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="nama_pelabuhan" id="nama_pelabuhan" aria-describedby="nama_pelabuhan" placeholder="">
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="alamat" class="col-sm-12 col-md-2 col-form-label text-white">Alamat</label>
+			<label for="alamat" class="col-sm-12 col-md-2 col-form-label text-white">Address</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="alamat" id="alamat" aria-describedby="alamat" placeholder="">
 			</div>

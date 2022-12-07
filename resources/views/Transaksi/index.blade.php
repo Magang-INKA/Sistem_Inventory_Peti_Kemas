@@ -31,25 +31,6 @@
     <!-- multiple select row Datatable start -->
     <div class="page-header mb-30">
         <div class="pb-20">
-            <div class="header-left">
-                <div class="header-search col-sm-12">
-                    <form class="form" method="GET" action="{{ route('transaksi.index') }}">
-                        <div class="form-group mb-0">
-                            <input type="text" class="form-control search-input" name="search" placeholder="Search Here">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle no-arrow" type="submit">
-                                    <i class="dw dw-search2 search-icon"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-40 col-sm-12 text-right">
-                    <a class="btn btn-success" href="{{ route('transaksi.create') }}"> Create Data </a>
-                </div>
-            </div>
-        </div>
-        <div class="pb-20">
             <table class="data-table table hover multiple-select-row nowrap">
                 <thead>
                     <tr>
@@ -61,9 +42,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($transaksi as $sup => $data)
+                    @foreach ($transaksi as $tr => $data)
                     <tr>
-                        <td class="table-plus">{{ $sup + $transaksi->firstitem() }}</td>
+                        <td class="table-plus">{{++$tr}}</td>
                         <td><img src="data:image/png;base64,{{ base64_encode(SimpleSoftwareIO\QrCode\Facades\QrCode::size(75)->format('png')->generate($data->id_booking) ) }}"></td>
                         <td>{{ $data->id_booking }}</td>
                         <td>{{ $data->harga }}</td>
@@ -89,9 +70,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="col-md-40 col-sm-12 text-left">
-                {{$transaksi->links()}}
-            </div>
         </div>
     </div>
 </div>

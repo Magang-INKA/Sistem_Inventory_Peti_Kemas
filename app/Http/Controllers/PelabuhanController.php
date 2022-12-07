@@ -226,6 +226,6 @@ class PelabuhanController extends Controller
 
     public function laporanExcel(Request $request)
     {
-        return Excel::download(new PelabuhanExport, 'pelabuhanBarang.xlsx');
+        return Excel::download(new PelabuhanExport, 'Pelabuhan.xlsx');
     }
 }

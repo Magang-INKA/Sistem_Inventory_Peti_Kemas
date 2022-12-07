@@ -6,11 +6,11 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>Harbour Data</h4>
+                    <h4>Port Data</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active"><a href="{{ route('pelabuhan.index') }}">Harbour</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ route('pelabuhan.index') }}">Port</a></li>
                         <li class="breadcrumb-item" aria-current="page">Index</li>
                     </ol>
                 </nav>
@@ -44,8 +44,8 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        {{-- <th>Pelabuhan ID</th> --}}
-                        <th>Harbour Name</th>
+                        <th>Port Code</th>
+                        <th>Port Name</th>
                         <th>Address</th>
                         @can('manage-MasterData')
                         <th class="datatable-nosort">Action</th>
@@ -56,6 +56,7 @@
                     @foreach ($pelabuhan as $br => $data)
                     <tr>
                         <td class="table-plus">{{ $br + $pelabuhan->firstitem() }}</td>
+                        <td>{{ $data->kode_pelabuhan}}</td>
                         <td>{{ $data->nama_pelabuhan}}</td>
                         <td>{{ $data->alamat}}</td>
                         @can('manage-MasterData')
@@ -66,7 +67,6 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                     <form action="{{ route('pelabuhan.destroy', $data->kode_pelabuhan) }}" method="POST">
-                                        <a class="dropdown-item" href="{{ route('pelabuhan.show', $data->kode_pelabuhan) }}"><i class="dw dw-eye"></i> View</a>
                                         <a class="dropdown-item" href="{{ route('pelabuhan.edit', $data->kode_pelabuhan) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')

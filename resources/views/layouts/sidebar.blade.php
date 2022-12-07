@@ -45,7 +45,7 @@
                         @if(Auth::user()->role == 'Administrator')
                         <li><a href="{{ route('masterContainer.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_container')">Container Master</a></li>
                         <li><a href="{{ route('masterKapal.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_kapal')">Ship Master</a></li>
-                        <li><a href="{{ route('pelabuhan.index') }}" class="dropdown-toggle no-arrow @yield('menu_pelabuhan')">Harbour Master</a></li>
+                        <li><a href="{{ route('pelabuhan.index') }}" class="dropdown-toggle no-arrow @yield('menu_pelabuhan')">Port Master</a></li>
                         @endif
                     </ul>
                 </li>

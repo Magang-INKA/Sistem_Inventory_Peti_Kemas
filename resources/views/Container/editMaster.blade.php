@@ -41,7 +41,7 @@
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="jenis_container" class="col-sm-12 col-md-2 col-form-label text-white">Type</label>
+			<label for="jenis_container" class="col-sm-12 col-md-2 col-form-label text-white">Container Type</label>
             <div class="col-sm-12 col-md-10">
                 <select class="custom-select col-12" type="jenis_container" name="jenis_container" id="jenis_container">
                         <option value="20 feet" @if($masterContainer->jenis_container == '20 feet') selected @endif>20 feet</option>

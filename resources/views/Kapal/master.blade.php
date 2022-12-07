@@ -47,8 +47,8 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>Ship Number</th>
-                        <th>Ship Name</th>
+                        <th>Vessel Name</th>
+                        <th>Voyage Number</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
                 </thead>
@@ -56,8 +56,8 @@
                     @foreach ($masterKapal as $ship => $data)
                     <tr>
                         <td class="table-plus">{{ $ship + $masterKapal->firstitem() }}</td>
-                        <td>{{ $data->no_kapal }}</td>
                         <td>{{ $data->nama_kapal}}</td>
+                        <td>{{ $data->no_kapal }}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

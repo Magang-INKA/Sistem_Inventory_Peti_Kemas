@@ -34,7 +34,7 @@
 	<form method="POST" action="{{ route('container.store') }}" id="myForm">
         @csrf
 		<div class="form-group row">
-			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">No Kapal</label>
+			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">Vessel Name</label>
 			<div class="col-sm-12 col-md-10">
                 <div class="input-group">
                     <input id="no_kapal" type="text" class="form-control" readonly="" value="{{ old('no_kapal') }}" required readonly="">
@@ -83,15 +83,15 @@
                 <table id="lookup" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>No Kapal</th>
-                            <th>Nama Kapal</th>
+                            <th>Vessel Name</th>
+                            <th>Voyage Number</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($kapal as $data)
-                        <tr class="pilih" data-id_kapal="<?php echo $data->id; ?>" data-no_kapal="<?php echo $data->no_kapal; ?>" >
-                            <td>{{$data->no_kapal}}</td>
+                        <tr class="pilih" data-id_kapal="<?php echo $data->id; ?>" data-no_kapal="<?php echo $data->nama_kapal; ?> V. <?php echo $data->no_kapal; ?>">
                             <td>{{$data->nama_kapal}}</td>
+                            <td>{{$data->no_kapal}}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -113,10 +113,10 @@
                 <table id="lookup" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>No Container</th>
-                            <th>jenis_container</th>
-                            <th>kapasitas</th>
-                            <th>suhu_ketetapan</th>
+                            <th>Container Number</th>
+                            <th>Container Type</th>
+                            <th>Capacity</th>
+                            <th>Temperature</th>
                         </tr>
                     </thead>
                     <tbody>

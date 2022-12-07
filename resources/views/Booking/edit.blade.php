@@ -75,25 +75,23 @@
          </table>
 
             <input id="id_jadwal" type="text" name="id_jadwal" value="{{ $booking->id_jadwal }}" required readonly>
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Jadwal</b> <span class="fa fa-search"></span></button>
+             </span>
             <button type="submit" name="action" class="btn btn-primary" value="gantijadwal">Ganti Jadwal</button>
 
-         <span class="input-group-btn">
-            <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Jadwal</b> <span class="fa fa-search"></span></button>
-         </span> {{-- <input name="id_jadwal" value="{{ $jadwal_decode }}" type="text" class="form-control" readonly> --}}
          </div>
 
 		</div>
-      {{-- <div class="form-group row">
-			<label for="role" class="col-sm-12 col-md-2 col-form-label">Container</label>
-			<div class="col-sm-12 col-md-10">
-				<input name="address" class="form-control" rows="3" value="{{ $booking->container }}">
-			</div>
-		</div> --}}
         <div class="form-group row">
 			<label for="id_container" class="col-sm-12 col-md-2 col-form-label">Container</label>
 			<div class="col-sm-12 col-md-10">
                 <div class="input-group">
-                    <input id="no_container" type="text" class="form-control" name="no_container" value="{{ $booking->no_container }}" required readonly="">
+                    @if($booking->id_container == null)
+                        <input id="no_container" type="text" class="form-control" name="no_container" value="{{ $booking->no_container }}" required readonly="">
+                    @else
+                    <input id="no_container" type="text" class="form-control" name="no_container" value="{{ $booking->container->no_container }}" required readonly="">
+                    @endif
                     <input id="id_container" type="hidden" class="form-control" name="id_container" value="{{ $booking->id_container }}" required readonly="">
                     <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal2"><b>Cari Container</b><span class="fa fa-search"></span></button>
                 </div>
@@ -107,7 +105,6 @@
             <select name="jenis_barang" class="form-control custom-select">
                 @foreach ($jb as $jenisbarang)
                     <option value="{{ $jenisbarang->id }}" {{ $jenisbarang->id == $barang->jenis_barang ? 'selected' : '' }}>{{ $jenisbarang->jenis_barang }}</option>
-                       {{-- <option value="{{ $jenisbarang->id }}">{{ $jenisbarang->jenis_barang }}</option> --}}
                 @endforeach
               </select>
 			</div>
@@ -155,7 +152,7 @@
         <div class="form-group row">
 			<label for="gambar" class="col-sm-12 col-md-2 col-form-label">Note</label>
 			<div class="col-sm-12 col-md-10">
-            <input id="nama_barang" class="form-control" name="catatan" value="{{ $booking->note }}" required >
+            <input id="nama_barang" class="form-control" name="catatan" value="{{ $booking->catatan }}" required >
 			</div>
 		</div>
 		<div class="form-group row">
@@ -205,12 +202,11 @@
                         <td>{{$data->id}}</td>
                         <td>{{$data->id_trip}}</td>
                            <td>
-                               {{$data->awal->nama_pelabuhan}}
+                               {{$data->awal}}
                            </td>
-                           <td>{{$data->tujuan->nama_pelabuhan}}</td>
+                           <td>{{$data->tujuan}}</td>
                            <td>{{$data->nama_kapal}}</td>
                            <td>{{$data->no_container}}</td>
-                           {{-- <td>{{$data->tujuan_pelabuhan_id}}</td> --}}
                            <td>{{$data->kapasitas}}</td>
                            <td>{{$data->ETA}}</td>
                            <td>{{$data->ETD}}</td>

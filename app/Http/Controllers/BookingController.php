@@ -186,8 +186,6 @@ class BookingController extends Controller
         ->where('booking.id_jadwal', '=', $idjadwal)
         ->where('booking.id', '=', $id)->get();
 
-        $jadwal_decode=print_r($jadwal, true);
-
 
         //modal tabel jadwal
         $tjadwal = JadwalKapal::join('trip', 'trip.id', '=', 'jadwal_kapal.id_trip')// joining the contacts table , where user_id and contact_user_id are same
@@ -196,7 +194,7 @@ class BookingController extends Controller
             ->join('master_pelabuhan as p','p.kode_pelabuhan','=','jadwal_kapal.tujuan_pelabuhan_id')
             ->join('container','container.id_kapal','=','master_kapal.id')
             ->join('master_container','master_container.no_container','=','container.no_container')
-            ->select('jadwal_kapal.*','jadwal_kapal.id_trip','master_kapal.nama_kapal', 'jadwal_kapal.ETA','jadwal_kapal.ETD','master_kapal.nama_kapal','container.no_container','master_container.kapasitas')
+            ->select('jadwal_kapal.*','jadwal_kapal.id_trip','master_kapal.nama_kapal','master_pelabuhan.nama_pelabuhan as awal','p.nama_pelabuhan as tujuan', 'jadwal_kapal.ETA','jadwal_kapal.ETD','container.no_container','master_container.kapasitas')
             ->get();
 
         $jb = JenisBarang::all();
@@ -210,7 +208,7 @@ class BookingController extends Controller
         $free = $kapasitas - $allocated;
 
         // return $free;
-        return view('booking.edit', compact('booking','tjadwal','fjadwal','barang', 'jadwal', 'jadwal_decode','jb', 'container', 'free'));
+        return view('booking.edit', compact('booking','tjadwal','fjadwal','barang', 'jadwal' ,'jb', 'container', 'free'));
         // return $jadwal;
     }
 
@@ -258,22 +256,16 @@ class BookingController extends Controller
                     $q->save();
 
                     if ($request->input('status','=','terima')){
-
-                        $idbooking = DB::table('booking')->orderByDesc('id')->pluck('id')->first();
-                        // $idb=(int)$booking+1;
-                        $idt = DB::table('table_transaksi')->orderByDesc('id')->pluck('id')->first();
                         $transaksi = new Transaksi();
-                        $transaksi->id_booking = $idbooking;
+                        $transaksi->id_booking = $id;
                         $transaksi->qrcode=null;
                         $transaksi->harga=null;
                         $transaksi->save();
 
-                        $url = ('transaksi/'.$idbooking.'/edit');
+                        $idt = DB::table('table_transaksi')->orderByDesc('id')->pluck('id')->first();
+                        $url = ('transaksi/'.$idt.'/edit');
                         return redirect( $url);
                     }
-                    //insert transaksi
-
-
                     $booking = Booking::all();
                     Alert::success('Success', 'Data Booking Berhasil Diupdate');
                     return view('Booking.index', compact('booking'));

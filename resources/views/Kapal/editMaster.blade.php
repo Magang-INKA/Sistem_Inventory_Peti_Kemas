@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Edit Kapal</h4>
+                <h4>Ship Edit</h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active"><a href="{{ route('masterKapal.index') }}">Kapal Master</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('masterKapal.index') }}">Ship Master</a></li>
                     <li class="breadcrumb-item" aria-current="page">Edit</li>
                 </ol>
             </nav>
@@ -35,15 +35,15 @@
         @csrf
         @method('PUT')
         <div class="form-group row">
-            <label for="no_kapal" class="col-sm-12 col-md-2 col-form-label text-white">No Kapal</label>
+			<label for="nama_kapal" class="col-sm-12 col-md-2 col-form-label text-white">Vessel Name</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="no_kapal" id="no_kapal" value="{{ $masterKapal->no_kapal }}" aria-describedby="no_kapal" placeholder="">
+				<input class="form-control" type="text" name="nama_kapal" id="nama_kapal" value="{{ $masterKapal->nama_kapal }}" aria-describedby="nama_kapal" placeholder="">
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="nama_kapal" class="col-sm-12 col-md-2 col-form-label text-white">Nama Kapal</label>
+            <label for="no_kapal" class="col-sm-12 col-md-2 col-form-label text-white">Voyage Number</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="nama_kapal" id="nama_kapal" value="{{ $masterKapal->nama_kapal }}" aria-describedby="nama_kapal" placeholder="">
+				<input class="form-control" type="text" name="no_kapal" id="no_kapal" value="{{ $masterKapal->no_kapal }}" aria-describedby="no_kapal" placeholder="">
 			</div>
 		</div>
 		<div class="form-group row">

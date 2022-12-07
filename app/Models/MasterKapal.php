@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Kapal;
 use App\Models\Trip;
+use App\Models\Container;
 use App\Models\JadwalKapal;
 
 class MasterKapal extends Model

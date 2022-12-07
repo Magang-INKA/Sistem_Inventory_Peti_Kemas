@@ -40,7 +40,7 @@
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="jenis_container" class="col-sm-12 col-md-2 col-form-label text-white">Type</label>
+			<label for="jenis_container" class="col-sm-12 col-md-2 col-form-label text-white">Container Type</label>
             <div class="col-sm-12 col-md-10">
                 <select class="custom-select col-12" type="jenis_container" name="jenis_container" id="jenis_container">
                     <option value="">Choose Container</option>
@@ -50,13 +50,13 @@
             </div>
 		</div>
         <div class="form-group row">
-			<label for="kapasitas" class="col-sm-12 col-md-2 col-form-label text-white">Kapasitas</label>
+			<label for="kapasitas" class="col-sm-12 col-md-2 col-form-label text-white">Capacity</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="number" name="kapasitas" id="kapasitas" aria-describedby="kapasitas" placeholder="">
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="suhu_ketetapan" class="col-sm-12 col-md-2 col-form-label text-white">Suhu Ketetapan</label>
+			<label for="suhu_ketetapan" class="col-sm-12 col-md-2 col-form-label text-white">Temperature</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="number" name="suhu_ketetapan" id="suhu_ketetapan" aria-describedby="kapasitas" placeholder="">
 			</div>
