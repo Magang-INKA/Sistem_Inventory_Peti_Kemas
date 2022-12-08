@@ -23,9 +23,14 @@
                         <span class="micon dw dw-library"></span><span class="mtext">History Dashboard</span>
                     </a>
                 </li>
-                <li>
+                <li hidden>
                     <a href="{{ url('/controlling') }}" class="dropdown-toggle no-arrow @yield('menu_controlling')">
                         <span class="micon dw dw-thermometer"></span><span class="mtext">Controlling</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/threshold-suhu') }}" class="dropdown-toggle no-arrow @yield('menu_controlling')">
+                        <span class="micon dw dw-thermometer"></span><span class="mtext">Set Threshold Temp</span>
                     </a>
                 </li>
                 <li class="dropdown">

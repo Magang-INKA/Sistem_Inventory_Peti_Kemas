@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Gate;
 
 class DashboardDetail extends Component
 {
-    public $name, $mqtt_all, $mqtt, $container, $mqtt_history, $allocated, $free, $persen;
+    public $name, $mqtt_all, $mqtt, $container, $mqtt_history, $kapasitas, $allocated, $free, $persen;
     public $data = [];
     public $idmqtt;
     // public $listener = ['ubahData' => 'changeData'];
@@ -38,12 +38,12 @@ class DashboardDetail extends Component
         $mqtt = Mqtt::find($idmqtt);
         $name = Mqtt::find($idmqtt);
         $mqtt_all = Mqtt::all();
-        $container = MasterContainer::find($id_container);
+        $container = MasterContainer::find($topic_container);
         $allocated = DB::table('master_barang')->join('booking', 'master_barang.id', '=', 'booking.id_barang')
         ->join('container', 'booking.id_container', '=', 'container.id')
         ->where('container.no_container', '=', $topic_container)->sum('master_barang.berat_barang');
         foreach ($container as $key => $rc) {
-            $kapasitas = $rc->kapasitas;
+            $kapasitas = $container->kapasitas;
         }
         $free = $kapasitas - $allocated;
         $persen = round(($allocated/$kapasitas)*100,2);
@@ -62,6 +62,7 @@ class DashboardDetail extends Component
             'mqtt_all' => $mqtt_all,
             'container' => $container,
             'allocated' => $allocated,
+            'kapasitas' => $kapasitas,
             'free' => $free,
             'persen' => $persen
         );
@@ -72,13 +73,14 @@ class DashboardDetail extends Component
         $this->mqtt = $mqtt;
         $this->container = $container;
         $this->mqtt_history = $mqtt_dashboard;
+        $this->kapasitas = $kapasitas;
         $this->allocated = $allocated;
         $this->free = $free;
         $this->persen = $persen;
         // $this->emitSelf('refresh-me');
         $this->emit('some-event');
         // return response()->json($data);
-        // dd($coba2);
+        // dd($id_container);
     }
 
     public function loadData()
@@ -89,6 +91,7 @@ class DashboardDetail extends Component
         $this->mqtt = $this->mqtt;
         $this->container = $this->container;
         $this->mqtt_history = $this->mqtt_history;
+        $this->kapasitas = $this->kapasitas;
         $this->allocated = $this->allocated;
         $this->free = $this->free;
         $this->persen = $this->persen;

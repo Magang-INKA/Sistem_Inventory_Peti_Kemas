@@ -139,9 +139,9 @@
                                             </tr>
                                             <tr>
                                                 <td style="padding: 0.3rem;">Total</td>
-                                                @foreach ($container as $con)
-                                                <td style="padding: 0.3rem;">{{$con->kapasitas}} kg</td>
-                                                @endforeach
+                                                {{-- @foreach ($container as $con) --}}
+                                                <td style="padding: 0.3rem;">{{$kapasitas}} kg</td>
+                                                {{-- @endforeach --}}
                                             </tr>
                                         </tbody>
                                     </table>
@@ -176,11 +176,11 @@
         <div class="col-lg-12 col-md-12 col-sm-12 mb-30">
             <div class="pd-20 card-white height-100-p">
                 <h2 class="mb-30 h4">Notification</h2>
-                @foreach ($container as $con)
+                {{-- @foreach ($container as $con) --}}
                 @if ($mqtt->value['AVG_TMP'] < 0)
-                    @if ( ceil($mqtt->value['AVG_TMP']) > ($con->suhu_ketetapan)+1 || ceil($mqtt->value['AVG_TMP']) < ($con->suhu_ketetapan)-1)
+                    @if ( ceil($mqtt->value['AVG_TMP']) > ($container->suhu_ketetapan)+1 || ceil($mqtt->value['AVG_TMP']) < ($con->suhu_ketetapan)-1)
                     <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                        <strong> Suhu tidak sesuai ketentuan!</strong> Atur suhu menjadi {{$con->suhu_ketetapan}} °C
+                        <strong> Suhu tidak sesuai ketentuan!</strong> Atur suhu menjadi {{$container->suhu_ketetapan}} °C
                         {{-- <form action="" method="POST"> --}}
                         <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -191,9 +191,9 @@
                     <p>Nothing notification.</p>
                     @endif
                 @elseif ($mqtt->value['AVG_TMP'] >= 0)
-                    @if ( floor($mqtt->value['AVG_TMP']) > ($con->suhu_ketetapan)+1 || floor($mqtt->value['AVG_TMP']) < ($con->suhu_ketetapan)-1)
+                    @if ( floor($mqtt->value['AVG_TMP']) > ($container->suhu_ketetapan)+1 || floor($mqtt->value['AVG_TMP']) < ($container->suhu_ketetapan)-1)
                     <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                        <strong> Suhu tidak sesuai ketentuan!</strong> Atur suhu menjadi {{$con->suhu_ketetapan}} °C
+                        <strong> Suhu tidak sesuai ketentuan!</strong> Atur suhu menjadi {{$container->suhu_ketetapan}} °C
                         {{-- <form action="" method="POST"> --}}
                         <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -204,7 +204,7 @@
                     <p>Nothing notification.</p>
                     @endif
                 @endif
-                @endforeach
+                {{-- @endforeach --}}
             </div>
         </div>
     </div>

@@ -21,6 +21,8 @@ class MasterContainer extends Model
         'jenis_container',
         'kapasitas',
         'suhu_ketetapan',
+        'created_at',
+        'updated_at',
     ];
 
     public function container()

@@ -17,6 +17,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JenisBarangController;
+use App\Http\Controllers\ThresholdSuhuController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -110,7 +111,7 @@ Route::resource('dashboard', DashboardController::class);
 Route::get('/history', [DashboardController::class, 'history']);
 Route::get('/history/{id}', [DashboardController::class, 'historyDetail'])->name('show.history');
 Route::get('/controlling', [DashboardController::class, 'controlling']);
-
+Route::resource('threshold-suhu', ThresholdSuhuController::class);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::post('booking/create-step-one', [BookingController::class,'postCreateStepOne'])->name('booking.create.step.one.post');
