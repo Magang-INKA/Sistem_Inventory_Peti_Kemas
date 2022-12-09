@@ -1,122 +1,127 @@
 <?php
-namespace App\Http\Controllers\Api;
 
+namespace App\Http\Controllers\API;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+
     /**
-     * Create User
-     * @param Request $request
-     * @return User
+     * Get a JWT via given credentials.
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function createUser(Request $request)
+    // public function login()
+    // {
+    //     $credentials = request(['email', 'password']);
+
+    //     if (!$token = auth()->attempt($credentials)) {
+    //         return response()->json(['error' => 'Unauthorized'], 401);
+    //     }
+
+    //     $data = (object) [
+    //         'user' => $this->me()->original,
+    //         'token' => $this->respondWithToken($token)->original,
+    //     ];
+    //     return response()->json([
+    //         'status' => 200,
+    //         'message' => 'berhasil login',
+    //         'data' => $data
+    //     ]);
+    // }
+
+    public function login(Request $request)
     {
-        // $data = 'admin';
-        try {
-            //Validated
-            $validateUser = Validator::make($request->all(),
-            [
-                'name' => 'required',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required',
-                'role' => 'required',
-            ]);
-
-            if($validateUser->fails()){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'validation error',
-                    'errors' => $validateUser->errors()
-                ], 401);
-            }
-
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'password' => $request->role
-            ]);
-
-            return response()->json([
-                'status' => true,
-                'message' => 'User Created Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
-            ], 200);
-
-        } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
+        if (!Auth::attempt($request->only('email', 'password')))
+        {
+            return response()
+                ->json(['message' => 'Unauthorized'], 401);
         }
+
+        $user = User::where('email', $request['email'])->firstOrFail();
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()
+            ->json(['message' => 'Hi '.$user->name.', welcome to home','access_token' => $token, 'token_type' => 'Bearer', ]);
+    }
+
+    // public function register(RegisterRequest $request)
+    // {
+    //     $data = User::create([
+    //         'nama' => $request->nama,
+    //         'email' => $request->email,
+    //         'username' => $request->username,
+    //         'password' => Hash::make($request->password),
+    //         'telepon' => $request->telepon,
+    //         'alamat' => $request->alamat,
+    //         'role' => $request->role
+    //     ]);
+
+    //     return response()->json(
+    //         [
+    //             'status' => 200,
+    //             'message' => 'Data created successfully.',
+    //             'data' => $data
+    //         ]
+    //     );
+    // }
+
+    /**
+     * Get the authenticated User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function me()
+    {
+        //return response()->json(User::with('laundry')->find(auth()->user()->id));
+        return response()->json(User::find(auth()->user()->id));
     }
 
     /**
-     * Login The User
-     * @param Request $request
-     * @return User
+     * Log the user out (Invalidate the token).
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function loginUser(Request $request)
+    public function logout()
     {
-        try {
-            $validateUser = Validator::make($request->all(),
-            [
-                'email' => 'required|email',
-                'password' => 'required'
-            ]);
+        auth()->logout();
 
-            if($validateUser->fails()){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'validation error',
-                    'errors' => $validateUser->errors()
-                ], 401);
-            }
-
-            if(!Auth::attempt($request->only(['email', 'password']))){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Email & Password does not match with our record.',
-                ], 401);
-            }
-
-            $user = User::where('email', $request->email)->first();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'User Logged In Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
-            ], 200);
-
-        } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
-        }
+        return response()->json(
+            ['message' => 'Successfully logged out']
+        );
     }
 
-    public function logoutUser(Request $res)
+    /**
+     * Refresh a token.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function refresh()
     {
-      if (Auth::user()) {
-        $user = Auth::user()->token();
-        $user->revoke();
+        return $this->respondWithToken(auth()->refresh());
+    }
 
+    /**
+     * Get the token array structure.
+     *
+     * @param  string $token
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondWithToken($token)
+    {
         return response()->json([
-          'success' => true,
-          'message' => 'Logout successfully'
-      ]);
-      }else {
-        return response()->json([
-          'success' => false,
-          'message' => 'Unable to Logout'
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            // 'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
-      }
-     }
+    }
 }

@@ -11,12 +11,15 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
-        "laravel/sanctum": "^2.11",
+        "laravel/passport": "^10.4",
+        "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "livewire/livewire": "^2.10",
+        "php-open-source-saver/jwt-auth": "1.4.2",
         "realrashid/sweet-alert": "^5.1",
-        "simplesoftwareio/simple-qrcode": "^4.2"
+        "simplesoftwareio/simple-qrcode": "^4.2",
+        "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
         "bangnokia/laravel-serve-livereload": "^1.1",

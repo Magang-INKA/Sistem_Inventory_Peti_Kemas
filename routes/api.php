@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\DashboardController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\Api\DroppointController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MobileController;
@@ -22,28 +23,55 @@ use App\Http\Controllers\MobileController;
 //     return $request->user();
 // });
 
-//Route::post('auth/register', 'Auth\AuthController@register');
-//Route::post('auth/login', 'Auth\AuthController@login');
+// Route::post('login', [AuthController::class, 'login']);
+// Route::post('logout', [AuthController::class, 'logout']);
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('auth/me', 'Auth\AuthController@me');
-    Route::post('auth/logout', 'Auth\AuthController@logout');
+
+// Route::post('register', [AuthController::class, 'register']);
+
+Route::group(['prefix' => 'v1'], function(){
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('logout', [AuthController::class, 'logout']);
+    // Route::post('login', App\Http\Controllers\Api\LoginController::class);
+    // Route::post('register', App\Http\Controllers\Api\RegisterController::class);
+    //Route::get('logout', 'App\Http\Controllers\Api\LogoutController::class')->middleware('auth:api');
+    //Route::post('logout', App\Http\Controllers\Api\LogoutController::class);
 });
 
-Route::post('getUser',[DashboardController::class,'getUser']);
-Route::resource('dashboard', DashboardController::class);
+//Dashboard
+Route::get('/dashboard',[DashboardController::class, 'index']);
 
-Route::apiResource('posts', PostController::class)->middleware('auth:sanctum');
+//Drop Point
+Route::get('/droppoint',[DroppointController::class, 'index']);
+Route::post('/droppoint',[DroppointController::class, 'store']);
+Route::get('/droppoint/{id}',[DroppointController::class, 'show']);
+Route::put('/droppoint/{id}',[DroppointController::class, 'update']);
+Route::delete('/droppoint/{id}',[DroppointController::class, 'destroy']);
 
 
-// Route::group(['prefix' => 'auth'], function(){
-//     Route::post('register', [AuthController::class, 'createUser']);
-//     Route::post('login', [AuthController::class, 'loginUser']);
-//     Route::post('logout', [AuthController::class, 'logoutUser']) -> middleware('auth:sanctum');
+/**
+ * route "/register"
+ * @method "POST"
+ */
+// Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');
+
+// /**
+//  * route "/login"
+//  * @method "POST"
+//  */
+// Route::post('/login', App\Http\Controllers\Api\LoginController::class)->name('login');
+
+// /**
+//  * route "/user"
+//  * @method "GET"
+//  */
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
 // });
+// /**
+// * route "/logout"
+// * @method "POST"
+// */
+// Route::post('/logout', App\Http\Controllers\Api\LogoutController::class)->name('logout');
 
-Route::group(['prefix' => 'auth'], function(){
-    Route::post('register', 'Api\AuthController@register');
-    Route::post('login', 'Api\AuthController@loginUser');
-    Route::post('logout', 'Api\AuthController@logoutUser') -> middleware('auth:sanctum');
-});
+// Route::get('login', [AuthController::class, 'login']);
