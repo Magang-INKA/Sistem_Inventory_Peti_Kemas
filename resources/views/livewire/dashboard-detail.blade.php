@@ -177,7 +177,12 @@
             <div class="pd-20 card-white height-100-p">
                 <h2 class="mb-30 h4">Notification</h2>
                 {{-- @foreach ($container as $con) --}}
-                @if ($mqtt->value['AVG_TMP'] > $container->suhu_ketetapan)
+                <?php
+                $kondisi1 = $mqtt->value['AVG_TMP'] > $container->suhu_ketetapan;
+                $kondisi2 = $mqtt->value['EVAP'] == 0 && $mqtt->value['COND'] == 0 && $mqtt->value['COMP'] == 0 && $mqtt->value['HEAT'] == 0;
+                ?>
+
+                @if ($kondisi1 == 1 && $kondisi2 == 0)
                     <div class="alert alert-dark alert-dismissible fade show" role="alert">
                         <strong>Suhu melebihi threshold!</strong> Atur suhu menjadi dibawah {{$container->suhu_ketetapan}} °C
                         {{-- <form action="" method="POST"> --}}
@@ -186,7 +191,36 @@
                         </button>
                         {{-- </form> --}}
                     </div>
-                @else
+                {{-- @endif --}}
+                @elseif ($kondisi1 == 0 && $kondisi2 == 1)
+                    <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                        <strong>AC turn off!</strong> Nyalakan komponen AC
+                        {{-- <form action="" method="POST"> --}}
+                        <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{-- </form> --}}
+                    </div>
+                {{-- @endif --}}
+                @elseif ($kondisi1 == 1 && $kondisi2 == 1)
+                    <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                        <strong>Suhu melebihi threshold!</strong> Atur suhu menjadi dibawah {{$container->suhu_ketetapan}} °C
+                        {{-- <form action="" method="POST"> --}}
+                        <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{-- </form> --}}
+                    </div>
+                    <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                        <strong>AC turn off!</strong> Nyalakan komponen AC
+                        {{-- <form action="" method="POST"> --}}
+                        <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{-- </form> --}}
+                    </div>
+                {{-- @endif --}}
+                @elseif ($kondisi1 == 0 && $kondisi2 == 0)
                     <p>Nothing notification.</p>
                 @endif
                 {{-- @endforeach --}}
