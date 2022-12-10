@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('src/plugins/switchery/switchery.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('vendors/styles/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('vendors/styles/gauge.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('vendors/styles/gauge-temp.css')}}">
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>

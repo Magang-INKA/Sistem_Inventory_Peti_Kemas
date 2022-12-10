@@ -29,13 +29,21 @@
         <div class="col-lg-4 col-md-12 col-sm-12 mb-30">
             <div class="card-white pd-20 height-100-p">
                 <div class="progress-box text-center">
-                    <h5>Temperature</h5>
+                    <h5>Temperature</h5><br>
                     <div class="row clearfix progress-box">
-                        <div class="col-lg-6 col-md-12 col-sm-12">
-                            <div id="chart_sup"></div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            {{-- <div id="chart_sup"></div> --}}
+                            <div class="highcharts-temp">
+                                <div id="chart_sup" class="chart-temp" style="display: block; margin: auto;"></div>
+                                <p class="highcharts-description">Supply Air</p>
+                            </div>
                         </div>
-                        <div class="col-lg-6 col-md-12 col-sm-12">
-                            <div id="chart_ret"></div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            {{-- <div id="chart_ret"></div> --}}
+                            <div class="highcharts-temp">
+                                <div id="chart_ret" class="chart-temp" style="display: block; margin: auto;"></div>
+                                <p class="highcharts-description">Return Air</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -264,9 +272,9 @@
 
         // $(document).ready(function() {
         //     var t = Math.abs({{ $mqtt->value['AVG_TMP'] }});
-            var supply = Math.abs({{ $mqtt->value['TMP1'] }});
+            // var supply = Math.abs({{ $mqtt->value['TMP1'] }});
             var nilai_sup = {{ $mqtt->value['TMP1'] }};
-            var return_air = Math.abs({{ $mqtt->value['TMP2'] }});
+            // var return_air = Math.abs({{ $mqtt->value['TMP2'] }});
             var nilai_ret = {{ $mqtt->value['TMP2'] }};
             var hum = Math.abs({{ $mqtt->value['AVG_HMD'] }});
             var nilai_hum = {{ $mqtt->value['AVG_HMD'] }};
@@ -280,97 +288,127 @@
         //     });
         // });
 
-        var options_sup = {
-            series: [supply],
+        var gaugeOptions = {
             chart: {
-            height: 220,
-                type: 'radialBar',
-                offsetY: 0
+                type: 'solidgauge',
+                backgroundColor: 'none'
             },
-            colors: ['#0B132B', '#222222'],
-            plotOptions: {
-                radialBar: {
-                    startAngle: -135,
-                    endAngle: 135,
-                    dataLabels: {
-                        name: {
-                            fontSize: '14px',
-                            color: undefined,
-                            offsetY: 90
-                        },
-                        value: {
-                            offsetY: 50,
-                            fontSize: '16px',
-                            color: undefined,
-                            formatter: function (val) {
-                        return nilai_sup + " °C";
-                            }
-                        }
-                    }
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor:
+                    Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
                 }
             },
-            fill: {
-                type: 'gradient',
-                gradient: {
-                    shade: 'red',
-                    shadeIntensity: 0.15,
-                    inverseColors: false,
-                    opacityFrom: 1,
-                    opacityTo: 1,
-                    stops: [0, 50, 65, 91]
-                },
+
+            exporting: {
+                enabled: false
             },
-            // stroke: {
-            // dashArray: 4
-            // },
-            labels: ['Supply Air'],
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.1, '#0b132b'], // green
+                    [0.5, '#0b132b'], // yellow
+                    [0.9, '#0b132b'] // red
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                    y: 5,
+                    borderWidth: 0,
+                    useHTML: true
+                    }
+                }
+            }
         };
 
-        var options_ret = {
-            series: [return_air],
-            chart: {
-            height: 220,
-                type: 'radialBar',
-                offsetY: 0
-            },
-            colors: ['#0B132B', '#222222'],
-            plotOptions: {
-                radialBar: {
-                    startAngle: -135,
-                    endAngle: 135,
-                    dataLabels: {
-                        name: {
-                            fontSize: '14px',
-                            color: undefined,
-                            offsetY: 90
-                        },
-                        value: {
-                            offsetY: 50,
-                            fontSize: '16px',
-                            color: undefined,
-                            formatter: function (val) {
-                        return nilai_ret + " °C";
-                            }
-                        }
-                    }
+        // The speed gauge
+        var chartSup = Highcharts.chart('chart_sup', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: -50,
+                max: 50,
+                title: {
+                    text: ''
                 }
             },
-            fill: {
-                type: 'gradient',
-                gradient: {
-                    shade: 'red',
-                    shadeIntensity: 0.15,
-                    inverseColors: false,
-                    opacityFrom: 1,
-                    opacityTo: 1,
-                    stops: [0, 50, 65, 91]
-                },
+
+            credits: {
+                enabled: false
             },
-            // stroke: {
-            // dashArray: 4
-            // },
-            labels: ['Return Air'],
-        };
+
+            series: [{
+                name: 'Supply',
+                data: [nilai_sup],
+                dataLabels: {
+                    format:
+                    '<div style="text-align:center">' +
+                    '<span style="font-size:12px">{y} °C</span><br/>' +
+                    '<span style="font-size:12px;opacity:0.4"></span>' +
+                    '</div>'
+                },
+                tooltip: {
+                    valueSuffix: '°C'
+                }
+            }]
+
+        }));
+
+        // The RPM gauge
+        var chartRet = Highcharts.chart('chart_ret', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+            min: -50,
+            max: 50,
+            title: {
+                text: ''
+            }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Return',
+                data: [nilai_ret],
+                dataLabels: {
+                    format:
+                    '<div style="text-align:center">' +
+                    '<span style="font-size:12px">{y} °C</span><br/>' +
+                    '<span style="font-size:12px;opacity:0.4"></span>' +
+                    '</div>'
+                },
+                tooltip: {
+                    valueSuffix: '°C'
+                }
+            }]
+
+        }));
 
         var options_hum = {
             series: [hum],
@@ -418,12 +456,6 @@
             labels: [' '],
         };
 
-        var chart_sup = new ApexCharts(document.querySelector("#chart_sup"), options_sup);
-        chart_sup.render();
-
-        var chart_ret = new ApexCharts(document.querySelector("#chart_ret"), options_ret);
-        chart_ret.render();
-
         var chart_hum = new ApexCharts(document.querySelector("#chart_hum"), options_hum);
         chart_hum.render();
 
@@ -441,18 +473,18 @@
         $( "#comp" ).prop( "checked", {{ $mqtt->value['COMP'] }} );
         $( "#heat" ).prop( "checked", {{ $mqtt->value['HEAT'] }} );
         Livewire.on('berhasilUpdate', event => {
-            var supply = event.Math.abs({{ $mqtt->value['TMP1'] }});
+            // var supply = event.Math.abs({{ $mqtt->value['TMP1'] }});
             var nilai_sup = event{{ $mqtt->value['TMP1'] }};
-            var return_air = event.Math.abs({{ $mqtt->value['TMP2'] }});
+            // var return_air = event.Math.abs({{ $mqtt->value['TMP2'] }});
             var nilai_ret = event{{ $mqtt->value['TMP2'] }};
             var hum = event.Math.abs({{ $mqtt->value['AVG_HMD'] }});
             var nilai_hum = {{ $mqtt->value['AVG_HMD'] }};
-            chart_sup.value = nilai_sup;
-            chart_sup.labels = supply;
-            chart_sup.update();
-            chart_ret.value = nilai_ret;
-            chart_ret.labels = return_air;
-            chart_ret.update();
+            chartSup.value = nilai_sup;
+            chartSup.labels = supply;
+            chartSup.update();
+            chartRet.value = nilai_ret;
+            chartRet.labels = return_air;
+            chartRet.update();
             chart_hum.value = nilai_hum;
             chart_hum.labels = hum;
             chart_hum.update();

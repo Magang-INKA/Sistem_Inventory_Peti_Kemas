@@ -73,7 +73,7 @@
                                         <strong>Last Set Threshold:</strong> {{ $result->no_container}} => ({{ $result->suhu_ketetapan}} °C)
                                     </p>
                                 {{-- </div> --}}
-                                </figure>
+                                </div>
                         </div>
                     </div>
                 </div>
