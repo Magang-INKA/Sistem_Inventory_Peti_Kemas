@@ -176,10 +176,35 @@ class DashboardController extends Controller
     {
         $mqtt = Mqtt::find($id);
         $idmqtt = $mqtt->id;
+        $no_container = $mqtt->topic;
+        $mqtt_history = Dashboard::where('topicid', $idmqtt)->get();
+        foreach ($mqtt_history as $key => $item) {
+            $item['value'] = json_decode($item->value,true);
+        }
+        $mqtt['value'] = json_decode($mqtt->value,true);
 
+        $start = Dashboard::where('topicid', $idmqtt)->orderBy('id','desc')->limit(1)->first();
+        // foreach ($start as $key => $item) {
+        //     $item['value'] = json_decode($item->value,true);
+        // }
+        $start['value'] = json_decode($start->value,true);
+
+        $pelabuhan = DB::table('drop_point')
+        ->select('master_pelabuhan.nama_pelabuhan')
+        ->join('master_pelabuhan', 'drop_point.pelabuhan', '=', 'master_pelabuhan.kode_pelabuhan')
+        ->join('table_transaksi', 'drop_point.id_transaksi', '=', 'table_transaksi.id')
+        ->join('booking', 'table_transaksi.id_booking', '=', 'booking.id')
+        ->join('container', 'booking.id_container', '=', 'container.id')
+        ->where('container.no_container', '=', $no_container)
+        ->orderBy('drop_point.id', 'desc')->limit(1)->first();
+        // return $pelabuhan;
         // return response()->json($data);
         return view('Dashboard.show',[
-            'idmqtt'=> $idmqtt
+            'idmqtt' => $idmqtt,
+            'mqtt_history' => $mqtt_history,
+            'mqtt' => $mqtt,
+            'start' => $start,
+            'pelabuhan' => $pelabuhan
         ]);
     }
 

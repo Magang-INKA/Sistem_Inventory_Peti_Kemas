@@ -177,38 +177,23 @@
             <div class="pd-20 card-white height-100-p">
                 <h2 class="mb-30 h4">Notification</h2>
                 {{-- @foreach ($container as $con) --}}
-                @if ($mqtt->value['AVG_TMP'] < 0)
-                    @if ( ceil($mqtt->value['AVG_TMP']) > ($container->suhu_ketetapan)+1 || ceil($mqtt->value['AVG_TMP']) < ($con->suhu_ketetapan)-1)
+                @if ($mqtt->value['AVG_TMP'] > $container->suhu_ketetapan)
                     <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                        <strong> Suhu tidak sesuai ketentuan!</strong> Atur suhu menjadi {{$container->suhu_ketetapan}} °C
+                        <strong>Suhu melebihi threshold!</strong> Atur suhu menjadi dibawah {{$container->suhu_ketetapan}} °C
                         {{-- <form action="" method="POST"> --}}
                         <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         {{-- </form> --}}
                     </div>
-                    @else
+                @else
                     <p>Nothing notification.</p>
-                    @endif
-                @elseif ($mqtt->value['AVG_TMP'] >= 0)
-                    @if ( floor($mqtt->value['AVG_TMP']) > ($container->suhu_ketetapan)+1 || floor($mqtt->value['AVG_TMP']) < ($container->suhu_ketetapan)-1)
-                    <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                        <strong> Suhu tidak sesuai ketentuan!</strong> Atur suhu menjadi {{$container->suhu_ketetapan}} °C
-                        {{-- <form action="" method="POST"> --}}
-                        <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        {{-- </form> --}}
-                    </div>
-                    @else
-                    <p>Nothing notification.</p>
-                    @endif
                 @endif
                 {{-- @endforeach --}}
             </div>
         </div>
     </div>
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 mb-30">
             <div class="card-white pd-30 height-100-p">
                 <h2 class="mb-30 h4">Tracking Location</h2>
@@ -236,45 +221,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     @section('scriptPage')
-    <script>
-        function initMap() {
-            // membuat objek untuk titik koordinat'
-            var lokasi_terkini = {lat: {{$mqtt->value['LAT']}}, lng: {{$mqtt->value['LON']}}};
-
-            // membuat objek peta
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 7,
-                center: lokasi_terkini
-            });
-
-            // mebuat konten untuk info window
-            var contentString = '<span><b>{{ $mqtt->value['TIME_STR'] }}</b></span>';
-
-            // membuat objek info window
-            var infowindow = new google.maps.InfoWindow({
-                content: contentString,
-                position: lokasi_terkini
-            });
-
-            // membuat marker
-            var marker = new google.maps.Marker({
-                position: lokasi_terkini,
-                map: map,
-                title: 'Lokasi Terkini'
-            });
-
-            // event saat marker diklik
-            marker.addListener('click', function() {
-                // tampilkan info window di atas marker
-                infowindow.open(map, marker);
-            });
-
-        }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
 
     <script>
         setInterval(() => Livewire.emit('ubahData'),3000);

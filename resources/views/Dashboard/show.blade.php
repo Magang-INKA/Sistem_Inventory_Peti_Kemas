@@ -7,4 +7,5 @@
             @livewire('dashboard-detail',['idmqtt' => $idmqtt])
 		{{-- </div> --}}
 	{{-- </div> --}}
+    @include('Dashboard.PageMaps')
 @endsection
