@@ -89,7 +89,9 @@ class BookingController extends Controller
                 'jenis_barang' => 'required',
                 'nama_barang' => 'required|string',
                 'berat_barang' => 'required|integer',
-                'dimesi_barang' => 'required|double',
+                'panjang' => 'required|integer',
+                'lebar' => 'required|integer',
+                'tinggi' => 'required|integer',
             ]);
             $barang = DB::table('master_barang')->orderByDesc('id')->pluck('id')->first();
             $id=(int)$barang+1;
@@ -126,7 +128,7 @@ class BookingController extends Controller
             $q->nama_penerima = $request->input('nama_penerima');
             $q->telp_penerima = $request->input('telp_penerima');
             $q->alamat_penerima = $request->input('alamat_penerima');
-            $q->dimensi_barang = $request->input('dimensi');
+            $q->dimensi_kemasan = $dimensi;
             $q->status = 'belum';
             $q->save();
 

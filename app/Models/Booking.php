@@ -33,7 +33,7 @@ class Booking extends Model
         'telp_penerima',
         'alamat_penerima',
         'catatan',
-        'dimensi_barang',
+        'dimensi_kemasan',
     ];
 
     public function jadwalKapal()

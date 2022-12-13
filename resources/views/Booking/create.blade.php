@@ -91,6 +91,30 @@
                                             <input type="number" class="form-control" name="berat_barang" id="berat">
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Detail Dimensi Kemasan :</label>
+                                            {{-- <input type="number" class="form-control" name="berat_barang" id="berat"> --}}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="panjang">Panjang :</label>
+                                            <input type="number" class="form-control" name="panjang" id="panjang">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="lebar">Lebar :</label>
+                                            <input type="number" class="form-control" name="lebar" id="lebar">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="tinggi">Tinggi :</label>
+                                            <input type="number" class="form-control" name="tinggi" id="tinggi">
+                                        </div>
+                                    </div>
                                     <div class="col-md-6" hidden>
                                         <div class="form-group">
                                             <label for="status">Status</label>
@@ -120,24 +144,6 @@
                                         <div class="form-group">
                                             <label for="alamat">Alamat :</label>
                                             <input type="text" class="form-control" name="alamat_penerima">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="panjang">Panjang :</label>
-                                            <input type="number" class="form-control" name="panjang">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="lebar">Lebar :</label>
-                                            <input type="number" class="form-control" name="lebar">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="tinggi">Tinggi :</label>
-                                            <input type="number" class="form-control" name="tinggi">
                                         </div>
                                     </div>
                                 </div>
