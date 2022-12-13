@@ -89,6 +89,7 @@ class BookingController extends Controller
                 'jenis_barang' => 'required',
                 'nama_barang' => 'required|string',
                 'berat_barang' => 'required|integer',
+                'dimesi_barang' => 'required|double',
             ]);
             $barang = DB::table('master_barang')->orderByDesc('id')->pluck('id')->first();
             $id=(int)$barang+1;
@@ -111,19 +112,21 @@ class BookingController extends Controller
                 $cod++;
                 $resi = $huruf . sprintf("%03s", $cod);
             }
-
+            $panjang = $request->input('panjang');
+            $lebar = $request->input('lebar');
+            $tinggi = $request->input('tinggi');
+            $dimensi = $panjang*$lebar*$tinggi;
             $date = Carbon::now()->toDateString();
             $q = new Booking();
             $q->no_resi = $resi;
             $q->id_user = Auth::user()->id;
             $q->id_jadwal = $request->input('id_jadwal');
-            // $q->jenis_container = $request->input('jenis_container');
-            // $q->id_container = '1';
             $q->id_barang = $id;
             $q->date = $date;
             $q->nama_penerima = $request->input('nama_penerima');
             $q->telp_penerima = $request->input('telp_penerima');
             $q->alamat_penerima = $request->input('alamat_penerima');
+            $q->dimensi_barang = $request->input('dimensi');
             $q->status = 'belum';
             $q->save();
 
@@ -164,7 +167,7 @@ class BookingController extends Controller
         ->where('booking.id', '=', $id)->get();
 
         $booking = Booking::find($id);
-        $fjadwal = JadwalKapal::select('jadwal_kapal.id','jadwal_kapal.id_trip','trip.nama_trip', 'jadwal_kapal.ETA','jadwal_kapal.ETD','master_kapal.nama_kapal')
+        $fjadwal = JadwalKapal::select('jadwal_kapal.id','jadwal_kapal.id_trip','trip.nama_trip', 'jadwal_kapal.ETA_awal','jadwal_kapal.ETD_awal','jadwal_kapal.ETA_tujuan','master_kapal.nama_kapal')
                             ->join('trip', 'trip.id', '=', 'jadwal_kapal.id_trip')
                             ->join('master_kapal', 'master_kapal.id', '=', 'trip.id_kapal')
                             ->Where('jadwal_kapal.id',$id)
@@ -182,7 +185,7 @@ class BookingController extends Controller
         ->join('booking', 'jadwal_kapal.id', '=', 'booking.id_jadwal')
         ->join('master_pelabuhan as p', 'jadwal_kapal.asal_pelabuhan_id', '=', 'p.kode_pelabuhan')
         ->join('master_pelabuhan as p2', 'jadwal_kapal.tujuan_pelabuhan_id', '=', 'p2.kode_pelabuhan')
-        ->select('booking.id_jadwal', 'p.nama_pelabuhan as asal', 'p2.nama_pelabuhan as tujuan', 'jadwal_kapal.ETA', 'jadwal_kapal.ETD', 'master_kapal.nama_kapal')
+        ->select('booking.id_jadwal', 'p.nama_pelabuhan as asal', 'p2.nama_pelabuhan as tujuan', 'jadwal_kapal.ETA_awal', 'jadwal_kapal.ETD_awal', 'jadwal_kapal.ETA_tujuan','master_kapal.nama_kapal')
         ->where('booking.id_jadwal', '=', $idjadwal)
         ->where('booking.id', '=', $id)->get();
 
@@ -194,7 +197,7 @@ class BookingController extends Controller
             ->join('master_pelabuhan as p','p.kode_pelabuhan','=','jadwal_kapal.tujuan_pelabuhan_id')
             ->join('container','container.id_kapal','=','master_kapal.id')
             ->join('master_container','master_container.no_container','=','container.no_container')
-            ->select('jadwal_kapal.*','jadwal_kapal.id_trip','master_kapal.nama_kapal','master_pelabuhan.nama_pelabuhan as awal','p.nama_pelabuhan as tujuan', 'jadwal_kapal.ETA','jadwal_kapal.ETD','container.no_container','master_container.kapasitas')
+            ->select('jadwal_kapal.*','jadwal_kapal.id_trip','master_kapal.nama_kapal','master_pelabuhan.nama_pelabuhan as awal','p.nama_pelabuhan as tujuan', 'jadwal_kapal.ETA_awal','jadwal_kapal.ETD_awal','jadwal_kapal.ETA_tujuan','container.no_container','master_container.kapasitas')
             ->get();
 
         $jb = JenisBarang::all();
@@ -262,7 +265,7 @@ class BookingController extends Controller
                         $transaksi->harga=null;
                         $transaksi->save();
 
-                        $idt = DB::table('table_transaksi')->orderByDesc('id')->pluck('id')->first();
+                        $idt = DB::table('transaksi')->orderByDesc('id')->pluck('id')->first();
                         $url = ('transaksi/'.$idt.'/edit');
                         return redirect( $url);
                     }
@@ -351,7 +354,7 @@ class BookingController extends Controller
                     ->join('master_pelabuhan', 'master_pelabuhan.kode_pelabuhan', '=', 'jadwal_kapal.asal_pelabuhan_id')
                     ->get();
         } else {
-            $pelabuhan2 = JadwalKapal::select('jadwal_kapal.id','jadwal_kapal.id_trip','trip.nama_trip', 'jadwal_kapal.ETA','jadwal_kapal.ETD','master_kapal.nama_kapal')
+            $pelabuhan2 = JadwalKapal::select('jadwal_kapal.id','jadwal_kapal.id_trip','trip.nama_trip', 'jadwal_kapal.ETA_awal','jadwal_kapal.ETD_awal','jadwal_kapal.ETA_tujuan','master_kapal.nama_kapal')
                             ->join('trip', 'trip.id', '=', 'jadwal_kapal.id_trip')
                             ->join('master_kapal', 'master_kapal.id', '=', 'trip.id_kapal')
                             ->where('jadwal_kapal.asal_pelabuhan_id', $asalID)

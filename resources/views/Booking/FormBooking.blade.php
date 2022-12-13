@@ -1,5 +1,5 @@
 @extends('layouts.MasterView')
-@section('menu_booking', 'active') 
+@section('menu_booking', 'active')
 @section('content')
     {{-- <div class="main-container"> --}}
     <div class="pd-20 card-box mb-30">
@@ -237,7 +237,7 @@ $('#select_pelabuhan2').change(function() {
                return {
                   results: $.map(data, function(item) {
                      return {
-                        text: item.id_trip+"|"+item.nama_kapal +"|"+ "ETA: " + item.ETA +"|" +"ETD: " +item.ETD,
+                        text: item.id_trip+"|"+item.nama_kapal +"|"+ "ETA(Awal): " + item.ETA_awal +"|" +"ETD(Awal): " +item.ETD_awal +"|" +"ETA(Tujuan): " +item.ETA_tujuan,
                         id: item.id
                      }
                   })

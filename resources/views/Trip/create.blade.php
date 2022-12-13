@@ -34,13 +34,13 @@
 	<form method="POST" action="{{ route('trip.store') }}" id="myForm" enctype="multipart/form-data">
         @csrf
 		<div class="form-group row">
-			<label for="nama_trip" class="col-sm-12 col-md-2 col-form-label text-white">Nama Trip</label>
+			<label for="nama_trip" class="col-sm-12 col-md-2 col-form-label text-white">Trip Name</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="nama_trip" id="nama_trip" aria-describedby="nama_trip" placeholder="">
 			</div>
 		</div>
         <div class="form row">
-			<label for="asal_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Pelabuhan Asal</label>
+			<label for="asal_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Port of Departure</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
                     <input id="nama_pelabuhan1" type="text" class="form-control" readonly="" required>
@@ -50,7 +50,7 @@
             </div>
 		</div>
         <div class="form row">
-			<label for="final_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Pelabuhan Tujuan</label>
+			<label for="final_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Destination Port</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
                     <input id="nama_pelabuhan2" type="text" class="form-control" readonly="" required>
@@ -60,7 +60,7 @@
             </div>
 		</div>
         <div class="form-group row">
-			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">No Kapal</label>
+			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">Vessel Name</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
                     <input id="nama_kapal" type="text" class="form-control" readonly="" required>
@@ -166,7 +166,7 @@
                     <tbody>
                         @foreach($kapal as $data)
                         <tr class="pilih3" data-id_kapal="<?php echo $data->id; ?>" data-nama_kapal="<?php echo $data->nama_kapal; ?>" >
-                            <td>{{$data->no_kapal}}</td>
+                            <td>{{$data->IMO}}</td>
                             <td>{{$data->nama_kapal}}</td>
                         </tr>
                         @endforeach

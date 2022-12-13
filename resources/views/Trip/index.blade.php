@@ -44,10 +44,10 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>Nama Trip</th>
-                        <th>Pelabuhan Asal</th>
-                        <th>Pelabuhan Tujuan</th>
-                        <th>No-Nama Kapal</th>
+                        <th>Trip Name</th>
+                        <th>Port of Departure</th>
+                        <th>Destination Port</th>
+                        <th>Vessel Name</th>
                         @can('manage-MasterData')
                         <th class="datatable-nosort">Action</th>
                         @endcan
@@ -60,7 +60,7 @@
                         <td>{{ $data->nama_trip}}</td>
                         <td>{{ $data->keberangkatan->nama_pelabuhan}}</td>
                         <td>{{ $data->tujuan->nama_pelabuhan}}</td>
-                        <td>{{$data->kapal->no_kapal}}-{{$data->kapal->nama_kapal}}</td>
+                        <td>{{ $data->kapal->nama_kapal}}</td>
                         @can('manage-MasterData')
                         <td>
                             <div class="dropdown">

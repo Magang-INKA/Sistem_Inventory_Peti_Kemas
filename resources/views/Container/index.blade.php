@@ -54,7 +54,7 @@
                     <tr>
                         <td class="table-plus">{{ $ct + $container->firstitem() }}</td>
                         <td>{{ $data->no_container }}</td>
-                        <td>{{ $data->kapal->nama_kapal }} V. {{ $data->kapal->no_kapal }}</td>
+                        <td>{{ $data->kapal->nama_kapal }}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

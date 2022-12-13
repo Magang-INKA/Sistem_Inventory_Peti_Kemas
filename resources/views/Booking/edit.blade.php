@@ -9,8 +9,8 @@
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('booking.index') }}">Booking</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                    <li class="breadcrumb-item active"><a href="{{ route('booking.index') }}">Booking</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Edit</li>
                 </ol>
             </nav>
         </div>
@@ -55,8 +55,9 @@
                      <th>ID Jadwal</th>
                      <th>Asal</th>
                      <th>Tujuan</th>
-                     <th>ETA</th>
-                     <th>ETD</th>
+                     <th>ETA (Awal)</th>
+                     <th>ETD (Awal)</th>
+                     <th>ETA (Tujuan)</th>
                      <th>Nama Kapal</th>
                  </tr>
              </thead>
@@ -66,8 +67,9 @@
                   <td>{{$data->id_jadwal}}</td>
                   <td>{{$data->asal}}</td>
                   <td>{{$data->tujuan}}</td>
-                  <td>{{$data->ETA}}</td>
-                  <td>{{$data->ETD}}</td>
+                  <td>{{$data->ETA_awal}}</td>
+                  <td>{{$data->ETD_awal}}</td>
+                  <td>{{$data->ETA_tujuan}}</td>
                   <td>{{$data->nama_kapal}}</td>
                  </tr>
                  @endforeach
@@ -185,21 +187,22 @@
                <table id="lookup" class="table table-bordered table-hover table-striped">
                    <thead>
                        <tr>
-                           <th> ID Jadwal </th>
+                           {{-- <th> ID Jadwal </th> --}}
                            <th> ID Trip </th>
                            <th> Pelabuhan Awal </th>
                            <th> Pelabuhan tujuan </th>
                            <th> Kapal </th>
                            <th> Kode Container </th>
                            <th> Kapasitas </th>
-                           <th> ETA </th>
-                           <th> ETD </th>
+                           {{-- <th> ETA (Awal)</th> --}}
+                           <th> ETD (Awal)</th>
+                           <th> ETA (Tujuan)</th>
                        </tr>
                    </thead>
                    <tbody>
                        @foreach($tjadwal as $data)
                        <tr class="pilih" data-id_jadwal="<?php echo $data->id; ?>">
-                        <td>{{$data->id}}</td>
+                        {{-- <td>{{$data->id}}</td> --}}
                         <td>{{$data->id_trip}}</td>
                            <td>
                                {{$data->awal}}
@@ -208,8 +211,9 @@
                            <td>{{$data->nama_kapal}}</td>
                            <td>{{$data->no_container}}</td>
                            <td>{{$data->kapasitas}}</td>
-                           <td>{{$data->ETA}}</td>
-                           <td>{{$data->ETD}}</td>
+                           {{-- <td>{{$data->ETA_awal}}</td> --}}
+                           <td>{{$data->ETD_awal}}</td>
+                           <td>{{$data->ETA_tujuan}}</td>
                        </tr>
                        @endforeach
                    </tbody>

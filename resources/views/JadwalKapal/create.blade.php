@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Create Jadwal Kapal</h4>
+                <h4>Create Ship Schedule</h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active"><a href="{{ route('JadwalKapal.index') }}">Jadwal Kapal</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('JadwalKapal.index') }}">Ship Schedule</a></li>
                     <li class="breadcrumb-item" aria-current="page">Create</li>
                 </ol>
             </nav>
@@ -44,7 +44,7 @@
             </div>
 		</div>
         <div class="form row">
-			<label for="asal_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Pelabuhan Asal</label>
+			<label for="asal_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Port of Departure</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
                     <input id="nama_pelabuhan1" type="text" class="form-control" readonly="" required>
@@ -54,7 +54,7 @@
             </div>
 		</div>
         <div class="form row">
-			<label for="tujuan_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Pelabuhan Tujuan</label>
+			<label for="tujuan_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Destination Port</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
                     <input id="nama_pelabuhan2" type="text" class="form-control" readonly="" required>
@@ -64,15 +64,21 @@
             </div>
 		</div>
         <div class="form-group row">
-			<label for="ETA" class="col-sm-12 col-md-2 col-form-label text-white">ETA</label>
+			<label for="ETA_awal" class="col-sm-12 col-md-2 col-form-label text-white">ETA at the Port Of Departure</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="datetime-local" name="ETA" id="ETA" aria-describedby="ETA" placeholder="">
+				<input class="form-control" type="datetime-local" name="ETA_awal" id="ETA_awal" aria-describedby="ETA_awal" placeholder="">
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="ETD" class="col-sm-12 col-md-2 col-form-label text-white">ETD</label>
+			<label for="ETD_awal" class="col-sm-12 col-md-2 col-form-label text-white">ETD at the Port Of Departure</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="datetime-local" name="ETD" id="ETD" aria-describedby="ETD" placeholder="">
+				<input class="form-control" type="datetime-local" name="ETD_awal" id="ETD_awal" aria-describedby="ETD_awal" placeholder="">
+			</div>
+		</div>
+        <div class="form-group row">
+			<label for="ETA_tujuan" class="col-sm-12 col-md-2 col-form-label text-white">ETA at the Destination</label>
+			<div class="col-sm-12 col-md-10">
+				<input class="form-control" type="datetime-local" name="ETA_tujuan" id="ETA_tujuan" aria-describedby="ETA_tujuan" placeholder="">
 			</div>
 		</div>
 		<div class="form-group row">

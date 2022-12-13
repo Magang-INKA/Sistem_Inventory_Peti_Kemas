@@ -19,25 +19,37 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left mt-2">
-                    <h3 align="center">SISTEM INVENTORY SDN GEJUGJATI 2</h3>
-                    <h3 align="center">LAPORAN DATA SUPPLIER</h3>
+                    <h3 align="center">SISTEM INVENTORY PETI KEMAS</h3>
+                    <h3 align="center">LAPORAN DATA TRANSAKSI</h3>
                 </div>
                 <br>
                 <table class="table table-bordered">
                     <tr>
                         <th>No</th>
-                        <th>Kode</th>
-                        <th>Nama</th>
-                        <th>Alamat</th>
-                        <th>Telepon</th>
+                        <th>No Resi</th>
+                        <th>Nama Pengirim</th>
+                        <th>Telepon Pengirim</th>
+                        <th>Barang</th>
+                        <th>Berat (Kg)</th>
+                        <th>Pelabuhan Awal</th>
+                        <th>Pelabuhan Tujuan</th>
+                        <th>Nama Kapal</th>
+                        <th>No Container</th>
+                        <th>Total Biaya</th>
                     </tr>
-                    @foreach ($transaksi as $sup => $data)
+                    @foreach ($transaksi as $ts => $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $data->kode }}</td>
-                        <td>{{ $data->nama }}</td>
-                        <td>{{ $data->alamat }}</td>
-                        <td>{{ $data->telp }}</td>
+                        <td>{{ $data->no_resi }}</td>
+                        <td>{{ $data->name }}</td>
+                        <td>{{ $data->no_telp }}</td>
+                        <td>{{ $data->nama_barang }}</td>
+                        <td>{{ $data->berat_barang }}</td>
+                        <td>{{ $data->asal }}, ETD: {{$data->ETD_awal}}</td>
+                        <td>{{ $data->tujuan }}, ETA: {{$data->ETA_tujuan}}</td>
+                        <td>{{ $data->nama_kapal }}</td>
+                        <td>{{ $data->no_container }}</td>
+                        <td>Rp.{{ $data->harga }}</td>
                     </tr>
                     @endforeach
                 </table>

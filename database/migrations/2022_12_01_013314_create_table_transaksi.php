@@ -17,7 +17,7 @@ class CreateTableTransaksi extends Migration
             $table->id();
             $table->unsignedBigInteger('id_booking');
             $table->foreign('id_booking')->references('id')->on('booking')->onDelete('cascade');
-            $table->float('harga')->nullable();
+            $table->integer('harga')->nullable();
             $table->string('qrcode')->nullable();
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateTableTransaksi extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_transaksi');
+        Schema::dropIfExists('transaksi');
     }
 }

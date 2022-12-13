@@ -21,7 +21,7 @@ class Kapal extends Model
         'id',
         'id_keberangkatan',
         'id_tujuan',
-        'no_kapal',
+        'IMO',
         'jadwal',
     ];
 
@@ -37,6 +37,6 @@ class Kapal extends Model
     }
     public function master()
     {
-        return $this->hasOne(MasterKapal::class, 'no_kapal', 'no_kapal');
+        return $this->hasOne(MasterKapal::class, 'IMO', 'IMO');
     }
 }

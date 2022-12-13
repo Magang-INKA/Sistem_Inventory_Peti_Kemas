@@ -27,13 +27,13 @@
                     <tr>
                         <th>No</th>
                         <th>Vessel Name</th>
-                        <th>Voyage Number</th>
+                        <th>IMO</th>
                     </tr>
                     @foreach ($masterKapal as $mk => $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->nama_kapal }}</td>
-                        <td>{{ $data->no_kapal }}</td>
+                        <td>{{ $data->IMO }}</td>
                     </tr>
                     @endforeach
                 </table>

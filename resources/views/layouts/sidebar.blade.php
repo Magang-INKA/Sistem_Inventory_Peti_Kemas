@@ -38,6 +38,11 @@
                         <span class=""></span><span class="mtext">Master</span>
                     </a>
                     <ul class="submenu" style="display: block;">
+                        @if(Auth::user()->role == 'Administrator')
+                        <li><a href="{{ route('masterContainer.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_container')">Container Master</a></li>
+                        <li><a href="{{ route('masterKapal.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_kapal')">Ship Master</a></li>
+                        <li><a href="{{ route('pelabuhan.index') }}" class="dropdown-toggle no-arrow @yield('menu_pelabuhan')">Port Master</a></li>
+                        @endif
                         <li class="dropdown">
                             <a href="javascript:;" class="dropdown-toggle">
                                 <span class=""></span><span class="mtext">Product</span>
@@ -47,20 +52,8 @@
                                 <li><a href="{{ route('barang.index')}}" class="dropdown-toggle no-arrow @yield('menu_barang')">Product Master</a></li>
                             </ul>
                         </li>
-                        @if(Auth::user()->role == 'Administrator')
-                        <li><a href="{{ route('masterContainer.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_container')">Container Master</a></li>
-                        <li><a href="{{ route('masterKapal.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_kapal')">Ship Master</a></li>
-                        <li><a href="{{ route('pelabuhan.index') }}" class="dropdown-toggle no-arrow @yield('menu_pelabuhan')">Port Master</a></li>
-                        @endif
                     </ul>
                 </li>
-                @if(Auth::user()->role == 'Administrator')
-                <li>
-                    <a href="{{ url('/booking') }}" class="dropdown-toggle no-arrow @yield('menu_booking')">
-                        <span class="micon dw dw-edit"></span><span class="mtext">Booking</span>
-                    </a>
-                </li>
-                @endif
                 @endif
                 @can('manage-booking')
                 <li>
@@ -80,20 +73,29 @@
                         <span class="micon dw dw-box"></span><span class="mtext">Container</span>
                     </a>
                 </li>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class=""></span><span class="mtext">Ship Schedule</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ route('trip.index')}}" class="dropdown-toggle no-arrow @yield('menu_trip')">Trip Kapal</a></li>
+                        <li><a href="{{ route('JadwalKapal.index') }}" class="dropdown-toggle no-arrow @yield('menu_jadwal_kapal')">Ship Schedule</a></li>
+                    </ul>
+                </li>
+                {{-- @if(Auth::user()->role == 'Administrator') --}}
+                <li>
+                    <a href="{{ url('/booking') }}" class="dropdown-toggle no-arrow @yield('menu_booking')">
+                        <span class="micon dw dw-edit"></span><span class="mtext">Booking</span>
+                    </a>
+                </li>
+                {{-- @endif --}}
+                @if(Auth::user()->role != 'Client')
                 <li>
                     <a href="{{ route('transaksi.index') }}" class="dropdown-toggle no-arrow @yield('menu_transaksi')">
                         <span class="micon dw dw-invoice"></span><span class="mtext">Transaksi</span>
                     </a>
                 </li>
-                <li class="dropdown">
-                    <a href="javascript:;" class="dropdown-toggle">
-                        <span class=""></span><span class="mtext">Data Jadwal Kapal</span>
-                    </a>
-                    <ul class="submenu">
-                        <li><a href="{{ route('trip.index')}}" class="dropdown-toggle no-arrow @yield('menu_trip')">Trip Kapal</a></li>
-                        <li><a href="{{ route('JadwalKapal.index') }}" class="dropdown-toggle no-arrow @yield('menu_jadwal_kapal')">Jadwal Kapal</a></li>
-                    </ul>
-                </li>
+                @endif
                 <li>
                     <a href="{{ route('user.index') }}" class="dropdown-toggle no-arrow @yield('menu_user')">
                         <span class="micon fa fa-users"></span><span class="mtext">Data User</span>

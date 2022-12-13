@@ -76,7 +76,7 @@
                         <td class="table-plus">{{ $loop->iteration }}</td>
                         <td>{{ $data->no_resi }}</td>
                         <td>{{ $data->jadwalKapal->trip->kapal->nama_kapal }}</td>
-                        <td>{{ $data->jadwalKapal->awal->nama_pelabuhan }}=>{{ $data->jadwalKapal->ETA }}</td>
+                        <td>{{ $data->jadwalKapal->awal->nama_pelabuhan }}=>{{ $data->jadwalKapal->ETD_awal }}</td>
                         <td>{{ $data->status }}</td>
                         {{-- @can('manage-MasterData') --}}
                         <td>

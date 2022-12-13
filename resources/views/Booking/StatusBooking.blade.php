@@ -26,19 +26,25 @@
                     @endforeach
                 </div>
             </div>
-            {{-- <div class="form-group row">
-                <label for="id_pelabuhan" class="col-sm-12 col-md-2 col-form-label text-white">Tujuan</label>
+            <div class="form-group row">
+                <label for="status" class="col-sm-12 col-md-2 col-form-label">Note</label>
                 <div class="col-sm-12 col-md-10">
-                    <input class="form-control" type="text" name="id_pelabuhan" id="id_pelabuhan"
-                    value="{{ $container->pelabuhan->nama_pelabuhan }}" aria-describedby="id_pelabuhan"  disabled="">
+                    @foreach ($book as $br => $data)
+                    <input class="form-control" type="text" name="status" id="status"
+                    value="{{ $data->catatan }}" aria-describedby="status" placeholder="Disabled input" disabled="">
+                    @endforeach
                 </div>
-            </div> --}}
-            {{-- <div class="pull-right">
-                <a href="{{route('container.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
-                    <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>
-                    Kembali
-                </a>
-            </div> --}}
+            </div>
+            @foreach ($book as $br => $data)
+                @if($data->status == 'terima')
+                <div class="pull-right">
+                    <a href="{{route('cekResi')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
+                        <i class="icon-copy" aria-hidden="true"></i>
+                        Cek Resi
+                    </a>
+                </div>
+                @endif
+            @endforeach
             <br><br>
         </form>
 

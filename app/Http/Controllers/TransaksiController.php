@@ -26,10 +26,6 @@ class TransaksiController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware(function($request, $next){
-        if(Gate::allows('manage-MasterData')) return $next($request);
-        abort(403, 'Anda tidak memiliki cukup hak akses');
-        });
     }
 
     public function index(Request $request)
@@ -138,10 +134,10 @@ class TransaksiController extends Controller
         $t->save();
 
         //fungsi eloquent untuk mengupdate data inputan kita
-        $transaksi = DB::table('table_transaksi')
-        ->select('table_transaksi.id',
-        'table_transaksi.id_booking',
-        'table_transaksi.harga',
+        $transaksi = DB::table('transaksi')
+        ->select('transaksi.id',
+        'transaksi.id_booking',
+        'transaksi.harga',
         'booking.no_resi',
         'users.name',
         'users.email',
@@ -150,18 +146,19 @@ class TransaksiController extends Controller
         'master_barang.nama_barang',
         'master_barang.berat_barang',
         'jadwal_kapal.id',
-        'jadwal_kapal.ETA',
-        'jadwal_kapal.ETD',
+        'jadwal_kapal.ETA_awal',
+        'jadwal_kapal.ETD_awal',
+        'jadwal_kapal.ETA_tujuan',
         'p.nama_pelabuhan as asal',
         'p2.nama_pelabuhan as tujuan',
-        'master_kapal.no_kapal',
+        'master_kapal.IMO',
         'master_kapal.nama_kapal',
         'master_container.no_container',
         'booking.nama_penerima',
         'booking.telp_penerima',
         'booking.alamat_penerima'
         )
-        ->join('booking', 'booking.id', '=', 'table_transaksi.id_booking')
+        ->join('booking', 'booking.id', '=', 'transaksi.id_booking')
         ->join('users','users.id','=','booking.id_user')
         ->join('master_barang','master_barang.id','=','booking.id_barang')
         ->join('jenis_barang','jenis_barang.id','=','master_barang.jenis_barang')
@@ -172,15 +169,10 @@ class TransaksiController extends Controller
         ->join('master_pelabuhan as p2', 'jadwal_kapal.tujuan_pelabuhan_id', '=', 'p2.kode_pelabuhan')
         ->join('container','container.id_kapal','=','master_kapal.id')
         ->join('master_container','master_container.no_container','=','container.no_container')
-        ->where('table_transaksi.id', '=', $id)->get();
-        // return view('Transaksi.resi', compact('transaksi'));
-        return view('Transaksi.index', compact('transaksi', 't'));
+        ->where('transaksi.id', '=', $id)->get();
 
-        // $tr = Transaksi::all();
         Alert::success('Success', 'Data Transaksi Berhasil Diupdate');
-        // $pdf = PDF::loadview('Transaksi.resi', compact('transaksi'));
-        // return $pdf->stream();
-        // return view('Transaksi.index', compact('tr'));
+        return redirect()->route('transaksi.index');
     }
 
     /**
@@ -199,9 +191,44 @@ class TransaksiController extends Controller
 
     public function laporan()
     {
-        $transaksi = Transaksi::all();
+        $transaksi = DB::table('transaksi')
+        ->select('transaksi.id',
+        'transaksi.harga',
+        'transaksi.id_booking',
+        'transaksi.harga',
+        'booking.no_resi',
+        'users.name',
+        'users.email',
+        'users.no_telp',
+        'jenis_barang.jenis_barang',
+        'master_barang.nama_barang',
+        'master_barang.berat_barang',
+        'jadwal_kapal.id',
+        'jadwal_kapal.ETA_awal',
+        'jadwal_kapal.ETD_awal',
+        'jadwal_kapal.ETA_tujuan',
+        'p.nama_pelabuhan as asal',
+        'p2.nama_pelabuhan as tujuan',
+        'master_kapal.IMO',
+        'master_kapal.nama_kapal',
+        'master_container.no_container',
+        'booking.nama_penerima',
+        'booking.telp_penerima',
+        'booking.alamat_penerima'
+        )
+        ->join('booking', 'booking.id', '=', 'transaksi.id_booking')
+        ->join('users','users.id','=','booking.id_user')
+        ->join('master_barang','master_barang.id','=','booking.id_barang')
+        ->join('jenis_barang','jenis_barang.id','=','master_barang.jenis_barang')
+        ->join('jadwal_kapal','jadwal_kapal.id','=','booking.id_jadwal')
+        ->join('trip','trip.id','=','jadwal_kapal.id_trip')
+        ->join('master_kapal','master_kapal.id','=','master_kapal.id')
+        ->join('master_pelabuhan as p', 'jadwal_kapal.asal_pelabuhan_id', '=', 'p.kode_pelabuhan')
+        ->join('master_pelabuhan as p2', 'jadwal_kapal.tujuan_pelabuhan_id', '=', 'p2.kode_pelabuhan')
+        ->join('container','container.id_kapal','=','master_kapal.id')
+        ->join('master_container','master_container.no_container','=','container.no_container')->get();
         $pdf = PDF::loadview('Transaksi.laporan', compact('transaksi'));
-        return $pdf->stream();
+        return $pdf->setPaper('a4', 'landscape')->stream();
     }
 
     public function laporanExcel(Request $request)
@@ -209,4 +236,86 @@ class TransaksiController extends Controller
         return Excel::download(new TransaksiExport, 'Transaksi.xlsx');
     }
 
+    public function resi($id)
+    {
+        $transaksi = DB::table('transaksi')
+        ->select('transaksi.id',
+        'transaksi.id_booking',
+        'transaksi.harga',
+        'booking.no_resi',
+        'users.name',
+        'users.email',
+        'users.no_telp',
+        'jenis_barang.jenis_barang',
+        'master_barang.nama_barang',
+        'master_barang.berat_barang',
+        'jadwal_kapal.id',
+        'jadwal_kapal.ETA_awal',
+        'jadwal_kapal.ETD_awal',
+        'jadwal_kapal.ETA_tujuan',
+        'p.nama_pelabuhan as asal',
+        'p2.nama_pelabuhan as tujuan',
+        'master_kapal.IMO',
+        'master_kapal.nama_kapal',
+        'master_container.no_container',
+        'booking.nama_penerima',
+        'booking.telp_penerima',
+        'booking.alamat_penerima'
+        )
+        ->join('booking', 'booking.id', '=', 'transaksi.id_booking')
+        ->join('users','users.id','=','booking.id_user')
+        ->join('master_barang','master_barang.id','=','booking.id_barang')
+        ->join('jenis_barang','jenis_barang.id','=','master_barang.jenis_barang')
+        ->join('jadwal_kapal','jadwal_kapal.id','=','booking.id_jadwal')
+        ->join('trip','trip.id','=','jadwal_kapal.id_trip')
+        ->join('master_kapal','master_kapal.id','=','master_kapal.id')
+        ->join('master_pelabuhan as p', 'jadwal_kapal.asal_pelabuhan_id', '=', 'p.kode_pelabuhan')
+        ->join('master_pelabuhan as p2', 'jadwal_kapal.tujuan_pelabuhan_id', '=', 'p2.kode_pelabuhan')
+        ->join('container','container.id_kapal','=','master_kapal.id')
+        ->join('master_container','master_container.no_container','=','container.no_container')
+        ->where('transaksi.id', '=', $id)->get()->first();
+        $pdf = PDF::loadview('Transaksi.resi', compact('transaksi'));
+        return $pdf->setPaper('a5')->stream();
+    }
+    public function cekResi()
+    {
+        $transaksi = DB::table('transaksi')
+        ->select('transaksi.id',
+        'transaksi.id_booking',
+        'transaksi.harga',
+        'booking.no_resi',
+        'users.name',
+        'users.email',
+        'users.no_telp',
+        'jenis_barang.jenis_barang',
+        'master_barang.nama_barang',
+        'master_barang.berat_barang',
+        'jadwal_kapal.id',
+        'jadwal_kapal.ETA_awal',
+        'jadwal_kapal.ETD_awal',
+        'jadwal_kapal.ETA_tujuan',
+        'p.nama_pelabuhan as asal',
+        'p2.nama_pelabuhan as tujuan',
+        'master_kapal.IMO',
+        'master_kapal.nama_kapal',
+        'master_container.no_container',
+        'booking.nama_penerima',
+        'booking.telp_penerima',
+        'booking.alamat_penerima'
+        )
+        ->join('booking', 'booking.id', '=', 'transaksi.id_booking')
+        ->join('users','users.id','=','booking.id_user')
+        ->join('master_barang','master_barang.id','=','booking.id_barang')
+        ->join('jenis_barang','jenis_barang.id','=','master_barang.jenis_barang')
+        ->join('jadwal_kapal','jadwal_kapal.id','=','booking.id_jadwal')
+        ->join('trip','trip.id','=','jadwal_kapal.id_trip')
+        ->join('master_kapal','master_kapal.id','=','master_kapal.id')
+        ->join('master_pelabuhan as p', 'jadwal_kapal.asal_pelabuhan_id', '=', 'p.kode_pelabuhan')
+        ->join('master_pelabuhan as p2', 'jadwal_kapal.tujuan_pelabuhan_id', '=', 'p2.kode_pelabuhan')
+        ->join('container','container.id_kapal','=','master_kapal.id')
+        ->join('master_container','master_container.no_container','=','container.no_container')
+        ->where('booking.id_user', '=', Auth()->user()->id)->get()->first();
+        $pdf = PDF::loadview('Transaksi.resi', compact('transaksi'));
+        return $pdf->setPaper('a5')->stream();
+    }
 }

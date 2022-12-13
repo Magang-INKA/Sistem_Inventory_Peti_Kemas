@@ -21,8 +21,8 @@ class TrackingController extends Controller
             'master_pelabuhan.nama_pelabuhan'
             )
             ->join('master_pelabuhan', 'drop_point.pelabuhan', '=', 'master_pelabuhan.kode_pelabuhan')
-            ->join('table_transaksi', 'drop_point.id_transaksi', '=', 'table_transaksi.id')
-            ->join('booking', 'table_transaksi.id_booking', '=', 'booking.id')
+            ->join('transaksi', 'drop_point.id_transaksi', '=', 'transaksi.id')
+            ->join('booking', 'transaksi.id_booking', '=', 'booking.id')
             ->where('booking.no_resi', '=', $search)
             ->orderBy('drop_point.created_at', 'desc')->get();
             if (!$tracking->isEmpty()) {
@@ -61,8 +61,8 @@ class TrackingController extends Controller
             'drop_point.created_at',
             'drop_point.pelabuhan'
             )
-            ->join('table_transaksi', 'drop_point.id_transaksi', '=', 'table_transaksi.id')
-            ->join('booking', 'table_transaksi.id_booking', '=', 'booking.id')
+            ->join('transaksi', 'drop_point.id_transaksi', '=', 'transaksi.id')
+            ->join('booking', 'transaksi.id_booking', '=', 'booking.id')
             ->where('booking.no_resi', '=', $search)
             ->orderBy('drop_point.created_at', 'desc')->get();
             if (!$tracking->isEmpty()) {

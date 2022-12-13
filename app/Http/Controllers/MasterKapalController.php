@@ -19,7 +19,7 @@ class MasterKapalController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){ // Pemilihan jika ingin melakukan pencarian
-            $masterKapal = MasterKapal::where('no_kapal', 'like', "%" . $request->search . "%")
+            $masterKapal = MasterKapal::where('IMO', 'like', "%" . $request->search . "%")
             ->orwhere('nama_kapal', 'like', "%" . $request->search . "%")
             ->paginate();
             return view('Kapal.master', compact('masterKapal'))->with('i', (request()->input('page', 1) - 1) * 5);
@@ -50,12 +50,12 @@ class MasterKapalController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_kapal' => 'required',
+            'IMO' => 'required',
             'nama_kapal' => 'required',
         ]);
 
         $masterKapal = new MasterKapal();
-        $masterKapal->no_kapal = $request->get('no_kapal');
+        $masterKapal->IMO = $request->get('IMO');
         $masterKapal->nama_kapal = $request->get('nama_kapal');
         $masterKapal->save();
 
@@ -82,7 +82,7 @@ class MasterKapalController extends Controller
      */
     public function edit($kode)
     {
-        $masterKapal = MasterKapal::where('no_kapal', $kode)->first();
+        $masterKapal = MasterKapal::where('IMO', $kode)->first();
         return view('Kapal.editMaster', compact('masterKapal'));
     }
 
@@ -96,12 +96,12 @@ class MasterKapalController extends Controller
     public function update(Request $request, $kode)
     {
         $request->validate([
-            'no_kapal' => 'required',
+            'IMO' => 'required',
             'nama_kapal' => 'required',
         ]);
 
-        $masterKapal = MasterKapal::where('no_kapal', $kode)->first();;
-        $masterKapal->no_kapal = $request->get('no_kapal');
+        $masterKapal = MasterKapal::where('IMO', $kode)->first();;
+        $masterKapal->IMO = $request->get('IMO');
         $masterKapal->nama_kapal = $request->get('nama_kapal');
         $masterKapal->save();
 
@@ -117,7 +117,7 @@ class MasterKapalController extends Controller
      */
     public function destroy($kode)
     {
-        MasterKapal::where('no_kapal', $kode)->delete();
+        MasterKapal::where('IMO', $kode)->delete();
         Alert::success('Success', 'Master Data Kapal berhasil dihapus');
         return redirect()->route('masterKapal.index');
     }

@@ -35,10 +35,10 @@
         @csrf
         @method('PUT')
 		<div class="form-group row">
-			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">No Kapal - Nama Kapal</label>
+			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">Nama Kapal</label>
 			<div class="col-sm-12 col-md-10">
                 <div class="input-group">
-                    <input id="nama_kapal" type="text" class="form-control" value="{{ $container->kapal->no_kapal }} - {{ $container->kapal->nama_kapal }}"  readonly="" required>
+                    <input id="nama_kapal" type="text" class="form-control" value="{{ $container->kapal->nama_kapal }}"  readonly="" required>
                     <input id="id_kapal" type="hidden" name="id_kapal" value="{{ $container->id_kapal }}" required readonly="">
                     <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Kapal</b><span class="fa fa-search"></span></button>
                 </div>
@@ -84,14 +84,14 @@
                     <thead>
                         <tr>
                             <th>Vessel Name</th>
-                            <th>Voyage Number</th>
+                            <th>IMO</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($kapal as $data)
-                        <tr class="pilih" data-id="<?php echo $data->id; ?>" data-nama_kapal="<?php echo $data->nama_kapal; ?> V. <?php echo $data->no_kapal; ?>" >
+                        <tr class="pilih" data-id="<?php echo $data->id; ?>" data-nama_kapal="<?php echo $data->nama_kapal; ?>" >
                             <td>{{$data->nama_kapal}}</td>
-                            <td>{{$data->no_kapal}}</td>
+                            <td>{{$data->IMO}}</td>
                         </tr>
                         @endforeach
                     </tbody>

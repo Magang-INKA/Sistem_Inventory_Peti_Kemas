@@ -19,7 +19,7 @@ class JadwalKapalController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){ // Pemilihan jika ingin melakukan pencarian
-            $jadwalKapal = JadwalKapal::where('no_kapal', 'like', "%" . $request->search . "%")
+            $jadwalKapal = JadwalKapal::where('IMO', 'like', "%" . $request->search . "%")
             ->orwhere('nama_kapal', 'like', "%" . $request->search . "%")
             ->paginate();
             return view('JadwalKapal.index', compact('jadwalKapal'))->with('i', (request()->input('page', 1) - 1) * 5);
@@ -56,16 +56,18 @@ class JadwalKapalController extends Controller
             'id_trip' => 'required',
             'asal_pelabuhan_id' => 'required',
             'tujuan_pelabuhan_id' => 'required',
-            'ETA' => 'required',
-            'ETD' => 'required',
+            'ETA_awal' => 'required',
+            'ETD_awal' => 'required',
+            'ETA_tujuan' => 'required',
         ]);
 
         $jadwalKapal = new JadwalKapal;
         $jadwalKapal->id_trip = $request->get('id_trip');
         $jadwalKapal->asal_pelabuhan_id = $request->get('asal_pelabuhan_id');
         $jadwalKapal->tujuan_pelabuhan_id = $request->get('tujuan_pelabuhan_id');
-        $jadwalKapal->ETA = $request->get('ETA');
-        $jadwalKapal->ETD = $request->get('ETD');
+        $jadwalKapal->ETA_awal = $request->get('ETA_awal');
+        $jadwalKapal->ETD_awal = $request->get('ETD_awal');
+        $jadwalKapal->ETA_tujuan = $request->get('ETA_tujuan');
         $jadwalKapal->save();
 
         Alert::success('Success', 'Data Jadwal Kapal Berhasil Ditambahkan');
@@ -111,8 +113,9 @@ class JadwalKapalController extends Controller
             'id_trip' => 'required',
             'asal_pelabuhan_id' => 'required',
             'tujuan_pelabuhan_id' => 'required',
-            'ETA' => 'required',
-            'ETD' => 'required',
+            'ETA_awal' => 'required',
+            'ETD_awal' => 'required',
+            'ETA_tujuan' => 'required',
         ]);
         JadwalKapal::find($id)->update($request->all());
 

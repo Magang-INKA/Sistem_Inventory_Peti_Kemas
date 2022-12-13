@@ -16,7 +16,7 @@ class CreateDropPointTable extends Migration
         Schema::create('drop_point', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_transaksi');
-            $table->foreign('id_transaksi')->references('id')->on('table_transaksi');
+            $table->foreign('id_transaksi')->references('id')->on('transaksi');
             $table->char('pelabuhan',10);
             $table->foreign('pelabuhan')->references('kode_pelabuhan')->on('master_pelabuhan');
             $table->string('keterangan',255)->nullable();

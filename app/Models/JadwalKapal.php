@@ -18,8 +18,9 @@ class JadwalKapal extends Model
         'id_trip',
         'asal_pelabuhan_id',
         'tujuan_pelabuhan_id',
-        'ETA',
-        'ETD',
+        'ETA_awal',
+        'ETD_awal',
+        'ETA_tujuan'
     ];
 
     public function trip()

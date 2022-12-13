@@ -127,6 +127,7 @@ Route::get('/pelabuhan2', [\App\Http\Controllers\BookingController::class, 'sele
 Route::get('/jadwal-kapal', [\App\Http\Controllers\BookingController::class, 'select3'])->name('jadwalkapal.select');
 
 Route::get('/resi/{id}', [TransaksiController::class, 'resi'])->name('resi');
+Route::get('/cekResi', [TransaksiController::class, 'cekResi'])->name('cekResi');
 
 //drop point
 Route::resource('droppoint', DroppointController::class);

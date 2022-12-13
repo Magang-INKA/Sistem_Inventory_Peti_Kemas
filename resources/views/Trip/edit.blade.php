@@ -9,8 +9,8 @@
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('trip.index') }}">Trip</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Update</li>
+                    <li class="breadcrumb-item active"><a href="{{ route('trip.index') }}">Trip</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Update</li>
                 </ol>
             </nav>
         </div>
@@ -35,13 +35,13 @@
         @csrf
         @method('PUT')
 		<div class="form-group row">
-			<label for="nama_trip" class="col-sm-12 col-md-2 col-form-label text-white">Nama Trip</label>
+			<label for="nama_trip" class="col-sm-12 col-md-2 col-form-label text-white">Trip Name</label>
 			<div class="col-sm-12 col-md-10">
 				<input class="form-control" type="text" name="nama_trip" id="nama_trip" value="{{ $trip->nama_trip }}" aria-describedby="nama_trip" placeholder="">
 			</div>
 		</div>
         <div class="form row">
-			<label for="asal_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Pelabuhan Asal</label>
+			<label for="asal_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Port of Departure</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
                     <input id="nama_pelabuhan1" type="text" class="form-control" value="{{ $trip->keberangkatan->nama_pelabuhan }}" readonly="" required>
@@ -51,7 +51,7 @@
             </div>
 		</div>
         <div class="form row">
-			<label for="final_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Pelabuhan Tujuan</label>
+			<label for="final_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Destination Port</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
                     <input id="nama_pelabuhan2" type="text" class="form-control" value="{{ $trip->tujuan->nama_pelabuhan }}" readonly="" required>
@@ -61,10 +61,10 @@
             </div>
 		</div>
         <div class="form-group row">
-			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">No Kapal</label>
+			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">Vessel Name</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
-                    <input id="no_kapal" type="text" class="form-control" readonly="" required value="{{ $trip->kapal->no_kapal }}">
+                    <input id="IMO" type="text" class="form-control" readonly="" required value="{{ $trip->kapal->nama_kapal }}">
                     <input id="id_kapal" type="hidden" class="form-control" name="id_kapal" value="{{ $trip->kapal->id }}" required readonly="">
                     <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal2"><b>Cari Kapal </b><span class="fa fa-search"></span></button>
                 </div>
@@ -166,8 +166,8 @@
                     </thead>
                     <tbody>
                         @foreach($kapal as $data)
-                        <tr class="pilih3" data-id="<?php echo $data->id; ?>" data-no_kapal="<?php echo $data->no_kapal; ?>" >
-                            <td>{{$data->no_kapal}}</td>
+                        <tr class="pilih3" data-id="<?php echo $data->id; ?>" data-IMO="<?php echo $data->nama_kapal; ?>" >
+                            <td>{{$data->IMO}}</td>
                             <td>{{$data->nama_kapal}}</td>
                         </tr>
                         @endforeach
@@ -202,7 +202,7 @@
     });
 
     $(document).on('click', '.pilih3', function (e) {
-        document.getElementById("no_kapal").value = $(this).attr('data-no_kapal');
+        document.getElementById("IMO").value = $(this).attr('data-IMO');
         document.getElementById("id_kapal").value = $(this).attr('data-id');
         $('#myModal2').modal('hide');
     });

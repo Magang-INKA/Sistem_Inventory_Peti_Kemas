@@ -18,8 +18,9 @@ class CreateTableJadwalKapal extends Migration
             $table->integer('id_trip')->unsigned();
             $table->char('asal_pelabuhan_id',10);
             $table->char('tujuan_pelabuhan_id',10);
-            $table->datetime('ETA');
-            $table->datetime('ETD');
+            $table->datetime('ETA_awal');
+            $table->datetime('ETD_awal');
+            $table->datetime('ETA_tujuan');
             $table->timestamps();
 
             $table->foreign('id_trip')

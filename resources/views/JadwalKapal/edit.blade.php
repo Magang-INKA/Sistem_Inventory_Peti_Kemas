@@ -5,12 +5,12 @@
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Edit Jadwal Kapal</h4>
+                <h4>Edit Ship Schedule</h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('JadwalKapal.index') }}">Jadwal Kapal</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                    <li class="breadcrumb-item active"><a href="{{ route('JadwalKapal.index') }}">Ship Schedule</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Edit</li>
                 </ol>
             </nav>
         </div>
@@ -45,15 +45,15 @@
             </div>
 		</div>
         <div class="form row">
-			<label for="" class="col-sm-12 col-md-2 col-form-label text-white">No-Nama Kapal</label>
+			<label for="" class="col-sm-12 col-md-2 col-form-label text-white">Vessel Name</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
-                    <input id="" type="text" class="form-control" name="" value="{{ $jadwalKapal->trip->kapal->no_kapal }} - {{ $jadwalKapal->trip->kapal->nama_kapal }}" required readonly="" aria-disabled="">
+                    <input id="" type="text" class="form-control" name="" value="{{ $jadwalKapal->trip->kapal->nama_kapal }}" required readonly="" aria-disabled="">
                 </div>
             </div>
 		</div>
         <div class="form row">
-			<label for="asal_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Pelabuhan Asal</label>
+			<label for="asal_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Port of Departure</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
                     <input id="nama_pelabuhan1" type="text" class="form-control" value="{{  $jadwalKapal->awal->nama_pelabuhan }}" readonly="" required>
@@ -63,7 +63,7 @@
             </div>
 		</div>
         <div class="form row">
-			<label for="tujuan_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Pelabuhan Tujuan</label>
+			<label for="tujuan_pelabuhan_id" class="col-sm-12 col-md-2 col-form-label text-white">Destination Port</label>
             <div class="col-sm-12 col-md-10">
                 <div class="input-group">
                     <input id="nama_pelabuhan2" type="text" class="form-control" value="{{  $jadwalKapal->tujuan->nama_pelabuhan }}" readonly="" required>
@@ -73,15 +73,21 @@
             </div>
 		</div>
         <div class="form-group row">
-			<label for="ETA" class="col-sm-12 col-md-2 col-form-label text-white">ETA</label>
+			<label for="ETA_awal" class="col-sm-12 col-md-2 col-form-label text-white">ETA at the Port of Departure</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="datetime-local" name="ETA" value="{{ $jadwalKapal->ETA }}" id="ETA" aria-describedby="ETA" placeholder="">
+				<input class="form-control" type="datetime-local" name="ETA_awal" value="{{ $jadwalKapal->ETA_awal }}" id="ETA_awal" aria-describedby="ETA_awal" placeholder="">
 			</div>
 		</div>
         <div class="form-group row">
-			<label for="ETD" class="col-sm-12 col-md-2 col-form-label text-white">ETD</label>
+			<label for="ETD_awal" class="col-sm-12 col-md-2 col-form-label text-white">ETD at the Port of Departure</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="datetime-local" name="ETD" value="{{ $jadwalKapal->ETD }}" id="ETD" aria-describedby="ETD" placeholder="">
+				<input class="form-control" type="datetime-local" name="ETD_awal" value="{{ $jadwalKapal->ETD_awal }}" id="ETD_awal" aria-describedby="ETD_awal" placeholder="">
+			</div>
+		</div>
+        <div class="form-group row">
+			<label for="ETA_tujuan" class="col-sm-12 col-md-2 col-form-label text-white">ETA at the Destination Port</label>
+			<div class="col-sm-12 col-md-10">
+				<input class="form-control" type="datetime-local" name="ETA_tujuan" value="{{ $jadwalKapal->ETA_tujuan }}" id="ETA_tujuan" aria-describedby="ETA_tujuan" placeholder="">
 			</div>
 		</div>
 		<div class="form-group row">

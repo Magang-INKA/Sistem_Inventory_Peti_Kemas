@@ -9,7 +9,7 @@ use App\Models\Barang;
 class Transaksi extends Model
 {
     use HasFactory;
-    protected $table="table_transaksi"; // Eloquent akan membuat model Transaksi menyimpan record di tabel transaksi
+    protected $table="transaksi"; // Eloquent akan membuat model Transaksi menyimpan record di tabel transaksi
     protected $primaryKey = 'id'; // Memanggil isi DB Dengan primarykey
     public $incrementing =false;
 

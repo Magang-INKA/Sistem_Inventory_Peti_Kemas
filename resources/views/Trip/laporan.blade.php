@@ -26,11 +26,11 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>No</th>
-                        <th>Nama Trip</th>
-                        <th>Pelabuhan Asal</th>
-                        <th>Pelabuhan Tujuan</th>
-                        <th>No Kapal</th>
-                        <th>Nama Kapal</th>
+                        <th>Trip Name</th>
+                        <th>Port of Departure</th>
+                        <th>Destination Port</th>
+                        <th>Vessel Name</th>
+                        <th>IMO</th>
                     </tr>
                     @foreach ($trip as $tr => $data)
                     <tr>
@@ -38,8 +38,8 @@
                         <td>{{ $data->nama_trip }}</td>
                         <td>{{ $data->keberangkatan->nama_pelabuhan }}</td>
                         <td>{{ $data->tujuan->nama_pelabuhan }}</td>
-                        <td>{{ $data->kapal->no_kapal }}</td>
                         <td>{{ $data->kapal->nama_kapal }}</td>
+                        <td>{{ $data->kapal->IMO }}</td>
                     </tr>
                     @endforeach
                 </table>

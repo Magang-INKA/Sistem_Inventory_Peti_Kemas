@@ -9,8 +9,8 @@
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('transaksi.index') }}">Transaksi</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                    <li class="breadcrumb-item active"><a href="{{ route('transaksi.index') }}">Transaksi</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Edit</li>
                 </ol>
             </nav>
         </div>
@@ -66,7 +66,6 @@
 			<label class="col-sm-2 col-form-label"></label>
 			<div class="col-sm-10">
 				<button type="submit" class="btn btn-primary">Submit</button>
-                <a class="btn btn-danger" href="{{url('/resi/'.$transaksi->id)}}">Print</a>
                 <div class="pull-right">
                     <a href="{{route('transaksi.index')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
                         <i class="icon-copy fa fa-arrow-left" aria-hidden="true"></i>

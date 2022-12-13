@@ -28,14 +28,14 @@
                         <th>No</th>
                         <th>No Container</th>
                         <th>Vessel Name</th>
-                        <th>Voyage Number</th>
+                        <th>IMO</th>
                     </tr>
                     @foreach ($container as $kt => $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->no_container }}</td>
                         <td>{{ $data->kapal->nama_kapal }}</td>
-                        <td>{{ $data->kapal->no_kapal }}</td>
+                        <td>{{ $data->kapal->IMO }}</td>
                     </tr>
                     @endforeach
                 </table>

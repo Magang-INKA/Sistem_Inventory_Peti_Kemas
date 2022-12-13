@@ -37,7 +37,7 @@
 			<label for="id_kapal" class="col-sm-12 col-md-2 col-form-label text-white">Vessel Name</label>
 			<div class="col-sm-12 col-md-10">
                 <div class="input-group">
-                    <input id="no_kapal" type="text" class="form-control" readonly="" value="{{ old('no_kapal') }}" required readonly="">
+                    <input id="IMO" type="text" class="form-control" readonly="" value="{{ old('IMO') }}" required readonly="">
                     <input id="id_kapal" type="hidden" name="id_kapal" class="form-control" value="{{ old('id_kapal') }}" required readonly="">
                     <button type="button" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#myModal"><b>Cari Kapal</b><span class="fa fa-search"></span></button>
                 </div>
@@ -84,14 +84,14 @@
                     <thead>
                         <tr>
                             <th>Vessel Name</th>
-                            <th>Voyage Number</th>
+                            <th>IMO</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($kapal as $data)
-                        <tr class="pilih" data-id_kapal="<?php echo $data->id; ?>" data-no_kapal="<?php echo $data->nama_kapal; ?> V. <?php echo $data->no_kapal; ?>">
+                        <tr class="pilih" data-id_kapal="<?php echo $data->id; ?>" data-IMO="<?php echo $data->nama_kapal; ?>">
                             <td>{{$data->nama_kapal}}</td>
-                            <td>{{$data->no_kapal}}</td>
+                            <td>{{$data->IMO}}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -146,7 +146,7 @@
 </script>
 <script type="text/javascript">
     $(document).on('click', '.pilih', function (e) {
-        document.getElementById("no_kapal").value = $(this).attr('data-no_kapal');
+        document.getElementById("IMO").value = $(this).attr('data-IMO');
         document.getElementById("id_kapal").value = $(this).attr('data-id_kapal');
         $('#myModal').modal('hide');
     });

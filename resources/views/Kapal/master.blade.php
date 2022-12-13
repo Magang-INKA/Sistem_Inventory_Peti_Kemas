@@ -48,7 +48,7 @@
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
                         <th>Vessel Name</th>
-                        <th>Voyage Number</th>
+                        <th>IMO</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
                 </thead>
@@ -57,15 +57,15 @@
                     <tr>
                         <td class="table-plus">{{ $ship + $masterKapal->firstitem() }}</td>
                         <td>{{ $data->nama_kapal}}</td>
-                        <td>{{ $data->no_kapal }}</td>
+                        <td>{{ $data->IMO }}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                     <i class="dw dw-more"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <form action="{{ route('masterKapal.destroy', $data->no_kapal) }}" method="POST">
-                                        <a class="dropdown-item" href="{{ route('masterKapal.edit', $data->no_kapal) }}"><i class="dw dw-edit2"></i> Edit</a>
+                                    <form action="{{ route('masterKapal.destroy', $data->IMO) }}" method="POST">
+                                        <a class="dropdown-item" href="{{ route('masterKapal.edit', $data->IMO) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <button class="dropdown-item" onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit">

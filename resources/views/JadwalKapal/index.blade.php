@@ -6,16 +6,16 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>Jadwal Kapal Data</h4>
+                    <h4>Ship Schedule Data</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active"><a href="{{ route('JadwalKapal.index') }}">Jadwal Kapal</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ route('JadwalKapal.index') }}">Ship Schedule</a></li>
                         <li class="breadcrumb-item" aria-current="page">Index</li>
                     </ol>
                 </nav>
             </div>
-            <div class="col-md-6 col-sm-12 text-right">
+            {{-- <div class="col-md-6 col-sm-12 text-right">
                 <a href="#" type="button" class="btn btn-primary" data-toggle="dropdown" data-color="#ffffff">
                     <i class="icon-copy fa fa-download" aria-hidden="true"></i>
                     Report Download
@@ -24,7 +24,7 @@
                     <a class="dropdown-item" href="{{url('/laporan/JadwalKapal')}}">PDF</a>
                     <a class="dropdown-item" href="{{url('/laporan/JadwalKapal/excel')}}">Excel</a>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -44,12 +44,12 @@
                 <thead>
                     <tr>
                         <th class="table-plus datatable-nosort">No</th>
-                        <th>No-Nama Kapal</th>
-                        {{-- <th>Nama Trip</th> --}}
-                        <th>Keberangkatan</th>
-                        <th>Tujuan</th>
-                        <th>ETA</th>
-                        <th>ETD</th>
+                        <th>Vessel Name</th>
+                        <th>Departure</th>
+                        <th>Destination</th>
+                        <th>ETA at the Port Of Departure</th>
+                        <th>ETD at the Port Of Departure</th>
+                        <th>ETA at the Destination Port</th>
                         @can('manage-MasterData')
                         <th class="datatable-nosort">Action</th>
                         @endcan
@@ -59,11 +59,12 @@
                     @foreach ($jadwalKapal as $br => $data)
                     <tr>
                         <td class="table-plus">{{ $br + $jadwalKapal->firstitem() }}</td>
-                        <td>{{ $data->trip->kapal->no_kapal }} - {{ $data->trip->kapal->nama_kapal }}</td>
+                        <td>{{ $data->trip->kapal->nama_kapal }}</td>
                         <td>{{ $data->awal->nama_pelabuhan}}</td>
                         <td>{{ $data->tujuan->nama_pelabuhan}}</td>
-                        <td>{{ $data->ETA }}</td>
-                        <td>{{ $data->ETD }}</td>
+                        <td>{{ $data->ETA_awal }}</td>
+                        <td>{{ $data->ETD_awal }}</td>
+                        <td>{{ $data->ETA_tujuan }}</td>
                         @can('manage-MasterData')
                         <td>
                             <div class="dropdown">
@@ -72,7 +73,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                     <form action="{{ route('JadwalKapal.destroy', $data->id) }}" method="POST">
-                                        <a class="dropdown-item" href="{{ route('JadwalKapal.show', $data->id) }}"><i class="dw dw-eye"></i> View</a>
+                                        {{-- <a class="dropdown-item" href="{{ route('JadwalKapal.show', $data->id) }}"><i class="dw dw-eye"></i> View</a> --}}
                                         <a class="dropdown-item" href="{{ route('JadwalKapal.edit', $data->id) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         @csrf
                                         @method('DELETE')

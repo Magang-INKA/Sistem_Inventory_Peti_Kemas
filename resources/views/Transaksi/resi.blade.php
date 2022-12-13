@@ -1,166 +1,213 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<!-- Basic Page Info -->
-	<meta charset="utf-8">
-	<title>SimocoRC</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="200x200" href="{{asset('vendors/images/round-2.png')}}">
-	<link rel="icon" type="image/png" sizes="35x35" href="{{asset('vendors/images/round-2.png')}}">
-	<link rel="icon" type="image/png" sizes="20x20" href="{{asset('vendors/images/round-2.png')}}">
-
-	<!-- Mobile Specific Metas -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-	<!-- Google Font -->
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="{{asset('vendors/styles/core.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('vendors/styles/icon-font.min.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('vendors/styles/style.css')}}">
-
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-119386393-1');
-	</script>
+    <title>Some Random Title</title>
+    <style>
+        body{
+            /* font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace !important; */
+            letter-spacing: -0.3px;
+        }
+        .invoice-wrapper{ width: 700px; margin: auto; }
+        .nav-sidebar .nav-header:not(:first-of-type){ padding: 1.7rem 0rem .5rem; }
+        .logo{ font-size: 50px; }
+        .sidebar-collapse .brand-link .brand-image{ margin-top: -33px; }
+        .content-wrapper{ margin: auto !important; }
+        .billing-company-image { width: 50px; }
+        .billing_name { text-transform: uppercase; }
+        .billing_address { text-transform: capitalize; }
+        .table{ width: 65%; border-collapse: collapse;}
+        th{ text-align: left; padding: 10px; }
+        td{ padding: 10px; vertical-align: top;}
+        .row{ display: block; clear: both; }
+        .text-right{ text-align: right; }
+        .table-hover thead tr{ background: #eee; }
+        .table-hover tbody tr:nth-child(even){ background: #fbf9f9; }
+        address{ font-style: normal; }
+    </style>
 </head>
 <body>
-                {{-- Resi --}}
-				<div class="invoice-wrap">
-					<div class="invoice-box">
-						<div class="invoice-header">
-							<div class="logo text-center">
-
-							</div>
-						</div>
-						<div class="row pb-30">
-							<div class="col-md-6">
-								<img src="{{asset('vendors/images/logo-inventory-3b.png')}}" alt="" style="height:75px; padding-top:5px; padding-bottom:5px;">
-							</div>
-							<div class="col-md-6">
-								<div class="text-right">
-									<h4 class="mb-15">INVOICE</h5>
-								</div>
-							</div>
-						</div>
-
-						<div class="row pb-30">
-							<div class="col-md-6">
-								<h5 class="mb-15">From</h5>
-								@foreach ($transaksi as $data)
-                                <p class="font-14 mb-5">Pengirim: <strong class="weight-600">{{$data->no_resi}}</strong></p>
-                                <p class="font-14 mb-5">No Telp : <strong class="weight-600">{{$data->no_telp}}</strong></p>
-								<p class="font-14 mb-5">Email : <strong class="weight-600">{{$data->email}}</strong></p>
-                                @endforeach
-								{{-- <p class="font-14 mb-5">Invoice No: <strong class="weight-600">{{$transaksi->no_resi}}</strong></p> --}}
-							</div>
-							<div class="col-md-6">
-								<div class="text-right">
-									<h5 class="mb-15">To</h5>
-									@foreach ($transaksi as $data)
-									<p class="font-14 mb-5">Penerima: <strong class="weight-600">{{$data->nama_penerima}}</strong></p>
-									<p class="font-14 mb-5">No Telp: <strong class="weight-600">{{$data->telp_penerima}}</strong></p>
-									<p class="font-14 mb-5">Alamat: <strong class="weight-600">{{$data->alamat_penerima}}</strong></p>
-									@endforeach
-								</div>
-							</div>
-						</div>
-						<div class="row pb-30">
-							<div class="col-md-4">
-								@foreach ($transaksi as $data)
-								<h5 class="mb-15">{{$data->nama_barang}}</h5>
-                                @endforeach
-							</div>
-							<div class="col-md-4">
-								@foreach ($transaksi as $data)
-                                <p class="font-14 mb-5">Berat: <strong class="weight-600">{{$data->nama_barang}}</strong></p>
-                                @endforeach
-							</div>
-							<div class="col-md-4">
-								@foreach ($transaksi as $data)
-                                <p class="font-14 mb-5">Biaya: <strong class="weight-600">{{$data->harga}}</strong></p>
-                                @endforeach
-							</div>
-
-						</div>
-						<div class="row pb-30">
-							<div class="col-md-4">
-								<h5 class="mb-15">Detail Perjalanan</h5>
-								@foreach ($transaksi as $data)
-                                <p class="font-14 mb-5"><strong class="weight-600">{{$data->nama_kapal}}</strong></p>
-                                <p class="font-14 mb-5">{{$data->no_kapal}}<strong class="weight-600"></strong></p>
-                                @endforeach
-								{{-- <p class="font-14 mb-5">Invoice No: <strong class="weight-600">{{$transaksi->no_resi}}</strong></p> --}}
-							</div>
-							<div class="col-md-4">
-								<h5 class="mb-15">Pelabuhan</h5>
-								@foreach ($transaksi as $data)
-                                <p class="font-14 mb-5"><strong class="weight-600">{{$data->asal}}</strong></p>
-                                <p class="font-14 mb-5">{{$data->tujuan}}<strong class="weight-600"></strong></p>
-                                @endforeach
-								{{-- <p class="font-14 mb-5">Invoice No: <strong class="weight-600">{{$transaksi->no_resi}}</strong></p> --}}
-							</div>
-							<div class="col-md-4">
-								<h5 class="mb-15">ETA/ETD</h5>
-								@foreach ($transaksi as $data)
-                                <p class="font-14 mb-5"><strong class="weight-600">{{$data->ETA}}</strong></p>
-                                <p class="font-14 mb-5">{{$data->ETD}}<strong class="weight-600"></strong></p>
-                                @endforeach
-								{{-- <p class="font-14 mb-5">Invoice No: <strong class="weight-600">{{$transaksi->no_resi}}</strong></p> --}}
-							</div>
-						</div>
-						<div class="invoice-desc pb-30">
-							<div class="invoice-desc-footer">
-								<div class="invoice-desc-head clearfix">
-									<div class="invoice-sub">Detail Perjalanan</div>
-									<div class="invoice-rate">Barang</div>
-									<div class="invoice-subtotal">Barcode</div>
-								</div>
-								<div class="invoice-desc-body">
-									<ul>
-										<li class="clearfix">
-											<div class="invoice-sub">
-												@foreach ($transaksi as $data)
-												<p class="font-14 mb-5">Kapal: <strong class="weight-600">{{$data->nama_kapal}}</strong></p>
-												<p class="font-14 mb-5">Asal: <strong class="weight-600">{{$data->asal}}</strong></p>
-												<p class="font-14 mb-5">Tujuan:<strong class="weight-600">{{$data->tujuan}}</strong></p>
-												<p class="font-14 mb-5">ETA: <strong class="weight-600">{{$data->ETA}}</strong></p>
-												<p class="font-14 mb-5">ETD:<strong class="weight-600">{{$data->ETD}}</strong></p>
-												@endforeach
-											</div>
-											<div class="invoice-rate font-20 weight-600">
-												@foreach ($transaksi as $data)
-												<p class="font-14 mb-5"><strong class="weight-600">{{$data->nama_barang}}</strong></p>
-												<p class="font-14 mb-5"><strong class="weight-600">{{$data->berat_barang}} KG</strong></p>
-												@endforeach
-											</div>
-											<div class="invoice-subtotal">
-												@foreach ($transaksi as $data)
-												<img src="data:image/png;base64,{{ base64_encode(SimpleSoftwareIO\QrCode\Facades\QrCode::size(300)->format('png')->generate($data->id_booking) ) }}">
-												@endforeach
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<h4 class="text-center pb-20">Thank You!!</h4>
-					</div>
-				</div>
-			{{-- </div>
-
-		</div>
-	</div> --}}
-	<!-- js -->
-	<script src="{{asset('vendors/scripts/core.js')}}"></script>
-	<script src="{{asset('vendors/scripts/script.min.js')}}"></script>
-	<script src="{{asset('vendors/scripts/process.js')}}"></script>
-	<script src="{{asset('vendors/scripts/layout-settings.js')}}"></script>
+    <form>
+    <div class="row invoice-wrapper">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <div class="col-md-6">
+                                    <img src="{{ltrim(public_path('vendors/images/logo-inventory-3b.png'))}}" alt="" style="height:55px; padding-top:5px; padding-bottom:5px;">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-md-6">
+                                    <div class="text-right">
+                                        <h2 class="mb-15">INVOICE</h5>
+                                        <p class="font-14 mb-5">No Resi: <strong class="weight-600">{{$transaksi->no_resi}}</strong></p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            {{-- <br><br> --}}
+            <div class="row invoice-info">
+                <div class="col-md-12">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <div class="">
+                                    <strong>From</strong>
+                                    <p class="font-14 mb-5">Pengirim: <strong class="weight-600">{{$transaksi->name}}</strong></p>
+                                    <p class="font-14 mb-5">No Telp : <strong class="weight-600">{{$transaksi->no_telp}}</strong></p>
+							        <p class="font-14 mb-5">Email : <strong class="weight-600">{{$transaksi->email}}</strong></p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-right">
+                                    <strong>To</strong>
+                                    <p class="font-14 mb-5">Penerima: <strong class="weight-600">{{$transaksi->nama_penerima}}</strong></p>
+                                    <p class="font-14 mb-5">No Telp: <strong class="weight-600">{{$transaksi->telp_penerima}}</strong></p>
+                                    <p class="font-14 mb-5">Alamat: <strong class="weight-600">{{$transaksi->alamat_penerima}}</strong></p>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-12">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <div class="col-md-4">
+                                    <h5 class="mb-15">Nama Barang </h5>
+                                    <p class="font-14 mb-5">{{$transaksi->nama_barang}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-md-4" style="text-align: center">
+                                    <h5 class="mb-15">Berat </h5>
+                                    <p class="font-14 mb-5">{{$transaksi->berat_barang}} kg</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-right">
+                                    <h5 class="mb-15">Biaya</h5>
+                                    <p class="font-14 mb-5">Rp.{{$transaksi->harga}}</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-12">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <div class="col-md-4">
+                                    <h5 class="mb-15">Detail Perjalanan</h5>
+                                    <p class="font-14 mb-5">Kapal: {{$transaksi->nama_kapal}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-md-4" style="text-align: center">
+                                    <h5 class="mb-15">Pelabuhan</h5>
+                                    <p class="font-14 mb-5">{{$transaksi->asal}}</p>
+                                    <p class="font-14 mb-5">{{$transaksi->tujuan}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-right">
+                                    <h5 class="mb-15">ETD/ETA</h5>
+                                        <p class="font-14 mb-5">{{$transaksi->ETD_awal}}</p>
+                                        <p class="font-14 mb-5">{{$transaksi->ETA_tujuan}}</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <div class="col-md-6">
+                                    <img src="{{ltrim(public_path('vendors/images/logo-inventory-3b.png'))}}" alt="" style="height:55px; padding-top:5px; padding-bottom:5px;">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-md-6">
+                                    <div class="text-right">
+                                        <h2 class="mb-15">INVOICE</h5>
+                                        <p class="font-14 mb-5">No Resi: <strong class="weight-600">{{$transaksi->no_resi}}</strong></p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <div class="">
+                                <strong>From</strong>
+                                <p class="font-14 mb-5">Pengirim: <strong class="weight-600">{{$transaksi->name}}</strong></p>
+                                <p class="font-14 mb-5">No Telp : <strong class="weight-600">{{$transaksi->no_telp}}</strong></p>
+                                <p class="font-14 mb-5">Email : <strong class="weight-600">{{$transaksi->email}}</strong></p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-right">
+                                <strong>To</strong>
+                                <p class="font-14 mb-5">Penerima: <strong class="weight-600">{{$transaksi->nama_penerima}}</strong></p>
+                                <p class="font-14 mb-5">No Telp: <strong class="weight-600">{{$transaksi->telp_penerima}}</strong></p>
+                                <p class="font-14 mb-5">Alamat: <strong class="weight-600">{{$transaksi->alamat_penerima}}</strong></p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-md-12 table-responsive">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>Detail Perjalanan</th>
+                                <th>Barang</th>
+                                <th>Barcode</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p class="font-14 mb-5">Kapal: <strong class="weight-600">{{$transaksi->nama_kapal}}</strong></p>
+                                    <p class="font-14 mb-5">Asal: <strong class="weight-600">{{$transaksi->asal}}</strong></p>
+                                    <p class="font-14 mb-5">Tujuan: <strong class="weight-600">{{$transaksi->tujuan}}</strong></p>
+                                    <p class="font-14 mb-5">ETD: <strong class="weight-600">{{$transaksi->ETD_awal}}</strong></p>
+                                    <p class="font-14 mb-5">ETA: <strong class="weight-600">{{$transaksi->ETA_tujuan}}</strong></p>
+                                </td>
+                                <td>
+                                    <p class="font-14 mb-5">Nama barang: <strong class="weight-600">{{$transaksi->nama_barang}}</strong></p>
+								<p class="font-14 mb-5">Berat: <strong class="weight-600">{{$transaksi->berat_barang}} KG</strong></p>
+                                </td>
+                                <td>
+                                    <img src="data:image/png;base64,{{ base64_encode(SimpleSoftwareIO\QrCode\Facades\QrCode::size(160)->format('png')->generate($transaksi->id_booking) ) }}">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.col -->
+            </div>
+            {{-- <br><br><br> --}}
+        </div>
+    </div>
+</form>
 </body>
 </html>

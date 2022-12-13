@@ -122,6 +122,24 @@
                                             <input type="text" class="form-control" name="alamat_penerima">
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="panjang">Panjang :</label>
+                                            <input type="number" class="form-control" name="panjang">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="lebar">Lebar :</label>
+                                            <input type="number" class="form-control" name="lebar">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="tinggi">Tinggi :</label>
+                                            <input type="number" class="form-control" name="tinggi">
+                                        </div>
+                                    </div>
                                 </div>
                                 <button type="submit" style="display:none;"></button>
                                 <div class="form-group row">
@@ -237,7 +255,7 @@ $('#select_pelabuhan2').change(function() {
                return {
                   results: $.map(data, function(item) {
                      return {
-                        text: item.id_trip+"|"+item.nama_kapal +"|"+ "ETA: " + item.ETA +"|" +"ETD: " +item.ETD,
+                        text: item.id_trip+"|"+item.nama_kapal +"|"+ "ETA(Awal): " + item.ETA_awal +"|" +"ETD(Awal): " +item.ETD_awal+"|"+ "ETA(Tujuan): " + item.ETA_tujuan,
                         id: item.id
                      }
                   })

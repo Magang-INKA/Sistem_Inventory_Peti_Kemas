@@ -31,7 +31,7 @@
             </ul>
         </div>
     @endif
-	<form method="POST" action="{{ route('masterKapal.update', $masterKapal->no_kapal) }}" id="myForm" enctype="multipart/form-data">
+	<form method="POST" action="{{ route('masterKapal.update', $masterKapal->IMO) }}" id="myForm" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="form-group row">
@@ -41,9 +41,9 @@
 			</div>
 		</div>
         <div class="form-group row">
-            <label for="no_kapal" class="col-sm-12 col-md-2 col-form-label text-white">Voyage Number</label>
+            <label for="IMO" class="col-sm-12 col-md-2 col-form-label text-white">IMO</label>
 			<div class="col-sm-12 col-md-10">
-				<input class="form-control" type="text" name="no_kapal" id="no_kapal" value="{{ $masterKapal->no_kapal }}" aria-describedby="no_kapal" placeholder="">
+				<input class="form-control" type="text" name="IMO" id="IMO" value="{{ $masterKapal->IMO }}" aria-describedby="IMO" placeholder="">
 			</div>
 		</div>
 		<div class="form-group row">
