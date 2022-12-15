@@ -34,22 +34,25 @@ class AuthController extends Controller
     //         'message' => 'berhasil login',
     //         'data' => $data
     //     ]);
-    // }
+    // }https://571e-125-164-232-199.ap.ngrok.io/api/user
 
     public function login(Request $request)
     {
-        if (!Auth::attempt($request->only('email', 'password')))
-        {
-            return response()
-                ->json(['message' => 'Unauthorized'], 401);
+        $credentials = request(['email', 'password']);
+        if (!$token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
+        $data = (object) [
+            'user' => $this->me()->original,
+            'token' => $this->respondWithToken($token)->original,
+        ];
 
         $user = User::where('email', $request['email'])->firstOrFail();
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()
-            ->json(['message' => 'Hi '.$user->name.', welcome to home','access_token' => $token, 'token_type' => 'Bearer', ]);
+            ->json(['message' => 'Hi '.$user->name.', welcome to home','access_token' => $token, 'token_type' => 'Bearer', 'data' => $data ]);
     }
 
     // public function register(RegisterRequest $request)

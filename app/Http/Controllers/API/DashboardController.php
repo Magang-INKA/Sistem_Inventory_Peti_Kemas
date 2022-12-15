@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dashboard;
+use App\Models\Mqtt;
 use App\Models\User;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\DB;
@@ -17,7 +18,24 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $data=Dashboard::all();
+        $a = Mqtt::all();
+
+        foreach ($a as $key => $item) {
+            $item['value'] = json_decode($item->value,true);
+        }
+
+        $data = Mqtt::select('mqtt.id','mqtt.topic','mc.kapasitas','mqtt.value')
+                        ->join('master_container as mc','mc.no_container','=','mqtt.topic')
+                        //->join('mqtt_history as mh', 'mh.topicid', '=', 'mqtt.id')
+                        ->get();
+
+                        foreach ($data as $key => $item) {
+                            $item['value'] = json_decode($item->value,true);
+                        }
+
+
+        //$data = Mqtt::select('id','topic')->get();
+        // return response()->json(['message'=>'Success','data'=>$data]);
         return response()->json($data);
     }
 
@@ -50,7 +68,25 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        //
+
+        //$mqtt_dashboard = Dashboard::where('topicid', $id)->first();
+        // $mqtt = Mqtt::all();
+        $topicid = $id;
+        // $data = Dashboard::select('id','value')
+        $mqtt_dashboard = Dashboard::select('mqtt_history.id','mqtt_history.topicid','m.topic','mc.kapasitas','mqtt_history.value')
+        ->join('mqtt as m','m.id','=','mqtt_history.topicid')
+        ->join('master_container as mc','mc.no_container','=','m.topic')
+        ->where('topicid', $topicid)
+        ->orderByDesc('id')->first();
+
+        // foreach ($mqtt_dashboard as $key => $item) {
+            $mqtt_dashboard['value'] = json_decode($mqtt_dashboard->value,true);
+        // }
+        // $mqtt['value'] = json_decode($mqtt_dashboard->value,true);
+
+        return $mqtt_dashboard;
+        // return response()->json($mqtt_dashboard);
+
     }
 
     /**
@@ -99,5 +135,5 @@ class DashboardController extends Controller
         return response()->json($user);
     }
 
-    
+
 }
