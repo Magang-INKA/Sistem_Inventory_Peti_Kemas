@@ -41,7 +41,9 @@ class DashboardDetail extends Component
         $container = MasterContainer::find($topic_container);
         $allocated = DB::table('master_barang')->join('booking', 'master_barang.id', '=', 'booking.id_barang')
         ->join('container', 'booking.id_container', '=', 'container.id')
-        ->where('container.no_container', '=', $topic_container)->sum('master_barang.berat_barang');
+        ->where('container.no_container', '=', $topic_container)
+        ->where('booking.status', '=', 'terima')
+        ->sum('master_barang.berat_barang');
         foreach ($container as $key => $rc) {
             $kapasitas = $container->kapasitas;
         }

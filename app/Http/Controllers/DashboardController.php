@@ -189,14 +189,21 @@ class DashboardController extends Controller
         // }
         $start['value'] = json_decode($start->value,true);
 
-        $pelabuhan = DB::table('drop_point')
+        $pelabuhan_query = DB::table('drop_point')
         ->select('master_pelabuhan.nama_pelabuhan')
         ->join('master_pelabuhan', 'drop_point.pelabuhan', '=', 'master_pelabuhan.kode_pelabuhan')
-        ->join('table_transaksi', 'drop_point.id_transaksi', '=', 'table_transaksi.id')
-        ->join('booking', 'table_transaksi.id_booking', '=', 'booking.id')
+        ->join('transaksi', 'drop_point.id_transaksi', '=', 'transaksi.id')
+        ->join('booking', 'transaksi.id_booking', '=', 'booking.id')
         ->join('container', 'booking.id_container', '=', 'container.id')
-        ->where('container.no_container', '=', $no_container)
+        ->join('mqtt', 'container.no_container', '=', 'mqtt.topic')
+        ->where('mqtt.topic', '=', $no_container)
         ->orderBy('drop_point.id', 'desc')->limit(1)->first();
+        if ($pelabuhan_query == null){
+            $pelabuhan = 'Tidak ada, karena container sedang tidak digunakan!';
+        } else {
+            $pelabuhan = 'Pelabuhan '.$pelabuhan_query->nama_pelabuhan;
+        }
+
         // return $pelabuhan;
         // return response()->json($data);
         return view('Dashboard.show',[
