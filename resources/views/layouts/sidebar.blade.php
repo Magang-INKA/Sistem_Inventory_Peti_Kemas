@@ -40,7 +40,7 @@
                     <ul class="submenu" style="display: block;">
                         @if(Auth::user()->role == 'Administrator')
                         <li><a href="{{ route('masterContainer.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_container')">Container Master</a></li>
-                        <li><a href="{{ route('masterKapal.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_kapal')">Ship Master</a></li>
+                        <li><a href="{{ route('masterKapal.index') }}" class="dropdown-toggle no-arrow @yield('menu_master_kapal')">Vessel Master</a></li>
                         <li><a href="{{ route('pelabuhan.index') }}" class="dropdown-toggle no-arrow @yield('menu_pelabuhan')">Port Master</a></li>
                         @endif
                         <li class="dropdown">
@@ -75,11 +75,11 @@
                 </li>
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class=""></span><span class="mtext">Ship Schedule</span>
+                        <span class=""></span><span class="mtext">Vessel Schedule</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ route('trip.index')}}" class="dropdown-toggle no-arrow @yield('menu_trip')">Trip Kapal</a></li>
-                        <li><a href="{{ route('JadwalKapal.index') }}" class="dropdown-toggle no-arrow @yield('menu_jadwal_kapal')">Ship Schedule</a></li>
+                        <li><a href="{{ route('trip.index')}}" class="dropdown-toggle no-arrow @yield('menu_trip')">Vessel Trip</a></li>
+                        <li><a href="{{ route('JadwalKapal.index') }}" class="dropdown-toggle no-arrow @yield('menu_jadwal_kapal')">Vessel Schedule</a></li>
                     </ul>
                 </li>
                 {{-- @if(Auth::user()->role == 'Administrator') --}}

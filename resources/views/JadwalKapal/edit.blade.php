@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Edit Ship Schedule</h4>
+                <h4>Edit Vessel Schedule</h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active"><a href="{{ route('JadwalKapal.index') }}">Ship Schedule</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('JadwalKapal.index') }}">Vessel Schedule</a></li>
                     <li class="breadcrumb-item" aria-current="page">Edit</li>
                 </ol>
             </nav>

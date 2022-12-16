@@ -6,11 +6,11 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>Ship Data</h4>
+                    <h4>Vessel Data</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('masterKapal.index') }}">Ship</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('masterKapal.index') }}">Vessel</a></li>
                         <li class="breadcrumb-item" aria-current="page">Index</li>
                     </ol>
                 </nav>

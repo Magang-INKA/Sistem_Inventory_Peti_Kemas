@@ -30,7 +30,7 @@
 
     <!-- multiple select row Datatable start -->
     <div class="page-header mb-30">
-        <div class="pb-20">
+        {{-- <div class="pb-20">
             <div class="header-left">
                 <div class="header-search col-sm-12">
                     <form class="form" method="GET" action="{{ route('barang.index') }}">
@@ -45,7 +45,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="pb-20">
             <table class="data-table table hover multiple-select-row nowrap">
                 <thead>
