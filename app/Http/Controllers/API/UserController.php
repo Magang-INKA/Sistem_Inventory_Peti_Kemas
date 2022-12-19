@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -69,7 +71,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $data = User::find($id);
+        //$data = User::find($id);
+        $data = DB::table('users')
+                ->select('id','name','email','no_telp','role')
+                ->where('id','=',$id)->first();
+                //->get();
         if (is_null($data)) {
             return response()->json(
                 [
@@ -78,13 +84,14 @@ class UserController extends Controller
                 ]
             );
         }
-        return response()->json(
-            [
-                'status' => 200,
-                'message' => 'Data berhasil ditampilkan',
-                'data' => $data
-            ]
-        );
+        // return response()->json(
+        //     [
+        //         'status' => 200,
+        //         'message' => 'Data berhasil ditampilkan',
+        //         'data' => $data
+        //     ]
+        // );
+        return response()->json($data);
     }
 
     /**
@@ -139,5 +146,33 @@ class UserController extends Controller
                 'message' => 'Data deleted successfully'
             ]
         );
+    }
+
+    public function email(Request $request, $id)
+    {
+        $dp=User::find($id);
+        $dp->update($request->all());
+        return response()->json(['message'=>'Success','data'=>$dp]);
+    }
+    public function telp(Request $request, $id)
+    {
+        $dp=User::find($id);
+        $dp->update($request->all());
+        return response()->json(['message'=>'Success','data'=>$dp]);
+    }
+    public function password(Request $request, $id)
+    {
+        $request->validate([
+            'password' => 'required|string|min:5|confirmed',
+            'password_confirmation' => 'required',
+        ]);
+
+        $user = User::find($id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        // $dp=User::find($id);
+        // $dp->update($request->all());
+        return response()->json(['message'=>'Success','data'=>$user]);
     }
 }

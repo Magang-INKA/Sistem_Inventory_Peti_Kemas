@@ -34,11 +34,13 @@ class AuthController extends Controller
     //         'message' => 'berhasil login',
     //         'data' => $data
     //     ]);
-    // }https://571e-125-164-232-199.ap.ngrok.io/api/user
+    // }
+    //https://571e-125-164-232-199.ap.ngrok.io/api/user
 
     public function login(Request $request)
     {
         $credentials = request(['email', 'password']);
+
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }

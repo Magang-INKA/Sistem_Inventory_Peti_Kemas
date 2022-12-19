@@ -34,24 +34,30 @@ use App\Http\Controllers\API\UserController;
 Route::group(['prefix' => 'v1'], function(){
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout']);
-    // Route::post('login', App\Http\Controllers\Api\LoginController::class);
-    // Route::post('register', App\Http\Controllers\Api\RegisterController::class);
-    //Route::get('logout', 'App\Http\Controllers\Api\LogoutController::class')->middleware('auth:api');
-    //Route::post('logout', App\Http\Controllers\Api\LogoutController::class);
 });
 
 
-//Dashboard
-// Route::get('/monitoring/{id}',[DashboardController::class, 'show']);
+Route::group(['prefix' => 'user'], function(){
+    Route::get('/',[UserController::class,'index']);
+    Route::get('/{id}',[UserController::class,'show']);
+    Route::put('/email/{id}', [UserController::class, 'email']);
+    Route::put('/telp/{id}', [UserController::class, 'telp']);
+    Route::put('/password/{id}', [UserController::class, 'password']);
+});
 
 Route::get('/monitoring',[DashboardController::class,'index']);
+Route::get('/monitoring/hitung',[DashboardController::class,'hitung']);
+Route::get('/container/hitung',[DashboardController::class,'hitungc']);
 Route::get('/monitoring/topicid={id}',[DashboardController::class, 'show']);
-Route::get('/user',[UserController::class,'index']);
+
 
 //Drop Point
+Route::get('/pelabuhan',[DroppointController::class, 'pelabuhan']);
 Route::get('/droppoint',[DroppointController::class, 'index']);
+Route::get('/alldroppoint',[DroppointController::class, 'allList']);
 Route::post('/droppoint',[DroppointController::class, 'store']);
 Route::get('/droppoint/topicid={id}',[DroppointController::class, 'show']);
+Route::get('/droppoint/edit/{id}',[DroppointController::class, 'edit']);
 Route::put('/droppoint/{id}',[DroppointController::class, 'update']);
 Route::delete('/droppoint/{id}',[DroppointController::class, 'destroy']);
 

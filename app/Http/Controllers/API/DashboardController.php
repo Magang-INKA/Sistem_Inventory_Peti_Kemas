@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dashboard;
+use App\Models\MasterContainer;
 use App\Models\Mqtt;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,11 +19,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $a = Mqtt::all();
+        // $a = Mqtt::all();
 
-        foreach ($a as $key => $item) {
-            $item['value'] = json_decode($item->value,true);
-        }
+        // foreach ($a as $key => $item) {
+        //     $item['value'] = json_decode($item->value,true);
+        // }
 
         $data = Mqtt::select('mqtt.id','mqtt.topic','mc.kapasitas','mqtt.value')
                         ->join('master_container as mc','mc.no_container','=','mqtt.topic')
@@ -32,6 +33,7 @@ class DashboardController extends Controller
                         foreach ($data as $key => $item) {
                             $item['value'] = json_decode($item->value,true);
                         }
+
 
 
         //$data = Mqtt::select('id','topic')->get();
@@ -84,8 +86,8 @@ class DashboardController extends Controller
         // }
         // $mqtt['value'] = json_decode($mqtt_dashboard->value,true);
 
-        return $mqtt_dashboard;
-        // return response()->json($mqtt_dashboard);
+        //return $mqtt_dashboard;
+        return response()->json($mqtt_dashboard);
 
     }
 
@@ -135,5 +137,16 @@ class DashboardController extends Controller
         return response()->json($user);
     }
 
+    public function hitung(){
+        $count = Mqtt::count();
+
+        return response()->json(['count'=>$count]);
+    }
+
+    public function hitungc(){
+        $count = MasterContainer::count();
+
+        return response()->json(['count'=>$count]);
+    }
 
 }
