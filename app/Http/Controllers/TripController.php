@@ -6,7 +6,7 @@ use App\Exports\TripExport;
 use App\Models\MasterKapal;
 use App\Models\Pelabuhan;
 use App\Models\Trip;
-use CreateTableMasterPelabuhan;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use PDF;

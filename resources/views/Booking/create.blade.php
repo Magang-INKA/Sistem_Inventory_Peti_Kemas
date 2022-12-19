@@ -23,8 +23,8 @@
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Form Booking</li>
+                                    <li class="breadcrumb-item active"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item" aria-current="page">Form Booking</li>
                                 </ol>
                             </nav>
                         </div>
@@ -99,19 +99,19 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="panjang">Panjang :</label>
+                                            <label for="panjang">Panjang(cm) :</label>
                                             <input type="number" class="form-control" name="panjang" id="panjang">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="lebar">Lebar :</label>
+                                            <label for="lebar">Lebar(cm) :</label>
                                             <input type="number" class="form-control" name="lebar" id="lebar">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="tinggi">Tinggi :</label>
+                                            <label for="tinggi">Tinggi(cm) :</label>
                                             <input type="number" class="form-control" name="tinggi" id="tinggi">
                                         </div>
                                     </div>

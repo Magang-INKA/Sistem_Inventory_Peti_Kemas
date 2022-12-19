@@ -1,5 +1,5 @@
 @extends('layouts.MasterView')
-@section('menu_user', 'active')
+@section('menu_booking', 'active')
 @section('content')
 <div class="page-header">
     <div class="row">

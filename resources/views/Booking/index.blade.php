@@ -15,7 +15,7 @@
                     </ol>
                 </nav>
             </div>
-            <div class="col-md-6 col-sm-12 text-right">
+            {{-- <div class="col-md-6 col-sm-12 text-right">
                 <a href="#" type="button" class="btn btn-primary" data-toggle="dropdown" data-color="#ffffff">
                     <i class="icon-copy fa fa-download" aria-hidden="true"></i>
                     Report Download
@@ -24,7 +24,7 @@
                     <a class="dropdown-item" href="{{url('/laporan/booking')}}">PDF</a>
                     <a class="dropdown-item" href="{{url('/laporan/booking/excel')}}">Excel</a>
                 </div>
-            </div>
+            </div> --}}
             {{-- <div class="col-md-6 col-sm-12 text-right">
                 <a class="btn btn-primary" href="{{ url('/laporan/barang') }}">
                     Download Laporan

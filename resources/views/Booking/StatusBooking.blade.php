@@ -31,7 +31,7 @@
                 <div class="col-sm-12 col-md-10">
                     @foreach ($book as $br => $data)
                     <input class="form-control" type="text" name="status" id="status"
-                    value="{{ $data->catatan }}" aria-describedby="status" placeholder="Disabled input" disabled="">
+                    value="{{ $data->catatan }}" aria-describedby="status" placeholder="" disabled="">
                     @endforeach
                 </div>
             </div>

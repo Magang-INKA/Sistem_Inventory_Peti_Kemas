@@ -93,9 +93,9 @@ class BookingController extends Controller
                 'lebar' => 'required|integer',
                 'tinggi' => 'required|integer',
             ]);
+            // $barang = DB::table('master_barang')->where('id', Barang->$id);
             $barang = DB::table('master_barang')->orderByDesc('id')->pluck('id')->first();
             $id=(int)$barang+1;
-
             $huruf = 'BKG';
             Barang::create([
                 'jenis_barang' => $request->input('jenis_barang'),
@@ -135,6 +135,7 @@ class BookingController extends Controller
             Alert::success('Success', 'Data Booking Berhasil Ditambahkan');
             $book = Booking::where('id_user', Auth::user()->id)->get();
             return view('Booking.StatusBooking', compact('book'));
+            // dd($id);
         } catch (\Throwable $th) {
             dd($th->getMessage());
         }
