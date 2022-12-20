@@ -89,6 +89,7 @@
                     </a>
                 </li>
                 {{-- @endif --}}
+                @endcan
                 @if(Auth::user()->role != 'Client')
                 <li>
                     <a href="{{ route('transaksi.index') }}" class="dropdown-toggle no-arrow @yield('menu_transaksi')">
@@ -96,6 +97,7 @@
                     </a>
                 </li>
                 @endif
+                @can('manage-MasterData')
                 <li>
                     <a href="{{ route('user.index') }}" class="dropdown-toggle no-arrow @yield('menu_user')">
                         <span class="micon fa fa-users"></span><span class="mtext">Data User</span>
