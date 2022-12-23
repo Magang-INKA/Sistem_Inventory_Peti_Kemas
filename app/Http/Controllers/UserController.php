@@ -37,7 +37,7 @@ class UserController extends Controller
             return view('User.index', compact('user'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $user = User::paginate(10); // MenPagination menampilkan 5 data
+            $user = User::all(); // MenPagination menampilkan 5 data
             return view('User.index', compact('user'));
         }
     }

@@ -17,7 +17,7 @@ class DroppointController extends Controller
      */
     public function index()
     {
-        $dp = DropPoint::paginate(10);
+        $dp = DropPoint::all();
         //dd($dp);
         return view('Droppoint.index',compact('dp'));
     }

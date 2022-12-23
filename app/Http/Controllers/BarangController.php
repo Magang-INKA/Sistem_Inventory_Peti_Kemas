@@ -41,7 +41,7 @@ class BarangController extends Controller
             return view('Barang.index', compact('barang'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $barang = Barang::with('JenisBarang')->paginate(10); // Pagination menampilkan 5 data
+            $barang = Barang::with('JenisBarang')->all(); // Pagination menampilkan 5 data
         }
         return view('Barang.index', compact('barang'));
     }

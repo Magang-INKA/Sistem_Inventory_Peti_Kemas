@@ -55,7 +55,7 @@
                 <tbody>
                     @foreach ($masterKapal as $ship => $data)
                     <tr>
-                        <td class="table-plus">{{ $ship + $masterKapal->firstitem() }}</td>
+                        <td class="table-plus">{{ $loop->iteration }}</td>
                         <td>{{ $data->nama_kapal}}</td>
                         <td>{{ $data->IMO }}</td>
                         <td>
@@ -78,9 +78,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="col-md-40 col-sm-12 text-left">
-                {{$masterKapal->links()}}
-            </div>
         </div>
     </div>
 </div>

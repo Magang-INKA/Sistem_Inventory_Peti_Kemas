@@ -62,7 +62,7 @@
                 <tbody>
                     @foreach ($barang as $br => $data)
                     <tr>
-                        <td class="table-plus">{{ $br + $barang->firstitem() }}</td>
+                        <td class="table-plus">{{ $loop->iteration }}</td>
                         <td>{{ $data->JenisBarang->jenis_barang}}</td>
                         <td>{{ $data->nama_barang }}</td>
                         <td>{{ $data->berat_barang}}</td>
@@ -89,9 +89,9 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="col-md-40 col-sm-12 text-left">
+            {{-- <div class="col-md-40 col-sm-12 text-left">
                 {{$barang->links()}}
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

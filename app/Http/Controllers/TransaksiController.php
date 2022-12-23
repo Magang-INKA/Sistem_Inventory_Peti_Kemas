@@ -39,7 +39,7 @@ class TransaksiController extends Controller
             return view('Transaksi.index', compact('transaksi'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $transaksi = Transaksi::paginate(5);
+            $transaksi = Transaksi::all();
             return view('Transaksi.index', compact('transaksi'));
         }
     }

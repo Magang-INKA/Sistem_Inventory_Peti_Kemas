@@ -54,7 +54,7 @@
                 <tbody>
                     @foreach ($masterContainer as $mc => $data)
                     <tr>
-                        <td class="table-plus">{{ $mc + $masterContainer->firstitem() }}</td>
+                        <td class="table-plus">{{ $loop->iteration }}</td>
                         <td>{{ $data->no_container }}</td>
                         <td>{{ $data->jenis_container }}</td>
                         <td>{{ $data->kapasitas }}</td>
@@ -80,9 +80,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="col-md-40 col-sm-12 text-left">
-                {{$masterContainer->links()}}
-            </div>
         </div>
     </div>
 </div>

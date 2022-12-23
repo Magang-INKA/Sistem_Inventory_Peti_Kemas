@@ -52,7 +52,7 @@
                 <tbody>
                     @foreach ($container as $ct => $data)
                     <tr>
-                        <td class="table-plus">{{ $ct + $container->firstitem() }}</td>
+                        <td class="table-plus">{{ $loop->iteration }}</td>
                         <td>{{ $data->no_container }}</td>
                         <td>{{ $data->kapal->nama_kapal }}</td>
                         <td>
@@ -75,9 +75,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="col-md-40 col-sm-12 text-left">
-                {{$container->links()}}
-            </div>
         </div>
     </div>
 </div>

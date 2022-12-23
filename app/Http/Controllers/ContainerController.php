@@ -42,7 +42,7 @@ class ContainerController extends Controller
             return view('Container.index', compact('container'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $container = Container::paginate(10); // MenPagination menampilkan 5 data
+            $container = Container::all(); // MenPagination menampilkan 5 data
             return view('Container.index', compact('container'));
         }
     }

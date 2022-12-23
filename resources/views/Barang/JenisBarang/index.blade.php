@@ -44,7 +44,7 @@
                 <tbody>
                     @foreach ($JenisBarang as $br => $data)
                     <tr>
-                        <td class="table-plus">{{ $br + $JenisBarang->firstitem() }}</td>
+                        <td class="table-plus">{{ $loop->iteration }}</td>
                         <td>{{ $data->jenis_barang}}</td>
                         <td>{{ $data->suhu }}</td>
                         @can('manage-MasterData')
@@ -69,9 +69,9 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="col-md-40 col-sm-12 text-left">
+            {{-- <div class="col-md-40 col-sm-12 text-left">
                 {{$JenisBarang->links()}}
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

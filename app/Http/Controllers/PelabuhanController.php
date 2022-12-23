@@ -111,7 +111,7 @@ class PelabuhanController extends Controller
             return view('Pelabuhan.index', compact('pelabuhan'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $pelabuhan = Pelabuhan::paginate(10); // MenPagination menampilkan 5 data
+            $pelabuhan = Pelabuhan::all(); // MenPagination menampilkan 5 data
             return view('Pelabuhan.index', compact('pelabuhan'));
         }
     }

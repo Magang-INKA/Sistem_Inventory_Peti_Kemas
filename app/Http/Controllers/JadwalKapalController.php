@@ -25,7 +25,7 @@ class JadwalKapalController extends Controller
             return view('JadwalKapal.index', compact('jadwalKapal'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $jadwalKapal = JadwalKapal::paginate(10); // MenPagination menampilkan 5 data
+            $jadwalKapal = JadwalKapal::all(); // MenPagination menampilkan 5 data
             return view('JadwalKapal.index', compact('jadwalKapal'));
         }
     }

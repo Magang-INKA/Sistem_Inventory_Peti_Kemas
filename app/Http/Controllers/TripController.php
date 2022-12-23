@@ -30,7 +30,7 @@ class TripController extends Controller
             return view('Trip.index', compact('trip'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $trip = Trip::paginate(10); // MenPagination menampilkan 5 data
+            $trip = Trip::all(); // MenPagination menampilkan 5 data
             return view('Trip.index', compact('trip'));
         }
     }

@@ -54,7 +54,7 @@
                 <tbody>
                     @foreach ($user as $us => $data)
                     <tr>
-                        <td class="table-plus">{{ $us + $user->firstitem() }}</td>
+                        <td class="table-plus">{{ $loop->iteration }}</td>
                         <td>{{ $data->name }}</td>
                         <td>{{ $data->email }}</td>
                         <td>{{ $data->no_telp}}</td>
@@ -80,9 +80,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="col-md-40 col-sm-12 text-left">
-                {{$user->links()}}
-            </div>
         </div>
     </div>
 </div>

@@ -56,7 +56,7 @@
                 <tbody>
                     @foreach ($trip as $tr => $data)
                     <tr>
-                        <td class="table-plus">{{ $tr + $trip->firstitem() }}</td>
+                        <td class="table-plus">{{ $loop->iteration }}</td>
                         <td>{{ $data->nama_trip}}</td>
                         <td>{{ $data->keberangkatan->nama_pelabuhan}}</td>
                         <td>{{ $data->tujuan->nama_pelabuhan}}</td>
@@ -83,9 +83,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="col-md-40 col-sm-12 text-left">
-                {{$trip->links()}}
-            </div>
         </div>
     </div>
 </div>

@@ -58,7 +58,7 @@
                 <tbody>
                     @foreach ($jadwalKapal as $br => $data)
                     <tr>
-                        <td class="table-plus">{{ $br + $jadwalKapal->firstitem() }}</td>
+                        <td class="table-plus">{{ $loop->iteration }}</td>
                         <td>{{ $data->trip->kapal->nama_kapal }}</td>
                         <td>{{ $data->awal->nama_pelabuhan}}</td>
                         <td>{{ $data->tujuan->nama_pelabuhan}}</td>
@@ -88,9 +88,9 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="col-md-40 col-sm-12 text-left">
+            {{-- <div class="col-md-40 col-sm-12 text-left">
                 {{$jadwalKapal->links()}}
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

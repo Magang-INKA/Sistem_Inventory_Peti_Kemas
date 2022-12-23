@@ -100,8 +100,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="col-md-40 col-sm-12 text-left">
-            </div>
         </div>
     </div>
 </div>

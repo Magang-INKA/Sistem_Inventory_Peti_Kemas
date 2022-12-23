@@ -37,7 +37,7 @@ class MasterContainerController extends Controller
             return view('Container.master', compact('masterContainer'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $masterContainer = MasterContainer::paginate(10); // MenPagination menampilkan 5 data
+            $masterContainer = MasterContainer::all(); // MenPagination menampilkan 5 data
             return view('Container.master', compact('masterContainer'));
         }
     }

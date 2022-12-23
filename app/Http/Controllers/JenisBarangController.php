@@ -27,7 +27,7 @@ class JenisBarangController extends Controller
             return view('Barang.JenisBarang.index', compact('JenisBarang'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $JenisBarang = JenisBarang::paginate(10); // Pagination menampilkan 5 data
+            $JenisBarang = JenisBarang::all(); 
         }
         return view('Barang.JenisBarang.index', compact('JenisBarang'));
     }
