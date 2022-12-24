@@ -5,7 +5,7 @@
             <div id="map" style="width:100%!important; height:380px"></div>
             <br>
             <p><b>Informasi pelabuhan terakhir yang dilewati: </b>{{ $pelabuhan }}</p>
-            <div class="pb-20">
+            {{-- <div class="pb-20">
                 <table class="data-table table hover multiple-select-row nowrap">
                     <thead>
                         <tr class="table-primary">
@@ -24,7 +24,7 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

@@ -175,6 +175,7 @@ class DashboardController extends Controller
     public function show($id)
     {
         $mqtt = Mqtt::find($id);
+        $mqtt_all = Mqtt::all();
         $idmqtt = $mqtt->id;
         $no_container = $mqtt->topic;
         $mqtt_history = Dashboard::where('topicid', $idmqtt)->get();
@@ -207,6 +208,7 @@ class DashboardController extends Controller
         // return $pelabuhan;
         // return response()->json($data);
         return view('Dashboard.show',[
+            'mqtt_all' => $mqtt_all,
             'idmqtt' => $idmqtt,
             'mqtt_history' => $mqtt_history,
             'mqtt' => $mqtt,

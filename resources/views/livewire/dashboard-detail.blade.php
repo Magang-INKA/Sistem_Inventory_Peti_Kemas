@@ -1,30 +1,4 @@
 <div wire:click="$emit('some-event')">
-    <div class="page-header">
-        <div class="row">
-            <div class="col-md-8 col-sm-12">
-                <div class="title">
-                    <h4>Dashboard</h4>
-                </div>
-                <nav aria-label="breadcrumb" role="navigation">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href={{ url('/') }}>Home</a></li>
-                        <li class="breadcrumb-item" aria-current="page">{{$name->topic}}</li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="col-md-4 col-sm-12 pull-right">
-                {{-- @foreach($mqtt as $data) --}}
-                <select class="custom-select2 form-control" aria-placeholder="Pilih Container" name="state" onchange="location = this.value;" style="width: 100%;">
-                    <option>Pilih Container</option>
-                    @foreach ($mqtt_all as $data)
-                    <option value="{{ route('dashboard.show', $data->id) }}">{{ $data->topic }}</option>
-                    @endforeach
-                </select>
-                {{-- <a class="btn btn-secondary" href="{{ route('dashboard.show', $data->id) }}">Pilih</a> --}}
-                {{-- @endforeach --}}
-            </div>
-        </div>
-    </div>
     <div class="row clearfix progress-box">
         <div class="col-lg-4 col-md-12 col-sm-12 mb-30">
             <div class="card-white pd-20 height-100-p">
@@ -138,11 +112,11 @@
                                     <table class="table table-bordered">
                                         <tbody>
                                             <tr>
-                                                <td style="padding: 0.3rem;">Allocated</td>
+                                                <td style="padding: 0.3rem;">Occupied</td>
                                                 <td style="padding: 0.3rem;">{{$allocated}} kg</td>
                                             </tr>
                                             <tr>
-                                                <td style="padding: 0.3rem;">Free</td>
+                                                <td style="padding: 0.3rem;">Available</td>
                                                 <td style="padding: 0.3rem;">{{$free}} kg</td>
                                             </tr>
                                             <tr>
@@ -190,9 +164,9 @@
                 $kondisi2 = $mqtt->value['EVAP'] == 0 && $mqtt->value['COND'] == 0 && $mqtt->value['COMP'] == 0 && $mqtt->value['HEAT'] == 0;
                 ?>
 
-                @if ($kondisi1 == 1 && $kondisi2 == 0)
+                @if ($kondisi1 == 1)
                     <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                        <strong>Suhu melebihi threshold!</strong> Atur suhu menjadi dibawah {{$container->suhu_ketetapan}} °C
+                        <strong>Suhu melebihi threshold!</strong> Atur suhu menjadi di atas {{$container->suhu_ketetapan}} °C
                         {{-- <form action="" method="POST"> --}}
                         <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -200,35 +174,7 @@
                         {{-- </form> --}}
                     </div>
                 {{-- @endif --}}
-                @elseif ($kondisi1 == 0 && $kondisi2 == 1)
-                    <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                        <strong>AC turn off!</strong> Nyalakan komponen AC
-                        {{-- <form action="" method="POST"> --}}
-                        <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        {{-- </form> --}}
-                    </div>
-                {{-- @endif --}}
-                @elseif ($kondisi1 == 1 && $kondisi2 == 1)
-                    <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                        <strong>Suhu melebihi threshold!</strong> Atur suhu menjadi dibawah {{$container->suhu_ketetapan}} °C
-                        {{-- <form action="" method="POST"> --}}
-                        <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        {{-- </form> --}}
-                    </div>
-                    <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                        <strong>AC turn off!</strong> Nyalakan komponen AC
-                        {{-- <form action="" method="POST"> --}}
-                        <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        {{-- </form> --}}
-                    </div>
-                {{-- @endif --}}
-                @elseif ($kondisi1 == 0 && $kondisi2 == 0)
+                @elseif ($kondisi1 == 0)
                     <p>Nothing notification.</p>
                 @endif
                 {{-- @endforeach --}}
@@ -268,7 +214,7 @@
     @section('scriptPage')
 
     <script>
-        setInterval(() => Livewire.emit('ubahData'),3000);
+        // setInterval(() => Livewire.emit('ubahData'),3000);
 
         // $(document).ready(function() {
         //     var t = Math.abs({{ $mqtt->value['AVG_TMP'] }});
@@ -472,24 +418,24 @@
         $( "#cond" ).prop( "checked", {{ $mqtt->value['COND'] }} );
         $( "#comp" ).prop( "checked", {{ $mqtt->value['COMP'] }} );
         $( "#heat" ).prop( "checked", {{ $mqtt->value['HEAT'] }} );
-        Livewire.on('berhasilUpdate', event => {
-            // var supply = event.Math.abs({{ $mqtt->value['TMP1'] }});
-            var nilai_sup = event{{ $mqtt->value['TMP1'] }};
-            // var return_air = event.Math.abs({{ $mqtt->value['TMP2'] }});
-            var nilai_ret = event{{ $mqtt->value['TMP2'] }};
-            var hum = event.Math.abs({{ $mqtt->value['AVG_HMD'] }});
-            var nilai_hum = {{ $mqtt->value['AVG_HMD'] }};
-            chartSup.value = nilai_sup;
-            chartSup.labels = supply;
-            chartSup.update();
-            chartRet.value = nilai_ret;
-            chartRet.labels = return_air;
-            chartRet.update();
-            chart_hum.value = nilai_hum;
-            chart_hum.labels = hum;
-            chart_hum.update();
-            console.log(supply);
-        })
+        // Livewire.on('berhasilUpdate', event => {
+        //     // var supply = event.Math.abs({{ $mqtt->value['TMP1'] }});
+        //     var nilai_sup = event{{ $mqtt->value['TMP1'] }};
+        //     // var return_air = event.Math.abs({{ $mqtt->value['TMP2'] }});
+        //     var nilai_ret = event{{ $mqtt->value['TMP2'] }};
+        //     var hum = event.Math.abs({{ $mqtt->value['AVG_HMD'] }});
+        //     var nilai_hum = {{ $mqtt->value['AVG_HMD'] }};
+        //     chartSup.value = nilai_sup;
+        //     chartSup.labels = supply;
+        //     chartSup.update();
+        //     chartRet.value = nilai_ret;
+        //     chartRet.labels = return_air;
+        //     chartRet.update();
+        //     chart_hum.value = nilai_hum;
+        //     chart_hum.labels = hum;
+        //     chart_hum.update();
+        //     console.log(supply);
+        // })
     </script>
 @endsection
 </div>

@@ -83,6 +83,7 @@ class DashboardDetail extends Component
         $this->emit('some-event');
         // return response()->json($data);
         // dd($id_container);
+
     }
 
     public function loadData()
