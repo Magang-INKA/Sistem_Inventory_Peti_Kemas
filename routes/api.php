@@ -25,11 +25,6 @@ use App\Http\Controllers\API\UserController;
 //     return $request->user();
 // });
 
-// Route::post('login', [AuthController::class, 'login']);
-// Route::post('logout', [AuthController::class, 'logout']);
-
-
-// Route::post('register', [AuthController::class, 'register']);
 
 Route::group(['prefix' => 'v1'], function(){
     Route::post('/login', [AuthController::class, 'login']);
@@ -53,6 +48,8 @@ Route::get('/monitoring/topicid={id}',[DashboardController::class, 'show']);
 
 //Drop Point
 Route::get('/pelabuhan',[DroppointController::class, 'pelabuhan']);
+Route::get('/kapal',[DroppointController::class, 'kapal']);
+Route::get('/kapal/{id}/container',[DroppointController::class, 'kapalcontainer']);
 Route::get('/droppoint',[DroppointController::class, 'index']);
 Route::get('/alldroppoint',[DroppointController::class, 'allList']);
 Route::post('/droppoint',[DroppointController::class, 'store']);

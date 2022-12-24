@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Container;
 use App\Models\DropPoint;
+use App\Models\MasterKapal;
 use App\Models\Pelabuhan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -110,4 +111,27 @@ class DroppointController extends Controller
 
         return response()->json($dp_pel);
     }
+
+    public function kapal()
+    {
+
+        // $c = MasterKapal::all();
+        $k = DB::table('master_kapal')
+        ->select('id','IMO','nama_kapal')
+        ->get();
+        return response()->json($k);
+    }
+
+    public function kapalcontainer($id)
+    {
+        $c = DB::table('container')
+        ->join('master_container as mc','mc.no_container','=','container.no_container')
+        ->join('master_kapal as mk','mk.id','=','container.id_kapal')
+        ->select('container.id','container.no_container','mc.kapasitas','mc.suhu_ketetapan')
+        ->where('mk.id','=',$id)
+        ->get();
+        return response()->json($c);
+    }
+
+
 }
