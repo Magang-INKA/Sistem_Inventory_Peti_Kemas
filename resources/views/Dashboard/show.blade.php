@@ -1,5 +1,4 @@
 @extends('layouts.MasterView')
-{{-- @stack('scripts') --}}
 @section('menu_home', 'active')
 @section('content')
     <div class="page-header">
@@ -17,13 +16,13 @@
             </div>
             <div class="col-md-4 col-sm-12 pull-right">
                 {{-- @foreach($mqtt as $data) --}}
-                <select class="custom-select2 form-control" aria-placeholder="Pilih Container" name="state" onchange="location = this.value;" style="width: 100%;">
+                <select class="custom-select2 form-control" aria-placeholder="Pilih Container"
+                    name="state" onchange="location = this.value;" style="width: 100%;">
                     <option>Pilih Container</option>
                     @foreach ($mqtt_all as $data)
                     <option value="{{ route('dashboard.show', $data->id) }}">{{ $data->topic }}</option>
                     @endforeach
                 </select>
-                {{-- <a class="btn btn-secondary" href="{{ route('dashboard.show', $data->id) }}">Pilih</a> --}}
                 {{-- @endforeach --}}
             </div>
         </div>
